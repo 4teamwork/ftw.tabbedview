@@ -26,9 +26,9 @@
     <browser:page
         for="ftw.tabbedview.interfaces.ITabbedView"
         name="tabbedview_view-fallback"
-        class=".views.GenericListing"
+        class=".views.FallbackView"
         permission="zope.Public"
-        template="generic.pt"
+        template="fallback.pt"
         />
   
 <!-- 

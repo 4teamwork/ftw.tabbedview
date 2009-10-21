@@ -86,7 +86,7 @@ jq(function() {
 
     }; 
     
-    arbeitsraum.prop('view_name', 'overview');
+    arbeitsraum.prop('view_name', 'dossiers');
     arbeitsraum.prop('b_size', 50);
     
     jq('.arbeitsraum-tabs .ui-tabs-nav a').removeAttr('title');
@@ -107,7 +107,7 @@ jq(function() {
     });
     
     arbeitsraum.view_container.bind('reload', function() {
-    
+
         /* subview chooser*/
         jq('.ViewChooser a').click(function() {
             arbeitsraum.param('view_name', this.id);

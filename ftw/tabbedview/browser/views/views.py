@@ -19,7 +19,7 @@ class TabbedView(BrowserView):
     def get_tabs(self):
         #XXX use static tabs for development
         #return self.get_actions(category='arbeitsraum-tabs') 
-        return [{'id':'folder'}, {'id':'document'}, {'id':'file'}]
+        return [{'id':'dossiers'}, {'id':'documents'}, ]
 
     def get_actions(self, category=''):
         types_tool = getToolByName(self.context, 'portal_types')
@@ -57,10 +57,17 @@ class BaseListingView(BrowserView):
     sort_order = 'reverse'
     
     
-    def __init__(self, context, request):      
-        super(BaseListingView, self).__init__(context, request)
+    def __call__(self):      
+        self.search()
+        return super(BaseListingView, self).__call__()
+        
+    def render_listing(self):
+        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        return generator.generate(self.contents, self.columns, self.columns_links)
+ 
+    def search(self):
         catalog = getToolByName(self.context,'portal_catalog')
-        self.pas_tool = getToolByName(context, 'acl_users')
+        self.pas_tool = getToolByName(self.context, 'acl_users')
         kwargs = {}
          
         if len(self.types):
@@ -77,10 +84,6 @@ class BaseListingView(BrowserView):
         kwargs['sort_on'] = self.sort_on = self.request.get('sort_on', self.sort_on)
         kwargs['sort_order'] = self.sort_order = self.request.get('sort_order', self.sort_order)
         self.contents = results = catalog(path='/'.join(self.context.getPhysicalPath()),**kwargs)
-        
-    def render_listing(self):
-        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.contents, self.columns)
         
     def show_search_results(self):
         if self.request.has_key('searchable_text'):
