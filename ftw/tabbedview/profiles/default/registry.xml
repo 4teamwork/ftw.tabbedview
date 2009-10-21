@@ -1,0 +1,3 @@
+<registry>
+  <records interface="ftw.tabbedview.interfaces.ITabbedView" />
+</registry>

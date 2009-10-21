@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="ftw.tabbedview">
+
+    <body>
+        <metal:block fill-slot="column_two_slot" />
+        <div metal:fill-slot="main" class="tabbedview_view">
+            <metal:main-macro define-macro="main">
+                <div id="tabbedview-header">
+                    <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
+                    <input type="text" name="searchable_text" id="tabbedview-searchbox" autocomplete="false"/>
+                    <div class="tabbedview-tabs">
+                            <ul>
+                                <li tal:repeat="tab view/get_tabs">
+                                    <a  tal:define="tab_id tab/id"
+                                        tal:attributes="href string:tabbedview_changeview?view_name=document;
+                                                        class python: tab['id'] == view.selected_tab and 'selected' or None;
+                                                        id tab_id;
+                                                        title string:${tab_id} overview;">
+                                        <span tal:content="tab_id" i18n:translate="" />
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="visualClear" ></div>
+                <div id="tabbedview-body" class="panes">
+                    <tal:panes repeat="tab view/get_tabs">
+                        <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()">&nbsp;</div>		
+                    </tal:panes>		
+                </div>
+
+                <div tal:replace="structure provider:plone.belowcontentbody" />
+            </metal:main-macro>
+        </div>
+    </body>
+</html>

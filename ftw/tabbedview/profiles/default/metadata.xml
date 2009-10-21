@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>1.0</version>
+  <dependencies>
+        <dependency>profile-ftw.js.globals:default</dependency>
+        <dependency>profile-plone.app.registry:default</dependency>
+	    <dependency>profile-collective.js.jquery:default</dependency>
+	    <dependency>profile-collective.js.jqueryui:default</dependency>
+	    <dependency>profile-ftw.js.statusmessages:default</dependency>
+	    <dependency>profile-ftw.tabbedview:default</dependency>
+  </dependencies>
+</metadata>

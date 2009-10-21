@@ -1,0 +1,6 @@
+<div>
+    <p i18n:translate="">
+        No view registered for:
+        <tal:b content="structure view/view_name"  />
+    </p>
+</div>
