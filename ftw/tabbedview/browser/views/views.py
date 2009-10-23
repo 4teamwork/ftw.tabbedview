@@ -48,7 +48,7 @@ class BaseListingView(BrowserView):
     # ('','') = Title, index
     # ('','','') = title, index, method/attribute name
     # ('','', method) = title, index, callback 
-    columns = (('Title','sortable_title',), 
+    columns = (('Title','Title',), 
                ('modified','modified',readable_date), 
                ('Creator','Creator',readable_author),)
                
@@ -64,7 +64,7 @@ class BaseListingView(BrowserView):
         
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.contents, self.columns, self.columns_links)
+        return generator.generate(self.contents, self.columns)
  
     def search(self):
         catalog = getToolByName(self.context,'portal_catalog')
@@ -85,10 +85,10 @@ class BaseListingView(BrowserView):
         kwargs['sort_on'] = self.sort_on = self.request.get('sort_on', self.sort_on)
         kwargs['sort_order'] = self.sort_order = self.request.get('sort_order', self.sort_order)
         
-        if IATTopic.providedBy(context):
-            contentsMethod = context.queryCatalog
+        if IATTopic.providedBy(self.context):
+            contentsMethod = self.context.queryCatalog
         else:
-            contentsMethod = context.getFolderContents
+            contentsMethod = self.context.getFolderContents
         
         self.contents = results = catalog(path='/'.join(self.context.getPhysicalPath()),**kwargs)
         
