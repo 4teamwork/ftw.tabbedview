@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import time
 from Products.Five.browser import BrowserView
-from ftw.table.helper import linked_title, readable_date, readable_author
+from ftw.table import helper
 from Products.CMFCore.utils import getToolByName  
 from zope.component import getMultiAdapter, queryMultiAdapter  
 from zope.component import queryUtility
@@ -48,9 +48,9 @@ class BaseListingView(BrowserView):
     # ('','') = Title, index
     # ('','','') = title, index, method/attribute name
     # ('','', method) = title, index, callback 
-    columns = (('Title','Title',), 
-               ('modified','modified',readable_date), 
-               ('Creator','Creator',readable_author),)
+    columns = (('Title',), 
+               ('modified',helper.readable_date), 
+               ('Creator',helper.readable_author),)
                
     columns_links = ['Title']
     search_index = 'SearchableText'
@@ -90,7 +90,7 @@ class BaseListingView(BrowserView):
         else:
             contentsMethod = self.context.getFolderContents
         
-        self.contents = results = catalog(path='/'.join(self.context.getPhysicalPath()),**kwargs)
+        self.contents = results = catalog(path=dict(depth=1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
         
     def show_search_results(self):
         if self.request.has_key('searchable_text'):

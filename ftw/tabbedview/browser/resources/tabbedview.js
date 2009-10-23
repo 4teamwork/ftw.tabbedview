@@ -82,8 +82,36 @@ jq(function() {
                     this._properties[name] = value;
                 }
             }
+        },
+        
+        select_all : function() {
+            var view = this.prop('view_name');
+            var boxes = jq('input[name=uids:list]')
+            arbeitsraum.param('selected_count', boxes.length)
+            boxes.each(function(el){
+                jq(this).attr('checked', true);
+                jq('a#select-all').hide()
+                // batched
+                if (1){
+                   jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(arbeitsraum.param('selected_count'))   
+                   jq('p#select-folder').show() 
+                }
+                jq('a#select-none').show()
+            });
+        },
+        
+        select_none : function(){
+            jq('input[name=uids:list]').each(function(el){
+                jq(this).attr('checked', false);
+                jq('a#select-none').hide()
+                jq('a#select-all').show()
+                jq('p#select-folder').hide()
+            });   
+        },
+        select_folder :function(){
+            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html('111112222')   
+            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .select-all-text').hide()
         }
-
     }; 
     
     arbeitsraum.prop('view_name', 'dossiers');
