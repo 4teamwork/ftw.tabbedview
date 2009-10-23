@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import time
 from Products.Five.browser import BrowserView
-from ftw.table.helper import linked_title, readable_modified, readable_author
+from ftw.table.helper import linked_title, readable_date, readable_author
 from Products.CMFCore.utils import getToolByName  
 from zope.component import getMultiAdapter, queryMultiAdapter  
 from zope.component import queryUtility
@@ -9,6 +9,7 @@ from plone.app.content.browser.folderfactories import _allowedTypes
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryUtility
 from ftw.table.interfaces import ITableGenerator
+from Products.ATContentTypes.interface import IATTopic
 
 
 class TabbedView(BrowserView):
@@ -48,7 +49,7 @@ class BaseListingView(BrowserView):
     # ('','','') = title, index, method/attribute name
     # ('','', method) = title, index, callback 
     columns = (('Title','sortable_title',), 
-               ('modified','modified',readable_modified), 
+               ('modified','modified',readable_date), 
                ('Creator','Creator',readable_author),)
                
     columns_links = ['Title']
@@ -83,6 +84,12 @@ class BaseListingView(BrowserView):
         
         kwargs['sort_on'] = self.sort_on = self.request.get('sort_on', self.sort_on)
         kwargs['sort_order'] = self.sort_order = self.request.get('sort_order', self.sort_order)
+        
+        if IATTopic.providedBy(context):
+            contentsMethod = context.queryCatalog
+        else:
+            contentsMethod = context.getFolderContents
+        
         self.contents = results = catalog(path='/'.join(self.context.getPhysicalPath()),**kwargs)
         
     def show_search_results(self):
