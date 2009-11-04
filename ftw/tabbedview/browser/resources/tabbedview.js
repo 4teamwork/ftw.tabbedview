@@ -109,7 +109,9 @@ jq(function() {
             });   
         },
         select_folder :function(){
-            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html('111112222')   
+            jq('#'+arbeitsraum.prop('view_name')+'_overview .listing').animate({'backgroundColor':'yellow'}, 50).animate({'backgroundColor':'white'}, 2000)
+            var total = jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .total.counter').html()
+            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(total)   
             jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .select-all-text').hide()
         }
     }; 

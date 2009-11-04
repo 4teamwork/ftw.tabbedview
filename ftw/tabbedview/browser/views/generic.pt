@@ -1,1 +1,2 @@
+<input type="hidden" name="len_results" value="view/len_results"/>
 <div tal:content="structure view/render_listing" />

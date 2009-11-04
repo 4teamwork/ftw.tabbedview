@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter, queryMultiAdapter  
 from zope.component import queryUtility
 from plone.app.content.browser.folderfactories import _allowedTypes
+from Products.CMFCore.Expression import getExprContext
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryUtility
 from ftw.table.interfaces import ITableGenerator
@@ -19,8 +20,8 @@ class TabbedView(BrowserView):
     
     def get_tabs(self):
         #XXX use static tabs for development
-        #return self.get_actions(category='arbeitsraum-tabs') 
-        return [{'id':'dossiers'}, {'id':'documents'}, ]
+        return self.get_actions(category='arbeitsraum-tabs') 
+        #return [{'id':'dossiers'}, {'id':'documents'}, ]
 
     def get_actions(self, category=''):
         types_tool = getToolByName(self.context, 'portal_types')
@@ -91,6 +92,7 @@ class BaseListingView(BrowserView):
             contentsMethod = self.context.getFolderContents
         
         self.contents = results = catalog(path=dict(depth=1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
+        self.len_results = len(results)
         
     def show_search_results(self):
         if self.request.has_key('searchable_text'):
