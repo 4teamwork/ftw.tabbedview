@@ -1,4 +1,29 @@
-
+/* find_param function */
+jQuery.find_param = function(s) {
+     var r = {};
+     if (s) {
+         var q = s.substring(s.indexOf('?') + 1);
+         q = q.replace(/\&$/, '');
+         jQuery.each(q.split('&'), function() {
+             var splitted = this.split('=');
+             var key = splitted[0];
+             var val = splitted[1];
+             if (/^[0-9.]+$/.test(val)) {
+                val = parseFloat(val);
+             }
+             if (val == 'true') {
+                val = true;
+             }
+             if (val == 'false') {
+                val = false;
+             }
+             if (typeof val == 'number' || typeof val == 'boolean' || val.length > 0) {
+                r[key] = val;
+            }
+         });
+     }
+     return r;
+};
 
 jq(function() { 
     statusmessages = jq('#region-content').statusmessages()
@@ -199,13 +224,14 @@ jq(function() {
         });
 
         /* Batching */
-        jq('a.batch-link-page').click(function(e,o) {
-            var obj = jq(this);
-            var b_start = jq.find_param(this.href)['b_start:int'];
-            arbeitsraum.param('b_start:int', b_start);
-            arbeitsraum.reload_view();
+        jq('.listingBar span a, .listingBar a').click(function(e,o) {
             e.preventDefault();
             e.stopPropagation();
+            var obj = jq(this);
+            console.log(obj);
+            var pagenumber = jq.find_param(this.href).pagenumber
+            arbeitsraum.param('pagenumber:int', pagenumber);
+            arbeitsraum.reload_view();
         });
         
         /* Visible Types */

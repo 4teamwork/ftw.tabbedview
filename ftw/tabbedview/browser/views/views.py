@@ -11,7 +11,9 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryUtility
 from ftw.table.interfaces import ITableGenerator
 from Products.ATContentTypes.interface import IATTopic
-
+from zope.app.pagetemplate import ViewPageTemplateFile
+from plone.app.content.batching import Batch
+from plone.memoize import instance
 
 class TabbedView(BrowserView):
     
@@ -19,8 +21,8 @@ class TabbedView(BrowserView):
         super(TabbedView, self).__init__(context, request)
     
     def get_tabs(self):
-        #XXX use static tabs for development
         return self.get_actions(category='arbeitsraum-tabs') 
+        #XXX use static tabs for development
         #return [{'id':'dossiers'}, {'id':'documents'}, ]
 
     def get_actions(self, category=''):
@@ -58,20 +60,29 @@ class BaseListingView(BrowserView):
     sort_on = 'sortable_title'
     sort_order = 'reverse'
     
-    
+    batching = ViewPageTemplateFile("batching.pt")
+        
     def __call__(self):      
-        self.search()
+        self.update()
         return super(BaseListingView, self).__call__()
         
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
-        return generator.generate(self.contents, self.columns)
+        return generator.generate(self.batch, 
+                                  self.columns, 
+                                  sortable=True, 
+                                  selected=(self.sort_on, self.sort_order))
  
-    def search(self):
+    def update(self):
         catalog = getToolByName(self.context,'portal_catalog')
         self.pas_tool = getToolByName(self.context, 'acl_users')
         kwargs = {}
-         
+        
+        self.buttons = []#buttons  
+        self.pagesize = 20
+        self.pagenumber =  int(self.request.get('pagenumber', 1))    
+        self.url = self.context.absolute_url()   
+    
         if len(self.types):
             kwargs['portal_type'] = self.types
         else:
@@ -93,6 +104,13 @@ class BaseListingView(BrowserView):
         
         self.contents = results = catalog(path=dict(depth=1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
         self.len_results = len(results)
+
+    @property
+    @instance.memoize
+    def batch(self):
+        pagesize = self.pagesize
+        b = Batch(self.contents,pagesize=self.pagesize,pagenumber=self.pagenumber)
+        return b
         
     def show_search_results(self):
         if self.request.has_key('searchable_text'):
@@ -100,11 +118,6 @@ class BaseListingView(BrowserView):
             return bool(len(searchable_text))
         return False
         
-    def generate_class(self, index):
-        class_ = 'sortable '
-        if self.sort_on == index:
-             class_ += 'sort-selected sort-%s'%self.sort_order
-        return class_  
 
 class GenericListing(BaseListingView):
     """ uses the tab id for self.types. Good for testing or fallback  """
