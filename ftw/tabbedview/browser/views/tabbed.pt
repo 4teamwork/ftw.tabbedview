@@ -13,7 +13,16 @@
             <metal:main-macro define-macro="main">
 
                 <div id="tabbedview-header">
-                    <h1 tal:content="context/Title" />
+	
+	
+			        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+
+			        <h1 class="documentFirstHeading"> 
+			            <tal:title replace="context/Title" />
+			        </h1>
+			        <div tal:replace="structure provider:plone.belowcontenttitle" />
+			
                     <input type="text" name="searchable_text" id="tabbedview-searchbox" autocomplete="false"/>
                     <div class="tabbedview-tabs">
                             <ul>
