@@ -23,7 +23,7 @@
 			        </h1>
 			        <div tal:replace="structure provider:plone.belowcontenttitle" />
 			
-                    <input type="text" name="searchable_text" id="tabbedview-searchbox" autocomplete="false"/>
+                    <div class="tabbedview_search"><input type="text" name="searchable_text" id="tabbedview-searchbox" autocomplete="false"/></div>
                     <div class="tabbedview-tabs">
                             <ul>
                                 <li tal:repeat="tab view/get_tabs">
