@@ -8,10 +8,12 @@
 
     <body>
         <metal:block fill-slot="column_two_slot" />
-        <div metal:fill-slot="main" class="tabbedview_view">
+        <div metal:fill-slot="main" class="tabbedview_view" 
+                tal:define="came_from python:request.get('HTTP_REFERER', here.absolute_url()).split('?')[0];">
             <metal:main-macro define-macro="main">
+
                 <div id="tabbedview-header">
-                    <metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
+                    <h1 tal:content="context/Title" />
                     <input type="text" name="searchable_text" id="tabbedview-searchbox" autocomplete="false"/>
                     <div class="tabbedview-tabs">
                             <ul>
@@ -21,21 +23,24 @@
                                                         class python: tab['id'] == view.selected_tab and 'selected' or None;
                                                         id tab_id;
                                                         title string:${tab_id} overview;">
-                                        <span tal:content="tab_id" i18n:translate="" />
+                                        <span tal:content="tab_id" i18n:translate="" i18n:domain="opengever.tabbedview"/>
                                     </a>
                             </li>
-                        </ul>
+                        </ul>                    
                     </div>
                 </div>
 
                 <div class="visualClear" ></div>
                 <div id="tabbedview-body" class="panes">
                     <tal:panes repeat="tab view/get_tabs">
-                        <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()">&nbsp;</div>		
+                        <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()" title="mi">&nbsp;</div>		
                     </tal:panes>		
                 </div>
 
                 <div tal:replace="structure provider:plone.belowcontentbody" />
+                <div id="tabbedview-spinner" style="display:none">
+                    <img src="/++resource++ftw.tabbedview-resources/spinner.gif" />
+                </div>
             </metal:main-macro>
         </div>
     </body>

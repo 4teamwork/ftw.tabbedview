@@ -14,6 +14,7 @@ from Products.ATContentTypes.interface import IATTopic
 from zope.app.pagetemplate import ViewPageTemplateFile
 from plone.app.content.batching import Batch
 from plone.memoize import instance
+from Acquisition import aq_parent, aq_inner
 
 class TabbedView(BrowserView):
     
@@ -59,7 +60,7 @@ class BaseListingView(BrowserView):
     search_index = 'SearchableText'
     sort_on = 'sortable_title'
     sort_order = 'reverse'
-    
+    table = None
     batching = ViewPageTemplateFile("batching.pt")
         
     def __call__(self):      
@@ -71,18 +72,18 @@ class BaseListingView(BrowserView):
         return generator.generate(self.batch, 
                                   self.columns, 
                                   sortable=True, 
-                                  selected=(self.sort_on, self.sort_order))
+                                  selected=(self.sort_on, self.sort_order),
+                                  template = self.table 
+                                  )
  
     def update(self):
         catalog = getToolByName(self.context,'portal_catalog')
         self.pas_tool = getToolByName(self.context, 'acl_users')
         kwargs = {}
         
-        self.buttons = []#buttons  
         self.pagesize = 20
         self.pagenumber =  int(self.request.get('pagenumber', 1))    
         self.url = self.context.absolute_url()   
-    
         if len(self.types):
             kwargs['portal_type'] = self.types
         else:
@@ -93,8 +94,11 @@ class BaseListingView(BrowserView):
             if len(searchable_text):
                 searchable_text = searchable_text.endswith('*') and searchable_text or searchable_text+'*'
                 kwargs['SearchableText'] = searchable_text
-        
         kwargs['sort_on'] = self.sort_on = self.request.get('sort_on', self.sort_on)
+        
+        if self.sort_on.startswith('header-'):
+            kwargs['sort_on'] = self.sort_on = self.sort_on.split('header-')[1]
+            
         kwargs['sort_order'] = self.sort_order = self.request.get('sort_order', self.sort_order)
         
         if IATTopic.providedBy(self.context):
@@ -104,6 +108,35 @@ class BaseListingView(BrowserView):
         
         self.contents = results = catalog(path=dict(depth=1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
         self.len_results = len(results)
+
+    @property
+    def buttons(self):
+        buttons = []
+        context = aq_inner(self.context)
+        portal_actions = getToolByName(context, 'portal_actions')
+        button_actions = portal_actions.listActionInfos(object=context, categories=('folder_buttons', ))
+        # Do not show buttons if there is no data, unless there is data to be
+        # pasted
+        if not len(self.contents):
+            if self.context.cb_dataValid():
+                for button in button_actions:
+                    if button['id'] == 'paste':
+                        return [self.setbuttonclass(button)]
+            else:
+                return []
+
+        for button in button_actions:
+            # Make proper classes for our buttons
+            if button['id'] != 'paste' or context.cb_dataValid():
+                buttons.append(self.setbuttonclass(button)) 
+        return buttons
+
+    def setbuttonclass(self, button):
+        if button['id'] == 'paste':
+            button['cssclass'] = 'standalone'
+        else:
+            button['cssclass'] = 'context'
+        return button
 
     @property
     @instance.memoize

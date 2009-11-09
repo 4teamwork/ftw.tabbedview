@@ -25,6 +25,37 @@ jQuery.find_param = function(s) {
      return r;
 };
 
+
+jq(function(){
+    
+   jq('#tree').dynatree();
+   jq('.ui-dynatree-title').droppable({
+        tolerance:'pointer',
+        activeClass: '.ui-state-highlight',
+		drop: function(event, ui) {
+            statusmessages.info('Objekte verschoben');
+            jq('.ui-selected').remove();
+		},	
+	}); 
+});
+/*
+
+var $tabs;
+
+jQuery(document).ready(function() {
+
+    $tabs = jQuery("#tabs").tabs();    
+    
+    jQuery('#tabs').bind('tabsselect', function(event, ui) {
+    	
+    	jQuery.History.setHash(ui.tab.href);
+    	
+    });
+});
+
+*/
+
+
 jq(function() { 
     statusmessages = jq('#region-content').statusmessages()
     
@@ -35,6 +66,7 @@ jq(function() {
         img_arrow_up : 'icon_open_box.gif',
         img_arrow_down : 'icon_close_box.gif',
         spinner : jq('#tabbedview-spinner'),
+        collapsible : false,
         tabs : jq('.tabbedview-tabs').tabs({
             spinner : '',
             cache: false,
@@ -46,6 +78,7 @@ jq(function() {
                            },
             collapsible: true,
             select : function (e, ui){
+                jQuery.History.setHash(ui.tab.id);
                 with(arbeitsraum){
                     spinner.show();
                     selected_tab = ui.index;
@@ -111,37 +144,31 @@ jq(function() {
         
         select_all : function() {
             var view = this.prop('view_name');
-            var boxes = jq('input[name=uids:list]')
-            arbeitsraum.param('selected_count', boxes.length)
+            var boxes = jq('input[name=paths:list]');
+            arbeitsraum.param('selected_count', boxes.length);
             boxes.each(function(el){
                 jq(this).attr('checked', true);
-                jq('a#select-all').hide()
-                // batched
-                if (1){
-                   jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(arbeitsraum.param('selected_count'))   
-                   jq('p#select-folder').show() 
-                }
-                jq('a#select-none').show()
+                jq(this).closest('tr').addClass('ui-selected');
             });
+            jq('.select_folder').show()
         },
         
         select_none : function(){
-            jq('input[name=uids:list]').each(function(el){
+            jq('input[name=paths:list]').each(function(el){
                 jq(this).attr('checked', false);
-                jq('a#select-none').hide()
-                jq('a#select-all').show()
-                jq('p#select-folder').hide()
+                jq(this).closest('tr').removeClass('ui-selected');
             });   
+            jq('.select_folder').hide()
         },
         select_folder :function(){
             jq('#'+arbeitsraum.prop('view_name')+'_overview .listing').animate({'backgroundColor':'yellow'}, 50).animate({'backgroundColor':'white'}, 2000)
             var total = jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .total.counter').html()
             jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(total)   
             jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .select-all-text').hide()
-        }
-    }; 
-    
-    arbeitsraum.prop('view_name', 'dossiers');
+        },
+        
+    };
+    arbeitsraum.prop('view_name', 'dossier');   
     arbeitsraum.prop('b_size', 50);
     
     jq('.arbeitsraum-tabs .ui-tabs-nav a').removeAttr('title');
@@ -162,6 +189,58 @@ jq(function() {
     });
     
     arbeitsraum.view_container.bind('reload', function() {
+        if( arbeitsraum.prop('view_name') != jQuery.History.getHash()){
+            jq('a[href="#'+jQuery.History.getHash()+'_overview"]').trigger('click') 
+        }
+            
+
+
+        /* selectable */
+        
+        jq('.tabbedview-tabs .listing').selectable({
+                        filter:'tr:gt(0)', 
+                        cancel: 'a, input, th',
+                        selecting: function(event, ui) {
+                            jq('input[name="paths:list"]', ui.selecting).attr('checked', true);
+                        },
+                        selected: function(event, ui) {
+                            jq('.ui-selected input[name="paths:list"]').attr('checked', true);
+                        },
+                        unselecting: function(event, ui) {
+                            jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
+                        }
+                            
+        })
+
+        /* checkboxes */
+        jq('input[name="paths:list"]').click(function(){
+            var checkbox = jq(this)
+            if (checkbox.attr('checked'))
+                checkbox.closest('tr').addClass('ui-selected')
+            else
+                checkbox.closest('tr').removeClass('ui-selected')
+        });
+        
+        /* draggable */
+        jq("span.draggable").draggable({
+        			                cursor: 'move',
+        			                cursorAt: { top: 0, left: 0 },
+        			                helper: function(event) {
+        				                return jq('<div class="ui-widget-header">'+jq('tr.ui-selected').length+' Objekte verschieben</div>');
+        			                }
+        });
+        
+        
+        
+
+        /* resizeable */
+        jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).width('20px');
+        jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).css('padding','0px');
+        jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).width('20px');
+        jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).css('padding','0px');
+        
+        jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th:gt(1):lt(2)').resizable({ handles: 'e' });
+
 
         /* subview chooser*/
         jq('.ViewChooser a').click(function() {
