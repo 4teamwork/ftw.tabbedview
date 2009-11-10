@@ -26,7 +26,7 @@ jQuery.find_param = function(s) {
 };
 
 
-jq(function(){
+jq(function() {
     
    jq('#tree').dynatree();
    jq('.ui-dynatree-title').droppable({
@@ -35,9 +35,10 @@ jq(function(){
 		drop: function(event, ui) {
             statusmessages.info('Objekte verschoben');
             jq('.ui-selected').remove();
-		},	
+		}	
 	}); 
 });
+
 /*
 
 var $tabs;
@@ -146,26 +147,26 @@ jq(function() {
             var view = this.prop('view_name');
             var boxes = jq('input[name=paths:list]');
             arbeitsraum.param('selected_count', boxes.length);
-            boxes.each(function(el){
+            boxes.each(function(el) {
                 jq(this).attr('checked', true);
                 jq(this).closest('tr').addClass('ui-selected');
             });
-            jq('.select_folder').show()
+            jq('.select_folder').show();
         },
         
         select_none : function(){
-            jq('input[name=paths:list]').each(function(el){
+            jq('input[name=paths:list]').each(function(el) {
                 jq(this).attr('checked', false);
                 jq(this).closest('tr').removeClass('ui-selected');
             });   
-            jq('.select_folder').hide()
+            jq('.select_folder').hide();
         },
-        select_folder :function(){
-            jq('#'+arbeitsraum.prop('view_name')+'_overview .listing').animate({'backgroundColor':'yellow'}, 50).animate({'backgroundColor':'white'}, 2000)
-            var total = jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .total.counter').html()
-            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(total)   
-            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .select-all-text').hide()
-        },
+        select_folder :function() {
+            jq('#'+arbeitsraum.prop('view_name')+'_overview .listing').animate({'backgroundColor':'yellow'}, 50).animate({'backgroundColor':'white'}, 2000);
+            var total = jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .total.counter').html();
+            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .selected.counter').html(total);
+            jq('#'+arbeitsraum.prop('view_name')+'_overview p#select-folder .select-all-text').hide();
+        }
         
     };
     arbeitsraum.prop('view_name', 'dossier');   
@@ -175,22 +176,22 @@ jq(function() {
       
     arbeitsraum.searchbox.bind("keyup", function(e) {
             var value = arbeitsraum.searchbox.val();
-            if (value.length<=3 && arbeitsraum.prop('searchable_text') > value){
+            if (value.length<=3 && arbeitsraum.prop('searchable_text') > value) {
                 arbeitsraum.prop('searchable_text', '');
                 arbeitsraum.flush_params();
                 arbeitsraum.reload_view(); 
             }else{
                 arbeitsraum.prop('searchable_text', value);
             }
-            if (value.length>=3){
+            if (value.length>=3) {
                 arbeitsraum.flush_params();
                 arbeitsraum.reload_view();  
             }
     });
     
     arbeitsraum.view_container.bind('reload', function() {
-        if( arbeitsraum.prop('view_name') != jQuery.History.getHash()){
-            jq('a[href="#'+jQuery.History.getHash()+'_overview"]').trigger('click') 
+        if( arbeitsraum.prop('view_name') != jQuery.History.getHash()) {
+            jq('a[href="#'+jQuery.History.getHash()+'_overview"]').trigger('click') ;
         }
             
 
@@ -210,15 +211,17 @@ jq(function() {
                             jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
                         }
                             
-        })
+        });
 
         /* checkboxes */
         jq('input[name="paths:list"]').click(function(){
-            var checkbox = jq(this)
-            if (checkbox.attr('checked'))
-                checkbox.closest('tr').addClass('ui-selected')
-            else
-                checkbox.closest('tr').removeClass('ui-selected')
+            var checkbox = jq(this);
+            if (checkbox.attr('checked')) {
+                checkbox.closest('tr').addClass('ui-selected');
+            }
+            else {
+                checkbox.closest('tr').removeClass('ui-selected');
+            }
         });
         
         /* draggable */
@@ -307,8 +310,8 @@ jq(function() {
             e.preventDefault();
             e.stopPropagation();
             var obj = jq(this);
-            console.log(obj);
-            var pagenumber = jq.find_param(this.href).pagenumber
+            //console.log(obj);
+            var pagenumber = jq.find_param(this.href).pagenumber;
             arbeitsraum.param('pagenumber:int', pagenumber);
             arbeitsraum.reload_view();
         });
