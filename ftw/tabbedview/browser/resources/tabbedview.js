@@ -33,8 +33,11 @@ jQuery.find_param = function(s) {
 */
 
 
+
+
 jq(function() { 
     statusmessages = jq('#region-content').statusmessages()
+    
     
     arbeitsraum = {
         version : '0.1',
@@ -55,7 +58,7 @@ jq(function() {
                            },
             collapsible: true,
             select : function (e, ui){
-                jQuery.History.setHash(ui.tab.id);
+                jQuery.History.setHash(ui.tab.id+'-tab');
                 with(arbeitsraum){
                     spinner.show();
                     selected_tab = ui.index;
@@ -145,7 +148,7 @@ jq(function() {
         }
         
     };
-    arbeitsraum.prop('view_name', 'dossier');   
+    arbeitsraum.prop('view_name', 'overview');   
     arbeitsraum.prop('b_size', 50);
     
     jq('.arbeitsraum-tabs .ui-tabs-nav a').removeAttr('title');
@@ -166,8 +169,9 @@ jq(function() {
     });
     
     arbeitsraum.view_container.bind('reload', function() {
-        if( arbeitsraum.prop('view_name') != jQuery.History.getHash()) {
-            jq('a[href="#'+jQuery.History.getHash()+'_overview"]').trigger('click') ;
+        var tab_id = jQuery.History.getHash().split('-tab')[0]
+        if( arbeitsraum.prop('view_name') != tab_id) {
+            jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
         }
             
 

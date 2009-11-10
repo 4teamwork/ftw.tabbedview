@@ -68,7 +68,7 @@ class BaseListingView(BrowserView):
         return super(BaseListingView, self).__call__()
         
     def render_listing(self):
-        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        generator = queryUtility(ITableGenerator, 'ftw.tablegenerator') 
         return generator.generate(self.batch, 
                                   self.columns, 
                                   sortable=True, 

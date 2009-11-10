@@ -28,7 +28,7 @@
                             <ul>
                                 <li tal:repeat="tab view/get_tabs">
                                     <a  tal:define="tab_id tab/id"
-                                        tal:attributes="href string:tabbedview_changeview?view_name=dossiers;
+                                        tal:attributes="href string:tabbedview_changeview?view_name=${tab_id}-tab;
                                                         class python: tab['id'] == view.selected_tab and 'selected' or None;
                                                         id tab_id;
                                                         title string:${tab_id} overview;">
