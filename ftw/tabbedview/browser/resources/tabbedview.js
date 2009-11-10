@@ -56,7 +56,7 @@ jq(function() {
                                statusmessages.error(textStatus + ' <a href="javascript:arbeitsraum.reload_view()">reload</a>');
                            }
                            },
-            collapsible: true,
+            collapsible: false,
             select : function (e, ui){
                 jQuery.History.setHash(ui.tab.id+'-tab');
                 with(arbeitsraum){
