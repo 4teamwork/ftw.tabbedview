@@ -26,33 +26,9 @@ jQuery.find_param = function(s) {
 };
 
 
-jq(function() {
-    
-   jq('#tree').dynatree();
-   jq('.ui-dynatree-title').droppable({
-        tolerance:'pointer',
-        activeClass: '.ui-state-highlight',
-		drop: function(event, ui) {
-            statusmessages.info('Objekte verschoben');
-            jq('.ui-selected').remove();
-		}	
-	}); 
-});
-
 /*
 
-var $tabs;
 
-jQuery(document).ready(function() {
-
-    $tabs = jQuery("#tabs").tabs();    
-    
-    jQuery('#tabs').bind('tabsselect', function(event, ui) {
-    	
-    	jQuery.History.setHash(ui.tab.href);
-    	
-    });
-});
 
 */
 
@@ -227,7 +203,7 @@ jq(function() {
         /* draggable */
         jq("span.draggable").draggable({
         			                cursor: 'move',
-        			                cursorAt: { top: 0, left: 0 },
+        			                cursorAt: { top: -10, left: -10 },
         			                helper: function(event) {
         				                return jq('<div class="ui-widget-header">'+jq('tr.ui-selected').length+' Objekte verschieben</div>');
         			                }
