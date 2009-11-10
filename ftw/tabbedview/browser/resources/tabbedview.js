@@ -148,7 +148,8 @@ jq(function() {
         }
         
     };
-    arbeitsraum.prop('view_name', 'overview');   
+    var view_name = jq('#tabbedview-body div').get(0).id.split('_overview')[0].toLowerCase()
+    arbeitsraum.prop('view_name', view_name);   
     arbeitsraum.prop('b_size', 50);
     
     jq('.arbeitsraum-tabs .ui-tabs-nav a').removeAttr('title');
