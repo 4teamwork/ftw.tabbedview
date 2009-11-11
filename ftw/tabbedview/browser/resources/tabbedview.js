@@ -38,7 +38,6 @@ jQuery.find_param = function(s) {
 jq(function() { 
     statusmessages = jq('#region-content').statusmessages()
     
-    
     arbeitsraum = {
         version : '0.1',
         view_container : jq('.tabbedview_view'),
@@ -130,7 +129,7 @@ jq(function() {
                 jq(this).attr('checked', true);
                 jq(this).closest('tr').addClass('ui-selected');
             });
-            jq('.select_folder').show();
+            //jq('.select_folder').show();
         },
         
         select_none : function(){
@@ -168,6 +167,8 @@ jq(function() {
                 arbeitsraum.reload_view();  
             }
     });
+    
+    
     
     arbeitsraum.view_container.bind('reload', function() {
         var tab_id = jQuery.History.getHash().split('-tab')[0]
@@ -314,7 +315,15 @@ jq(function() {
         }
 
 
-    });    
+    }); 
+    
+    jQuery.History.bind(function(){
+        var tab_id = jQuery.History.getHash().split('-tab')[0];
+        if( arbeitsraum.prop('view_name') != tab_id) {
+            jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
+        }      
+        
+    })       
 });
 
 
