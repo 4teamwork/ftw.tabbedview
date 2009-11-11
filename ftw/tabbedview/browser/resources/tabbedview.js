@@ -147,7 +147,12 @@ jq(function() {
         }
         
     };
-    var view_name = jq('#tabbedview-body div').get(0).id.split('_overview')[0].toLowerCase()
+    
+    var tabbedview_body =  jq('#tabbedview-body div');
+    
+    if(tabbedview_body.length == 0)return;
+    
+    var view_name = tabbedview_body.get(0).id.split('_overview')[0].toLowerCase()
     arbeitsraum.prop('view_name', view_name);   
     arbeitsraum.prop('b_size', 50);
     
