@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import time
+import bisect
 from Products.Five.browser import BrowserView
 from ftw.table import helper
 from Products.CMFCore.utils import getToolByName  
@@ -15,6 +16,8 @@ from zope.app.pagetemplate import ViewPageTemplateFile
 from plone.app.content.batching import Batch
 from plone.memoize import instance
 from Acquisition import aq_parent, aq_inner
+
+
 
 class TabbedView(BrowserView):
     
@@ -48,18 +51,21 @@ class TabbedView(BrowserView):
 class BaseListingView(BrowserView):
     types = [] #friendly types
     #columns possible values
-    # "" = Name of index
-    # ('','') = Title, index
-    # ('','','') = title, index, method/attribute name
-    # ('','', method) = title, index, callback 
+    # "<attributename>"
+    # ('<attributename>', 'catalog_index')
+    # ('<attributename>', callback)
+    # ('<attributename>', '<catalog_index>', callback)
+    # callback is used to modify the cell attribute E.g to humanize DateTime objects.
+    # The Callback is called with the instance of the current item and the attributename
     columns = (('Title',), 
                ('modified',helper.readable_date), 
                ('Creator',helper.readable_author),)
                
-    columns_links = ['Title']
     search_index = 'SearchableText'
     sort_on = 'sortable_title'
     sort_order = 'reverse'
+    search_options = {}
+    depth = -1
     table = None
     batching = ViewPageTemplateFile("batching.pt")
         
@@ -106,8 +112,26 @@ class BaseListingView(BrowserView):
         else:
             contentsMethod = self.context.getFolderContents
         
-        self.contents = results = catalog(path=dict(depth=1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
-        self.len_results = len(results)
+        
+        #overwrite options with search_options dict on tab
+        kwargs.update(self.search_options)
+
+        self.contents = catalog(path=dict(depth=self.depth, query='/'.join(self.context.getPhysicalPath())), **kwargs)
+        #when we're searching recursively we have to remove the current item if its in self.types
+        if self.depth != 1 and self.context.portal_type in self.types:
+            index = 0
+            current_path = '/'.join(self.context.getPhysicalPath())
+            for result in self.contents:
+                if current_path == result.getPath():
+                    self.contents = list(self.contents)
+                    self.contents.pop(index)
+                    #removing from LazyMap doesn't work
+                    #self.contents._len -= 1
+                    #self.contents.actual_result_count -= 1
+                    #res = self.contents._data.pop(index)
+                index +=1
+                
+        self.len_results = len(self.contents)
 
     @property
     def buttons(self):
