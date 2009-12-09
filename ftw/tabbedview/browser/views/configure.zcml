@@ -16,7 +16,7 @@
         />
 
   <browser:page
-      for="Products.CMFCore.interfaces._content.IFolderish"
+      for="Products.CMFCore.interfaces._content.IContentish"
       name="tabbedview_changeview"
       class=".views.ChangeView"
       template="change.pt"

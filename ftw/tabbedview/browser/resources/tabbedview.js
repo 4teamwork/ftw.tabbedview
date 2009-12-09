@@ -76,7 +76,13 @@ jq(function() {
 
         set_url_for_tab : function() {
             var params = this.parse_params();
-            this.tabs.tabs('url', this.selected_tab, 'tabbedview_changeview?'+params);        
+            var url = jq('base').attr('href') 
+            if( url.substr(url.length-1, 1) == '/'){
+                this.tabs.tabs('url', this.selected_tab, 'tabbedview_changeview?'+params);        
+            }
+            else{
+                this.tabs.tabs('url', this.selected_tab, url + '/tabbedview_changeview?'+params);
+            }               
         },
 
         reload_view : function() {
