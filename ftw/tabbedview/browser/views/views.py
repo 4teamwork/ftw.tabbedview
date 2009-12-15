@@ -38,12 +38,12 @@ class TabbedView(BrowserView):
                 icon = ai_tool.queryActionIcon(action_id=action.id, category=category, context=self.context)
                 econtext = getExprContext(self.context, self.context)
                 action = action.getAction(ec=econtext)
-
-                yield {
-                       'id':action['id'],
-                       'icon':icon,
-                       'url':action['url']
-                       }
+                if action['available'] and action['visible']:
+                    yield {
+                           'id':action['id'],
+                           'icon':icon,
+                           'url':action['url']
+                           }
     
     def selected_tab(self):
         return 'Dokumente'
