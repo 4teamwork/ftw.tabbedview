@@ -27,12 +27,13 @@
                     <div class="tabbedview-tabs">
                             <ul>
                                 <li tal:repeat="tab view/get_tabs">
-                                    <a  tal:define="tab_id tab/id"
+                                    <a  tal:define="tab_id tab/id;
+                                                    class python: tab['id'] == view.selected_tab and 'selected' or None;"
                                         tal:attributes="href string:${context/absolute_url}/tabbedview_changeview?view_name=${tab_id};
-                                                        class python: tab['id'] == view.selected_tab and 'selected' or None;
+														class string: ${class}  ${tab/class};
                                                         id tab_id;
                                                         title string:${tab_id} overview;">
-                                        <span tal:content="tab_id" i18n:translate="" i18n:domain="opengever.tabbedview"/>
+                                        <span tal:content="tab_id" i18n:translate="" i18n:domain="opengever.tabbedview" />
                                     </a>
                             </li>
                         </ul>                    

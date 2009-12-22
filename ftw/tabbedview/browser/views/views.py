@@ -1,23 +1,15 @@
-from datetime import datetime, timedelta
-import time
-import bisect
 from Products.Five.browser import BrowserView
 from ftw.table import helper
 from Products.CMFCore.utils import getToolByName  
-from zope.component import getMultiAdapter, queryMultiAdapter  
-from zope.component import queryUtility
-from plone.app.content.browser.folderfactories import _allowedTypes
+from zope.component import queryMultiAdapter  
 from Products.CMFCore.Expression import getExprContext
-from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryUtility
 from ftw.table.interfaces import ITableGenerator
 from Products.ATContentTypes.interface import IATTopic
 from zope.app.pagetemplate import ViewPageTemplateFile
 from plone.app.content.batching import Batch
 from plone.memoize import instance
-from Acquisition import aq_parent, aq_inner
-
-
+from Acquisition import aq_inner
 
 class TabbedView(BrowserView):
     
@@ -39,10 +31,12 @@ class TabbedView(BrowserView):
                 econtext = getExprContext(self.context, self.context)
                 action = action.getAction(ec=econtext)
                 if action['available'] and action['visible']:
+                    view = self.context.restrictedTraverse("tabbedview_view-%s" % action['id'])
                     yield {
-                           'id':action['id'],
-                           'icon':icon,
-                           'url':action['url']
+                           'id' : action['id'],
+                           'icon' : icon,
+                           'url' : action['url'],
+                           'class' : ' '.join(view.get_css_classes()),
                            }
     
     def selected_tab(self):
@@ -62,9 +56,11 @@ class BaseListingView(BrowserView):
                ('Creator',helper.readable_author),)
                
     search_index = 'SearchableText'
+    show_searchform = True
     sort_on = 'sortable_title'
     sort_order = 'reverse'
     search_options = {}
+    
     depth = -1
     table = None
     batching = ViewPageTemplateFile("batching.pt")
@@ -72,6 +68,12 @@ class BaseListingView(BrowserView):
     def __call__(self):      
         self.update()
         return super(BaseListingView, self).__call__()
+        
+    def get_css_classes(self):
+        if self.show_searchform:
+            return ['searchform-visible']
+        else:
+            return ['searchform-hidden']
         
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator') 
@@ -89,7 +91,7 @@ class BaseListingView(BrowserView):
         
         self.pagesize = 20
         self.pagenumber =  int(self.request.get('pagenumber', 1))    
-        self.url = self.context.absolute_url()   
+        self.url = self.context.absolute_url()
         if len(self.types):
             kwargs['portal_type'] = self.types
         else:
@@ -165,7 +167,6 @@ class BaseListingView(BrowserView):
     @property
     @instance.memoize
     def batch(self):
-        pagesize = self.pagesize
         b = Batch(self.contents,pagesize=self.pagesize,pagenumber=self.pagenumber)
         return b
         

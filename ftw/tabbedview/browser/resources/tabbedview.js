@@ -186,6 +186,12 @@ jq(function() {
         if( arbeitsraum.prop('view_name') != tab_id) {
             jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
         }
+        if (jq('#'+arbeitsraum.prop('view_name')).hasClass('searchform-visible')) {
+            jq('div.tabbedview_search').show();
+        }
+        else {
+            jq('div.tabbedview_search').hide();
+        }
             
 
 
