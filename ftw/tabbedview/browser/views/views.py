@@ -167,7 +167,10 @@ class BaseListingView(BrowserView):
         self.len_results = len(self.contents)
 
     def buttons(self):
-        enabled_actions = list(self.enabled_actions())
+        if callable(self.enabled_actions):
+            enabled_actions = list(self.enabled_actions())
+        else:
+            enabled_actions = list(self.enabled_actions)
         buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
