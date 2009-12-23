@@ -88,7 +88,7 @@ class BaseListingView(BrowserView):
         """ Returns a list of enabled actions from portal_actions' folder_buttons category.
         The actions will be sorted in order of this list.
         """
-        available_action_ids = self.available_action_ids()
+        available_action_ids = self.available_action()
         enabled = []
         for aid in DEFAULT_ENABLED_ACTIONS:
             if aid in available_action_ids:
