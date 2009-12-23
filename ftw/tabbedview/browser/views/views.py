@@ -11,6 +11,15 @@ from plone.app.content.batching import Batch
 from plone.memoize import instance
 from Acquisition import aq_inner
 
+DEFAULT_ENABLED_ACTIONS = [
+    'cut',
+    'copy',
+    'rename',
+    'paste',
+    'delete',
+    'change_state',
+    ]
+
 class TabbedView(BrowserView):
 
     def __init__(self, context, request):
@@ -75,6 +84,23 @@ class BaseListingView(BrowserView):
         else:
             return ['searchform-hidden']
 
+    def enabled_actions(self):
+        """ Returns a list of enabled actions from portal_actions' folder_buttons category.
+        The actions will be sorted in order of this list.
+        """
+        ai_tool = getToolByName(self.context, 'portal_actions')
+        actions = ai_tool.listActionInfos(object=self.context,
+                                          categories=('folder_buttons',))
+        available_action_ids = [a['id'] for a in actions
+                                if a['available'] and a['visible'] and a['allowed']
+                                ]
+        enabled = []
+        for aid in DEFAULT_ENABLED_ACTIONS:
+            if aid in available_action_ids:
+                enabled.append(aid)
+        return enabled
+
+
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
         return generator.generate(self.batch,
@@ -135,8 +161,8 @@ class BaseListingView(BrowserView):
 
         self.len_results = len(self.contents)
 
-    @property
     def buttons(self):
+        enabled_actions = list(self.enabled_actions())
         buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
@@ -154,7 +180,8 @@ class BaseListingView(BrowserView):
         for button in button_actions:
             # Make proper classes for our buttons
             if button['id'] != 'paste' or context.cb_dataValid():
-                buttons.append(self.setbuttonclass(button))
+                if button['id'] in enabled_actions:
+                    buttons.append(self.setbuttonclass(button))
         return buttons
 
     def setbuttonclass(self, button):
