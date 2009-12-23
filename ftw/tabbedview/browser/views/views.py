@@ -87,8 +87,9 @@ class BaseListingView(BrowserView):
     def enabled_actions(self):
         """ Returns a list of enabled actions from portal_actions' folder_buttons category.
         The actions will be sorted in order of this list.
+        This symbol may be a list (not callable) for easier handling.
         """
-        available_action_ids = self.available_action()
+        available_action_ids = self.available_actions()
         enabled = []
         for aid in DEFAULT_ENABLED_ACTIONS:
             if aid in available_action_ids:
@@ -105,6 +106,28 @@ class BaseListingView(BrowserView):
                                 if a['available'] and a['visible'] and a['allowed']
                                 ]
         return available_action_ids
+
+    def major_actions(self):
+        """ Returns a list of major action ids. Theese major actions are listed
+        first, the not-listed but available actions (minor actions) are listed in
+        a drop-down.
+        This symbol may be a list (not callable) for easier handling.
+        """
+        if callable(self.enabled_actions):
+            return list(self.enabled_actions())
+        else:
+            return list(self.enabled_actions)
+
+    def minor_actions(self):
+        """ Returns a list of auto-generated minor action ids.
+        Minor actions are all available actions which are enabled and not
+        major actions.
+        """
+        major = self.major_actions
+        major = callable(major) and list(major()) or list(major)
+        enabled = self.enabled_actions
+        enabled = callable(enabled) and list(enabled()) or list(enabled())
+        return filter(lambda a:a not in major, enabled)
 
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
