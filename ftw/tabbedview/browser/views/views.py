@@ -126,8 +126,8 @@ class BaseListingView(BrowserView):
         major = self.major_actions
         major = callable(major) and list(major()) or list(major)
         enabled = self.enabled_actions
-        enabled = callable(enabled) and list(enabled()) or list(enabled())
-        return filter(lambda a:a not in major, enabled)
+        enabled = callable(enabled) and list(enabled()) or list(enabled)
+        return list(filter(lambda a:a not in major, enabled))
 
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
@@ -213,7 +213,22 @@ class BaseListingView(BrowserView):
             if button['id'] != 'paste' or context.cb_dataValid():
                 if button['id'] in enabled_actions:
                     buttons.append(self.setbuttonclass(button))
-        return buttons
+        return list(buttons)
+
+    def major_buttons(self):
+        """ All buttons, which are listed in self.major_actions
+        """
+        major = self.major_actions
+        major = callable(major) and list(major()) or list(major)
+        return filter(lambda b:b['id'] in major, self.buttons())
+
+    def minor_buttons(self):
+        """ All buttons, which are listed in self.minor_actions
+        """
+        if callable(self.minor_actions):
+            minor = self.minor_actions()
+        minor = list(minor)
+        return filter(lambda b:b['id'] in minor, self.buttons())
 
     def setbuttonclass(self, button):
         if button['id'] == 'paste':
