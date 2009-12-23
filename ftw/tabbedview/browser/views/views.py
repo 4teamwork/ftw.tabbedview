@@ -88,18 +88,23 @@ class BaseListingView(BrowserView):
         """ Returns a list of enabled actions from portal_actions' folder_buttons category.
         The actions will be sorted in order of this list.
         """
-        ai_tool = getToolByName(self.context, 'portal_actions')
-        actions = ai_tool.listActionInfos(object=self.context,
-                                          categories=('folder_buttons',))
-        available_action_ids = [a['id'] for a in actions
-                                if a['available'] and a['visible'] and a['allowed']
-                                ]
+        available_action_ids = self.available_action_ids()
         enabled = []
         for aid in DEFAULT_ENABLED_ACTIONS:
             if aid in available_action_ids:
                 enabled.append(aid)
         return enabled
 
+    def available_actions(self):
+        """ Returns a list of available action ids
+        """
+        ai_tool = getToolByName(self.context, 'portal_actions')
+        actions = ai_tool.listActionInfos(object=self.context,
+                                          categories=('folder_buttons',))
+        available_action_ids = [a['id'] for a in actions
+                                if a['available'] and a['visible'] and a['allowed']
+                                ]
+        return available_action_ids
 
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
