@@ -236,12 +236,15 @@ jq(function() {
         
 
         /* resizeable */
+        ths = jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th')
+        ths2 = jq('#'+arbeitsraum.prop('view_name')+'_overview .journal-listing th')
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).width('20px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).css('padding','0px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).width('20px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).css('padding','0px');
         
-        jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th:gt(1):lt(2)').resizable({ handles: 'e' });
+        ths.filter(':lt('+(ths.length-1)+'):gt(1)').resizable({ handles: 'e' });
+        ths2.filter(':lt('+(ths2.length-1)+')').resizable({ handles: 'e' });
 
 
         /* subview chooser*/
