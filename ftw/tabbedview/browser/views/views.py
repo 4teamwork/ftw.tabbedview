@@ -226,10 +226,13 @@ class ListingView(BrowserView):
 
     @property
     def _search_options(self):
+        options = {}
         for k,v in self.search_options.items():
             if callable(v):
-                self.search_options[k]=v(self.context)
-        return self.search_options
+                v = v(self.context)
+            options[k] = v
+            
+        return options
 
 class BaseListingView(ListingView):
 
@@ -298,13 +301,17 @@ class SolrListingView(ListingView):
     
     def build_query(self):
         return self.search_util.buildQuery(**self._search_options)
+        
+    def update(self):
+        self.search_util = queryUtility(ISearch)
+        if not self.search_options.has_key('portal_type') and len(self.types):
+            self.search_options.update({'portal_type':self.types[0]})
+        self.search()
 
     def search(self, kwargs={}):
-        self.search_util = queryUtility(ISearch)
         parameters = {}
         query = self.build_query()
-        flares = self.search_util(query, **parameters)
-        
+        flares = self.search_util(query, **parameters)  
         self.contents = [PloneFlare(f) for f in flares]
 
 class GenericListing(BaseListingView):
