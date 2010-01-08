@@ -236,15 +236,40 @@ jq(function() {
         
 
         /* resizeable */
-        ths = jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th')
-        ths2 = jq('#'+arbeitsraum.prop('view_name')+'_overview .journal-listing th')
+        ths = jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th');
+        ths2 = jq('#'+arbeitsraum.prop('view_name')+'_overview .journal-listing th');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).width('20px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(0)).css('padding','0px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).width('20px');
         jq(jq('#'+arbeitsraum.prop('view_name')+'_overview .listing th').get(1)).css('padding','0px');
         
-        ths.filter(':lt('+(ths.length-1)+'):gt(1)').resizable({ handles: 'e' });
-        ths2.filter(':lt('+(ths2.length-1)+')').resizable({ handles: 'e' });
+        ths.filter(':lt('+(ths.length-1)+'):gt(1)').resizable({ 
+            handles: 'e',
+            resize: function(event, ui) {
+                nextElement = ui.element.next();
+                if (!self._nextOrigSize) {
+                    self._nextOrigSize = nextElement.width();  
+                }
+                nextElement.width(self._nextOrigSize - (ui.size.width - ui.originalSize.width));
+            },
+            stop: function(event, ui) {
+                self._nextOrigSize = null;
+            }
+        });
+        
+        ths2.filter(':lt('+(ths2.length-1)+')').resizable({ 
+            handles: 'e',
+            resize: function(event, ui) {
+                nextElement = ui.element.next();
+                if (!self._nextOrigSize) {
+                    self._nextOrigSize = nextElement.width();  
+                }
+                nextElement.width(self._nextOrigSize - (ui.size.width - ui.originalSize.width));
+            },
+            stop: function(event, ui) {
+                self._nextOrigSize = null;
+            }
+        });
 
 
         /* subview chooser*/
