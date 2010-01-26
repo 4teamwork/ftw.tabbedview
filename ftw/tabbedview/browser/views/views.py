@@ -285,14 +285,14 @@ class BaseListingView(ListingView):
         return query    
 
     def search(self, kwargs):
-        self.catalog = getToolByName(self.context,'portal_catalog')
+        self.catalog = catalog = getToolByName(self.context,'portal_catalog')
         # if IATTopic.providedBy(self.context):
         #     contentsMethod = self.context.queryCatalog
         # else:
         #     contentsMethod = self.context.getFolderContents
         
         query = self.build_query(**kwargs)
-        self.contents = self.catalog(**query)
+        self.contents = catalog(**query)
         self.len_results = len(self.contents)
 
     def post_search(self, kwargs):
