@@ -76,6 +76,7 @@ class ListingView(BrowserView):
                ('modified',helper.readable_date),
                ('Creator',helper.readable_author),)
 
+    custom_sort_indexes = {}
     search_index = 'SearchableText'
     show_searchform = True
     sort_on = 'sortable_title'
@@ -85,6 +86,8 @@ class ListingView(BrowserView):
     table = None
     batching = ViewPageTemplateFile("batching.pt")
     contents = []
+
+    _custom_sort_method = None
 
     def __call__(self):
         self.update()
@@ -265,15 +268,35 @@ class BaseListingView(ListingView):
         kwargs.update(self._search_options)
 
         self.search(kwargs)
+        self.post_search(kwargs)
+
+    def build_query(self, *args, **kwargs):
+        query = {}
+        query.update(kwargs)
+        query.update(dict(path=dict(depth=self.depth, query='/'.join(self.context.getPhysicalPath()))) )
+        sort_on = kwargs.get('sort_on')
+        index = self.catalog._catalog.indexes.get(sort_on, None)
+        if index is not None:
+            index_type = index.__module__            
+            if index_type in self.custom_sort_indexes:
+                del query['sort_on']
+                del query['sort_order']
+                self._custom_sort_method = self.custom_sort_indexes.get(index_type)
+        return query    
 
     def search(self, kwargs):
-        catalog = getToolByName(self.context,'portal_catalog')
-        if IATTopic.providedBy(self.context):
-            contentsMethod = self.context.queryCatalog
-        else:
-            contentsMethod = self.context.getFolderContents
+        self.catalog = getToolByName(self.context,'portal_catalog')
+        # if IATTopic.providedBy(self.context):
+        #     contentsMethod = self.context.queryCatalog
+        # else:
+        #     contentsMethod = self.context.getFolderContents
+        
+        query = self.build_query(**kwargs)
+        self.contents = self.catalog(**query)
+        self.len_results = len(self.contents)
 
-        self.contents = catalog(path=dict(depth=self.depth, query='/'.join(self.context.getPhysicalPath())), **kwargs)
+    def post_search(self, kwargs):
+        
         #when we're searching recursively we have to remove the current item if its in self.types
         if self.depth != 1 and self.context.portal_type in self.types:
             index = 0
@@ -287,9 +310,11 @@ class BaseListingView(ListingView):
                     #self.contents.actual_result_count -= 1
                     #res = self.contents._data.pop(index)
                 index +=1
-
+                
+        if self._custom_sort_method is not None:
+            self.contents = self._custom_sort_method(self.contents, self.sort_on, self.sort_order)
         self.len_results = len(self.contents)
-
+        
     @property
     @instance.memoize
     def batch(self):
