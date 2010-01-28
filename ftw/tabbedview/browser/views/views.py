@@ -17,9 +17,13 @@ from plone.app.content.batching import Batch
 from plone.memoize import instance
 from Acquisition import aq_parent, aq_inner
 from zope.component import queryUtility
-from opengever.globalsolr.interfaces import ISearch
-from collective.solr.flare import PloneFlare
 from Acquisition import aq_inner
+
+try:
+    from opengever.globalsolr.interfaces import ISearch
+    from collective.solr.flare import PloneFlare
+except ImportError:
+    pass
  
 DEFAULT_ENABLED_ACTIONS = [
     'cut',
@@ -89,12 +93,13 @@ class ListingView(BrowserView):
 
     _custom_sort_method = None
 
-    def __call__(self):
+    def __call__(self, *args, **kwargs):
         self.update()
-        return super(BaseListingView, self).__call__()
+        return super(ListingView, self).__call__(*args, **kwargs)
 
     def update(self):
         self.search()
+        catalog(path=dict(depth=-1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
 
     def search(self, kwargs):
         pass
@@ -236,6 +241,16 @@ class ListingView(BrowserView):
             options[k] = v
             
         return options
+
+    def get_css_classes(self):
+        if self.show_searchform:
+            return ['searchform-visible']
+        else:
+            return ['searchform-hidden']
+
+    @property
+    def view_name(self):
+        return self.__name__.split('tabbedview_view-')[1]
 
 class BaseListingView(ListingView):
 
