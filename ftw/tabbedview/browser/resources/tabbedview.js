@@ -112,6 +112,15 @@ jq(function() {
             }
         },
         
+        delete_param: function(filter, value){
+            var view = this.prop('view_name');
+            if (this._params[view] !== undefined) {
+                this._params[view][filter]
+                index = this._params[view][filter].indexOf(value);
+                this._params[view][filter].splice(index, 1);
+            }
+        },
+        
         parse_params: function() {
             return jq.param(jq.extend(jq.extend({},this._properties), 
                             this._params[this.prop('view_name')]));
@@ -358,17 +367,41 @@ jq(function() {
                 });
             });
         }
-
-
+        
+        /* Filter boxes */
+        jq('.filter_link').click(function(){
+            value = jq(this).attr('id');
+            filter = jq(this).parents('.filter_box:first').attr('id');
+            view_name = arbeitsraum.prop('view_name');
+            
+            if (arbeitsraum._params[view_name]==undefined || arbeitsraum._params[view_name][filter]==undefined){
+                temp = [value,];
+                arbeitsraum.param(filter, temp);
+                arbeitsraum.reload_view();
+                jq(this).addClass('activate');
+            }
+            else if(arbeitsraum._params[view_name][filter].indexOf(value) == -1){
+                temp = arbeitsraum._params[view_name][filter];
+                temp.push(value);
+                arbeitsraum.param(filter, temp);
+                arbeitsraum.reload_view();
+                jq(this).addClass('activate');
+            }
+            else{
+                arbeitsraum.delete_param(filter, value);
+                arbeitsraum.reload_view();
+                jq(this).removeClass('activate');
+            }
+        });
     }); 
     
     jQuery.History.bind(function(){
         var tab_id = jQuery.History.getHash().split('-tab')[0];
         if( arbeitsraum.prop('view_name') != tab_id) {
             jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
-        }      
-        
-    })       
+        }
+
+    })
 });
 
 

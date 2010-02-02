@@ -37,6 +37,9 @@ DEFAULT_ENABLED_ACTIONS = [
 
 class TabbedView(BrowserView):
 
+    def filters(self):
+        return []
+    
     def __init__(self, context, request):
         super(TabbedView, self).__init__(context, request)
 
@@ -79,6 +82,9 @@ class ListingView(BrowserView):
     columns = (('Title',),
                ('modified',helper.readable_date),
                ('Creator',helper.readable_author),)
+               
+    def filters(self):
+        return []
 
     custom_sort_indexes = {}
     search_index = 'SearchableText'
@@ -90,6 +96,7 @@ class ListingView(BrowserView):
     table = None
     batching = ViewPageTemplateFile("batching.pt")
     contents = []
+    request_filters = [('review_state', 'state')]
 
     _custom_sort_method = None
 
@@ -252,6 +259,7 @@ class ListingView(BrowserView):
     def view_name(self):
         return self.__name__.split('tabbedview_view-')[1]
 
+
 class BaseListingView(ListingView):
 
     def update(self):
@@ -266,11 +274,18 @@ class BaseListingView(ListingView):
         else:
             kwargs['portal_type'] = self.context.getFriendlyTypes()
 
+        for f_title, f_request in self.request_filters:
+            if self.request.has_key(f_request):
+                result = self.request.get(f_request)
+                if len(result):
+                    kwargs[f_title] = result
+        
         if self.request.has_key('searchable_text'):
             searchable_text = self.request.get('searchable_text')
             if len(searchable_text):
                 searchable_text = searchable_text.endswith('*') and searchable_text or searchable_text+'*'
                 kwargs['SearchableText'] = searchable_text
+
         kwargs['sort_on'] = self.sort_on = self.request.get('sort_on', self.sort_on)
 
         if self.sort_on.startswith('header-'):
@@ -305,7 +320,6 @@ class BaseListingView(ListingView):
         #     contentsMethod = self.context.queryCatalog
         # else:
         #     contentsMethod = self.context.getFolderContents
-        
         query = self.build_query(**kwargs)
         self.contents = catalog(**query)
         self.len_results = len(self.contents)
