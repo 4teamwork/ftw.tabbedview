@@ -52,3 +52,12 @@ msgstr ""
 
 msgid "info"
 msgstr ""
+
+msgid "folders"
+msgstr ""
+
+msgid "changes"
+msgstr ""
+
+msgid "reports"
+msgstr ""

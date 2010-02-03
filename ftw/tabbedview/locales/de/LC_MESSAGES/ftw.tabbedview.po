@@ -50,4 +50,12 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
+msgid "folders"
+msgstr "Ordner"
+
+msgid "reports"
+msgstr "Arbeitsrapporte"
+
+msgid "changes"
+msgstr "Letzte Änderungen"
 

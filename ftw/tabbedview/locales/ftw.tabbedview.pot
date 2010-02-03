@@ -55,3 +55,12 @@ msgstr ""
 msgid "tracker_overview"
 msgstr ""
 
+msgid "folders"
+msgstr ""
+
+msgid "reports"
+msgstr ""
+
+msgid "changes"
+msgstr ""
+
