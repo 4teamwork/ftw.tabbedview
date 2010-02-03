@@ -33,7 +33,7 @@
 														class string: ${class}  ${tab/class};
                                                         id tab_id;
                                                         title string:${tab_id} overview;">
-                                        <span tal:content="tab_id" i18n:translate="" i18n:domain="opengever.tabbedview" />
+                                        <span tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
                                     </a>
                             </li>
                         </ul>                    

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-11-30 16:34+0000\n"
+"POT-Creation-Date: 2010-02-03 12:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,9 +12,42 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "all_issues"
+msgstr "Alle Tickets"
+
+msgid "documents"
+msgstr "Dokumente"
+
+msgid "dossiers"
+msgstr "Dossiers"
+
+msgid "events"
+msgstr "Termine"
+
+msgid "info"
+msgstr "Info"
+
+msgid "issued_issues"
+msgstr "Meine Aufträge"
+
 #. Default: "Filter"
 #: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:26
 msgid "label_filter"
 msgstr "Filter"
+
+msgid "my_issues"
+msgstr "Meine Tickets"
+
+msgid "overview"
+msgstr "Übersicht"
+
+msgid "tickets"
+msgstr "Tickets"
+
+msgid "tracker_info"
+msgstr "Info"
+
+msgid "tracker_overview"
+msgstr "Übersicht"
 
 

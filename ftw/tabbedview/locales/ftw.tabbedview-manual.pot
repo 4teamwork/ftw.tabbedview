@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-02-03 12:34+0000\n"
+"POT-Creation-Date: 2009-11-30 16:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,41 +17,38 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-msgid "all_issues"
-msgstr ""
-
-msgid "documents"
-msgstr ""
-
-msgid "dossiers"
-msgstr ""
-
-msgid "events"
-msgstr ""
-
-msgid "info"
-msgstr ""
-
-msgid "issued_issues"
-msgstr ""
-
-#. Default: "Filter"
-#: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:26
 msgid "label_filter"
-msgstr ""
-
-msgid "my_issues"
-msgstr ""
-
-msgid "overview"
-msgstr ""
-
-msgid "tickets"
-msgstr ""
-
-msgid "tracker_info"
 msgstr ""
 
 msgid "tracker_overview"
 msgstr ""
 
+msgid "all_issues"
+msgstr ""
+
+msgid "my_issues"
+msgstr ""
+
+msgid "issued_issues"
+msgstr ""
+
+msgid "tracker_info"
+msgstr ""
+
+msgid "overview"
+msgstr ""
+
+msgid "dossiers"
+msgstr ""
+
+msgid "documents"
+msgstr ""
+
+msgid "events"
+msgstr ""
+
+msgid "tickets"
+msgstr ""
+
+msgid "info"
+msgstr ""
