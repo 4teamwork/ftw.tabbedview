@@ -122,10 +122,20 @@ jq(function() {
         delete_param: function(filter, value){
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
-                this._params[view][filter]
                 index = this._params[view][filter].indexOf(value);
                 this._params[view][filter].splice(index, 1);
             }
+        },
+        
+        add_param: function(filter, value){
+            var view = this.prop('view_name');
+            if (this._params[view] !== undefined && this._params[view][filter] !== undefined ) {
+                this._params[view][filter].push(value);
+            }
+            else{
+                temp =  [value,];
+                this.param(filter, temp);
+            }    
         },
         
         parse_params: function() {
@@ -402,6 +412,51 @@ jq(function() {
                 jq(this).removeClass('activate');
             }
         });
+        
+        /* filterboxes as Accordian*/
+        
+        /* XXX THE STANDARD ACCORDION CAN ONLY SHOW ONE ITEM AT ONCE WE NEED MUTLTIPLE
+        jq('.filters').accordion({ autoHeight: false, collapsible: true, active:2, animated: false, navigation: true  }); */
+        
+        /* filterboxes as specally Accordian*/
+        //jq('.testfilter').accordion({ autoHeight: false, collapsible: true, active:2, animated: false, navigation: true  });
+        
+        /* filterboxes with specally Accordian*/
+        jq('.ui-accordion-header').click(function(){
+            value = jq(this).attr('id');
+            filter = 'filter_box';
+            view_name = arbeitsraum.prop('view_name');
+            
+            /* Toogle css classes*/
+            jq(this).children('.ui-icon').toggleClass('ui-icon-triangle-1-e');
+            jq(this).children('.ui-icon').toggleClass('ui-icon-triangle-1-s');
+            jq(this).toggleClass('ui-state-active');
+            jq(this).toggleClass('ui-corner-all');
+            jq(this).toggleClass('ui-corner-top');
+            
+            /*toggle div*/
+            jq(this).next().toggle();
+            
+            /*save it in params*/
+            if(jq(this).hasClass('ui-state-active')){
+                arbeitsraum.add_param(filter, value);
+            }
+            else{
+                arbeitsraum.delete_param(filter, value);
+            }
+        });
+        
+        /* initalize specally Accordian*/
+        var view_name = arbeitsraum.prop('view_name');
+        if (arbeitsraum._params[view_name] !== undefined){
+            var temp = arbeitsraum._params[view_name]['filter_box'];
+            arbeitsraum._params[view_name]['filter_box'] = [];
+            for(var i=0;i<temp.length;i++) {
+                var id = temp[i];
+                jq('#'+id).click();
+            }
+        }
+        
     }); 
     
     jQuery.History.bind(function(){
@@ -414,3 +469,4 @@ jq(function() {
 });
 
 
+ 
