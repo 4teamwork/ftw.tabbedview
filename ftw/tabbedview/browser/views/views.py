@@ -154,8 +154,7 @@ class ListingView(BrowserView):
         """ Returns a list of available action ids
         """
         ai_tool = getToolByName(self.context, 'portal_actions')
-        actions = ai_tool.listActionInfos(object=self.context,
-                                          categories=('folder_buttons',))
+        actions = ai_tool.listActionInfos(object=self.context,categories=('folder_buttons',))
         available_action_ids = [a['id'] for a in actions
                                 if a['available'] and a['visible'] and a['allowed']
                                 ]

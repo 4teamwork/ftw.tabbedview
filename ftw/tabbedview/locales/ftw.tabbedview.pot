@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-02-03 12:34+0000\n"
+"POT-Creation-Date: 2010-02-09 15:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,12 @@ msgstr ""
 msgid "all_issues"
 msgstr ""
 
+msgid "assignedtasks_solr"
+msgstr ""
+
+msgid "changes"
+msgstr ""
+
 msgid "documents"
 msgstr ""
 
@@ -29,6 +35,9 @@ msgstr ""
 msgid "events"
 msgstr ""
 
+msgid "folders"
+msgstr ""
+
 msgid "info"
 msgstr ""
 
@@ -36,7 +45,7 @@ msgid "issued_issues"
 msgstr ""
 
 #. Default: "Filter"
-#: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:26
+#: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:27
 msgid "label_filter"
 msgstr ""
 
@@ -46,6 +55,9 @@ msgstr ""
 msgid "overview"
 msgstr ""
 
+msgid "reports"
+msgstr ""
+
 msgid "tickets"
 msgstr ""
 
@@ -53,14 +65,5 @@ msgid "tracker_info"
 msgstr ""
 
 msgid "tracker_overview"
-msgstr ""
-
-msgid "folders"
-msgstr ""
-
-msgid "reports"
-msgstr ""
-
-msgid "changes"
 msgstr ""
 
