@@ -37,9 +37,6 @@ DEFAULT_ENABLED_ACTIONS = [
 
 class TabbedView(BrowserView):
 
-    def filters(self):
-        return []
-    
     def __init__(self, context, request):
         super(TabbedView, self).__init__(context, request)
 
@@ -83,9 +80,8 @@ class ListingView(BrowserView):
                ('modified',helper.readable_date),
                ('Creator',helper.readable_author),)
                
-    def filters(self):
-        return []
-
+    filters = []
+    auto_count = None
     custom_sort_indexes = {}
     search_index = 'SearchableText'
     show_searchform = True
@@ -96,7 +92,7 @@ class ListingView(BrowserView):
     table = None
     batching = ViewPageTemplateFile("batching.pt")
     contents = []
-    request_filters = [('review_state', 'state')]
+    request_filters = [('review_state', 'review_state')]
 
     _custom_sort_method = None
 
@@ -110,6 +106,9 @@ class ListingView(BrowserView):
 
     def search(self, kwargs):
         pass
+        
+    def filters(self):
+        return self.filters;
 
     @property
     @instance.memoize
@@ -128,7 +127,8 @@ class ListingView(BrowserView):
                                   self.columns,
                                   sortable=True,
                                   selected=(self.sort_on, self.sort_order),
-                                  template = self.table
+                                  template = self.table,
+                                  auto_count = self.auto_count,
                                   )
 
 
@@ -154,7 +154,7 @@ class ListingView(BrowserView):
         """ Returns a list of available action ids
         """
         ai_tool = getToolByName(self.context, 'portal_actions')
-        actions = ai_tool.listActionInfos(object=self.context,categories=('folder_buttons',))
+        actions = ai_tool.listActionInfos(object=self.context, categories=('folder_buttons',))
         available_action_ids = [a['id'] for a in actions
                                 if a['available'] and a['visible'] and a['allowed']
                                 ]
@@ -292,7 +292,6 @@ class BaseListingView(ListingView):
 
         kwargs['sort_order'] = self.sort_order = self.request.get('sort_order', self.sort_order)
 
-
         #overwrite options with search_options dict on tab
         kwargs.update(self._search_options)
 
@@ -324,7 +323,6 @@ class BaseListingView(ListingView):
         self.len_results = len(self.contents)
 
     def post_search(self, kwargs):
-        
         #when we're searching recursively we have to remove the current item if its in self.types
         if self.depth != 1 and self.context.portal_type in self.types:
             index = 0

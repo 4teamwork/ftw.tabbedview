@@ -59,10 +59,11 @@ jq(function() {
             select : function (e, ui){
                 jQuery.History.setHash(ui.tab.id+'-tab');
                 with(arbeitsraum){
+                    param('initialize', 1)
                     spinner.show();
                     selected_tab = ui.index;
                     prop('view_name', ui.tab.id);
-                    set_url_for_tab(ui.index, ui.tab.id);
+                    set_url_for_tab();
                 }
              },
              load : function(e, ui){
@@ -73,6 +74,7 @@ jq(function() {
         selected_tab : 0,
         _properties : {},
         _params : {},
+        _filters: {},
 
         set_url_for_tab : function() {
             var params = this.parse_params();
@@ -86,6 +88,7 @@ jq(function() {
         },
 
         reload_view : function() {
+            arbeitsraum.param('initialize', 0);
             this.set_url_for_tab();
             this.spinner.show();
             this.tabs.tabs('load', this.selected_tab);
@@ -101,6 +104,20 @@ jq(function() {
                     return this._params[view][name];
                 } else {
                     this._params[view][name] = value;
+                }
+            }
+        },
+        
+        filters : function(name, value) {
+            var view = this.prop('view_name');
+            if (this._filters[view] === undefined) {
+                this._filters[view] = {};
+            }
+            if ( typeof name === "string" ) {
+                if ( value === undefined ) {
+                    return this._filters[view][name];
+                } else {
+                    this._filters[view][name] = value;
                 }
             }
         },
@@ -189,7 +206,7 @@ jq(function() {
     arbeitsraum.prop('b_size', 50);
     
     jq('.arbeitsraum-tabs .ui-tabs-nav a').removeAttr('title');
-      
+    
     arbeitsraum.searchbox.bind("keyup", function(e) {
             var value = arbeitsraum.searchbox.val();
             if (value.length<=3 && arbeitsraum.prop('searchable_text') > value) {
@@ -219,7 +236,23 @@ jq(function() {
             jq('div.tabbedview_search').hide();
         }
             
-
+        if (!arbeitsraum.filters('auto_filter')){
+            arbeitsraum.filters('auto_filter', jq('.testfilter').html())
+        }
+        else{
+            jq('.testfilter').html(arbeitsraum.filters('auto_filter'));
+            var view_name = arbeitsraum.prop('view_name')
+            jq('.filter_link').each(function(){
+                var id = jq(this).attr('id');
+                var box = jq(this).parents('.filter_box:first').attr('id');
+                if(arbeitsraum._params[view_name][box] != undefined && arbeitsraum._params[view_name][box].indexOf(id) != -1){
+                    jq(this).addClass('activate');
+                }
+                else{
+                    jq(this).removeClass('activate');
+                }
+            });
+        }
 
         /* selectable */
         
@@ -448,14 +481,26 @@ jq(function() {
         
         /* initalize specally Accordian*/
         var view_name = arbeitsraum.prop('view_name');
-        if (arbeitsraum._params[view_name] !== undefined){
+        if (arbeitsraum._params[view_name] != undefined){
             var temp = arbeitsraum._params[view_name]['filter_box'];
-            arbeitsraum._params[view_name]['filter_box'] = [];
-            for(var i=0;i<temp.length;i++) {
-                var id = temp[i];
-                jq('#'+id).click();
+            if (temp  != undefined){
+                arbeitsraum._params[view_name]['filter_box'] = [];
+                for(var i=0;i<temp.length;i++) {
+                    var id = temp[i];
+                    jq('#'+id).click();
+                }
             }
         }
+
+        /* actions (<a>) should submit the form */
+        jq('.buttons a.listing-button').click(function(event) {
+          event.preventDefault();
+          jq(this).parents('form').append(jq(document.createElement('input')).attr({
+            'type' : 'hidden',
+            'name' : jq(this).attr('href'),
+            'value' : '1'
+          })).submit();
+         });
         
     }); 
     
