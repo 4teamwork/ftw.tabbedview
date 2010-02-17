@@ -64,3 +64,9 @@ msgstr ""
 
 msgid "assignedtasks_solr"
 msgstr ""
+
+msgid "all_entries"
+msgstr ""
+
+msgid "archive"
+msgstr ""

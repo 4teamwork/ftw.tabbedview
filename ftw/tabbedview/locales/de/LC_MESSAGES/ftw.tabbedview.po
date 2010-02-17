@@ -62,4 +62,9 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
+msgid "all_entries"
+msgstr "Alle Einträge"
+
+msgid "archive"
+msgstr "Archiv"
 
