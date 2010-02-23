@@ -5,6 +5,10 @@ Changelog
 1.0a3
 -----
 
+* #447 Zentrale Aufgabenübersicht = Übersicht über die Aufgaben aller Sachbearbeiter eines Mandanten und noch nicht zugewiesene Aufgaben
+  Added sort functionality for the SolrListingView
+  [23.02.2010, phgross]
+
 * Translation for tab's tittles added
   [04.02.2010, jbaumann]
   

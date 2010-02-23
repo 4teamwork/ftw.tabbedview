@@ -310,7 +310,7 @@ class BaseListingView(ListingView):
                 del query['sort_on']
                 del query['sort_order']
                 self._custom_sort_method = self.custom_sort_indexes.get(index_type)
-        return query    
+        return query
 
     def search(self, kwargs):
         self.catalog = catalog = getToolByName(self.context,'portal_catalog')
@@ -350,19 +350,37 @@ class BaseListingView(ListingView):
 
 class SolrListingView(ListingView):
     
+    sort_on = ''
+    
     def build_query(self):
         return self.search_util.buildQuery(**self._search_options)
         
     def update(self):
         self.search_util = queryUtility(ISearch)
         if not self.search_options.has_key('portal_type') and len(self.types):
-            self.search_options.update({'portal_type':self.types[0]})
+            self.search_options.update({'portal_type':self.types[0]}) 
+
         self.search()
 
     def search(self, kwargs={}):
+        
         parameters = {}
+        self.sort_on = self.request.get('sort_on', self.sort_on)
+        self.sort_order = self.request.get('sort_order', self.sort_order)
+
+        parameters['sort'] = self.sort_on
+        if self.sort_on:
+            if self.sort_on.startswith('header-'):
+                self.sort_on = self.sort_on.split('header-')[1]
+                parameters['sort'] = self.sort_on
+
+            if self.sort_order == 'reverse':
+                parameters['sort'] = '%s desc' % parameters['sort']
+            else:
+                parameters['sort'] = '%s asc' % parameters['sort']
+
         query = self.build_query()
-        flares = self.search_util(query, **parameters)  
+        flares = self.search_util(query, **parameters)
         self.contents = [PloneFlare(f) for f in flares]
 
 class GenericListing(BaseListingView):
