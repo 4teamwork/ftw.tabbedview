@@ -70,3 +70,9 @@ msgstr ""
 
 msgid "archive"
 msgstr ""
+
+msgid "accounting_overview"
+msgstr ""
+
+msgid "generally"
+msgstr ""

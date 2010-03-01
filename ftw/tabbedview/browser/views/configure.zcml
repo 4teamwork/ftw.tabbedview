@@ -15,6 +15,14 @@
         template="tabbed.pt"
         />
 
+   <browser:page
+       for="ftw.tabbedview.interfaces.ITabbedView"
+       name="select_all"
+       class=".views.SelectAllView"
+       permission="zope.Public"
+       template="hidden.pt"
+       />
+
   <browser:page
       for="Products.CMFCore.interfaces._content.IContentish"
       name="tabbedview_changeview"
@@ -30,7 +38,6 @@
         permission="zope.Public"
         template="fallback.pt"
         />
-  
 <!-- 
     <browser:page
         for="..interfaces.IArbeitsraum"

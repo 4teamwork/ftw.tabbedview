@@ -1,21 +1,13 @@
-from datetime import datetime, timedelta
-import time
-import bisect
+from datetime import datetime
 from Products.Five.browser import BrowserView
 from ftw.table import helper
 from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter, queryMultiAdapter
-from zope.component import queryUtility
-from plone.app.content.browser.folderfactories import _allowedTypes
+from zope.component import queryMultiAdapter
 from Products.CMFCore.Expression import getExprContext
-from Products.statusmessages.interfaces import IStatusMessage
-from zope.component import queryUtility
 from ftw.table.interfaces import ITableGenerator
-from Products.ATContentTypes.interface import IATTopic
 from zope.app.pagetemplate import ViewPageTemplateFile
 from plone.app.content.batching import Batch
 from plone.memoize import instance
-from Acquisition import aq_parent, aq_inner
 from zope.component import queryUtility
 from Acquisition import aq_inner
 
@@ -93,7 +85,7 @@ class ListingView(BrowserView):
     batching = ViewPageTemplateFile("batching.pt")
     contents = []
     request_filters = [('review_state', 'review_state')]
-
+    
     _custom_sort_method = None
 
     def __call__(self, *args, **kwargs):
@@ -130,7 +122,6 @@ class ListingView(BrowserView):
                                   template = self.table,
                                   auto_count = self.auto_count,
                                   )
-
 
     def get_css_classes(self):
         if self.show_searchform:
@@ -277,8 +268,16 @@ class BaseListingView(ListingView):
             if self.request.has_key(f_request):
                 result = self.request.get(f_request)
                 if len(result):
-                    kwargs[f_title] = result
-        
+                    # special handling for the by Month filter
+                    if str(result).startswith('{') and str(result).endswith('}'):
+                        result = result[ 1: len(result)-1]
+                        result = result.split(';')
+                        d1 = result[0].split('-')
+                        d2 = result[1].split('-')
+                        kwargs[f_title] = {'query': (datetime(int(d1[0]),int(d1[1]), int(d1[2])), datetime(int(d2[0]),int(d2[1]), int(d2[2]))),
+                                            'range':'minmax'}
+                    else:
+                        kwargs[f_title] = result
         if self.request.has_key('searchable_text'):
             searchable_text = self.request.get('searchable_text')
             if len(searchable_text):
@@ -411,3 +410,10 @@ class ChangeView(BrowserView):
             if self.body_view is None:
                 self.body_view = queryMultiAdapter((self.context, self.request), name='tabbedview_view-fallback')
             return super(BrowserView, self).__call__(self.context, self.request)
+            
+class SelectAllView(BrowserView):
+    def __call__(self):
+        self.tab = self.context.restrictedTraverse("tabbedview_view-%s" % self.request.get('view_name'))
+        self.tab.update()
+        
+        return super(SelectAllView, self).__call__()

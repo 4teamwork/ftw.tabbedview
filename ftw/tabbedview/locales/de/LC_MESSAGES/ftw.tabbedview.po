@@ -68,3 +68,8 @@ msgstr "Alle Einträge"
 msgid "archive"
 msgstr "Archiv"
 
+msgid "accounting_overview"
+msgstr "Übersicht"
+
+msgid "generally"
+msgstr "Allgemein"
