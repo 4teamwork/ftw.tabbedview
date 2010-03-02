@@ -73,3 +73,48 @@ msgstr "Übersicht"
 
 msgid "generally"
 msgstr "Allgemein"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "label_account"
+msgstr "Kostenstelle"
+
+msgid "start"
+msgstr "Beginn"
+
+msgid "end"
+msgstr "Ende"
+
+msgid "hours"
+msgstr "geleist. Std."
+
+msgid "billable"
+msgstr "verrechenb. Std."
+
+msgid "Creator"
+msgstr "Ersteller"
+
+msgid "state"
+msgstr "Status"
+
+msgid "modified"
+msgstr "bearbeitet"
+
+msgid "getResponsible"
+msgstr "Vollmachten"
+
+msgid "getResponsibleManager"
+msgstr "Zuständigkeit"
+
+msgid "review_state"
+msgstr "Status"
+
+msgid "process"
+msgstr "Fortschritt"
+
+msgid "getEstimatedHours"
+msgstr "Geschätzte Std."
+
+msgid "getEffectiveHours"
+msgstr "Geleistete Std."

@@ -84,7 +84,7 @@ class ListingView(BrowserView):
     table = None
     batching = ViewPageTemplateFile("batching.pt")
     contents = []
-    request_filters = [('review_state', 'review_state')]
+    request_filters = [('review_state', 'review_state', None)]
     
     _custom_sort_method = None
 
