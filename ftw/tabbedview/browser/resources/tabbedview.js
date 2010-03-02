@@ -196,7 +196,11 @@ jq(function() {
                 }
             });
             
-            
+            jq('.tabbedview_select').children('a').each(function(){
+                if(jq(this).attr('href').indexOf('arbeitsraum.select_all()') != -1){
+                    jq(this).addClass('selected');
+                }
+            });
             //jq('.select_folder').show();
         },
         
@@ -206,12 +210,17 @@ jq(function() {
                 jq(this).closest('tr').removeClass('ui-selected');
             });   
             jq('.select_folder').hide();
-            deselect_all()
+            arbeitsraum.deselect_all()
             
         },
         
         deselect_all :function(){
             jq('.hidden_items').remove()
+            jq('.tabbedview_select').children('a').each(function(){
+                if(jq(this).attr('href').indexOf('arbeitsraum.select_all()') != -1){
+                    jq(this).removeClass('selected');
+                }
+            });
         },
         
         select_folder :function() {
