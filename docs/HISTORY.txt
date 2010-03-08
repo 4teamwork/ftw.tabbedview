@@ -5,7 +5,7 @@ Changelog
 1.0a3
 -----
 
-* #55 tabbed_view für ftw_Timesheet erstellen
+* #55 tabbed_view for ftw_Timesheet erstellen
   https://extranet.4teamwork.ch/intranet/10-interne-projekte/teamraum/teamraum-3/tracker-teamraum3/55
   added following features:
   - Filter boxes Functionality (with a accordian view)
@@ -14,7 +14,7 @@ Changelog
   - Corrected the select all action
   [01 - 03 2010, phgross]
 
-* #447 Zentrale Aufgabenübersicht = Übersicht über die Aufgaben aller Sachbearbeiter eines Mandanten und noch nicht zugewiesene Aufgaben
+* #447 Zentrale Taskoverview = Overview over the task for all Sachbearbeiter of a mandant
   Added sort functionality for the SolrListingView
   [23.02.2010, phgross]
 
