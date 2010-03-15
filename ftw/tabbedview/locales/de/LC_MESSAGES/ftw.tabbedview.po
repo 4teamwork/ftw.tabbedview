@@ -118,3 +118,18 @@ msgstr "Geschätzte Std."
 
 msgid "getEffectiveHours"
 msgstr "Geleistete Std."
+
+msgid "By State"
+msgstr "Nach Status"
+
+msgid "By Area"
+msgstr "Nach Bereich"
+
+msgid "By Severity"
+msgstr "Nach Einstufung"
+
+msgid "By Responsible Manager"
+msgstr "Nach Zuständigkeit"
+
+msgid "By Target Release"
+msgstr "Nach Zielrelease"

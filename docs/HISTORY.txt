@@ -4,7 +4,7 @@ Changelog
 
 1.0a4
 -----
-
+* Translations for Poi Tracker - Filter labels
 
 1.0a3
 -----

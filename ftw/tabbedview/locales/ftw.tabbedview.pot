@@ -67,3 +67,74 @@ msgstr ""
 msgid "tracker_overview"
 msgstr ""
 
+msgid "all_entries"
+msgstr ""
+
+msgid "archive"
+msgstr ""
+
+msgid "accounting_overview"
+msgstr ""
+
+msgid "generally"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "label_account"
+msgstr ""
+
+msgid "start"
+msgstr ""
+
+msgid "end"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "billable"
+msgstr ""
+
+msgid "Creator"
+msgstr ""
+
+msgid "state"
+msgstr ""
+
+msgid "modified"
+msgstr ""
+
+msgid "getResponsible"
+msgstr ""
+
+msgid "getResponsibleManager"
+msgstr ""
+
+msgid "review_state"
+msgstr ""
+
+msgid "process"
+msgstr ""
+
+msgid "getEstimatedHours"
+msgstr ""
+
+msgid "getEffectiveHours"
+msgstr ""
+
+msgid "By State"
+msgstr ""
+
+msgid "By Area"
+msgstr ""
+
+msgid "By Severity"
+msgstr ""
+
+msgid "By Responsible Manager"
+msgstr ""
+
+msgid "By Target Release"
+msgstr ""
