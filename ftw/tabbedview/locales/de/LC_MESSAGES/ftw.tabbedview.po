@@ -133,3 +133,15 @@ msgstr "Nach Zuständigkeit"
 
 msgid "By Target Release"
 msgstr "Nach Zielrelease"
+
+msgid "By Month"
+msgstr "Nach Monat"
+
+msgid "account"
+msgstr "Kostenstelle"
+
+msgid "review_state"
+msgstr "Status"
+
+msgid "Creator"
+msgstr "Ersteller"

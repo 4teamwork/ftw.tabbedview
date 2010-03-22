@@ -138,3 +138,15 @@ msgstr ""
 
 msgid "By Target Release"
 msgstr ""
+
+msgid "By Month"
+msgstr ""
+
+msgid "account"
+msgstr ""
+
+msgid "review_state"
+msgstr ""
+
+msgid "Creator"
+msgstr ""
