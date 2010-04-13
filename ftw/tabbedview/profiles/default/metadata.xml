@@ -7,6 +7,7 @@
 	    <dependency>profile-collective.js.jquery:default</dependency>
 	    <dependency>profile-collective.js.jqueryui:default</dependency>
 	    <dependency>profile-ftw.js.statusmessages:default</dependency>
+	    <dependency>profile-collective.jqhistory:default</dependency>
 	    <dependency>profile-ftw.tabbedview:default</dependency>
   </dependencies>
 </metadata>

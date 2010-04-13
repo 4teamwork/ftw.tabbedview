@@ -261,8 +261,8 @@ class BaseListingView(ListingView):
         self.url = self.context.absolute_url()
         if len(self.types):
             kwargs['portal_type'] = self.types
-        else:
-            kwargs['portal_type'] = self.context.getFriendlyTypes()
+#        else:
+#            kwargs['portal_type'] = self.context.getFriendlyTypes()
 
         for f_title, f_request, f_mode in self.request_filters:
             if self.request.has_key(f_request):

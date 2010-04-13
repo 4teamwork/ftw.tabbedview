@@ -30,7 +30,8 @@ setup(name='ftw.tabbedview',
         'plone.app.registry',
         'ftw.table',
         'ftw.js.statusmessages',
-        'ftw.js.globals'
+        'ftw.js.globals',
+        'collective.jqhistory',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
