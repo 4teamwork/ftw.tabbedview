@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-02-09 15:01+0000\n"
+"POT-Creation-Date: 2010-04-15 08:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,28 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
+msgid "Creator"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "accounting_overview"
+msgstr ""
+
+msgid "all_entries"
+msgstr ""
+
 msgid "all_issues"
 msgstr ""
 
+msgid "archive"
+msgstr ""
+
 msgid "assignedtasks_solr"
+msgstr ""
+
+msgid "billable"
 msgstr ""
 
 msgid "changes"
@@ -32,10 +50,31 @@ msgstr ""
 msgid "dossiers"
 msgstr ""
 
+msgid "end"
+msgstr ""
+
 msgid "events"
 msgstr ""
 
 msgid "folders"
+msgstr ""
+
+msgid "generally"
+msgstr ""
+
+msgid "getEffectiveHours"
+msgstr ""
+
+msgid "getEstimatedHours"
+msgstr ""
+
+msgid "getResponsible"
+msgstr ""
+
+msgid "getResponsibleManager"
+msgstr ""
+
+msgid "hours"
 msgstr ""
 
 msgid "info"
@@ -44,18 +83,39 @@ msgstr ""
 msgid "issued_issues"
 msgstr ""
 
+msgid "label_account"
+msgstr ""
+
 #. Default: "Filter"
 #: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:27
 msgid "label_filter"
 msgstr ""
 
+msgid "modified"
+msgstr ""
+
 msgid "my_issues"
+msgstr ""
+
+msgid "open_issues"
 msgstr ""
 
 msgid "overview"
 msgstr ""
 
+msgid "process"
+msgstr ""
+
 msgid "reports"
+msgstr ""
+
+msgid "review_state"
+msgstr ""
+
+msgid "start"
+msgstr ""
+
+msgid "state"
 msgstr ""
 
 msgid "tickets"
@@ -67,86 +127,3 @@ msgstr ""
 msgid "tracker_overview"
 msgstr ""
 
-msgid "all_entries"
-msgstr ""
-
-msgid "archive"
-msgstr ""
-
-msgid "accounting_overview"
-msgstr ""
-
-msgid "generally"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "label_account"
-msgstr ""
-
-msgid "start"
-msgstr ""
-
-msgid "end"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
-msgid "billable"
-msgstr ""
-
-msgid "Creator"
-msgstr ""
-
-msgid "state"
-msgstr ""
-
-msgid "modified"
-msgstr ""
-
-msgid "getResponsible"
-msgstr ""
-
-msgid "getResponsibleManager"
-msgstr ""
-
-msgid "review_state"
-msgstr ""
-
-msgid "process"
-msgstr ""
-
-msgid "getEstimatedHours"
-msgstr ""
-
-msgid "getEffectiveHours"
-msgstr ""
-
-msgid "By State"
-msgstr ""
-
-msgid "By Area"
-msgstr ""
-
-msgid "By Severity"
-msgstr ""
-
-msgid "By Responsible Manager"
-msgstr ""
-
-msgid "By Target Release"
-msgstr ""
-
-msgid "By Month"
-msgstr ""
-
-msgid "account"
-msgstr ""
-
-msgid "review_state"
-msgstr ""
-
-msgid "Creator"
-msgstr ""

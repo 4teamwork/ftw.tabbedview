@@ -23,6 +23,9 @@ msgstr ""
 msgid "tracker_overview"
 msgstr ""
 
+msgid "open_issues"
+msgstr ""
+
 msgid "all_issues"
 msgstr ""
 

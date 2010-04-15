@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-02-09 15:01+0000\n"
+"POT-Creation-Date: 2010-04-15 08:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,11 +12,29 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "Creator"
+msgstr "Ersteller"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "accounting_overview"
+msgstr "Übersicht"
+
+msgid "all_entries"
+msgstr "Alle Einträge"
+
 msgid "all_issues"
 msgstr "Alle Tickets"
 
+msgid "archive"
+msgstr "Archiv"
+
 msgid "assignedtasks_solr"
 msgstr "Zugewiesene Aufgaben"
+
+msgid "billable"
+msgstr "verrechenb. Std."
 
 msgid "changes"
 msgstr "Letzte Änderungen"
@@ -27,11 +45,32 @@ msgstr "Dokumente"
 msgid "dossiers"
 msgstr "Dossiers"
 
+msgid "end"
+msgstr "Ende"
+
 msgid "events"
 msgstr "Termine"
 
 msgid "folders"
 msgstr "Ordner"
+
+msgid "generally"
+msgstr "Allgemein"
+
+msgid "getEffectiveHours"
+msgstr "Geleistete Std."
+
+msgid "getEstimatedHours"
+msgstr "Geschätzte Std."
+
+msgid "getResponsible"
+msgstr "Vollmachten"
+
+msgid "getResponsibleManager"
+msgstr "Zuständigkeit"
+
+msgid "hours"
+msgstr "geleist. Std."
 
 msgid "info"
 msgstr "Info"
@@ -39,19 +78,40 @@ msgstr "Info"
 msgid "issued_issues"
 msgstr "Meine Aufträge"
 
+msgid "label_account"
+msgstr "Kostenstelle"
+
 #. Default: "Filter"
 #: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:27
 msgid "label_filter"
 msgstr "Filter"
 
+msgid "modified"
+msgstr "bearbeitet"
+
 msgid "my_issues"
 msgstr "Meine Tickets"
+
+msgid "open_issues"
+msgstr "Offene Tickets"
 
 msgid "overview"
 msgstr "Übersicht"
 
+msgid "process"
+msgstr "Fortschritt"
+
 msgid "reports"
 msgstr "Arbeitsrapporte"
+
+msgid "review_state"
+msgstr "Status"
+
+msgid "start"
+msgstr "Beginn"
+
+msgid "state"
+msgstr "Status"
 
 msgid "tickets"
 msgstr "Tickets"
@@ -62,86 +122,4 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
-msgid "all_entries"
-msgstr "Alle Einträge"
 
-msgid "archive"
-msgstr "Archiv"
-
-msgid "accounting_overview"
-msgstr "Übersicht"
-
-msgid "generally"
-msgstr "Allgemein"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "label_account"
-msgstr "Kostenstelle"
-
-msgid "start"
-msgstr "Beginn"
-
-msgid "end"
-msgstr "Ende"
-
-msgid "hours"
-msgstr "geleist. Std."
-
-msgid "billable"
-msgstr "verrechenb. Std."
-
-msgid "Creator"
-msgstr "Ersteller"
-
-msgid "state"
-msgstr "Status"
-
-msgid "modified"
-msgstr "bearbeitet"
-
-msgid "getResponsible"
-msgstr "Vollmachten"
-
-msgid "getResponsibleManager"
-msgstr "Zuständigkeit"
-
-msgid "review_state"
-msgstr "Status"
-
-msgid "process"
-msgstr "Fortschritt"
-
-msgid "getEstimatedHours"
-msgstr "Geschätzte Std."
-
-msgid "getEffectiveHours"
-msgstr "Geleistete Std."
-
-msgid "By State"
-msgstr "Nach Status"
-
-msgid "By Area"
-msgstr "Nach Bereich"
-
-msgid "By Severity"
-msgstr "Nach Einstufung"
-
-msgid "By Responsible Manager"
-msgstr "Nach Zuständigkeit"
-
-msgid "By Target Release"
-msgstr "Nach Zielrelease"
-
-msgid "By Month"
-msgstr "Nach Monat"
-
-msgid "account"
-msgstr "Kostenstelle"
-
-msgid "review_state"
-msgstr "Status"
-
-msgid "Creator"
-msgstr "Ersteller"
