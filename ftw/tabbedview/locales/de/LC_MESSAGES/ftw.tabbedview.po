@@ -122,4 +122,8 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
+msgid 'given_tasks'
+msgstr 'Erteilte Aufgaben'
 
+msgid 'assigned_tasks'
+msgstr 'Zugewiesene Aufgaben'
