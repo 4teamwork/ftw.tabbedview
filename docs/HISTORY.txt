@@ -4,8 +4,10 @@ Changelog
 
 1.0a4
 -----
+
 * Translations for Poi Tracker - Filter labels (fsprenger)
 * Translations for accounting timesheet (fsprenger)
+
 
 1.0a3
 -----
