@@ -31,7 +31,7 @@ msgid "archive"
 msgstr "Archiv"
 
 msgid "assignedtasks_solr"
-msgstr "Zugewiesene Aufgaben"
+msgstr "Zentrale Übersicht"
 
 msgid "billable"
 msgstr "verrechenb. Std."
