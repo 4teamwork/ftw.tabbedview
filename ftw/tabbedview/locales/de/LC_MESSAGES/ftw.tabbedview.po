@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-04-15 08:39+0000\n"
+"POT-Creation-Date: 2010-04-30 06:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,8 +12,26 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "By Area"
+msgstr "Bereich"
+
+msgid "By Responsible Manager"
+msgstr "Verantwortlicher"
+
+msgid "By Severity"
+msgstr "Einstufung"
+
+msgid "By State"
+msgstr "Status"
+
+msgid "By Target Release"
+msgstr "Ziel Release"
+
 msgid "Creator"
 msgstr "Ersteller"
+
+msgid "Month"
+msgstr "Monat"
 
 msgid "Title"
 msgstr "Titel"
@@ -57,11 +75,20 @@ msgstr "Ordner"
 msgid "generally"
 msgstr "Allgemein"
 
+msgid "getAccount"
+msgstr "Konstenstelle"
+
+msgid "getBillable"
+msgstr "verrechenbar"
+
 msgid "getEffectiveHours"
 msgstr "Geleistete Std."
 
 msgid "getEstimatedHours"
 msgstr "Geschätzte Std."
+
+msgid "getHours"
+msgstr "geleistet"
 
 msgid "getResponsible"
 msgstr "Vollmachten"
@@ -122,8 +149,4 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
-msgid 'given_tasks'
-msgstr 'Erteilte Aufgaben'
 
-msgid 'assigned_tasks'
-msgstr 'Zugewiesene Aufgaben'

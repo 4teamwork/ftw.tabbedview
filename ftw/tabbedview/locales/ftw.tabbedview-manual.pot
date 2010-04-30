@@ -125,3 +125,29 @@ msgstr ""
 msgid "getEffectiveHours"
 msgstr ""
 
+msgid "Month"
+msgstr ""
+
+msgid "getAccount"
+msgstr ""
+
+msgid "By State"
+msgstr ""
+
+msgid "By Area"
+msgstr ""
+
+msgid "By Severity"
+msgstr ""
+
+msgid "By Responsible Manager"
+msgstr ""
+
+msgid "By Target Release"
+msgstr ""
+
+msgid "getHours"
+msgstr ""
+
+msgid "getBillable"
+msgstr ""

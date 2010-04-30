@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-04-15 08:39+0000\n"
+"POT-Creation-Date: 2010-04-30 06:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,25 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
+msgid "By Area"
+msgstr ""
+
+msgid "By Responsible Manager"
+msgstr ""
+
+msgid "By Severity"
+msgstr ""
+
+msgid "By State"
+msgstr ""
+
+msgid "By Target Release"
+msgstr ""
+
 msgid "Creator"
+msgstr ""
+
+msgid "Month"
 msgstr ""
 
 msgid "Title"
@@ -62,10 +80,19 @@ msgstr ""
 msgid "generally"
 msgstr ""
 
+msgid "getAccount"
+msgstr ""
+
+msgid "getBillable"
+msgstr ""
+
 msgid "getEffectiveHours"
 msgstr ""
 
 msgid "getEstimatedHours"
+msgstr ""
+
+msgid "getHours"
 msgstr ""
 
 msgid "getResponsible"
