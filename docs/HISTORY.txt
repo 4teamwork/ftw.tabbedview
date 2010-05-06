@@ -16,8 +16,8 @@ Changelog
 * Translations for Poi Tracker - Filter labels (fsprenger)
 * Translations for accounting timesheet (fsprenger)
 * Issue #505 Weiterleiten einer Aufgabe aus Eingangskorb Mandant 3 nach Mandant 1 geht nicht (jin)
-* #20 Bei Poi Tabbed View soll ein neuer Tab "Offene Tickets" hinzugefügt werden: added translations (pgr)
-* Issue #86 Bessere Übersichtsseite für Arbeitsräume (jin)
+* #20 Bei Poi Tabbed View soll ein neuer Tab "Offene Tickets" hinzugefuegt werden: added translations (pgr)
+* Issue #86 Bessere Uebersichtsseite fuer Arbeitsraeume (jin)
 
 
 1.0a3
