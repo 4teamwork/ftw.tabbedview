@@ -4,7 +4,11 @@ Changelog
 
 1.0a5
 -----
+* timesheet-tabbedview: added some translations
+  [30.04.2010, phgross]
 
+* Issue #538 Globaler Reiter Aufgabe: Reiter "Zugewiesene Aufgaben" umbenennen
+  [27.04.2010, jinfanger]
 
 1.0a4
 -----
