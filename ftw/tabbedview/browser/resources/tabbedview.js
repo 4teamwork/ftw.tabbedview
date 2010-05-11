@@ -236,7 +236,7 @@ jq(function() {
     
     if(tabbedview_body.length == 0)return;
     
-    var view_name = tabbedview_body.get(0).id.split('_overview')[0].toLowerCase()
+    var view_name = tabbedview_body.get(0).id.split('_overview')[0]
     tabbedview.prop('view_name', view_name);   
     tabbedview.prop('b_size', 50);
     
@@ -432,7 +432,6 @@ jq(function() {
             e.preventDefault();
             e.stopPropagation();
             var obj = jq(this);
-            //console.log(obj);
             var pagenumber = jq.find_param(this.href).pagenumber;
             tabbedview.param('pagenumber:int', pagenumber);
             tabbedview.reload_view();
