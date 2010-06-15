@@ -4,7 +4,9 @@ Changelog
 
 1.0a6
 -----
-
+* Issue #146 spinner.gif
+  https://extranet.4teamwork.ch/projects/integration-zug.ch-izug/tracker-integration-zug.ch-izug/146/
+  [15.10.2010,phgross]
 
 1.0a5
 -----

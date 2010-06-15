@@ -54,7 +54,7 @@
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
         <div id="tabbedview-spinner" style="display:none">
-          <img src="/++resource++ftw.tabbedview-resources/spinner.gif" />
+          <img src="/++resource++ftw.tabbedview-resources/spinner.gif" tal:attributes="src string: ${portal_url}/++resource++ftw.tabbedview-resources/spinner.gif"/>
         </div>
       </metal:main-macro>
     </div>
