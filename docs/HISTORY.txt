@@ -2,11 +2,16 @@ Changelog
 =========
 
 
-1.0a6
+1.0c1
 -----
+
 * Issue #146 spinner.gif
   https://extranet.4teamwork.ch/projects/integration-zug.ch-izug/tracker-integration-zug.ch-izug/146/
   [15.10.2010,phgross]
+
+* Issue #912: remove toLoverCase since its not really needed and error-prone
+  [11.05.2010, vbaumann]
+
 
 1.0a5
 -----
