@@ -93,11 +93,10 @@ class ListingView(BrowserView):
         return super(ListingView, self).__call__(*args, **kwargs)
 
     def update(self):
-        self.search()
-        catalog(path=dict(depth=-1, query='/'.join(self.context.getPhysicalPath())), **kwargs)
+        raise NotImplementedError('subclass must override this method')
 
     def search(self, kwargs):
-        pass
+        raise NotImplementedError('subclass must override this method')
         
     def filters(self):
         return self.filters;
@@ -185,12 +184,12 @@ class ListingView(BrowserView):
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
         if not len(self.contents):
-                if self.context.cb_dataValid():
-                    for button in button_actions:
-                        if button['id'] == 'paste':
-                            return [self.setbuttonclass(button)]
-                else:
-                    return []
+            if self.context.cb_dataValid():
+                for button in button_actions:
+                    if button['id'] == 'paste':
+                        return [self.setbuttonclass(button)]
+            else:
+                return []
 
         for button in button_actions:
             # Make proper classes for our buttons
@@ -362,7 +361,6 @@ class BaseListingView(ListingView):
     @property
     @instance.memoize
     def batch(self):
-        pagesize = self.pagesize
         b = Batch(self.contents,pagesize=self.pagesize,pagenumber=self.pagenumber)
         return b
 

@@ -79,13 +79,13 @@ jq(function() {
 
         set_url_for_tab : function() {
             var params = this.parse_params();
-            console.log(jq('.tabbedview-tabs').data());
             var url = jq('base').attr('href') 
+            var current_tab = jq('.tabbedview-tabs li a.current')
             if( url.substr(url.length-1, 1) == '/'){
-                this.tabs.tabs('url', this.selected_tab, 'tabbedview_changeview?'+params);        
+                current_tab.attr('href', 'tabbedview_changeview?'+params);        
             }
             else{
-                this.tabs.tabs('url', this.selected_tab, url + '/tabbedview_changeview?'+params);
+                current_tab.attr('href', '/tabbedview_changeview?'+params);  
             }               
         },
         
@@ -93,7 +93,7 @@ jq(function() {
             tabbedview.param('initialize', 0);
             this.set_url_for_tab();
             //this.//spinner.show();
-            this.tabs.tabs('load', this.selected_tab);
+            tabbedview.tabs_api.click(tabbedview.tabs_api.getIndex());
         },
 
         param : function(name, value) {
@@ -233,11 +233,10 @@ jq(function() {
         }
         
     };
-    var tabs_api = 2//jq('.tabbedview-tabs').data('tabs');
     var tabbedview_body =  jq('#tabbedview-body div');
     jQuery.tabbedview = tabbedview
     jq('.tabbedview-tabs').tabs(
-        '.panes > div', {
+        '.panes > div.pane', {
         effect: 'ajax',
         onBeforeClick: function(e, index){
             var tabbedview = jQuery.tabbedview;
@@ -246,9 +245,14 @@ jq(function() {
             //spinner.show();
             jQuery.tabbedview.selected_tab = index;
             jQuery.tabbedview.prop('view_name',current_tab_id);
-            //jQuery.tabbedview.set_url_for_tab();
+            jQuery.tabbedview.set_url_for_tab();
+        },
+        onClick: function(){
+            console.log('clic');
         }     
     });
+    
+    tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
     
     if(tabbedview_body.length == 0)return;
     

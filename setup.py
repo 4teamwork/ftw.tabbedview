@@ -31,8 +31,6 @@ setup(name='ftw.tabbedview',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
-        'jqueryui' : ['collective.js.jqueryui'],
-        'jquerytools' : ['plone.app.jquerytools'],
         },
       entry_points="""
       # -*- Entry points: -*-

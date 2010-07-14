@@ -6,9 +6,6 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     >
 
-    <include package="collective.js.jquery" />
     <include package="ftw.table" />
-    <include zcml:condition="installed collective.js.jqueryui" package="collective.js.jqueryui" />
-    <include zcml:condition="installed plone.app.jquerytools" package="plone.app.jquerytools" />
 
 </configure>

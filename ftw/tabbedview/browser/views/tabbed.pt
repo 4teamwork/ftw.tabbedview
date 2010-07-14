@@ -23,21 +23,17 @@
           </h1>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-          <div class="tabbedview_search">
-            <span i18n:translate="label_filter">Filter </span>
-            <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
-          </div>
           <div class="tabbedview-tabs">
-            <ul>
-              <li tal:repeat="tab view/get_tabs">
+            <ul class="formTabs">
+              <li tal:repeat="tab view/get_tabs" class="formTab">
                 <a  tal:define="tab_id tab/id;
                                 class python: tab['id'] == view.selected_tab and 'selected' or None;"
                     tal:attributes="href string:${context/absolute_url}/tabbedview_changeview?view_name=${tab_id};
                                     id tab_id;
                                     title string:${tab_id} overview;"
                     i18n:attributes="title"
-                    tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" 
                     >
+                    <span tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
                 </a>
               </li>
             </ul>
@@ -46,9 +42,13 @@
 
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
-          <tal:panes repeat="tab view/get_tabs">
-            <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()" title="mi">&nbsp;</div>
-          </tal:panes>
+            <div class="tabbedview_search">
+              <span i18n:translate="label_filter">Filter </span>
+              <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
+            </div>
+            <tal:panes repeat="tab view/get_tabs">
+                <div tal:attributes="id python:'%s_overview' % tab['id'].capitalize()" title="mi" class="pane">&nbsp;</div>
+            </tal:panes>
         </div>
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
