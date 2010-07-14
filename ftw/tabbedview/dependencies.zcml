@@ -7,9 +7,6 @@
     >
 
     <include package="collective.js.jquery" />
-    <include package="plone.app.registry" />
-    <include package="ftw.js.statusmessages" />
-    <include package="ftw.js.globals" />
     <include package="ftw.table" />
     <include zcml:condition="installed collective.js.jqueryui" package="collective.js.jqueryui" />
     <include zcml:condition="installed plone.app.jquerytools" package="plone.app.jquerytools" />

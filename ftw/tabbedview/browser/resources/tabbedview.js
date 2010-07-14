@@ -33,11 +33,12 @@ jQuery.find_param = function(s) {
 */
 
 
+statusmessages = {};
+statusmessages.error = function(msg){alert(msg)};
 
 
 jq(function() { 
-    statusmessages = jq('#region-content').statusmessages()
-    
+    /*statusmessages = jq('#region-content').statusmessages()*/
     tabbedview = {
         version : '0.1',
         view_container : jq('.tabbedview_view'),
@@ -45,22 +46,22 @@ jq(function() {
         img_arrow_up : 'icon_open_box.gif',
         img_arrow_down : 'icon_close_box.gif',
         spinner : jq('#tabbedview-spinner'),
+        api : {},
         collapsible : false,
-        tabs : jq('.tabbedview-tabs').tabs({
+        /*tabs : jq('.tabbedview-tabs').tabs({
             spinner : '',
             cache: false,
             ajaxOptions : {cache: false, 
-                           timeout: registry['ftw.tabbedview.interfaces.ITabbedView.timeout'],
+                           timeout: 9999,
                            error: function(XMLHttpRequest, textStatus, errorThrown){
                                statusmessages.error(textStatus + ' <a href="javascript:tabbedview.reload_view()">reload</a>');
                            }
                            },
             collapsible: false,
             select : function (e, ui){
-                jQuery.History.setHash(ui.tab.id+'-tab');
                 with(tabbedview){
-                    param('initialize', 1)
-                    spinner.show();
+
+                    //spinner.show();
                     selected_tab = ui.index;
                     prop('view_name', ui.tab.id);
                     set_url_for_tab();
@@ -70,7 +71,7 @@ jq(function() {
                   tabbedview.spinner.hide();
                   tabbedview.view_container.trigger('reload');
              }
-        }),
+        }),*/
         selected_tab : 0,
         _properties : {},
         _params : {},
@@ -78,6 +79,7 @@ jq(function() {
 
         set_url_for_tab : function() {
             var params = this.parse_params();
+            console.log(jq('.tabbedview-tabs').data());
             var url = jq('base').attr('href') 
             if( url.substr(url.length-1, 1) == '/'){
                 this.tabs.tabs('url', this.selected_tab, 'tabbedview_changeview?'+params);        
@@ -90,7 +92,7 @@ jq(function() {
         reload_view : function() {
             tabbedview.param('initialize', 0);
             this.set_url_for_tab();
-            this.spinner.show();
+            //this.//spinner.show();
             this.tabs.tabs('load', this.selected_tab);
         },
 
@@ -231,8 +233,22 @@ jq(function() {
         }
         
     };
-    
+    var tabs_api = 2//jq('.tabbedview-tabs').data('tabs');
     var tabbedview_body =  jq('#tabbedview-body div');
+    jQuery.tabbedview = tabbedview
+    jq('.tabbedview-tabs').tabs(
+        '.panes > div', {
+        effect: 'ajax',
+        onBeforeClick: function(e, index){
+            var tabbedview = jQuery.tabbedview;
+            var current_tab_id = jq('.tabbedview-tabs li a').get(index).id;
+            jQuery.tabbedview.param('initialize', 1)
+            //spinner.show();
+            jQuery.tabbedview.selected_tab = index;
+            jQuery.tabbedview.prop('view_name',current_tab_id);
+            //jQuery.tabbedview.set_url_for_tab();
+        }     
+    });
     
     if(tabbedview_body.length == 0)return;
     
@@ -260,7 +276,7 @@ jq(function() {
     
     
     tabbedview.view_container.bind('reload', function() {
-        var tab_id = jQuery.History.getHash().split('-tab')[0]
+        /*var tab_id = jQuery.History.getHash().split('-tab')[0]
         if( tabbedview.prop('view_name') != tab_id) {
             jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
         }
@@ -270,7 +286,7 @@ jq(function() {
         else {
             jq('div.tabbedview_search').hide();
         }
-            
+            */
         if (!tabbedview.filters('auto_filter')){
             tabbedview.filters('auto_filter', jq('.testfilter').html())
         }
@@ -539,14 +555,13 @@ jq(function() {
         
     }); 
     
-    jQuery.History.bind(function(){
+    /*jQuery.History.bind(function(){
         var tab_id = jQuery.History.getHash().split('-tab')[0];
         if( tabbedview.prop('view_name') != tab_id) {
             jq('a[href="#'+tab_id+'_overview"]').trigger('click') ;
         }
 
-    })
+    })*/
 });
 
 
- 

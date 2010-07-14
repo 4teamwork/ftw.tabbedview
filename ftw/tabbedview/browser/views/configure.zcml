@@ -8,10 +8,10 @@
     <!-- -*- extra stuff goes here -*- -->
 
    <browser:page
-        for="ftw.tabbedview.interfaces.ITabbedView"
+        for="*"
         name="tabbed_view"
         class=".views.TabbedView"
-        permission="zope.Public"
+        permission="zope2.View"
         template="tabbed.pt"
         />
 
@@ -19,7 +19,7 @@
        for="ftw.tabbedview.interfaces.ITabbedView"
        name="select_all"
        class=".views.SelectAllView"
-       permission="zope.Public"
+       permission="zope2.View"
        template="hidden.pt"
        />
 
@@ -27,15 +27,14 @@
       for="Products.CMFCore.interfaces._content.IContentish"
       name="tabbedview_changeview"
       class=".views.ChangeView"
-      template="change.pt"
-      permission="zope.Public"
+      permission="zope2.View"
       />
 
     <browser:page
         for="ftw.tabbedview.interfaces.ITabbedView"
         name="tabbedview_view-fallback"
         class=".views.FallbackView"
-        permission="zope.Public"
+        permission="zope2.View"
         template="fallback.pt"
         />
 <!-- 

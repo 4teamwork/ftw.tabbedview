@@ -423,12 +423,15 @@ class FallbackView(BrowserView):
 
 class ChangeView(BrowserView):
     """Returns the content for the selected tab. """
+    
+    template = ViewPageTemplateFile("change.pt")
+    
     def __call__(self, view_name=""):
         if view_name:
             self.body_view = queryMultiAdapter((self.context, self.request), name='tabbedview_view-%s' % view_name)
             if self.body_view is None:
                 self.body_view = queryMultiAdapter((self.context, self.request), name='tabbedview_view-fallback')
-            return super(BrowserView, self).__call__(self.context, self.request)
+            return self.template()
             
 class SelectAllView(BrowserView):
     def __call__(self):

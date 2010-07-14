@@ -27,10 +27,7 @@ setup(name='ftw.tabbedview',
       install_requires=[
         'setuptools',
         'collective.js.jquery',
-        'plone.app.registry',
         'ftw.table',
-        'ftw.js.statusmessages',
-        'ftw.js.globals',
         'collective.jqhistory',
         # -*- Extra requirements: -*-
         ],
