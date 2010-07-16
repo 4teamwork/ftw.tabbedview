@@ -49,7 +49,7 @@ class TabbedView(BrowserView):
                 if action['available'] and action['visible']:
                     view = self.context.restrictedTraverse("tabbedview_view-%s" % action['id'])
                     yield {
-                        'id' : action['id'],
+                        'id' : action['id'].lower(),
                         'icon' : icon,
                         'url' : action['url'],
                         'class' : ' '.join(view.get_css_classes()),
@@ -116,8 +116,8 @@ class ListingView(BrowserView):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
         return generator.generate(self.batch,
                                   self.columns,
-                                  sortable=True,
-                                  selected=(self.sort_on, self.sort_order),
+                                  sortable = True,
+                                  selected = (self.sort_on, self.sort_order),
                                   template = self.table,
                                   auto_count = self.auto_count,
                                   )
