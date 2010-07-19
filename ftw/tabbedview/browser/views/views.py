@@ -255,7 +255,7 @@ class BaseListingView(ListingView):
         self.pas_tool = getToolByName(self.context, 'acl_users')
         kwargs = {}
 
-        self.pagesize = 20
+        self.pagesize = 10
         self.pagenumber =  int(self.request.get('pagenumber', 1))
         self.url = self.context.absolute_url()
         if len(self.types):

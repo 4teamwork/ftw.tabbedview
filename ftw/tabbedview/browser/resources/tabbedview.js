@@ -61,7 +61,7 @@ jq(function() {
             select : function (e, ui){
                 with(tabbedview){
 
-                    //spinner.show();
+                    spinner.show();
                     selected_tab = ui.index;
                     prop('view_name', ui.tab.id);
                     set_url_for_tab();
@@ -76,28 +76,17 @@ jq(function() {
         _properties : {},
         _params : {},
         _filters: {},
-
-        set_url_for_tab : function() {
-            var params = this.parse_params();
-            var url = jq('base').attr('href') 
-            var current_tab = jq('.tabbedview-tabs li a.current')
-            if( url.substr(url.length-1, 1) == '/'){
-                current_tab.attr('href', 'tabbedview_changeview?'+params);        
-            }
-            else{
-                current_tab.attr('href', '/tabbedview_changeview?'+params);  
-            }               
-        },
         
         reload_view : function() {
             tabbedview.param('initialize', 0);
             var params = this.parse_params();
             var url = jq('base').attr('href') 
-            var current_tab = jq('.tabbedview-tabs li a.current')
+            var current_tab = jq('.tabbedview-tabs li a.selected')
             jq('#'+tabbedview.prop('view_name')+'_overview').load('tabbedview_changeview?'+params, function(){
                 tabbedview.view_container.trigger('reload'); 
+                tabbedview.spinner.hide();
             });
-            //this.//spinner.show();
+            this.spinner.show();
         },
 
         param : function(name, value) {
@@ -241,11 +230,12 @@ jq(function() {
     jQuery.tabbedview = tabbedview
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
+        current:'selected',
         onBeforeClick: function(e, index){
             var tabbedview = jQuery.tabbedview;
             var current_tab_id = jq('.tabbedview-tabs li a').get(index).id;
             jQuery.tabbedview.param('initialize', 1)
-            //spinner.show();
+            jQuery.tabbedview.spinner.show();
             jQuery.tabbedview.selected_tab = index;
             jQuery.tabbedview.prop('view_name',current_tab_id);
         },
@@ -296,6 +286,39 @@ jq(function() {
            tabbedview.param('sort_order', sort_order);
            tabbedview.reload_view();
         });
+        
+
+        /* Batching */
+        jq('.listingBar span a, .listingBar a').click(function(e,o) {
+            e.preventDefault();
+            e.stopPropagation();
+            var obj = jq(this);
+            //console.log(obj);
+            var pagenumber = jq.find_param(this.href).pagenumber;
+            tabbedview.param('pagenumber:int', pagenumber);
+            tabbedview.reload_view();
+        });
+        
+        /* selectable */
+        
+        jq('#tabbedview-body .listing').selectable({
+            filter:'tr:gt(0)', 
+            cancel: 'a, input, th',
+            selecting: function(event, ui) {
+                jq('input[name="paths:list"]', ui.selecting).attr('checked', true);
+            },
+            selected: function(event, ui) {
+                jq('.ui-selected input[name="paths:list"]').attr('checked', true);
+            },
+            unselecting: function(event, ui) {
+                jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
+                tabbedview.deselect_all();
+            }
+                            
+        });
+
+
+        
 
     }); 
 
