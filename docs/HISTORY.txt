@@ -5,6 +5,9 @@ Changelog
 1.0c2
 -----
 
+* Added maintainer properly in setup.py
+  [19.07.2010, jbaumann]
+
 
 1.0c1
 -----
