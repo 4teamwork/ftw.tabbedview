@@ -9,5 +9,21 @@
     <browser:resourceDirectory
        name="ftw.tabbedview-resources"
        directory="resources" />
+
+       <browser:page
+            for="*"
+            name="tabbed_view"
+            class=".tabbed.TabbedView"
+            permission="zope2.View"
+            allowed_attributes="listing"
+            />
+
+        <browser:page
+            for="ftw.tabbedview.interfaces.ITabbedView"
+            name="tabbedview_view-fallback"
+            class=".fallback.FallbackView"
+            permission="zope2.View"
+            template="fallback.pt"
+            />
     
 </configure>
