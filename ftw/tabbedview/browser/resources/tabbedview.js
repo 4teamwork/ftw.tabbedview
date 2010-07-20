@@ -37,7 +37,7 @@ statusmessages = {};
 statusmessages.error = function(msg){alert(msg)};
 
 
-jq(function() { 
+jq(function() {
     /*statusmessages = jq('#region-content').statusmessages()*/
     tabbedview = {
         version : '0.1',
@@ -51,7 +51,7 @@ jq(function() {
         /*tabs : jq('.tabbedview-tabs').tabs({
             spinner : '',
             cache: false,
-            ajaxOptions : {cache: false, 
+            ajaxOptions : {cache: false,
                            timeout: 9999,
                            error: function(XMLHttpRequest, textStatus, errorThrown){
                                statusmessages.error(textStatus + ' <a href="javascript:tabbedview.reload_view()">reload</a>');
@@ -60,7 +60,7 @@ jq(function() {
             collapsible: false,
             select : function (e, ui){
                 with(tabbedview){
-
+                    
                     spinner.show();
                     selected_tab = ui.index;
                     prop('view_name', ui.tab.id);
@@ -80,15 +80,15 @@ jq(function() {
         reload_view : function() {
             tabbedview.param('initialize', 0);
             var params = this.parse_params();
-            var url = jq('base').attr('href') 
+            var url = jq('base').attr('href')
             var current_tab = jq('.tabbedview-tabs li a.selected')
             jq('#'+tabbedview.prop('view_name')+'_overview').load('tabbedview_changeview?'+params, function(){
-                tabbedview.view_container.trigger('reload'); 
+                tabbedview.view_container.trigger('reload');
                 tabbedview.spinner.hide();
             });
             this.spinner.show();
         },
-
+        
         param : function(name, value) {
             var view = this.prop('view_name');
             if (this._params[view] === undefined) {
@@ -116,21 +116,21 @@ jq(function() {
                 }
             }
         },
-
+        
         flush_params: function() {
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
                 this._params[view] = {};
             }
         },
-
+        
         flush_params: function(value) {
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
                 delete(this._params[view][value]);
             }
         },
-
+        
         delete_param: function(filter, value){
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
@@ -147,11 +147,11 @@ jq(function() {
             else{
                 temp =  [value,];
                 this.param(filter, temp);
-            }    
+            }
         },
         
         parse_params: function() {
-            return jq.param(jq.extend(jq.extend({},this._properties), 
+            return jq.param(jq.extend(jq.extend({},this._properties),
                             this._params[this.prop('view_name')]));
         },
         
@@ -182,7 +182,7 @@ jq(function() {
             else{
                 url + '/select_all?'+params;
             }
-
+            
             jq.ajax({
                 url: url,
                 success: function(data) {
@@ -203,10 +203,10 @@ jq(function() {
             jq('input[name=paths:list]').each(function(el) {
                 jq(this).attr('checked', false);
                 jq(this).closest('tr').removeClass('ui-selected');
-            });   
+            });
             jq('.select_folder').hide();
             tabbedview.deselect_all()
-            
+        
         },
         
         deselect_all :function(){
@@ -224,7 +224,7 @@ jq(function() {
             jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .selected.counter').html(total);
             jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .select-all-text').hide();
         }
-        
+    
     };
     var tabbedview_body =  jq('#tabbedview-body div');
     jQuery.tabbedview = tabbedview
@@ -241,7 +241,7 @@ jq(function() {
         },
         onClick: function(){
             tabbedview.reload_view();
-        }     
+        }
     });
     
     tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
@@ -249,7 +249,7 @@ jq(function() {
     if(tabbedview_body.length == 0)return;
     
     var view_name = tabbedview_body.get(0).id.split('_overview')[0]
-    tabbedview.prop('view_name', view_name);   
+    tabbedview.prop('view_name', view_name);
     tabbedview.prop('b_size', 50);
     
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
@@ -259,13 +259,13 @@ jq(function() {
             if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
                 tabbedview.prop('searchable_text', '');
                 tabbedview.flush_params('pagenumber:int');
-                tabbedview.reload_view(); 
+                tabbedview.reload_view();
             }else{
                 tabbedview.prop('searchable_text', value);
             }
             if (value.length>=3) {
                 tabbedview.flush_params();
-                tabbedview.reload_view();  
+                tabbedview.reload_view();
             }
     });
     
@@ -286,8 +286,8 @@ jq(function() {
            tabbedview.param('sort_order', sort_order);
            tabbedview.reload_view();
         });
-        
 
+        
         /* Batching */
         jq('.listingBar span a, .listingBar a').click(function(e,o) {
             e.preventDefault();
@@ -302,7 +302,7 @@ jq(function() {
         /* selectable */
         
         jq('#tabbedview-body .listing').selectable({
-            filter:'tr:gt(0)', 
+            filter:'tr:gt(0)',
             cancel: 'a, input, th',
             selecting: function(event, ui) {
                 jq('input[name="paths:list"]', ui.selecting).attr('checked', true);
@@ -314,13 +314,13 @@ jq(function() {
                 jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
                 tabbedview.deselect_all();
             }
-                            
+        
         });
-
 
         
 
-    }); 
+    
+    });
 
 });
 

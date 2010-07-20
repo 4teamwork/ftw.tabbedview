@@ -10,12 +10,6 @@ from plone.app.content.batching import Batch
 from plone.memoize import instance
 from zope.component import queryUtility
 from Acquisition import aq_inner
-
-try:
-    from opengever.globalsolr.interfaces import ISearch
-    from collective.solr.flare import PloneFlare
-except ImportError:
-    pass
  
 DEFAULT_ENABLED_ACTIONS = [
     'cut',
@@ -33,7 +27,7 @@ class TabbedView(BrowserView):
         super(TabbedView, self).__init__(context, request)
 
     def get_tabs(self):
-        return self.get_actions(category='arbeitsraum-tabs')
+        return self.get_actions(category='tabbedview-tabs')
         #XXX use static tabs for development
         #return [{'id':'dossiers'}, {'id':'documents'}, ]
 
@@ -59,6 +53,12 @@ class TabbedView(BrowserView):
     def selected_tab(self):
         return 'Dokumente'
 
+def custom_sort(list_, index, dir_):
+    reverse = 0
+    if dir_ == 'reverse':
+        reverse = 1
+    return sorted(list_, cmp=lambda x, y: cmp(getattr(x, index), getattr(y, index)), reverse=reverse)
+
 class ListingView(BrowserView):
     types = [] #friendly types
     #columns possible values
@@ -69,12 +69,12 @@ class ListingView(BrowserView):
     # callback is used to modify the cell attribute E.g to humanize DateTime objects.
     # The Callback is called with the instance of the current item and the attributename
     columns = (('Title',),
-               ('modified',helper.readable_date),
-               ('Creator',helper.readable_author),)
+               ('modified',helper.readable_date),)
                
     filters = []
     auto_count = None
-    custom_sort_indexes = {}
+    custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex':
+                            custom_sort}
     search_index = 'SearchableText'
     show_searchform = True
     sort_on = 'sortable_title'
@@ -83,6 +83,7 @@ class ListingView(BrowserView):
     depth = -1
     table = None
     batching = ViewPageTemplateFile("batching.pt")
+    template = ViewPageTemplateFile("generic.pt")
     contents = []
     request_filters = [('review_state', 'review_state', None)]
     
@@ -90,7 +91,7 @@ class ListingView(BrowserView):
 
     def __call__(self, *args, **kwargs):
         self.update()
-        return super(ListingView, self).__call__(*args, **kwargs)
+        return self.template()
 
     def update(self):
         raise NotImplementedError('subclass must override this method')
@@ -219,14 +220,6 @@ class ListingView(BrowserView):
         else:
             button['cssclass'] = 'context'
         return button
-        
-
-    def setbuttonclass(self, button):
-        if button['id'] == 'paste':
-            button['cssclass'] = 'standalone'
-        else:
-            button['cssclass'] = 'context'
-        return button
 
     @property
     def _search_options(self):
@@ -237,12 +230,6 @@ class ListingView(BrowserView):
             options[k] = v
             
         return options
-
-    def get_css_classes(self):
-        if self.show_searchform:
-            return ['searchform-visible']
-        else:
-            return ['searchform-hidden']
 
     @property
     def view_name(self):
@@ -361,43 +348,9 @@ class BaseListingView(ListingView):
     @property
     @instance.memoize
     def batch(self):
-        b = Batch(self.contents,pagesize=self.pagesize,pagenumber=self.pagenumber)
-        return b
-
-class SolrListingView(ListingView):
-    
-    sort_on = ''
-    
-    def build_query(self):
-        return self.search_util.buildQuery(**self._search_options)
-        
-    def update(self):
-        self.search_util = queryUtility(ISearch)
-        if not self.search_options.has_key('portal_type') and len(self.types):
-            self.search_options.update({'portal_type':self.types[0]}) 
-
-        self.search()
-
-    def search(self, kwargs={}):
-        
-        parameters = {}
-        self.sort_on = self.request.get('sort_on', self.sort_on)
-        self.sort_order = self.request.get('sort_order', self.sort_order)
-
-        parameters['sort'] = self.sort_on
-        if self.sort_on:
-            if self.sort_on.startswith('header-'):
-                self.sort_on = self.sort_on.split('header-')[1]
-                parameters['sort'] = self.sort_on
-
-            if self.sort_order == 'reverse':
-                parameters['sort'] = '%s desc' % parameters['sort']
-            else:
-                parameters['sort'] = '%s asc' % parameters['sort']
-
-        query = self.build_query()
-        flares = self.search_util(query, **parameters)
-        self.contents = [PloneFlare(f) for f in flares]
+        return Batch(self.contents,
+                    pagesize=self.pagesize,
+                    pagenumber=self.pagenumber)
 
 class GenericListing(BaseListingView):
     """ uses the tab id for self.types. Good for testing or fallback  """

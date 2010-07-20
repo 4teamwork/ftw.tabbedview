@@ -8,10 +8,6 @@ ADD_PERMISSIONS = {
     'Arbeitsraum': 'ftw.tabbedview: Add Arbeitsraum',
 }
 
-INDEXES = (("getMeeting_type", "KeywordIndex"),
-           ("sortable_creator", "KeywordIndex"),
-           ("sortable_responsibility", "KeywordIndex"),
-           ("getContentType", "KeywordIndex"),
-          )
+INDEXES = ()
           
 METADATA = ()
