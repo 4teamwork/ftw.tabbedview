@@ -1,16 +1,15 @@
+from Acquisition import aq_inner
 from datetime import datetime
-from Products.Five.browser import BrowserView
 from ftw.table import helper
-from Products.CMFCore.utils import getToolByName
-from zope.component import queryMultiAdapter
-from Products.CMFCore.Expression import getExprContext
 from ftw.table.interfaces import ITableGenerator
-from zope.app.pagetemplate import ViewPageTemplateFile
 from plone.app.content.batching import Batch
 from plone.memoize import instance
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryUtility
-from Acquisition import aq_inner
- 
+
+
 DEFAULT_ENABLED_ACTIONS = [
     'cut',
     'copy',
@@ -21,39 +20,7 @@ DEFAULT_ENABLED_ACTIONS = [
     ]
 
 
-class TabbedView(BrowserView):
-
-    def __init__(self, context, request):
-        super(TabbedView, self).__init__(context, request)
-
-    def get_tabs(self):
-        return self.get_actions(category='tabbedview-tabs')
-        #XXX use static tabs for development
-        #return [{'id':'dossiers'}, {'id':'documents'}, ]
-
-    def get_actions(self, category=''):
-        types_tool = getToolByName(self.context, 'portal_types')
-        ai_tool = getToolByName(self.context, 'portal_actionicons')
-        actions = types_tool.listActions(object=self.context)
-        for action in actions:
-            if action.category == category:
-                icon = ai_tool.queryActionIcon(action_id=action.id, category=category, context=self.context)
-                econtext = getExprContext(self.context, self.context)
-                action = action.getAction(ec=econtext)
-                if action['available'] and action['visible']:
-                    view = self.context.restrictedTraverse("tabbedview_view-%s" % action['id'])
-                    yield {
-                        'id' : action['id'].lower(),
-                        'icon' : icon,
-                        'url' : action['url'],
-                        'class' : ' '.join(view.get_css_classes()),
-                        }
-
-
-    def selected_tab(self):
-        return 'Dokumente'
-
-def custom_sort(list_, index, dir_):
+def sort(list_, index, dir_):
     reverse = 0
     if dir_ == 'reverse':
         reverse = 1
@@ -73,8 +40,7 @@ class ListingView(BrowserView):
                
     filters = []
     auto_count = None
-    custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex':
-                            custom_sort}
+    custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex': sort}
     search_index = 'SearchableText'
     show_searchform = True
     sort_on = 'sortable_title'
@@ -318,12 +284,8 @@ class BaseListingView(ListingView):
 
     def search(self, kwargs):
         self.catalog = catalog = getToolByName(self.context,'portal_catalog')
-        # if IATTopic.providedBy(self.context):
-        #     contentsMethod = self.context.queryCatalog
-        # else:
-        #     contentsMethod = self.context.getFolderContents
         query = self.build_query(**kwargs)
-        self.contents = catalog(**query)
+        self.contents = self.catalog(**query)
         self.len_results = len(self.contents)
 
     def post_search(self, kwargs):
@@ -352,41 +314,3 @@ class BaseListingView(ListingView):
                     pagesize=self.pagesize,
                     pagenumber=self.pagenumber)
 
-class GenericListing(BaseListingView):
-    """ uses the tab id for self.types. Good for testing or fallback  """
-    def __init__(self, context, request):
-        """ kinda ugly way to get things done before GenericListing.__init__"""
-        super(BaseListingView, self).__init__(context, request)
-        ploneUtils = getToolByName(context, 'plone_utils')
-        friendly_types = ploneUtils.getUserFriendlyTypes()
-        view_name = self.request.get('view_name', '')
-        type_name = view_name.capitalize()
-        if type_name in friendly_types:
-            self.types = [type_name, ]
-
-        super(GenericListing, self).__init__(context, request)
-
-class FallbackView(BrowserView):
-    """ Default Fallback view if no view is registered for the tab """
-    def __init__(self, context, request):
-        super(FallbackView, self).__init__(context, request)
-        self.view_name = 'tabbedview_view-%s' % self.request.get('view_name', '')
-
-class ChangeView(BrowserView):
-    """Returns the content for the selected tab. """
-    
-    template = ViewPageTemplateFile("change.pt")
-    
-    def __call__(self, view_name=""):
-        if view_name:
-            self.body_view = queryMultiAdapter((self.context, self.request), name='tabbedview_view-%s' % view_name)
-            if self.body_view is None:
-                self.body_view = queryMultiAdapter((self.context, self.request), name='tabbedview_view-fallback')
-            return self.template()
-            
-class SelectAllView(BrowserView):
-    def __call__(self):
-        self.tab = self.context.restrictedTraverse("tabbedview_view-%s" % self.request.get('view_name'))
-        self.tab.update()
-        
-        return super(SelectAllView, self).__call__()
