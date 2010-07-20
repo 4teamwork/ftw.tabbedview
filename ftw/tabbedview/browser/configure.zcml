@@ -4,7 +4,6 @@
     i18n_domain="ftw.tabbedview">
 
     <include package="plone.app.contentmenu" />
-    <include package=".views" />
     
     <browser:resourceDirectory
        name="ftw.tabbedview-resources"
