@@ -21,13 +21,17 @@ DEFAULT_ENABLED_ACTIONS = [
 
 
 def sort(list_, index, dir_):
+    """sort function used as callback in custom_sort_indexes"""
     reverse = 0
     if dir_ == 'reverse':
         reverse = 1
     return sorted(list_, cmp=lambda x, y: cmp(getattr(x, index), getattr(y, index)), reverse=reverse)
 
 class ListingView(BrowserView):
-    types = [] #friendly types
+    """ Base view for listings defining the default values for search 
+    attributes"""
+    types = []
+    
     #columns possible values
     # "<attributename>"
     # ('<attributename>', 'catalog_index')
