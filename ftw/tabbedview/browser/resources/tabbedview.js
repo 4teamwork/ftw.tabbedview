@@ -231,6 +231,7 @@ jq(function() {
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
+        history: true,
         onBeforeClick: function(e, index){
             var tabbedview = jQuery.tabbedview;
             var current_tab_id = jq('.tabbedview-tabs li a').get(index).id;
