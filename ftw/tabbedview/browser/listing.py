@@ -4,10 +4,11 @@ from ftw.table import helper
 from ftw.table.interfaces import ITableGenerator
 from plone.app.content.batching import Batch
 from plone.memoize import instance
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.app.pagetemplate import ViewPageTemplateFile
-from zope.component import queryUtility
+from zope.component import queryUtility, getUtility
 
 
 DEFAULT_ENABLED_ACTIONS = [
@@ -58,6 +59,11 @@ class ListingView(BrowserView):
     request_filters = [('review_state', 'review_state', None)]
     
     _custom_sort_method = None
+
+    def __init__(self, context, request):
+        super(ListingView, self).__init__(context, request)
+        registry = getUtility(IRegistry)
+        self.pagesize = registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
 
     def __call__(self, *args, **kwargs):
         self.update()
@@ -211,8 +217,7 @@ class BaseListingView(ListingView):
     def update(self):
         self.pas_tool = getToolByName(self.context, 'acl_users')
         kwargs = {}
-
-        self.pagesize = 10
+        
         self.pagenumber =  int(self.request.get('pagenumber', 1))
         self.url = self.context.absolute_url()
         if len(self.types):
