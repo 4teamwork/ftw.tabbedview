@@ -251,7 +251,6 @@ jq(function() {
     
     var view_name = tabbedview_body.get(0).id.split('_overview')[0]
     tabbedview.prop('view_name', view_name);
-    tabbedview.prop('b_size', 50);
     
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
     
