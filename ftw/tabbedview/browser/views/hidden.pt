@@ -1,5 +1,0 @@
-<div class="hidden_items">
-    <tal:repeat tal:repeat="obj view/tab/contents">
-        <input type="hidden" tal:attributes="value obj/getPath" value="" name="paths:list">
-    </tal:repeat>
-</div>

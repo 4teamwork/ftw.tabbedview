@@ -27,16 +27,16 @@ setup(name='ftw.tabbedview',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'collective.js.jquery',
-        'plone.app.registry',
         'ftw.table',
-        'ftw.js.statusmessages',
-        'ftw.js.globals',
-        'collective.jqhistory',
+        'plone.app.registry',
+        'collective.js.jqueryui'
         # -*- Extra requirements: -*-
         ],
       extras_require = {
-        'jqueryui' : ['collective.js.jqueryui'],
-        'jquerytools' : ['plone.app.jquerytools'],
         },
+      entry_points="""
+      # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
+      """,
       )
