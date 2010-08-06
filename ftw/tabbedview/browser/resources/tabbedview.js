@@ -228,6 +228,19 @@ jq(function() {
     };
     var tabbedview_body =  jq('#tabbedview-body div');
     jQuery.tabbedview = tabbedview
+    
+    
+    /*catch all click events on tabs link elements and call the click method 
+    because jquery tools tabs doesnt work with plone folderish types*/
+    
+    jq('.formTab a').click(function(e){
+        tabbedview.tabs_api.click(jq(this).attr('href'));
+        location.hash = jq(this).attr('href');
+        e.preventDefault();
+        e.stopPropagation();
+        
+    });
+    
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
@@ -240,17 +253,19 @@ jq(function() {
             jQuery.tabbedview.selected_tab = index;
             jQuery.tabbedview.prop('view_name',current_tab_id);
         },
-        onClick: function(){
+        onClick: function(e, index){
             tabbedview.reload_view();
         }
     });
     
     tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
     
+    
     if(tabbedview_body.length == 0)return;
     
-    var view_name = tabbedview_body.get(0).id.split('_overview')[0]
-    tabbedview.prop('view_name', view_name);
+    if(location.hash){
+        jQuery.tabbedview.prop('view_name', location.hash.split('#')[1]);
+    }
     
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
     
@@ -293,14 +308,12 @@ jq(function() {
             e.preventDefault();
             e.stopPropagation();
             var obj = jq(this);
-            //console.log(obj);
             var pagenumber = jq.find_param(this.href).pagenumber;
             tabbedview.param('pagenumber:int', pagenumber);
             tabbedview.reload_view();
         });
         
         /* selectable */
-        
         jq('#tabbedview-body .listing').selectable({
             filter:'tr:gt(0)',
             cancel: 'a, input, th',
@@ -316,6 +329,12 @@ jq(function() {
             }
         
         });
+        
+        /* subview chooser*/
+        jq('.ViewChooser a').click(function() {
+                                     tabbedview.param('view_name', this.id);
+                                     tabbedview.reload_view();
+                                   });
 
         
 

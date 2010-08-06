@@ -299,7 +299,6 @@ class BaseListingView(ListingView):
 
         #overwrite options with search_options dict on tab
         kwargs.update(self._search_options)
-
         self.search(kwargs)
         self.post_search(kwargs)
 
@@ -354,3 +353,11 @@ class BaseListingView(ListingView):
         return Batch(self.contents,
                     pagesize=self.pagesize,
                     pagenumber=self.pagenumber)
+                    
+    @property
+    def multiple_pages(self):
+        """The multiple_pages in plone.app.batch has a bug 
+        if size == pagesize."""
+
+        return len(self.contents) > self.pagesize
+

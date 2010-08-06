@@ -3,7 +3,7 @@
      i18n:domain="plone"
      metal:define-macro="navigation"
      tal:define="batch view/batch"
-     tal:condition="batch/multiple_pages">
+     tal:condition="view/multiple_pages">
     <span class="previous"
       tal:condition="batch/has_previous">
         <a href=""
