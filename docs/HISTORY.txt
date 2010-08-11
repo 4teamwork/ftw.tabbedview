@@ -5,6 +5,9 @@ Changelog
 1.0c2
 -----
 
+* rebuild tabbedview, so that in only done the tabbedview js stuff,
+  when the tabbedview is displayed
+
 * Added maintainer properly in setup.py
   [19.07.2010, jbaumann]
 

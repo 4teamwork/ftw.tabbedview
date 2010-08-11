@@ -37,7 +37,7 @@ statusmessages = {};
 statusmessages.error = function(msg){alert(msg)};
 
 
-jq(function() {
+load_tabbedview = function() {
     /*statusmessages = jq('#region-content').statusmessages()*/
     tabbedview = {
         version : '0.1',
@@ -341,6 +341,6 @@ jq(function() {
     
     });
 
-});
+}
 
 

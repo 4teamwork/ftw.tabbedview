@@ -6,6 +6,18 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ftw.tabbedview">
 
+  <head>
+       <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+          <script type="text/javascript">
+              /* load the blogactionsbar with javascript, 
+              because the comment overlay work not, 
+              with a <form> tag in the content area */
+              jq(function(){
+                  load_tabbedview();
+              });
+           </script>
+       </div>
+  </head>
   <body>
     <metal:block fill-slot="column_two_slot" />
     <div metal:fill-slot="main" class="tabbedview_view"
@@ -13,7 +25,6 @@
       <metal:main-macro define-macro="main">
 
         <div id="tabbedview-header">
-
 
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 
