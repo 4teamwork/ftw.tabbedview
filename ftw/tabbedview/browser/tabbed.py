@@ -16,7 +16,7 @@ class TabbedView(BrowserView):
             css_classes = None
             #get the css classes that should be set on the A elements.
             view_name = "tabbedview_view-%s" % action['id']
-            view = self.context.restrictedTraverse(view_name)
+            view = queryMultiAdapter((self.context, self.request), name=view_name, default=None)
             if view and hasattr(view, 'get_css_classes'):
                 css_classes = ' '.join(view.get_css_classes())
             yield {
