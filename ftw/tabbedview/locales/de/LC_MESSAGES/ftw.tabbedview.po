@@ -114,7 +114,7 @@ msgid "label_filter"
 msgstr "Filter"
 
 msgid "modified"
-msgstr "bearbeitet"
+msgstr "Bearbeitet"
 
 msgid "my_issues"
 msgstr "Meine Tickets"
