@@ -149,5 +149,4 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
-msgid "documentoverview"
-msgstr "Dokumente"
+
