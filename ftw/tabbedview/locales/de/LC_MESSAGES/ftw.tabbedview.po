@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-04-30 06:30+0000\n"
+"POT-Creation-Date: 2010-08-11 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,12 +109,12 @@ msgid "label_account"
 msgstr "Kostenstelle"
 
 #. Default: "Filter"
-#: ftw.tabbedview/ftw/tabbedview/browser/views/tabbed.pt:27
+#: ./ftw/tabbedview/browser/tabbed.pt:46
 msgid "label_filter"
 msgstr "Filter"
 
 msgid "modified"
-msgstr "bearbeitet"
+msgstr "Bearbeitet"
 
 msgid "my_issues"
 msgstr "Meine Tickets"
@@ -149,4 +149,5 @@ msgstr "Info"
 msgid "tracker_overview"
 msgstr "Übersicht"
 
-
+msgid "documentoverview"
+msgstr "Dokumente"
