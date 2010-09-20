@@ -24,5 +24,12 @@
             permission="zope2.View"
             template="fallback.pt"
             />
+
+            <browser:viewlet
+                name="ftw.tabbedview.searchbox"
+                manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+                class=".searchbox.SearchBox"
+                permission="zope2.View"
+                />
     
 </configure>
