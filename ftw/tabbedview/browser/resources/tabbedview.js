@@ -26,12 +26,6 @@ jQuery.find_param = function(s) {
 };
 
 
-/*
-
-
-
-*/
-
 
 statusmessages = {};
 statusmessages.error = function(msg){alert(msg);};
@@ -344,6 +338,6 @@ load_tabbedview = function() {
 
     });
 
-}
+};
 
 
