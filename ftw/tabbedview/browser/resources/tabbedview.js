@@ -75,8 +75,11 @@ load_tabbedview = function() {
             tabbedview.param('initialize', 0);
             var params = this.parse_params();
             var url = jq('base').attr('href');
+            if( url.substr(url.length-1, 1) != '/'){
+                url += '/';
+            }
             var current_tab = jq('.tabbedview-tabs li a.selected');
-            jq('#'+tabbedview.prop('view_name')+'_overview').load('tabbed_view/listing?'+params, function(){
+            jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
                 tabbedview.view_container.trigger('reload');
                 tabbedview.spinner.hide();
             });
