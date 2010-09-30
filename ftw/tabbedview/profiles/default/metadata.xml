@@ -4,5 +4,6 @@
     <dependencies>
         <dependency>profile-plone.app.registry:default</dependency>
         <dependency>profile-collective.js.jqueryui:default</dependency>
+	    <dependency>profile-ftw.table:default</dependency>
     </dependencies>
 </metadata>
