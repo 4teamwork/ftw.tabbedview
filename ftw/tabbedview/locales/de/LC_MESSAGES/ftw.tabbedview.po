@@ -105,11 +105,13 @@ msgstr "Info"
 msgid "issued_issues"
 msgstr "Meine Aufträge"
 
+msgid "journal"
+msgstr "Journal"
+
 msgid "label_account"
 msgstr "Kostenstelle"
 
 #. Default: "Filter"
-#: ./ftw/tabbedview/browser/tabbed.pt:46
 msgid "label_filter"
 msgstr "Filter"
 
@@ -124,6 +126,9 @@ msgstr "Offene Tickets"
 
 msgid "overview"
 msgstr "Übersicht"
+
+msgid "participants"
+msgstr "Beteiligungen"
 
 msgid "process"
 msgstr "Fortschritt"
@@ -140,6 +145,12 @@ msgstr "Beginn"
 msgid "state"
 msgstr "Status"
 
+msgid "subdossiers"
+msgstr "Subdossiers"
+
+msgid "tasks"
+msgstr "Aufgaben"
+
 msgid "tickets"
 msgstr "Tickets"
 
@@ -148,5 +159,8 @@ msgstr "Info"
 
 msgid "tracker_overview"
 msgstr "Übersicht"
+
+msgid "trash"
+msgstr "Papierkorb"
 
 
