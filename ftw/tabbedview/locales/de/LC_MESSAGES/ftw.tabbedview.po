@@ -130,6 +130,9 @@ msgstr "Übersicht"
 msgid "participants"
 msgstr "Beteiligungen"
 
+msgid "contacts"
+msgstr "Kontakte"
+
 msgid "process"
 msgstr "Fortschritt"
 
