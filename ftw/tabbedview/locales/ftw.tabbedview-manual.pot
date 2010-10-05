@@ -163,3 +163,25 @@ msgstr ""
 
 msgid "trash"
 msgstr ""
+
+msgid "mydossiers"
+msgstr ""
+
+msgid "mydocuments"
+msgstr ""
+
+msgid "given_tasks"
+msgstr ""
+
+msgid "assigned_tasks"
+msgstr ""
+
+msgid "mytasks"
+msgstr ""
+
+msgid "assignedtasks"
+msgstr ""
+
+msgid "issuedtasks"
+msgstr ""
+

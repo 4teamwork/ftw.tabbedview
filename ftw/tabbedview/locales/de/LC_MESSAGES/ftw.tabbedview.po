@@ -48,6 +48,12 @@ msgstr "Alle Tickets"
 msgid "archive"
 msgstr "Archiv"
 
+msgid "assigned_tasks"
+msgstr "Zugewiesene Aufgaben"
+
+msgid "assignedtasks"
+msgstr "Zugewiesene Aufgaben"
+
 msgid "billable"
 msgstr "verrechenb. Std."
 
@@ -93,6 +99,9 @@ msgstr "Vollmachten"
 msgid "getResponsibleManager"
 msgstr "Zuständigkeit"
 
+msgid "given_tasks"
+msgstr "Erteilte Aufgaben"
+
 msgid "hours"
 msgstr "geleist. Std."
 
@@ -101,6 +110,9 @@ msgstr "Info"
 
 msgid "issued_issues"
 msgstr "Meine Aufträge"
+
+msgid "issuedtasks"
+msgstr "Erteilte Aufgaben"
 
 msgid "journal"
 msgstr "Journal"
@@ -118,6 +130,15 @@ msgstr "Bearbeitet"
 msgid "my_issues"
 msgstr "Meine Tickets"
 
+msgid "mydocuments"
+msgstr "Meine Dokumente"
+
+msgid "mydossiers"
+msgstr "Meine Dossiers"
+
+msgid "mytasks"
+msgstr "Meine Aufgaben"
+
 msgid "open_issues"
 msgstr "Offene Tickets"
 
@@ -126,9 +147,6 @@ msgstr "Übersicht"
 
 msgid "participants"
 msgstr "Beteiligungen"
-
-msgid "contacts"
-msgstr "Kontakte"
 
 msgid "process"
 msgstr "Fortschritt"
