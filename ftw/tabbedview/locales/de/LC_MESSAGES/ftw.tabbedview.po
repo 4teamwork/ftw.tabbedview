@@ -48,9 +48,6 @@ msgstr "Alle Tickets"
 msgid "archive"
 msgstr "Archiv"
 
-msgid "assignedtasks_solr"
-msgstr "Zentrale Übersicht"
-
 msgid "billable"
 msgstr "verrechenb. Std."
 

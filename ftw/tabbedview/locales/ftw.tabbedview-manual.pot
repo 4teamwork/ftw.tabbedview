@@ -65,9 +65,6 @@ msgstr ""
 msgid "reports"
 msgstr ""
 
-msgid "assignedtasks_solr"
-msgstr ""
-
 msgid "all_entries"
 msgstr ""
 
