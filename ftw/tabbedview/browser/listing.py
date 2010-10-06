@@ -320,7 +320,7 @@ class BaseListingView(ListingView):
         return query
 
     def search(self, kwargs):
-        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
+        self.catalog = getToolByName(self.context, 'portal_catalog')
         query = self.build_query(**kwargs)
         self.contents = self.catalog(**query)
         self.len_results = len(self.contents)
@@ -353,11 +353,11 @@ class BaseListingView(ListingView):
         return Batch(self.contents,
                     pagesize=self.pagesize,
                     pagenumber=self.pagenumber)
-                    
+
     @property
     def multiple_pages(self):
-        """The multiple_pages in plone.app.batch has a bug 
+        """The multiple_pages in plone.app.batch has a bug
         if size == pagesize."""
 
-        return len(self.contents) > self.pagesize
+        return self.len_results > self.pagesize
 
