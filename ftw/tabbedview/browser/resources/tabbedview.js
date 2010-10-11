@@ -543,9 +543,10 @@ load_tabbedview = function() {
                                      tabbedview.reload_view();
                                    });
 
-
-
-
+        /*initalize the ftw.tabbedview content menues*/
+        jQuery('div.tabbedview-action-menu dl.actionMenu dt.actionMenuHeader a')
+            .click(toggleMenuHandler)
+            .mouseover(actionMenuMouseOver);
     });
 
 }

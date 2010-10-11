@@ -17,82 +17,91 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-msgid "By Area"
+msgid "label_filter"
 msgstr ""
 
-msgid "By Responsible Manager"
+msgid "tracker_overview"
 msgstr ""
 
-msgid "By Severity"
-msgstr ""
-
-msgid "By State"
-msgstr ""
-
-msgid "By Target Release"
-msgstr ""
-
-msgid "Creator"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "accounting_overview"
-msgstr ""
-
-msgid "all_entries"
+msgid "open_issues"
 msgstr ""
 
 msgid "all_issues"
 msgstr ""
 
-msgid "archive"
+msgid "my_issues"
 msgstr ""
 
-msgid "assignedtasks_solr"
+msgid "issued_issues"
 msgstr ""
 
-msgid "billable"
+msgid "tracker_info"
 msgstr ""
 
-msgid "changes"
-msgstr ""
-
-msgid "documents"
+msgid "overview"
 msgstr ""
 
 msgid "dossiers"
 msgstr ""
 
-msgid "end"
+msgid "documents"
 msgstr ""
 
 msgid "events"
 msgstr ""
 
+msgid "tickets"
+msgstr ""
+
+msgid "info"
+msgstr ""
+
 msgid "folders"
+msgstr ""
+
+msgid "changes"
+msgstr ""
+
+msgid "reports"
+msgstr ""
+
+msgid "all_entries"
+msgstr ""
+
+msgid "archive"
+msgstr ""
+
+msgid "accounting_overview"
 msgstr ""
 
 msgid "generally"
 msgstr ""
 
-msgid "getAccount"
+msgid "Title"
 msgstr ""
 
-msgid "getBillable"
+msgid "label_account"
 msgstr ""
 
-msgid "getEffectiveHours"
+msgid "start"
 msgstr ""
 
-msgid "getEstimatedHours"
+msgid "end"
 msgstr ""
 
-msgid "getHours"
+msgid "hours"
+msgstr ""
+
+msgid "billable"
+msgstr ""
+
+msgid "Creator"
+msgstr ""
+
+msgid "state"
+msgstr ""
+
+msgid "modified"
 msgstr ""
 
 msgid "getResponsible"
@@ -101,56 +110,77 @@ msgstr ""
 msgid "getResponsibleManager"
 msgstr ""
 
-msgid "hours"
-msgstr ""
-
-msgid "info"
-msgstr ""
-
-msgid "issued_issues"
-msgstr ""
-
-msgid "label_account"
-msgstr ""
-
-#. Default: "Filter"
-#: ./ftw/tabbedview/browser/tabbed.pt:46
-msgid "label_filter"
-msgstr ""
-
-msgid "modified"
-msgstr ""
-
-msgid "my_issues"
-msgstr ""
-
-msgid "open_issues"
-msgstr ""
-
-msgid "overview"
+msgid "review_state"
 msgstr ""
 
 msgid "process"
 msgstr ""
 
-msgid "reports"
+msgid "getEstimatedHours"
 msgstr ""
 
-msgid "review_state"
+msgid "getEffectiveHours"
 msgstr ""
 
-msgid "start"
+msgid "Month"
 msgstr ""
 
-msgid "state"
+msgid "getAccount"
 msgstr ""
 
-msgid "tickets"
+msgid "By State"
 msgstr ""
 
-msgid "tracker_info"
+msgid "By Area"
 msgstr ""
 
-msgid "tracker_overview"
+msgid "By Severity"
 msgstr ""
 
+msgid "By Responsible Manager"
+msgstr ""
+
+msgid "By Target Release"
+msgstr ""
+
+msgid "getHours"
+msgstr ""
+
+msgid "getBillable"
+msgstr ""
+
+msgid "participants"
+msgstr ""
+
+msgid "subdossiers"
+msgstr ""
+
+msgid "tasks"
+msgstr ""
+
+msgid "journal"
+msgstr ""
+
+msgid "trash"
+msgstr ""
+
+msgid "mydossiers"
+msgstr ""
+
+msgid "mydocuments"
+msgstr ""
+
+msgid "given_tasks"
+msgstr ""
+
+msgid "assigned_tasks"
+msgstr ""
+
+msgid "mytasks"
+msgstr ""
+
+msgid "assignedtasks"
+msgstr ""
+
+msgid "issuedtasks"
+msgstr ""
