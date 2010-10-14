@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2010-08-11 09:27+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2010-10-14 18:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -110,9 +110,6 @@ msgstr "Info"
 
 msgid "issued_issues"
 msgstr "Meine Aufträge"
-
-msgid "issuedtasks"
-msgstr "Erteilte Aufgaben"
 
 msgid "journal"
 msgstr "Journal"

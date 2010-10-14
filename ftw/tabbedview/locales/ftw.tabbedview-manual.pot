@@ -182,6 +182,4 @@ msgstr ""
 msgid "assignedtasks"
 msgstr ""
 
-msgid "issuedtasks"
-msgstr ""
 
