@@ -26,6 +26,7 @@
         />
 
     <configure zcml:condition="installed collective.js.jqueryui">
+        <include package="collective.js.jqueryui" />
         <genericsetup:registerProfile
             name="jqueryui"
             title="ftw.tabbedview : jqueryui"
