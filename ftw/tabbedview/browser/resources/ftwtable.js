@@ -55,16 +55,17 @@
                         $this.data(key, value);
                     }else if(key && value==undefined){
                         var stored = $.jStorage.get(key);
-                        if (stored != null){;
-                            console.log('key ' + key + ' read from jstorage')
-                            return stored
-                        }else{
-                            return $this.data(key);   
+                        if (stored != null){
+                            return stored;
+                        }
+                        else{
+                            return $this.data(key);
                         }
                     }else{
                         return $this.data();
                     }
-                },
+                    return null;
+                }
      };
 
     //
@@ -80,6 +81,7 @@
         } else {
           $.error( 'Method ' +  method + ' does not exist on jQuery.ftwtable' );
         }
+        return null;
     };
     
     //
@@ -111,7 +113,7 @@
         $this.load(query, function(){           
             $o.onLoad();
         });
-    }
+    };
     
     //
     // plugin defaults
@@ -125,7 +127,7 @@
         sortable: true,
         storage: false,
         onBeforeLoad: null,
-        onLoad: onLoad,
+        onLoad: onLoad
     };
 //
 // end of closure
@@ -141,7 +143,7 @@ jq(function(){
     //test global overwrite
     $.fn.ftwtable.defaults.onBeforeLoad = function(){
         console.log('custom onBeforeLoad');
-    }
+    };
     
     // initialize table
     var table = $('#template_chooser').ftwtable({
