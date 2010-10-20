@@ -5,6 +5,9 @@ Changelog
 1.0c2
 -----
 
+* Using jqueryui is now optional. Use the "jqueryui" extras_require for enabling UI.
+  [20.10.2010, jbaumann]
+
 * rebuild tabbedview, so that in only done the tabbedview js stuff,
   when the tabbedview is displayed
 
@@ -59,7 +62,7 @@ Changelog
 
 * Translation for tab's tittles added
   [04.02.2010, jbaumann]
-  
+
 
 1.0a2
 -----

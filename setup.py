@@ -32,6 +32,7 @@ setup(name='ftw.tabbedview',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
+        'jqueryui': ['collective.js.jqueryui'],
         },
       entry_points="""
       # -*- Entry points: -*-
