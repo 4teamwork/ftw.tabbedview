@@ -166,7 +166,7 @@ load_tabbedview = function() {
 
         select_all : function() {
             var view = this.prop('view_name');
-            var boxes = jq('input[name=paths:list]');
+            var boxes = jq('input.selectable');
             tabbedview.param('selected_count', boxes.length);
             boxes.each(function(el) {
                 jq(this).attr('checked', true);
@@ -199,7 +199,7 @@ load_tabbedview = function() {
         },
 
         select_none : function(){
-            jq('input[name=paths:list]').each(function(el) {
+            jq('input.selectable').each(function(el) {
                 jq(this).attr('checked', false);
                 jq(this).closest('tr').removeClass('ui-selected');
             });
@@ -317,13 +317,13 @@ load_tabbedview = function() {
             filter:'tr:gt(0)',
             cancel: 'a, input, th',
             selecting: function(event, ui) {
-                jq('input[name="paths:list"]', ui.selecting).attr('checked', true);
+                jq('input.selectable', ui.selecting).attr('checked', true);
             },
             selected: function(event, ui) {
-                jq('.ui-selected input[name="paths:list"]').attr('checked', true);
+                jq('.ui-selected input.selectable').attr('checked', true);
             },
             unselecting: function(event, ui) {
-                jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
+                jq('input.selectable', ui.selecting).attr('checked', false);
                 tabbedview.deselect_all();
             }
 
