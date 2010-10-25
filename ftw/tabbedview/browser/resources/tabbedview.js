@@ -204,6 +204,7 @@ load_tabbedview = function() {
     jQuery.tabbedview = tabbedview;
 
 
+  
     /*catch all click events on tabs link elements and call the click method
     because jquery tools tabs doesnt work with plone folderish types*/
 
