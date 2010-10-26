@@ -5,6 +5,10 @@ Changelog
 1.0c2
 -----
 
+* Changed the minimum pagesize to 1. A small pagesize is necessary for easy
+  testing.
+  [26.10.2010, jbaumann]
+
 * Fixed select-all: It does now select all items in the tab, not only the visibles.
   Fixed also ordering and duplicity.
   [26.10.2010, jbaumann]
