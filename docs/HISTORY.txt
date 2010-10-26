@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+2.0
+---
+
+* plone 4 compatibility release
+  [26.10.2010, mathias.leimgruber]
+
+
 1.0c2
 -----
 
