@@ -5,6 +5,10 @@ Changelog
 2.1
 ---
 
+
+2.1
+---
+
 * tagged from master instead of plone4 compatibility branch
   Your should realy use this one
   [26.10.2010, mathias.leimgruber]
