@@ -5,6 +5,10 @@ Changelog
 1.0c2
 -----
 
+* Fixed select-all: It does now select all items in the tab, not only the visibles.
+  Fixed also ordering and duplicity.
+  [26.10.2010, jbaumann]
+
 * Using jqueryui is now optional. Use the "jqueryui" extras_require for enabling UI.
   [20.10.2010, jbaumann]
 

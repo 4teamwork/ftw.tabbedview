@@ -174,7 +174,8 @@ load_tabbedview = function() {
             });
 
             var params = this.parse_params();
-            var url = jq('base').attr('href');
+            var url = jq('base').attr('href').concat('tabbed_view/');
+
             if( url.substr(url.length-1, 1) == '/'){
                 url = url + 'select_all?'+params;
             }
@@ -186,7 +187,10 @@ load_tabbedview = function() {
                 url: url,
                 success: function(data) {
                     jq('.hidden_items').remove();
-                    jq('form[name=tabbedview_form]').append(data);
+                    var table = jq('form[name=tabbedview_form] table.listing');
+                    var ddata = jq(data);
+                    ddata.find('#above_visibles .hidden_items').insertBefore(table);
+                    ddata.find('#beneath_visibles .hidden_items').insertAfter(table);
                 }
             });
 

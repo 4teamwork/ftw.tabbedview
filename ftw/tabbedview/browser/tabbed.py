@@ -58,13 +58,13 @@ class TabbedView(BrowserView):
             return listing_view()
 
     def select_all(self):
-        """Returns a list of all Objects machting the search parameters.
-        Called from javascript tabbedview.js in select_all line 186
+        """Called when select-all is clicked. Returns HTML containing
+        a hidden input field for each field which is not displayed at
+        the moment.
         """
-        # TODO: reimplement functionality copied from views.SelectAllView
-        pass
-        # self.tab = self.context.restrictedTraverse("tabbedview_view-%s" %
-        #                                   self.request.get('view_name'))
-        # self.tab.update()
-        #
-        # return super(SelectAllView, self).__call__()
+
+        self.tab = self.context.restrictedTraverse("tabbedview_view-%s" %
+                                          self.request.get('view_name'))
+
+        return self.tab.select_all(int(self.request.get('pagenumber', 1)),
+                                   int(self.request.get('selected_count', 0)))
