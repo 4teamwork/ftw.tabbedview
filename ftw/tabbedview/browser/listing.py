@@ -61,7 +61,6 @@ class ListingView(BrowserView):
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
-    request_filters = [('review_state', 'review_state', None)]
 
     _custom_sort_method = None
 
@@ -265,49 +264,6 @@ class BaseListingView(ListingView):
 #        else:
 #            kwargs['portal_type'] = self.context.getFriendlyTypes()
 
-        for f_title, f_request, f_mode in self.request_filters:
-            if f_request in self.request:
-                result = self.request.get(f_request)
-                if len(result):
-                    # special handling for the by Month filter
-                    if f_mode == 'date':
-                        if isinstance(result, list):
-                            start = datetime(3000, 1, 1, 0, 0)
-                            end = datetime(1970, 1, 1, 0, 0)
-                            for item in result:
-                                item = item[1: len(item)-1]
-                                item = item.split(';')
-                                d1 = item[0].split('-')
-                                d2 = item[1].split('-')
-                                temp_start = datetime(int(d1[0]),
-                                                      int(d1[1]),
-                                                      int(d1[2]))
-                                temp_end = datetime(int(d2[0]),
-                                                    int(d2[1]),
-                                                    int(d2[2]))
-                                if temp_start < start:
-                                    start = temp_start
-                                if temp_end > end:
-                                    end = temp_end
-                            kwargs[f_title] = {'query': (start, end),
-                                               'range': 'minmax'}
-
-                        else:
-                            result = result[1: len(result)-1]
-                            result = result.split(';')
-                            d1 = result[0].split('-')
-                            d2 = result[1].split('-')
-                            kwargs[f_title] = {'query': (datetime(
-                                                            int(d1[0]),
-                                                            int(d1[1]),
-                                                            int(d1[2])),
-                                                            datetime(
-                                                                int(d2[0]),
-                                                                int(d2[1]),
-                                                                int(d2[2]))),
-                                               'range': 'minmax'}
-                    else:
-                        kwargs[f_title] = result
         if 'searchable_text' in self.request:
             searchable_text = self.request.get('searchable_text')
             if len(searchable_text):
