@@ -1,6 +1,6 @@
 from Acquisition import aq_inner
-from datetime import datetime
-from ftw.table import helper
+from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
+from ftw.table.interfaces import ITableSource
 from ftw.table.interfaces import ITableGenerator
 from plone.app.content.batching import Batch
 from plone.memoize import instance
@@ -8,7 +8,7 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.app.pagetemplate import ViewPageTemplateFile
-from zope.component import queryUtility, getUtility
+from zope.component import queryUtility, getUtility, getMultiAdapter
 
 
 DEFAULT_ENABLED_ACTIONS = [
@@ -21,43 +21,20 @@ DEFAULT_ENABLED_ACTIONS = [
     ]
 
 
-def sort(list_, index, dir_):
-    """sort function used as callback in custom_sort_indexes"""
-    reverse = 0
-    if dir_ == 'reverse':
-        reverse = 1
-    return sorted(list_,
-                  cmp=lambda x, y: cmp(getattr(x, index), getattr(y, index)),
-                  reverse=reverse)
-
-
 class ListingView(BrowserView):
     """ Base view for listings defining the default values for search
     attributes"""
 
-    #columns possible values
-    # "<attributename>"
-    # ('<attributename>', 'catalog_index')
-    # ('<attributename>', callback)
-    # ('<attributename>', '<catalog_index>', callback)
-    # callback is used to modify the cell attribute.
-    # E.g to humanize DateTime objects.
-    # The Callback is called with the instance of the current item
-    # and the attributename
-    columns = (('Title', ),
-               ('modified', helper.readable_date), )
+    # see ftw.table documentation on how columns work
+    columns = ()
 
     # additional options to pass to ftw.table:
     table_options = None
+
     # change the template used by ftw.table:
     table_template = None
 
-    custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex': sort}
-    search_index = 'SearchableText'
     show_searchform = True
-    sort_on = 'sortable_title'
-    sort_order = 'reverse'
-    search_options = {}
     depth = -1
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
@@ -77,15 +54,49 @@ class ListingView(BrowserView):
         return self.template()
 
     def update(self):
-        raise NotImplementedError('subclass must override this method')
 
-    def search(self, kwargs):
-        raise NotImplementedError('subclass must override this method')
+        # pagenumber
+        self.batching_current_page = int(self.request.get('pagenumber', 1))
+        # XXX eliminate self.pagenumber
+        self.pagenumber = self.batching_current_page
+
+        # set url
+        self.url = self.context.absolute_url()
+
+        # filtering
+        if 'searchable_text' in self.request:
+            self.filter_text = self.request.get('searchable_text')
+
+        # ordering
+        self.sort_on = self.request.get('sort_on', self.sort_on)
+        if self.sort_on.startswith('header-'):
+            self.sort_on = self.sort_on.split('header-')[1]
+
+        # reverse
+        default_sort_order = self.sort_reverse and 'reverse' or 'asc'
+        self.sort_order = self.request.get('sort_order', default_sort_order)
+        self.sort_reverse = self.sort_order == 'reverse'
+
+        # build the query
+        query = self.table_source.build_query()
+
+        # search
+        self.contents = self.table_source.search_results(query)
+
+        # post search
+        self.post_search(query)
+
+    def post_search(self, query):
+        pass
 
     @property
-    @instance.memoize
-    def batch(self):
-        return self.contents
+    def table_source(self):
+        try:
+            return self._table_source
+        except AttributeError:
+            self._table_source = getMultiAdapter((self, self.request),
+                                                 ITableSource)
+            return self._table_source
 
     def show_search_results(self):
         if 'searchable_text' in self.request:
@@ -253,90 +264,8 @@ class ListingView(BrowserView):
         return contents[0:start_hidden], contents[end_hidden:]
 
 
-class BaseListingView(ListingView):
-
-    def update(self):
-        self.pas_tool = getToolByName(self.context, 'acl_users')
-        kwargs = {}
-
-        self.pagenumber = int(self.request.get('pagenumber', 1))
-        self.url = self.context.absolute_url()
-        if len(self.types):
-            kwargs['portal_type'] = self.types
-#        else:
-#            kwargs['portal_type'] = self.context.getFriendlyTypes()
-
-        if 'searchable_text' in self.request:
-            searchable_text = self.request.get('searchable_text')
-            if len(searchable_text):
-                if searchable_text.endswith('*'):
-                    searchable_text = searchable_text
-                else:
-                    searchable_text = searchable_text+'*'
-                kwargs['SearchableText'] = searchable_text
-
-        kwargs['sort_on'] = self.sort_on = self.request.get('sort_on',
-                                                            self.sort_on)
-
-        if self.sort_on.startswith('header-'):
-            kwargs['sort_on'] = self.sort_on = self.sort_on.split('header-')[1]
-
-        kwargs['sort_order'] = self.sort_order = self.request.get(
-                                                    'sort_order',
-                                                    self.sort_order)
-
-        #overwrite options with search_options dict on tab
-        kwargs.update(self._search_options)
-        self.search(kwargs)
-        self.post_search(kwargs)
-
-    def build_query(self, *args, **kwargs):
-        query = {}
-        query.update(kwargs)
-        query.update(dict(path=dict(
-                            depth=self.depth,
-                            query='/'.join(self.context.getPhysicalPath()))))
-        sort_on = kwargs.get('sort_on')
-        index = self.catalog._catalog.indexes.get(sort_on, None)
-        if index is not None:
-            index_type = index.__module__
-            if index_type in self.custom_sort_indexes:
-                del query['sort_on']
-                del query['sort_order']
-                self._custom_sort_method = \
-                    self.custom_sort_indexes.get(index_type)
-        return query
-
-    def search(self, kwargs):
-        self.catalog = getToolByName(self.context, 'portal_catalog')
-        query = self.build_query(**kwargs)
-        self.contents = self.catalog(**query)
-        self.len_results = len(self.contents)
-
-    def post_search(self, kwargs):
-        #when we're searching recursively we have to remove the current
-        # item if its in self.types
-        if self.depth != 1 and self.context.portal_type in self.types:
-            index = 0
-            current_path = '/'.join(self.context.getPhysicalPath())
-            for result in self.contents:
-                if current_path == result.getPath():
-                    self.contents = list(self.contents)
-                    self.contents.pop(index)
-                    #removing from LazyMap doesn't work
-                    #self.contents._len -= 1
-                    #self.contents.actual_result_count -= 1
-                    #res = self.contents._data.pop(index)
-                index +=1
-
-        if self._custom_sort_method is not None:
-            self.contents = self._custom_sort_method(self.contents,
-                                                     self.sort_on,
-                                                     self.sort_order)
-        self.len_results = len(self.contents)
-
     @property
-    @instance.memoize
+#     @instance.memoize
     def batch(self):
         return Batch(self.contents,
                     pagesize=self.pagesize,
@@ -347,5 +276,19 @@ class BaseListingView(ListingView):
         """The multiple_pages in plone.app.batch has a bug
         if size == pagesize."""
 
-        return self.len_results > self.pagesize
+        return len(self.contents) > self.pagesize
 
+
+class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
+
+    # modify the base catalog query. This will be
+    search_options = {}
+
+    def update_config(self):
+        DefaultCatalogTableSourceConfig.update_config(self)
+
+        # search in current context by default
+        self.filter_path = '/'.join(self.context.getPhysicalPath())
+
+
+BaseListingView = CatalogListingView
