@@ -270,7 +270,7 @@ class ListingView(BrowserView):
 
 
     @property
-#     @instance.memoize
+    @instance.memoize
     def batch(self):
         return Batch(self.contents,
                     pagesize=self.pagesize,
