@@ -48,7 +48,6 @@ class ListingView(BrowserView):
     columns = (('Title', ),
                ('modified', helper.readable_date), )
 
-    filters = []
     auto_count = None
     custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex': sort}
     search_index = 'SearchableText'
@@ -81,9 +80,6 @@ class ListingView(BrowserView):
 
     def search(self, kwargs):
         raise NotImplementedError('subclass must override this method')
-
-    def filters(self):
-        return self.filters
 
     @property
     @instance.memoize
