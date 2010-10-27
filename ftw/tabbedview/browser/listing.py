@@ -34,7 +34,6 @@ def sort(list_, index, dir_):
 class ListingView(BrowserView):
     """ Base view for listings defining the default values for search
     attributes"""
-    types = []
 
     #columns possible values
     # "<attributename>"
@@ -48,7 +47,11 @@ class ListingView(BrowserView):
     columns = (('Title', ),
                ('modified', helper.readable_date), )
 
-    auto_count = None
+    # additional options to pass to ftw.table:
+    table_options = None
+    # change the template used by ftw.table:
+    table_template = None
+
     custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex': sort}
     search_index = 'SearchableText'
     show_searchform = True
@@ -56,7 +59,6 @@ class ListingView(BrowserView):
     sort_order = 'reverse'
     search_options = {}
     depth = -1
-    table = None
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
@@ -97,8 +99,8 @@ class ListingView(BrowserView):
                                   self.columns,
                                   sortable = True,
                                   selected = (self.sort_on, self.sort_order),
-                                  template = self.table,
-                                  auto_count = self.auto_count,
+                                  template = self.table_template,
+                                  options = self.table_options,
                                   )
 
     def get_css_classes(self):
