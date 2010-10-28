@@ -36,6 +36,7 @@ class ListingView(BrowserView):
 
     show_searchform = True
     depth = -1
+    ext = False
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
@@ -115,6 +116,7 @@ class ListingView(BrowserView):
                                   selected = (self.sort_on, self.sort_order),
                                   template = self.table_template,
                                   options = self.table_options,
+                                  output='json'
                                   )
 
     def get_css_classes(self):

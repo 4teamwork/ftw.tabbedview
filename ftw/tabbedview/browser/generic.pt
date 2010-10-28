@@ -8,7 +8,9 @@
     <div tal:replace="structure view/batching" tal:condition="view/contents"/>
 
     <tal:cond tal:condition="view/contents">
-        <div tal:content="structure view/render_listing" />
+        <!--<div tal:content="structure view/render_listing" />-->
+        <div id="listing_container" class="ftwtable +extjs"><!--iefix--></div>
+        
     </tal:cond>
 
     <p tal:condition="not: view/contents">

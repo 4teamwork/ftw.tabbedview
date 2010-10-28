@@ -41,30 +41,6 @@ load_tabbedview = function() {
         spinner : jq('#tabbedview-spinner'),
         api : {},
         collapsible : false,
-        /*tabs : jq('.tabbedview-tabs').tabs({
-            spinner : '',
-            cache: false,
-            ajaxOptions : {cache: false,
-                           timeout: 9999,
-                           error: function(XMLHttpRequest, textStatus, errorThrown){
-                               statusmessages.error(textStatus + ' <a href="javascript:tabbedview.reload_view()">reload</a>');
-                           }
-                           },
-            collapsible: false,
-            select : function (e, ui){
-                with(tabbedview){
-
-                    spinner.show();
-                    selected_tab = ui.index;
-                    prop('view_name', ui.tab.id);
-                    set_url_for_tab();
-                }
-             },
-             load : function(e, ui){
-                  tabbedview.spinner.hide();
-                  tabbedview.view_container.trigger('reload');
-             }
-        }),*/
         selected_tab : 0,
         _properties : {},
         _params : {},
@@ -78,6 +54,7 @@ load_tabbedview = function() {
                 url += '/';
             }
             var current_tab = jq('.tabbedview-tabs li a.selected');
+            jq('#'+tabbedview.prop('old_view_name')+'_overview').html('');
             jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
                 tabbedview.view_container.trigger('reload');
                 tabbedview.spinner.hide();
@@ -168,10 +145,7 @@ load_tabbedview = function() {
             var view = this.prop('view_name');
             var boxes = jq('input.selectable');
             tabbedview.param('selected_count', boxes.length);
-            boxes.each(function(el) {
-                jq(this).attr('checked', true);
-                jq(this).closest('tr').addClass('ui-selected');
-            });
+            tabbedview.table.ftwtable('select', 'all');
 
             var params = this.parse_params();
             var url = jq('base').attr('href').concat('tabbed_view/');
@@ -203,10 +177,7 @@ load_tabbedview = function() {
         },
 
         select_none : function(){
-            jq('input.selectable').each(function(el) {
-                jq(this).attr('checked', false);
-                jq(this).closest('tr').removeClass('ui-selected');
-            });
+            tabbedview.table.ftwtable('deselect', 'all');
             jq('.select_folder').hide();
             tabbedview.deselect_all();
 
@@ -254,6 +225,8 @@ load_tabbedview = function() {
             jQuery.tabbedview.param('initialize', 1);
             jQuery.tabbedview.spinner.show();
             jQuery.tabbedview.selected_tab = index;
+            var view_name = jQuery.tabbedview.prop('view_name');
+            jQuery.tabbedview.prop('old_view_name',view_name);
             jQuery.tabbedview.prop('view_name',current_tab_id);
         },
         onClick: function(e, index){
@@ -287,64 +260,30 @@ load_tabbedview = function() {
             }
     });
 
+    tabbedview.spinner.css('position', 'absolute');
+    tabbedview.spinner.show();
+    tabbedview.spinner.css('left', '968px');
+    tabbedview.spinner.css('top', '140px');
+
 
 
     tabbedview.view_container.bind('reload', function() {
 
-        /*sortable*/
-        jq('.sortable').bind('click', function(e, o) {
-           var selected = jq(this);
-           var current = jq('#'+tabbedview.prop('view_name')+'_overview .sort-selected');
-           var sort_order = 'asc';
-           if ( selected.attr('id') == current.attr('id')) {
-               sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
-           }
-           tabbedview.flush_params();
-           tabbedview.param('sort_on', this.id);
-           tabbedview.param('sort_order', sort_order);
-           tabbedview.reload_view();
-        });
+        //test global overwrite
+        $.fn.ftwtable.defaults.onBeforeLoad = function(){
+        };
 
+        // initialize table
 
-        /* Batching */
-        jq('.listingBar span a, .listingBar a').click(function(e,o) {
-            e.preventDefault();
-            e.stopPropagation();
-            var obj = jq(this);
-            var pagenumber = jq.find_param(this.href).pagenumber;
-            tabbedview.param('pagenumber:int', pagenumber);
-            tabbedview.reload_view();
-        });
-
-        /* selectable */
-        jq('#tabbedview-body .listing').selectable({
-            filter:'tr:gt(0)',
-            cancel: 'a, input, th',
-            selecting: function(event, ui) {
-                jq('input.selectable', ui.selecting).attr('checked', true);
-            },
-            selected: function(event, ui) {
-                jq('.ui-selected input.selectable').attr('checked', true);
-            },
-            unselecting: function(event, ui) {
-                jq('input.selectable', ui.selecting).attr('checked', false);
-                tabbedview.deselect_all();
+        if(Ext.grid){
+            if(tabbedview.table){
+                tabbedview.table.ftwtable('destroy');
             }
+            tabbedview.table = $('#listing_container').ftwtable({
+                 'url' : '@@tabbed_view/listing'
+            });
+        }
 
-        });
-
-        /* subview chooser*/
-        jq('.ViewChooser a').click(function() {
-                                     tabbedview.param('view_name', this.id);
-                                     tabbedview.reload_view();
-                                   });
-
-        /*initalize the ftw.tabbedview content menues*/
-        jQuery('div.tabbedview-action-menu dl.actionMenu dt.actionMenuHeader a')
-            .click(toggleMenuHandler)
-            .mouseover(actionMenuMouseOver);
     });
 
-}
-
-
+};
