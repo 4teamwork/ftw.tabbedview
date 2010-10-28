@@ -290,10 +290,18 @@ class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
 
     # modify the base catalog query. This will be
     search_options = {}
+    
 
     def update_config(self):
         DefaultCatalogTableSourceConfig.update_config(self)
-
+        
+        # configuration for the extjs grid
+        extjs_conf = {'auto_expand_column':'sortable_title'}
+        if isinstance(self.table_options, dict):
+            self.table_options.update(extjs_conf)
+        elif self.table_options is None:
+            self.table_options = extjs_conf.copy()
+        
         # search in current context by default
         self.filter_path = '/'.join(self.context.getPhysicalPath())
 
