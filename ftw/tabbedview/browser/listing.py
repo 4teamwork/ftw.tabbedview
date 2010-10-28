@@ -60,6 +60,9 @@ class ListingView(BrowserView):
         # XXX eliminate self.pagenumber
         self.pagenumber = self.batching_current_page
 
+        # pagesize
+        self.batching_pagesize = self.pagesize
+
         # set url
         self.url = self.context.absolute_url()
 
