@@ -204,7 +204,7 @@ load_tabbedview = function() {
     jQuery.tabbedview = tabbedview;
 
 
-  
+
     /*catch all click events on tabs link elements and call the click method
     because jquery tools tabs doesnt work with plone folderish types*/
 
@@ -269,7 +269,6 @@ load_tabbedview = function() {
 
 
     tabbedview.view_container.bind('reload', function() {
-
         //test global overwrite
         $.fn.ftwtable.defaults.onBeforeLoad = function(){
         };
