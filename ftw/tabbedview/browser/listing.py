@@ -70,15 +70,16 @@ class ListingView(BrowserView):
         # filtering
         if 'searchable_text' in self.request:
             self.filter_text = self.request.get('searchable_text')
-
         # ordering
-        self.sort_on = self.request.get('sort_on', self.sort_on)
+        self.sort_on = self.request.get('sort', self.sort_on)
         if self.sort_on.startswith('header-'):
             self.sort_on = self.sort_on.split('header-')[1]
 
         # reverse
         default_sort_order = self.sort_reverse and 'reverse' or 'asc'
-        self.sort_order = self.request.get('sort_order', default_sort_order)
+        sort_order = self.request.get('dir', default_sort_order)
+        self.sort_order = {'ASC': 'asc', 
+                           'DESC':'reverse'}.get(sort_order)
         self.sort_reverse = self.sort_order == 'reverse'
 
         # build the query
