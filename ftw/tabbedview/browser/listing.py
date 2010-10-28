@@ -79,7 +79,8 @@ class ListingView(BrowserView):
         default_sort_order = self.sort_reverse and 'reverse' or 'asc'
         sort_order = self.request.get('dir', default_sort_order)
         self.sort_order = {'ASC': 'asc', 
-                           'DESC':'reverse'}.get(sort_order)
+                           'DESC':'reverse'}.get(sort_order, sort_order)
+
         self.sort_reverse = self.sort_order == 'reverse'
 
         # build the query
