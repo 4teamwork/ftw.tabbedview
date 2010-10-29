@@ -1,5 +1,6 @@
 from Acquisition import aq_inner
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
+from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.interfaces import ITableSource
 from ftw.table.interfaces import ITableGenerator
 from plone.app.content.batching import Batch
@@ -21,7 +22,7 @@ DEFAULT_ENABLED_ACTIONS = [
     ]
 
 
-class ListingView(BrowserView):
+class ListingView(BrowserView, BaseTableSourceConfig):
     """ Base view for listings defining the default values for search
     attributes"""
 
@@ -36,7 +37,6 @@ class ListingView(BrowserView):
 
     show_searchform = True
     depth = -1
-    ext = False
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
@@ -48,14 +48,38 @@ class ListingView(BrowserView):
         super(ListingView, self).__init__(context, request)
         registry = getUtility(IRegistry)
         self.pagesize = \
-                registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
+            registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
 
     def __call__(self, *args, **kwargs):
+        # XXX : we need to be able to detect a extjs update request and return
+        # only the template without data, because a later request will update
+        # the table with json.
+        # better approach to implement: create a new extjs-update-view witch
+        # returns a json containing the template with data and the data as
+        # json.
+
+        if self.extjs_enabled:
+            if 'ext' in self.request:
+                self.update()
+                return self.render_listing()
+            else:
+                self.contents = [{},]
+                self.load_request_parameters()
+                return self.template()
+
         self.update()
         return self.template()
 
-    def update(self):
+    @property
+    def extjs_enabled(self):
+        """Returns True if extjs plugin is enabled.
+        """
+        # move this to the registry later
+        return False
 
+    def load_request_parameters(self):
+        """Load parameters such as page or filter from request.
+        """
         # pagenumber
         self.batching_current_page = int(self.request.get('pagenumber', 1))
         # XXX eliminate self.pagenumber
@@ -78,11 +102,14 @@ class ListingView(BrowserView):
         # reverse
         default_sort_order = self.sort_reverse and 'reverse' or 'asc'
         sort_order = self.request.get('dir', default_sort_order)
-        self.sort_order = {'ASC': 'asc', 
+        self.sort_order = {'ASC': 'asc',
                            'DESC':'reverse'}.get(sort_order, sort_order)
 
         self.sort_reverse = self.sort_order == 'reverse'
 
+
+    def update(self):
+        self.load_request_parameters()
         # build the query
         query = self.table_source.build_query()
 
@@ -148,7 +175,7 @@ class ListingView(BrowserView):
                                           categories=('folder_buttons', ))
         available_action_ids = [a['id'] for a in actions
                                 if a['available'] and a['visible']
-                                    and a['allowed']]
+                                and a['allowed']]
         return available_action_ids
 
     def major_actions(self):
@@ -182,8 +209,8 @@ class ListingView(BrowserView):
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
         button_actions = portal_actions.listActionInfos(
-                            object=context,
-                            categories=('folder_buttons', ))
+            object=context,
+            categories=('folder_buttons', ))
         # Do not show buttons if there is no data, unless there is data to be
         # pasted
         if not len(self.contents):
@@ -246,7 +273,11 @@ class ListingView(BrowserView):
         `selected_count`: number of items selected / displayed on this page
         """
 
+        if not self.batching_enabled:
+            return
+
         self.update()
+
         above, beneath = self._select_all_remove_visibles(
             self.contents, pagenumber, selected_count)
         return self.select_all_template(above=above, beneath=beneath)
@@ -275,8 +306,8 @@ class ListingView(BrowserView):
 #     @instance.memoize
     def batch(self):
         return Batch(self.contents,
-                    pagesize=self.pagesize,
-                    pagenumber=self.pagenumber)
+                     pagesize=self.pagesize,
+                     pagenumber=self.pagenumber)
 
     @property
     def multiple_pages(self):
@@ -290,20 +321,21 @@ class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
 
     # modify the base catalog query. This will be
     search_options = {}
-    
+
 
     def update_config(self):
         DefaultCatalogTableSourceConfig.update_config(self)
-        
+
         # configuration for the extjs grid
         extjs_conf = {'auto_expand_column':'sortable_title'}
         if isinstance(self.table_options, dict):
             self.table_options.update(extjs_conf)
         elif self.table_options is None:
             self.table_options = extjs_conf.copy()
-        
+
         # search in current context by default
         self.filter_path = '/'.join(self.context.getPhysicalPath())
 
 
+# XXX: Remove this
 BaseListingView = CatalogListingView

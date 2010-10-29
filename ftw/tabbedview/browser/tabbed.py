@@ -55,6 +55,7 @@ class TabbedView(BrowserView):
             if listing_view is None:
                 listing_view = queryMultiAdapter((self.context, self.request),
                                 name='tabbedview_view-fallback')
+
             return listing_view()
 
     def select_all(self):
