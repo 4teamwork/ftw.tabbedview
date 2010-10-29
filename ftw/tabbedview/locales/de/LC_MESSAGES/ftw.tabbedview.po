@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-11 09:27+0000\n"
+"POT-Creation-Date: 2010-10-29 14:33+0000\n"
 "PO-Revision-Date: 2010-10-14 18:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,10 @@ msgstr "Ende"
 msgid "events"
 msgstr "Termine"
 
+#: ./ftw/tabbedview/browser/searchbox.pt:3
+msgid "filter"
+msgstr "filtern"
+
 msgid "folders"
 msgstr "Ordner"
 
@@ -118,6 +122,7 @@ msgid "label_account"
 msgstr "Kostenstelle"
 
 #. Default: "Filter"
+#: ./ftw/tabbedview/browser/searchbox.pt:2
 msgid "label_filter"
 msgstr "Filter"
 

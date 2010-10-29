@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-11 09:27+0000\n"
+"POT-Creation-Date: 2010-10-29 14:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,91 +17,89 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-msgid "label_filter"
+msgid "By Area"
 msgstr ""
 
-msgid "tracker_overview"
+msgid "By Responsible Manager"
 msgstr ""
 
-msgid "open_issues"
+msgid "By Severity"
 msgstr ""
 
-msgid "all_issues"
+msgid "By State"
 msgstr ""
 
-msgid "my_issues"
-msgstr ""
-
-msgid "issued_issues"
-msgstr ""
-
-msgid "tracker_info"
-msgstr ""
-
-msgid "overview"
-msgstr ""
-
-msgid "dossiers"
-msgstr ""
-
-msgid "documents"
-msgstr ""
-
-msgid "events"
-msgstr ""
-
-msgid "tickets"
-msgstr ""
-
-msgid "info"
-msgstr ""
-
-msgid "folders"
-msgstr ""
-
-msgid "changes"
-msgstr ""
-
-msgid "reports"
-msgstr ""
-
-msgid "all_entries"
-msgstr ""
-
-msgid "archive"
-msgstr ""
-
-msgid "accounting_overview"
-msgstr ""
-
-msgid "generally"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "label_account"
-msgstr ""
-
-msgid "start"
-msgstr ""
-
-msgid "end"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
-msgid "billable"
+msgid "By Target Release"
 msgstr ""
 
 msgid "Creator"
 msgstr ""
 
-msgid "state"
+msgid "Month"
 msgstr ""
 
-msgid "modified"
+msgid "Title"
+msgstr ""
+
+msgid "accounting_overview"
+msgstr ""
+
+msgid "all_entries"
+msgstr ""
+
+msgid "all_issues"
+msgstr ""
+
+msgid "archive"
+msgstr ""
+
+msgid "assigned_tasks"
+msgstr ""
+
+msgid "assignedtasks"
+msgstr ""
+
+msgid "billable"
+msgstr ""
+
+msgid "changes"
+msgstr ""
+
+msgid "documents"
+msgstr ""
+
+msgid "dossiers"
+msgstr ""
+
+msgid "end"
+msgstr ""
+
+msgid "events"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/searchbox.pt:3
+msgid "filter"
+msgstr ""
+
+msgid "folders"
+msgstr ""
+
+msgid "generally"
+msgstr ""
+
+msgid "getAccount"
+msgstr ""
+
+msgid "getBillable"
+msgstr ""
+
+msgid "getEffectiveHours"
+msgstr ""
+
+msgid "getEstimatedHours"
+msgstr ""
+
+msgid "getHours"
 msgstr ""
 
 msgid "getResponsible"
@@ -110,46 +108,65 @@ msgstr ""
 msgid "getResponsibleManager"
 msgstr ""
 
-msgid "review_state"
+msgid "given_tasks"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "info"
+msgstr ""
+
+msgid "issued_issues"
+msgstr ""
+
+msgid "journal"
+msgstr ""
+
+msgid "label_account"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/searchbox.pt:2
+msgid "label_filter"
+msgstr ""
+
+msgid "modified"
+msgstr ""
+
+msgid "my_issues"
+msgstr ""
+
+msgid "mydocuments"
+msgstr ""
+
+msgid "mydossiers"
+msgstr ""
+
+msgid "mytasks"
+msgstr ""
+
+msgid "open_issues"
+msgstr ""
+
+msgid "overview"
+msgstr ""
+
+msgid "participants"
 msgstr ""
 
 msgid "process"
 msgstr ""
 
-msgid "getEstimatedHours"
+msgid "reports"
 msgstr ""
 
-msgid "getEffectiveHours"
+msgid "review_state"
 msgstr ""
 
-msgid "Month"
+msgid "start"
 msgstr ""
 
-msgid "getAccount"
-msgstr ""
-
-msgid "By State"
-msgstr ""
-
-msgid "By Area"
-msgstr ""
-
-msgid "By Severity"
-msgstr ""
-
-msgid "By Responsible Manager"
-msgstr ""
-
-msgid "By Target Release"
-msgstr ""
-
-msgid "getHours"
-msgstr ""
-
-msgid "getBillable"
-msgstr ""
-
-msgid "participants"
+msgid "state"
 msgstr ""
 
 msgid "subdossiers"
@@ -158,26 +175,15 @@ msgstr ""
 msgid "tasks"
 msgstr ""
 
-msgid "journal"
+msgid "tickets"
+msgstr ""
+
+msgid "tracker_info"
+msgstr ""
+
+msgid "tracker_overview"
 msgstr ""
 
 msgid "trash"
 msgstr ""
 
-msgid "mydossiers"
-msgstr ""
-
-msgid "mydocuments"
-msgstr ""
-
-msgid "given_tasks"
-msgstr ""
-
-msgid "assigned_tasks"
-msgstr ""
-
-msgid "mytasks"
-msgstr ""
-
-msgid "assignedtasks"
-msgstr ""

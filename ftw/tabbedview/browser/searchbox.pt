@@ -1,4 +1,4 @@
-<div class="tabbedview_search">
-  <span i18n:translate="label_filter">Filter </span>
-  <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
+<div i18n:domain="ftw.tabbedview" class="tabbedview_search">
+  <span i18n:translate="label_filter"></span>
+  <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" i18n:attributes="title" title="filter" autocomplete="false"/>
 </div>

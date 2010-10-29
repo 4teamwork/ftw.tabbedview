@@ -17,9 +17,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-msgid "label_filter"
-msgstr ""
-
 msgid "tracker_overview"
 msgstr ""
 
