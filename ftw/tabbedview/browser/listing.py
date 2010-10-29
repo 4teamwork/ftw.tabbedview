@@ -313,7 +313,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
 
     @property
-#     @instance.memoize
+    @instance.memoize
     def batch(self):
         return Batch(self.contents,
                      pagesize=self.pagesize,
