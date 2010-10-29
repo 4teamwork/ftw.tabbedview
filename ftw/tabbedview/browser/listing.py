@@ -345,7 +345,3 @@ class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
 
         # search in current context by default
         self.filter_path = '/'.join(self.context.getPhysicalPath())
-
-
-# XXX: Remove this
-BaseListingView = CatalogListingView
