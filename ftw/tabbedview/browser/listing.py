@@ -42,7 +42,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
 
-    _custom_sort_method = None
 
     def __init__(self, context, request):
         super(ListingView, self).__init__(context, request)
@@ -114,10 +113,21 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         query = self.table_source.build_query()
 
         # search
-        self.contents = self.table_source.search_results(query)
+        results = self.table_source.search_results(query)
+        results = self.custom_sort(results, self.sort_on, self.sort_reverse)
+        self.contents = results
 
         # post search
         self.post_search(query)
+
+    def custom_sort(self, results, sort_on, sort_reverse):
+        """Custom sort method.
+        """
+
+        if getattr(self, '_custom_sort_method', None) is not None:
+            results = self._custom_sort_method(results, sort_on, sort_reverse)
+
+        return results
 
     def post_search(self, query):
         pass
