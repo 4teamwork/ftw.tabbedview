@@ -274,7 +274,6 @@ load_tabbedview = function() {
         };
 
         // initialize table
-
         if(Ext.grid){
             if(tabbedview.table){
                 tabbedview.table.ftwtable('destroy');
@@ -284,6 +283,20 @@ load_tabbedview = function() {
             });
         }
 
-    });
+        // initalize more-actions menu
+        // the initalizeMenues function from plone doesn't work correctly
+        jQuery(document).mousedown(actionMenuDocumentMouseDown);
 
+        jQuery('dl.plone-contentmenu-tabbedview-actions').removeClass('activated').addClass('deactivated');
+
+        // add toggle function to header links
+        jQuery('dl#plone-contentmenu-tabbedview-actions dt.actionMenuHeader a')
+            .click(toggleMenuHandler)
+            .mouseover(actionMenuMouseOver);
+
+        // add hide function to all links in the dropdown, so the dropdown closes
+        // when any link is clicked
+        jQuery('dl#plone-contentmenu-tabbedview-actions > dd.actionMenuContent').click(hideAllMenus);
+
+    });
 };
