@@ -183,4 +183,5 @@ msgstr "Übersicht"
 msgid "trash"
 msgstr "Papierkorb"
 
-
+msgid "contacts"
+msgstr "Kontakte"

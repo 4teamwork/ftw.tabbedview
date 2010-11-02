@@ -179,4 +179,5 @@ msgstr ""
 msgid "assignedtasks"
 msgstr ""
 
-
+msgid "contacts"
+msgstr ""
