@@ -48,6 +48,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         registry = getUtility(IRegistry)
         self.pagesize = \
             registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
+        self.extjs_enabled = registry['ftw.tabbedview.interfaces.' + \
+                                          'ITabbedView.extjs_enabled']
 
     def __call__(self, *args, **kwargs):
         # XXX : we need to be able to detect a extjs update request and return
@@ -68,13 +70,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         self.update()
         return self.template()
-
-    @property
-    def extjs_enabled(self):
-        """Returns True if extjs plugin is enabled.
-        """
-        # move this to the registry later
-        return False
 
     def load_request_parameters(self):
         """Load parameters such as page or filter from request.
@@ -149,13 +144,17 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
     def render_listing(self):
         generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+        if self.extjs_enabled:
+            output = 'json'
+        else:
+            output = 'html'
         return generator.generate(self.batch,
                                   self.columns,
                                   sortable = True,
                                   selected = (self.sort_on, self.sort_order),
                                   template = self.table_template,
                                   options = self.table_options,
-                                  output='json'
+                                  output=output
                                   )
 
     def get_css_classes(self):
@@ -338,7 +337,7 @@ class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
 
         # configuration for the extjs grid
         extjs_conf = {'auto_expand_column':'sortable_title'}
-        if isinstance(self.table_options, dict):
+        if self.extjs_enabled and isinstance(self.table_options, dict):
             self.table_options.update(extjs_conf)
         elif self.table_options is None:
             self.table_options = extjs_conf.copy()

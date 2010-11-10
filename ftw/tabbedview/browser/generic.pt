@@ -8,13 +8,18 @@
     <div tal:replace="structure view/batching" tal:condition="view/contents"/>
 
     <tal:cond tal:condition="view/contents">
-        <!--<div tal:content="structure view/render_listing" />-->
-        <div id="listing_container" class="ftwtable +extjs"><!--iefix--></div>
-        
+      <tal:extjs condition="view/extjs_enabled">
+        <div id="listing_container"
+             class="ftwtable +extjs"><!--iefix--></div>
+      </tal:extjs>
+      <tal:html condition="not:view/extjs_enabled">
+        <div tal:content="structure view/render_listing" />
+      </tal:html>
+
     </tal:cond>
 
     <p tal:condition="not: view/contents">
-        Keine Inhalte vorhanden
+      Keine Inhalte vorhanden
     </p>
 
   </form>
