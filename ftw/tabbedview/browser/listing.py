@@ -41,6 +41,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
+    grouped = 0
 
 
     def __init__(self, context, request):
@@ -62,6 +63,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if self.extjs_enabled:
             if 'ext' in self.request:
                 self.update()
+                # add addition html that will be injected in the view
+                static = {'static':{'batching': ''}}
+                if not self.grouped:
+                    static = {'static':{'batching': self.batching()}}
+                self.table_options.update(static)
                 return self.render_listing()
             else:
                 self.contents = [{},]
@@ -74,13 +80,19 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def load_request_parameters(self):
         """Load parameters such as page or filter from request.
         """
-        # pagenumber
-        self.batching_current_page = int(self.request.get('pagenumber', 1))
-        # XXX eliminate self.pagenumber
-        self.pagenumber = self.batching_current_page
+        
+        # if the view is grouped batching will be disabled
+        if len(self.request.get('groupBy', '')):
+            self.grouped = 1
+            
+        if not self.grouped:
+            # pagenumber
+            self.batching_current_page = int(self.request.get('pagenumber', 1))
+            # XXX eliminate self.pagenumber
+            self.pagenumber = self.batching_current_page
 
-        # pagesize
-        self.batching_pagesize = self.pagesize
+            # pagesize
+            self.batching_pagesize = self.pagesize
 
         # set url
         self.url = self.context.absolute_url()
@@ -100,7 +112,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                            'DESC':'reverse'}.get(sort_order, sort_order)
 
         self.sort_reverse = self.sort_order == 'reverse'
-
 
     def update(self):
         self.load_request_parameters()
@@ -148,7 +159,13 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             output = 'json'
         else:
             output = 'html'
-        return generator.generate(self.batch,
+        rows = []
+        if self.grouped:
+            #if the view is grouped we disable batching
+            rows = self.contents
+        else:
+            rows = self.batch
+        return generator.generate(rows,
                                   self.columns,
                                   sortable = True,
                                   selected = (self.sort_on, self.sort_order),

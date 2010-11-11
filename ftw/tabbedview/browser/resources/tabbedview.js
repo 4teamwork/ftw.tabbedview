@@ -268,6 +268,16 @@ load_tabbedview = function() {
 
 
 
+    jq('.listingBar span a, .listingBar a').live('click', function(e,o) {
+        e.preventDefault();
+        e.stopPropagation();
+        var obj = jq(this);
+        var pagenumber = jq.find_param(this.href).pagenumber;
+        tabbedview.param('pagenumber:int', pagenumber);
+        tabbedview.reload_view();
+    });
+    
+
     tabbedview.view_container.bind('reload', function() {
         //test global overwrite
         $.fn.ftwtable.defaults.onBeforeLoad = function(){
@@ -282,6 +292,8 @@ load_tabbedview = function() {
                  'url' : '@@tabbed_view/listing'
             });
         }
+        
+
 
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly
