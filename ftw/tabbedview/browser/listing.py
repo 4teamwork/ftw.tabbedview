@@ -49,7 +49,6 @@ class ListingView(BrowserView):
                ('modified', helper.readable_date), )
 
     filters = []
-    auto_count = None
     custom_sort_indexes = {'Products.PluginIndexes.DateIndex.DateIndex': sort}
     search_index = 'SearchableText'
     show_searchform = True
@@ -102,7 +101,6 @@ class ListingView(BrowserView):
                                   sortable = True,
                                   selected = (self.sort_on, self.sort_order),
                                   template = self.table,
-                                  auto_count = self.auto_count,
                                   )
 
     def get_css_classes(self):
