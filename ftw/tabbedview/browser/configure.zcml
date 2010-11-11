@@ -4,25 +4,32 @@
     i18n_domain="ftw.tabbedview">
 
     <include package="plone.app.contentmenu" />
-    
+
     <browser:resourceDirectory
-       name="ftw.tabbedview-resources"
-       directory="resources" />
+        name="ftw.tabbedview-resources"
+        directory="resources" />
 
-       <browser:page
-            for="*"
-            name="tabbed_view"
-            class=".tabbed.TabbedView"
-            permission="zope2.View"
-            allowed_attributes="listing"
-            />
+    <browser:page
+        for="*"
+        name="tabbed_view"
+        class=".tabbed.TabbedView"
+        permission="zope2.View"
+        allowed_attributes="listing select_all"
+        />
 
-        <browser:page
-            for="ftw.tabbedview.interfaces.ITabbedView"
-            name="tabbedview_view-fallback"
-            class=".fallback.FallbackView"
-            permission="zope2.View"
-            template="fallback.pt"
-            />
-    
+    <browser:page
+        for="ftw.tabbedview.interfaces.ITabbedView"
+        name="tabbedview_view-fallback"
+        class=".fallback.FallbackView"
+        permission="zope2.View"
+        template="fallback.pt"
+        />
+
+    <browser:viewlet
+        name="ftw.tabbedview.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".searchbox.SearchBox"
+        permission="zope2.View"
+        />
+
 </configure>

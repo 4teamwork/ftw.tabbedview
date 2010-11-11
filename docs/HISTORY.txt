@@ -5,16 +5,30 @@ Changelog
 2.1
 ---
 
-
 2.0
 ---
 
 * plone 4 compatibility release
   [26.10.2010, mathias.leimgruber]
 
+* tagged from master instead of plone4 compatibility branch
+  Your should realy use this one
+  [26.10.2010, mathias.leimgruber]
+
 
 1.0c2
 -----
+
+* Changed the minimum pagesize to 1. A small pagesize is necessary for easy
+  testing.
+  [26.10.2010, jbaumann]
+
+* Fixed select-all: It does now select all items in the tab, not only the visibles.
+  Fixed also ordering and duplicity.
+  [26.10.2010, jbaumann]
+
+* Using jqueryui is now optional. Use the "jqueryui" extras_require for enabling UI.
+  [20.10.2010, jbaumann]
 
 * rebuild tabbedview, so that in only done the tabbedview js stuff,
   when the tabbedview is displayed
@@ -70,7 +84,7 @@ Changelog
 
 * Translation for tab's tittles added
   [04.02.2010, jbaumann]
-  
+
 
 1.0a2
 -----

@@ -59,6 +59,7 @@ class ListingView(BrowserView):
     table = None
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
+    select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
     request_filters = [('review_state', 'review_state', None)]
 
@@ -219,6 +220,39 @@ class ListingView(BrowserView):
     def view_name(self):
         return self.__name__.split('tabbedview_view-')[1]
 
+    def select_all(self, pagenumber, selected_count):
+        """Called when select-all is clicked. Returns HTML containing
+        a hidden input field for each field which is not displayed at
+        the moment.
+
+        `pagenumber`: the current page number (1 is first page)
+        `selected_count`: number of items selected / displayed on this page
+        """
+
+        self.update()
+        above, beneath = self._select_all_remove_visibles(
+            self.contents, pagenumber, selected_count)
+        return self.select_all_template(above=above, beneath=beneath)
+
+    def _select_all_remove_visibles(self, contents, pagenumber,
+                                    selected_count):
+        """Helper method for removing all items which are displayed at the
+        moment. Returns a tuple of two lists containing elements which
+        should be above the visibles and elements which should be beneath
+        the visibles.
+
+        `contents`: list of all items
+        `pagenumber`: the current page number (1 is first page)
+        `selected_count`: number of items selected / displayed on this page
+        """
+
+        contents = list(contents)
+
+        start_hidden = (pagenumber - 1) * self.pagesize
+        end_hidden = start_hidden + selected_count
+
+        return contents[0:start_hidden], contents[end_hidden:]
+
 
 class BaseListingView(ListingView):
 
@@ -318,7 +352,7 @@ class BaseListingView(ListingView):
         return query
 
     def search(self, kwargs):
-        self.catalog = catalog = getToolByName(self.context, 'portal_catalog')
+        self.catalog = getToolByName(self.context, 'portal_catalog')
         query = self.build_query(**kwargs)
         self.contents = self.catalog(**query)
         self.len_results = len(self.contents)
@@ -351,11 +385,11 @@ class BaseListingView(ListingView):
         return Batch(self.contents,
                     pagesize=self.pagesize,
                     pagenumber=self.pagenumber)
-                    
+
     @property
     def multiple_pages(self):
-        """The multiple_pages in plone.app.batch has a bug 
+        """The multiple_pages in plone.app.batch has a bug
         if size == pagesize."""
 
-        return len(self.contents) > self.pagesize
+        return self.len_results > self.pagesize
 

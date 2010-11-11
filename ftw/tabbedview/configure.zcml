@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:cmf="http://namespaces.zope.org/cmf"
     i18n_domain="ftw.tabbedview">
@@ -17,11 +18,22 @@
 
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
-      name="default"
-      title="ftw.tabbedview"
-      directory="profiles/default"
-      description="Tabbed View"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+        name="default"
+        title="ftw.tabbedview"
+        directory="profiles/default"
+        description="Tabbed View"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <configure zcml:condition="installed collective.js.jqueryui">
+        <include package="collective.js.jqueryui" />
+        <genericsetup:registerProfile
+            name="jqueryui"
+            title="ftw.tabbedview : jqueryui"
+            directory="profiles/default"
+            description="Installs jqueryui for tabbedview"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            />
+    </configure>
 
 </configure>

@@ -26,15 +26,8 @@ jQuery.find_param = function(s) {
 };
 
 
-/*
-
-
-
-*/
-
-
 statusmessages = {};
-statusmessages.error = function(msg){alert(msg)};
+statusmessages.error = function(msg){alert(msg);};
 
 
 load_tabbedview = function() {
@@ -60,7 +53,7 @@ load_tabbedview = function() {
             collapsible: false,
             select : function (e, ui){
                 with(tabbedview){
-                    
+
                     spinner.show();
                     selected_tab = ui.index;
                     prop('view_name', ui.tab.id);
@@ -76,19 +69,22 @@ load_tabbedview = function() {
         _properties : {},
         _params : {},
         _filters: {},
-        
+
         reload_view : function() {
             tabbedview.param('initialize', 0);
             var params = this.parse_params();
-            var url = jq('base').attr('href')
-            var current_tab = jq('.tabbedview-tabs li a.selected')
-            jq('#'+tabbedview.prop('view_name')+'_overview').load('tabbed_view/listing?'+params, function(){
+            var url = jq('base').attr('href');
+            if( url.substr(url.length-1, 1) != '/'){
+                url += '/';
+            }
+            var current_tab = jq('.tabbedview-tabs li a.selected');
+            jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
                 tabbedview.view_container.trigger('reload');
                 tabbedview.spinner.hide();
             });
             this.spinner.show();
         },
-        
+
         param : function(name, value) {
             var view = this.prop('view_name');
             if (this._params[view] === undefined) {
@@ -101,8 +97,9 @@ load_tabbedview = function() {
                     this._params[view][name] = value;
                 }
             }
+            return null;
         },
-        
+
         filters : function(name, value) {
             var view = this.prop('view_name');
             if (this._filters[view] === undefined) {
@@ -115,22 +112,23 @@ load_tabbedview = function() {
                     this._filters[view][name] = value;
                 }
             }
+            return null;
         },
-        
+
         flush_params: function() {
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
                 this._params[view] = {};
             }
         },
-        
+
         flush_params: function(value) {
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
                 delete(this._params[view][value]);
             }
         },
-        
+
         delete_param: function(filter, value){
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
@@ -138,23 +136,23 @@ load_tabbedview = function() {
                 this._params[view][filter].splice(index, 1);
             }
         },
-        
+
         add_param: function(filter, value){
             var view = this.prop('view_name');
             if (this._params[view] !== undefined && this._params[view][filter] !== undefined ) {
                 this._params[view][filter].push(value);
             }
             else{
-                temp =  [value,];
+                temp =  [value];
                 this.param(filter, temp);
             }
         },
-        
+
         parse_params: function() {
             return jq.param(jq.extend(jq.extend({},this._properties),
                             this._params[this.prop('view_name')]));
         },
-        
+
         prop : function(name, value) {
             if ( typeof name === "string" ) {
                 if ( value === undefined ) {
@@ -163,34 +161,39 @@ load_tabbedview = function() {
                     this._properties[name] = value;
                 }
             }
+            return null;
         },
-        
+
         select_all : function() {
             var view = this.prop('view_name');
-            var boxes = jq('input[name=paths:list]');
+            var boxes = jq('input.selectable');
             tabbedview.param('selected_count', boxes.length);
             boxes.each(function(el) {
                 jq(this).attr('checked', true);
                 jq(this).closest('tr').addClass('ui-selected');
             });
-            
+
             var params = this.parse_params();
-            var url = jq('base').attr('href')
+            var url = jq('base').attr('href').concat('tabbed_view/');
+
             if( url.substr(url.length-1, 1) == '/'){
-                url = url + '/select_all?'+params;
+                url = url + 'select_all?'+params;
             }
             else{
-                url + '/select_all?'+params;
+                url = url + '/select_all?'+params;
             }
-            
+
             jq.ajax({
                 url: url,
                 success: function(data) {
-                    jq('.hidden_items').remove()
-                    jq('form[name=tabbedview_form]').append(data);
+                    jq('.hidden_items').remove();
+                    var table = jq('form[name=tabbedview_form] table.listing');
+                    var ddata = jq(data);
+                    ddata.find('#above_visibles .hidden_items').insertBefore(table);
+                    ddata.find('#beneath_visibles .hidden_items').insertAfter(table);
                 }
             });
-            
+
             jq('.tabbedview_select').children('a').each(function(){
                 if(jq(this).attr('href').indexOf('tabbedview.select_all()') != -1){
                     jq(this).addClass('selected');
@@ -198,49 +201,49 @@ load_tabbedview = function() {
             });
             //jq('.select_folder').show();
         },
-        
+
         select_none : function(){
-            jq('input[name=paths:list]').each(function(el) {
+            jq('input.selectable').each(function(el) {
                 jq(this).attr('checked', false);
                 jq(this).closest('tr').removeClass('ui-selected');
             });
             jq('.select_folder').hide();
-            tabbedview.deselect_all()
-        
+            tabbedview.deselect_all();
+
         },
-        
+
         deselect_all :function(){
-            jq('.hidden_items').remove()
+            jq('.hidden_items').remove();
             jq('.tabbedview_select').children('a').each(function(){
                 if(jq(this).attr('href').indexOf('tabbedview.select_all()') != -1){
                     jq(this).removeClass('selected');
                 }
             });
         },
-        
+
         select_folder :function() {
             jq('#'+tabbedview.prop('view_name')+'_overview .listing').animate({'backgroundColor':'yellow'}, 50).animate({'backgroundColor':'white'}, 2000);
             var total = jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .total.counter').html();
             jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .selected.counter').html(total);
             jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .select-all-text').hide();
         }
-    
+
     };
     var tabbedview_body =  jq('#tabbedview-body div');
-    jQuery.tabbedview = tabbedview
-    
-    
-    /*catch all click events on tabs link elements and call the click method 
+    jQuery.tabbedview = tabbedview;
+
+
+    /*catch all click events on tabs link elements and call the click method
     because jquery tools tabs doesnt work with plone folderish types*/
-    
+
     jq('.formTab a').click(function(e){
         tabbedview.tabs_api.click(jq(this).attr('href'));
         location.hash = jq(this).attr('href');
         e.preventDefault();
         e.stopPropagation();
-        
+
     });
-    
+
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
@@ -248,7 +251,7 @@ load_tabbedview = function() {
         onBeforeClick: function(e, index){
             var tabbedview = jQuery.tabbedview;
             var current_tab_id = jq('.tabbedview-tabs li a').get(index).id;
-            jQuery.tabbedview.param('initialize', 1)
+            jQuery.tabbedview.param('initialize', 1);
             jQuery.tabbedview.spinner.show();
             jQuery.tabbedview.selected_tab = index;
             jQuery.tabbedview.prop('view_name',current_tab_id);
@@ -257,18 +260,18 @@ load_tabbedview = function() {
             tabbedview.reload_view();
         }
     });
-    
+
     tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
-    
-    
+
+
     if(tabbedview_body.length == 0)return;
-    
+
     if(location.hash){
         jQuery.tabbedview.prop('view_name', location.hash.split('#')[1]);
     }
-    
+
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
-    
+
     tabbedview.searchbox.bind("keyup", function(e) {
             var value = tabbedview.searchbox.val();
             if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
@@ -283,11 +286,11 @@ load_tabbedview = function() {
                 tabbedview.reload_view();
             }
     });
-    
-    
-    
+
+
+
     tabbedview.view_container.bind('reload', function() {
-        
+
         /*sortable*/
         jq('.sortable').bind('click', function(e, o) {
            var selected = jq(this);
@@ -302,7 +305,7 @@ load_tabbedview = function() {
            tabbedview.reload_view();
         });
 
-        
+
         /* Batching */
         jq('.listingBar span a, .listingBar a').click(function(e,o) {
             e.preventDefault();
@@ -312,33 +315,34 @@ load_tabbedview = function() {
             tabbedview.param('pagenumber:int', pagenumber);
             tabbedview.reload_view();
         });
-        
+
         /* selectable */
         jq('#tabbedview-body .listing').selectable({
             filter:'tr:gt(0)',
             cancel: 'a, input, th',
             selecting: function(event, ui) {
-                jq('input[name="paths:list"]', ui.selecting).attr('checked', true);
+                jq('input.selectable', ui.selecting).attr('checked', true);
             },
             selected: function(event, ui) {
-                jq('.ui-selected input[name="paths:list"]').attr('checked', true);
+                jq('.ui-selected input.selectable').attr('checked', true);
             },
             unselecting: function(event, ui) {
-                jq('input[name="paths:list"]', ui.selecting).attr('checked', false);
+                jq('input.selectable', ui.selecting).attr('checked', false);
                 tabbedview.deselect_all();
             }
-        
+
         });
-        
+
         /* subview chooser*/
         jq('.ViewChooser a').click(function() {
                                      tabbedview.param('view_name', this.id);
                                      tabbedview.reload_view();
                                    });
 
-        
-
-    
+        /*initalize the ftw.tabbedview content menues*/
+        jQuery('div.tabbedview-action-menu dl.actionMenu dt.actionMenuHeader a')
+            .click(toggleMenuHandler)
+            .mouseover(actionMenuMouseOver);
     });
 
 }

@@ -53,10 +53,6 @@
 
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
-            <div class="tabbedview_search">
-              <span i18n:translate="label_filter">Filter </span>
-              <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" title="Suchen" autocomplete="false"/>
-            </div>
             <tal:panes repeat="tab view/get_tabs">
                 <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane">&nbsp;</div>
             </tal:panes>
