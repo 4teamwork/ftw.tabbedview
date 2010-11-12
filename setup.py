@@ -29,7 +29,6 @@ setup(name='ftw.tabbedview',
         'setuptools',
         'ftw.table',
         'plone.app.registry',
-        'plone.app.jquerytools',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
