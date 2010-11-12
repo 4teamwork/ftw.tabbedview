@@ -29,10 +29,11 @@ setup(name='ftw.tabbedview',
         'setuptools',
         'ftw.table',
         'plone.app.registry',
+        'plone.app.jquerytools',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
-        'jqueryui': ['collective.js.jqueryui'],
+        'extjs': ['collective.js.extjs',],
         },
       entry_points="""
       # -*- Entry points: -*-

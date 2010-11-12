@@ -25,13 +25,13 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <configure zcml:condition="installed collective.js.jqueryui">
-        <include package="collective.js.jqueryui" />
+    <configure zcml:condition="installed collective.js.extjs">
+        <include package="collective.js.extjs" />
         <genericsetup:registerProfile
-            name="jqueryui"
-            title="ftw.tabbedview : jqueryui"
-            directory="profiles/default"
-            description="Installs jqueryui for tabbedview"
+            name="extjs"
+            title="ftw.tabbedview : extjs"
+            directory="profiles/extjs"
+            description="Installs extjs tools for tabbedview"
             provides="Products.GenericSetup.interfaces.EXTENSION"
             />
     </configure>
