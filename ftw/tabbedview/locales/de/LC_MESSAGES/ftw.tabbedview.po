@@ -74,7 +74,7 @@ msgstr "Termine"
 
 #: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "filter"
-msgstr "filtern"
+msgstr "Filtern"
 
 msgid "folders"
 msgstr "Ordner"
@@ -183,5 +183,4 @@ msgstr "Übersicht"
 msgid "trash"
 msgstr "Papierkorb"
 
-msgid "contacts"
-msgstr "Kontakte"
+
