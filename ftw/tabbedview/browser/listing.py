@@ -60,6 +60,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # returns a json containing the template with data and the data as
         # json.
 
+        if self.table_options is None:
+            self.table_options = {}
+
         if self.extjs_enabled:
             if 'ext' in self.request:
                 self.update()
@@ -80,11 +83,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def load_request_parameters(self):
         """Load parameters such as page or filter from request.
         """
-        
+
         # if the view is grouped batching will be disabled
         if len(self.request.get('groupBy', '')):
             self.grouped = 1
-            
+
         if not self.grouped:
             # pagenumber
             self.batching_current_page = int(self.request.get('pagenumber', 1))
