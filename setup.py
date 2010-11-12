@@ -33,7 +33,7 @@ setup(name='ftw.tabbedview',
         # -*- Extra requirements: -*-
         ],
       extras_require = {
-        'extjs': ['collective.js.extjs',],
+        'extjs': ['ftw.table[extjs]',],
         },
       entry_points="""
       # -*- Entry points: -*-
