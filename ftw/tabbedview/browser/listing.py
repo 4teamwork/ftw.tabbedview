@@ -36,6 +36,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     table_template = None
 
     show_searchform = True
+    show_selects = True
     depth = -1
     batching = ViewPageTemplateFile("batching.pt")
     template = ViewPageTemplateFile("generic.pt")
