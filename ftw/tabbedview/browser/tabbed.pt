@@ -39,7 +39,7 @@
               <li tal:repeat="tab view/get_tabs" class="formTab">
                 <a  tal:define="tab_id tab/id;"
                     tal:attributes="href string:#${tab_id};
-                                    id tab_id;
+                                    id string:tab-${tab_id};
                                     class tab/class;
                                     title string:"
                     i18n:attributes="title"

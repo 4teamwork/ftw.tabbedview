@@ -213,7 +213,7 @@ load_tabbedview = function() {
         location.hash = jq(this).attr('href');
         e.preventDefault();
         e.stopPropagation();
-
+        return false;
     });
 
     jq('.tabbedview-tabs').tabs(
@@ -222,7 +222,7 @@ load_tabbedview = function() {
         history: true,
         onBeforeClick: function(e, index){
             var tabbedview = jQuery.tabbedview;
-            var current_tab_id = jq('.tabbedview-tabs li a').get(index).id;
+            var current_tab_id = jq('.tabbedview-tabs li a').get(index).id.split('tab-')[1];
             jQuery.tabbedview.param('initialize', 1);
             jQuery.tabbedview.spinner.show();
             jQuery.tabbedview.selected_tab = index;
