@@ -282,6 +282,13 @@ load_tabbedview = function() {
         //test global overwrite
         $.fn.ftwtable.defaults.onBeforeLoad = function(){
         };
+        
+        //hide or show filter box
+        if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
+            tabbedview.searchbox.closest('.tabbedview_search').hide();
+        }else{
+            tabbedview.searchbox.closest('.tabbedview_search').show();
+        }
 
         // initialize table
         if(Ext.grid){
