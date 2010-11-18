@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+2.1.1
+-----
+* make compatible with the newest ftw.table
+  [11.11.2010, mathias.leimgruber]
+
 2.1
 ---
 
