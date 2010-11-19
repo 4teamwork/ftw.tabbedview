@@ -39,6 +39,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     show_selects = True
     depth = -1
     batching = ViewPageTemplateFile("batching.pt")
+    menu = ViewPageTemplateFile("menu.pt")
+    selection = ViewPageTemplateFile("selection.pt")
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
@@ -65,13 +67,18 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             self.table_options = {}
 
         if self.extjs_enabled:
-            if 'ext' in self.request:
+            if ('tableType' in self.request and 
+                    self.request['tableType'] == 'extjs'):
                 self.update()
                 # add addition html that will be injected in the view
-                static = {'static':{'batching': ''}}
+                static = {}
                 if not self.grouped:
-                    static = {'static':{'batching': self.batching()}}
-                self.table_options.update(static)
+                    static['batching'] = self.batching()
+                if self.contents:
+                    static['menu'] = self.menu()
+                    static['selection'] = self.selection()
+                    
+                self.table_options.update({'static' : static})
                 return self.render_listing()
             else:
                 self.contents = [{},]

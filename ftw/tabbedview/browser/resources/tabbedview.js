@@ -246,20 +246,23 @@ load_tabbedview = function() {
 
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
 
-    tabbedview.searchbox.bind("keyup", function(e) {
+    tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
             var value = tabbedview.searchbox.val();
             if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
                 tabbedview.prop('searchable_text', '');
                 tabbedview.flush_params('pagenumber:int');
-                tabbedview.reload_view();
+                //tabbedview.reload_view();
+                tabbedview.table.ftwtable('reload');
             }else{
                 tabbedview.prop('searchable_text', value);
             }
             if (value.length>=3) {
                 tabbedview.flush_params();
-                tabbedview.reload_view();
+                tabbedview.table.ftwtable('reload');
             }
-    });
+    }));
+    
+    
 
     tabbedview.spinner.css('position', 'absolute');
     tabbedview.spinner.show();
@@ -279,9 +282,6 @@ load_tabbedview = function() {
     
 
     tabbedview.view_container.bind('reload', function() {
-        //test global overwrite
-        $.fn.ftwtable.defaults.onBeforeLoad = function(){
-        };
         
         //hide or show filter box
         if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
@@ -291,17 +291,25 @@ load_tabbedview = function() {
         }
 
         // initialize table
-        if(Ext.grid){
-            if(tabbedview.table){
-                tabbedview.table.ftwtable('destroy');
-            }
-            tabbedview.table = $('#listing_container').ftwtable({
-                 'url' : '@@tabbed_view/listing'
-            });
-        }
+        tabbedview.table = $('#listing_container').ftwtable({
+             'url': '@@tabbed_view/listing',
+             'onLoad':  function(){
+                 //When the grid finishes rendering trigger the gridRendered event
+                 tabbedview.view_container.trigger('gridRendered');
+             }
+        });
+
+    });
+    
+    tabbedview.view_container.bind('gridRendered', function() {
         
-
-
+        /* update breadcrumb tooltips */
+        jq('a.rollover-breadcrumb').tooltip({
+            showURL: false,
+            track: true,
+            fade: 250
+        });
+        
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly
         jQuery(document).mousedown(actionMenuDocumentMouseDown);
@@ -317,5 +325,16 @@ load_tabbedview = function() {
         // when any link is clicked
         jQuery('dl#plone-contentmenu-tabbedview-actions > dd.actionMenuContent').click(hideAllMenus);
 
+        /* actions (<a>) should submit the form */
+        jq('#tabbedview-menu a.actionicon').click(function(event) {
+            event.preventDefault();
+            jq(this).parents('form').append(jq(document.createElement('input')).attr({
+                'type' : 'hidden',
+                'name' : jq(this).attr('href'),
+                'value' : '1'
+            })).submit();
+        });
+        
     });
+    
 };
