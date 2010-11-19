@@ -290,7 +290,11 @@ load_tabbedview = function() {
             tabbedview.searchbox.closest('.tabbedview_search').show();
         }
 
-        // initialize table
+        //destroy existing table
+        if(tabbedview.table){
+            tabbedview.table.ftwtable('destroy');
+        }
+        // initialize new table
         tabbedview.table = $('#listing_container').ftwtable({
              'url': '@@tabbed_view/listing',
              'onLoad':  function(){

@@ -7,5 +7,6 @@
     >
 
     <include package="ftw.table" />
+    <include package="collective.js.throttledebounce" />
 
 </configure>
