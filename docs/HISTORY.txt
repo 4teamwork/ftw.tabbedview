@@ -4,7 +4,8 @@ Changelog
 
 3.0a3
 -----
-
+* added action permission check
+  [22.11.2010, mathias.leimgruber]
 
 3.0a2
 -----
