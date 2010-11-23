@@ -282,7 +282,7 @@ load_tabbedview = function() {
     
 
     tabbedview.view_container.bind('reload', function() {
-        
+            
         //hide or show filter box
         if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
             tabbedview.searchbox.closest('.tabbedview_search').hide();

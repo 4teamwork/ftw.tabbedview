@@ -34,7 +34,18 @@ class TabbedView(BrowserView):
         types_tool = getToolByName(context, 'portal_types')
         ai_tool = getToolByName(context, 'portal_actionicons')
         actions = types_tool.listActions(object=context)
+        plone_state = view = queryMultiAdapter(
+            (self.context, self.request),
+            name='plone_portal_state')
+        member = plone_state.member()
         for action in actions:
+            wrong_permission = False
+            for permission in action.permissions:
+                if not member.has_permission(permission, self.context):
+                    wrong_permission = True
+                    continue
+            if wrong_permission:
+                continue
             if action.category == category:
                 icon = ai_tool.queryActionIcon(action_id=action.id,
                                                 category=category,
