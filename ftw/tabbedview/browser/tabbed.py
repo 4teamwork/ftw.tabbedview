@@ -57,6 +57,17 @@ class TabbedView(BrowserView):
                                 name='tabbedview_view-fallback')
 
             return listing_view()
+            
+    def reorder(self):
+        """Called when the items in the grid are reordered"""
+        
+        #ordered list of ids in the current tab
+        positions = self.request.get('new_order[]')
+        #orderd list of allids within the container
+        object_ids = self.context.objectIds(ordered=True)
+        #move and order tab content in the desired order before the remaining objects
+        state = self.context.moveObjectsByDelta(positions, -len(object_ids))
+        return str(state)
 
     def select_all(self):
         """Called when select-all is clicked. Returns HTML containing

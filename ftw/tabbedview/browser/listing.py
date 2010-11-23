@@ -45,6 +45,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
     grouped = 0
+    use_batch = True
 
 
     def __init__(self, context, request):
@@ -71,8 +72,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                     self.request['tableType'] == 'extjs'):
                 self.update()
                 # add addition html that will be injected in the view
-                static = {}
-                if not self.grouped:
+                static = {'batching':'<!--iefix-->', 
+                          'menu':'<!--iefix-->', 
+                          'selection':'<!--iefix-->'}
+                if self.use_batch:
                     static['batching'] = self.batching()
                 if self.contents:
                     static['menu'] = self.menu()
@@ -95,8 +98,14 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # if the view is grouped batching will be disabled
         if len(self.request.get('groupBy', '')):
             self.grouped = 1
+            self.use_batch = False
+        
+        #if the grid is in dragging mode we dont use a batch ans set depth to 1
+        if self.request.get('sort', '') == 'draggable':
+           self.use_batch = False
+           self.depth = 1 
 
-        if not self.grouped:
+        if self.use_batch:
             # pagenumber
             self.batching_current_page = int(self.request.get('pagenumber', 1))
             # XXX eliminate self.pagenumber
@@ -171,11 +180,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         else:
             output = 'html'
         rows = []
-        if self.grouped:
-            #if the view is grouped we disable batching
-            rows = self.contents
-        else:
+        if self.use_batch:
             rows = self.batch
+        else:
+            #if the view is grouped or in dragging mode we disable batching
+            rows = self.contents
         return generator.generate(rows,
                                   self.columns,
                                   sortable = True,
@@ -350,7 +359,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def multiple_pages(self):
         """The multiple_pages in plone.app.batch has a bug
         if size == pagesize."""
-
+        if not self.use_batch:
+            return 0
         return len(self.contents) > self.pagesize
 
 
