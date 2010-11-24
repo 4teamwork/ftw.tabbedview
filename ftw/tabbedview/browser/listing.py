@@ -44,7 +44,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
     contents = []
-    grouped = 0
+    groupBy = None
     use_batch = True
 
 
@@ -68,19 +68,19 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             self.table_options = {}
 
         if self.extjs_enabled:
-            if ('tableType' in self.request and 
+            if ('tableType' in self.request and
                     self.request['tableType'] == 'extjs'):
                 self.update()
                 # add addition html that will be injected in the view
-                static = {'batching':'<!--iefix-->', 
-                          'menu':'<!--iefix-->', 
+                static = {'batching':'<!--iefix-->',
+                          'menu':'<!--iefix-->',
                           'selection':'<!--iefix-->'}
                 if self.use_batch:
                     static['batching'] = self.batching()
                 if self.contents:
                     static['menu'] = self.menu()
                     static['selection'] = self.selection()
-                    
+
                 self.table_options.update({'static' : static})
                 return self.render_listing()
             else:
@@ -96,14 +96,14 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         """
 
         # if the view is grouped batching will be disabled
-        if len(self.request.get('groupBy', '')):
-            self.grouped = 1
+        self.groupBy = self.request.get('groupBy', None)
+        if self.groupBy:
             self.use_batch = False
-        
+
         #if the grid is in dragging mode we dont use a batch ans set depth to 1
         if self.request.get('sort', '') == 'draggable':
            self.use_batch = False
-           self.depth = 1 
+           self.depth = 1
 
         if self.use_batch:
             # pagenumber
@@ -141,6 +141,31 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # search
         results = self.table_source.search_results(query)
         results = self.custom_sort(results, self.sort_on, self.sort_reverse)
+
+        if self.groupBy:
+            # lets group the results. this will change the structure of the
+            # results list: rows are now wrapped in a tuple...
+
+            # groupBy contains the search index of the column - we need to
+            # have the processed column now...
+            generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+            columns = generator.process_columns(self.columns)
+
+            column = None
+            for col in columns:
+                if col['sort_index'] == self.groupBy:
+                    column = col
+                    break
+
+            if not column:
+                raise RuntimeError('Could not find sort_index "%s"' % \
+                                       self.groupBy + \
+                                       ' in this tab configuration.')
+
+            # now lets group it with the table source adapter
+            results = self.table_source.group_results(results, column)
+
+
         self.contents = results
 
         # post search

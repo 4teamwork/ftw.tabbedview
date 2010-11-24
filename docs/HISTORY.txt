@@ -4,8 +4,13 @@ Changelog
 
 3.0a3
 -----
+
+* Implemented server side grouping of listing tables
+  [jbaumann]
+
 * added action permission check
   [22.11.2010, mathias.leimgruber]
+
 
 3.0a2
 -----
