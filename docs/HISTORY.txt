@@ -5,6 +5,9 @@ Changelog
 3.0a3
 -----
 
+* Implemented grid state storage stuff with `ftw.dictstorage`
+  [jbaumann]
+
 * Implemented server side grouping of listing tables
   [jbaumann]
 

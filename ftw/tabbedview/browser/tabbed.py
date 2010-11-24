@@ -1,8 +1,10 @@
 from Products.CMFCore.Expression import getExprContext
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from zope.component import queryMultiAdapter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ftw.dictstorage.interfaces import IDictStorage
+from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
+from zope.component import queryMultiAdapter
 
 
 class TabbedView(BrowserView):
@@ -68,10 +70,10 @@ class TabbedView(BrowserView):
                                 name='tabbedview_view-fallback')
 
             return listing_view()
-            
+
     def reorder(self):
         """Called when the items in the grid are reordered"""
-        
+
         #ordered list of ids in the current tab
         positions = self.request.get('new_order[]')
         #orderd list of allids within the container
@@ -79,6 +81,36 @@ class TabbedView(BrowserView):
         #move and order tab content in the desired order before the remaining objects
         state = self.context.moveObjectsByDelta(positions, -len(object_ids))
         return str(state)
+
+    def setgridstate(self):
+        """Stores the current grid configuration (visible columns,
+        column order, grouping, sorting etc.) persistent in dictstorage.
+        """
+
+        # extract the data
+        state = self.request.get('gridstate', None)
+        if not state or not isinstance(state, str):
+            return
+
+        # get the tab view
+        view_name = self.request.get('view_name', None)
+        if not view_name:
+            return
+
+        listing_view = queryMultiAdapter((self.context, self.request),
+                            name='tabbedview_view-%s' % view_name)
+        if not listing_view:
+            return
+
+        # get the key for storing the state
+        generator = queryMultiAdapter((self.context, listing, self.request),
+                                      IGridStateStorageKeyGenerator)
+        key = generator.get_key()
+
+        # store the data
+        storage = IDictStorage(listing_view)
+        storage.set(key, state)
+
 
     def select_all(self):
         """Called when select-all is clicked. Returns HTML containing

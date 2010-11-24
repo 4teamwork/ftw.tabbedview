@@ -25,6 +25,13 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- register the default grid state storage key generator -->
+    <adapter
+          for="* * *"
+          provides="ftw.tabbedview.interfaces.IGridStateStorageKeyGenerator"
+          factory=".statestorage.DefaultGridStateStorageKeyGenerator" />
+
+    <!-- extjs is optional -->
     <configure zcml:condition="installed collective.js.extjs">
         <include package="collective.js.extjs" />
         <genericsetup:registerProfile

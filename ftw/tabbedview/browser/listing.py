@@ -135,6 +135,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
     def update(self):
         self.load_request_parameters()
+
+        # load the grid state
+        self.load_grid_state()
+
         # build the query
         query = self.table_source.build_query()
 
@@ -210,6 +214,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         else:
             #if the view is grouped or in dragging mode we disable batching
             rows = self.contents
+
         return generator.generate(rows,
                                   self.columns,
                                   sortable = True,
@@ -387,6 +392,22 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if not self.use_batch:
             return 0
         return len(self.contents) > self.pagesize
+
+    def load_grid_state(self):
+        """Loads the stored grid state - if any is stored.
+        """
+
+        # get the key from the key generator
+        generator = queryMultiAdapter((self.context, self, self.request),
+                                      IGridStateStorageKeyGenerator)
+        key = generator.get_key()
+
+        # get the state (string)
+        storage = IDictStorage(self)
+        state = storage.get(key, None)
+
+        if state:
+            self.table_options.update({'gridstate': state})
 
 
 class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
