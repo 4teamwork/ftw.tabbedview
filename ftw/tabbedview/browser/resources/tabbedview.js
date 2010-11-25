@@ -251,14 +251,15 @@ load_tabbedview = function() {
             if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
                 tabbedview.prop('searchable_text', '');
                 tabbedview.flush_params('pagenumber:int');
-                //tabbedview.reload_view();
-                tabbedview.table.ftwtable('reload');
+                tabbedview.reload_view();
+                //tabbedview.table.ftwtable('reload');
             }else{
                 tabbedview.prop('searchable_text', value);
             }
             if (value.length>=3) {
                 tabbedview.flush_params();
-                tabbedview.table.ftwtable('reload');
+                tabbedview.reload_view();
+                //tabbedview.table.ftwtable('reload');
             }
     }));
     
