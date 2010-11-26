@@ -103,7 +103,7 @@ class TabbedView(BrowserView):
             return
 
         # get the key for storing the state
-        generator = queryMultiAdapter((self.context, listing, self.request),
+        generator = queryMultiAdapter((self.context, listing_view, self.request),
                                       IGridStateStorageKeyGenerator)
         key = generator.get_key()
 
