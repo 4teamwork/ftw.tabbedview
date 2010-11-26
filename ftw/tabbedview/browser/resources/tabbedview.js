@@ -60,7 +60,14 @@ load_tabbedview = function() {
                 tabbedview.spinner.hide();
             });
             this.spinner.show();
-        },
+            jq('a.rollover').tooltip(
+                             {showURL: false,
+                              track: true,
+                              fade: 250,
+                              top:20,
+                              left:15
+                             });
+            },
 
         param : function(name, value) {
             var view = this.prop('view_name');
@@ -215,7 +222,7 @@ load_tabbedview = function() {
         e.stopPropagation();
         return false;
     });
-
+    
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
@@ -291,18 +298,24 @@ load_tabbedview = function() {
             tabbedview.searchbox.closest('.tabbedview_search').show();
         }
 
+
         //destroy existing table
         if(tabbedview.table){
             tabbedview.table.ftwtable('destroy');
         }
         // initialize new table
-        tabbedview.table = $('#listing_container').ftwtable({
+            tabbedview.table = $('#listing_container').ftwtable({
              'url': '@@tabbed_view/listing',
              'onLoad':  function(){
                  //When the grid finishes rendering trigger the gridRendered event
                  tabbedview.view_container.trigger('gridRendered');
              }
         });
+        /* subview chooser*/
+        jq('.ViewChooser a').live('click', function() {
+                                     tabbedview.param('view_name', this.id);
+                                     tabbedview.reload_view();
+                                   });
 
     });
     
@@ -314,6 +327,7 @@ load_tabbedview = function() {
             track: true,
             fade: 250
         });
+           
         
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly
@@ -341,5 +355,5 @@ load_tabbedview = function() {
         });
         
     });
-    
+   
 };
