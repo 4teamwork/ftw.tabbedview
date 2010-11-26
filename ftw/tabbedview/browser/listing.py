@@ -14,6 +14,11 @@ from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 
+try:
+    import json
+except:
+    import simplejson as json
+
 
 DEFAULT_ENABLED_ACTIONS = [
     'cut',
@@ -23,6 +28,9 @@ DEFAULT_ENABLED_ACTIONS = [
     'delete',
     'change_state',
     ]
+
+
+_marker = object()
 
 
 class ListingView(BrowserView, BaseTableSourceConfig):
@@ -123,6 +131,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # filtering
         if 'searchable_text' in self.request:
             self.filter_text = self.request.get('searchable_text')
+
         # ordering
         self.sort_on = self.request.get('sort', self.sort_on)
         if self.sort_on.startswith('header-'):
@@ -411,6 +420,22 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         if state:
             self.table_options.update({'gridstate': state})
+        else:
+            return
+
+        parsed_state = json.loads(state)
+
+        # if the sorting order is set in the state and is not set in the
+        # request, we need to change it in the config using the state
+        # config.
+        if self.request.get('dir', _marker) == _marker and \
+                self.request.get('sort', _marker) == _marker:
+            if parsed_state['sort']['direction'] == 'ASC':
+                self.sort_order = 'asc'
+                self.sort_reverse = False
+            else:
+                self.sort_order = 'reverse'
+                self.sort_reverse = True
 
 
 class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):

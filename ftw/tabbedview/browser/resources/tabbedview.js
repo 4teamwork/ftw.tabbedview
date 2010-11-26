@@ -222,7 +222,7 @@ load_tabbedview = function() {
         e.stopPropagation();
         return false;
     });
-    
+
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
@@ -269,8 +269,8 @@ load_tabbedview = function() {
                 tabbedview.table.ftwtable('reload');
             }
     }));
-    
-    
+
+
 
     tabbedview.spinner.css('position', 'absolute');
     tabbedview.spinner.show();
@@ -287,10 +287,10 @@ load_tabbedview = function() {
         tabbedview.param('pagenumber:int', pagenumber);
         tabbedview.reload_view();
     });
-    
+
 
     tabbedview.view_container.bind('reload', function() {
-            
+
         //hide or show filter box
         if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
             tabbedview.searchbox.closest('.tabbedview_search').hide();
@@ -318,17 +318,16 @@ load_tabbedview = function() {
                                    });
 
     });
-    
+
     tabbedview.view_container.bind('gridRendered', function() {
-        
+
         /* update breadcrumb tooltips */
         jq('a.rollover-breadcrumb').tooltip({
             showURL: false,
             track: true,
             fade: 250
         });
-           
-        
+
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly
         jQuery(document).mousedown(actionMenuDocumentMouseDown);
@@ -353,7 +352,7 @@ load_tabbedview = function() {
                 'value' : '1'
             })).submit();
         });
-        
+
     });
-   
+
 };
