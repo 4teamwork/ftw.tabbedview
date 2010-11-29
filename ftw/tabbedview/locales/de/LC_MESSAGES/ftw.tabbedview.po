@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-10-29 14:33+0000\n"
-"PO-Revision-Date: 2010-10-14 18:16+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: 1.0\n"
+"PO-Revision-Date: 2010-11-29 11:40+0100\n"
+"Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
+"Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 msgid "By Area"
 msgstr "Bereich"
@@ -57,8 +53,16 @@ msgstr "Zugewiesene Aufgaben"
 msgid "billable"
 msgstr "verrechenb. Std."
 
+#. Default: "More actions &#9660;"
+#: ./ftw/tabbedview/browser/menu.pt:13
+msgid "button_more_actions"
+msgstr "Weitere Aktionen &#9660;"
+
 msgid "changes"
 msgstr "Letzte Änderungen"
+
+msgid "contacts"
+msgstr "Kontakte"
 
 msgid "documents"
 msgstr "Dokumente"

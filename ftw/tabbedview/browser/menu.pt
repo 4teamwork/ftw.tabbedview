@@ -1,4 +1,5 @@
-<div id="tabbedview-menu" class="tabbedview-action-menu contentActions">
+<div id="tabbedview-menu" class="tabbedview-action-menu contentActions"
+     i18n:domain="ftw.tabbedview">
     <ul class="tabbedview-action-list">
         <tal:major_buttons tal:repeat="button view/major_buttons">
             <li>
