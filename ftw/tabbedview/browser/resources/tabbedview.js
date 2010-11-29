@@ -56,8 +56,24 @@ load_tabbedview = function() {
             var current_tab = jq('.tabbedview-tabs li a.selected');
             jq('#'+tabbedview.prop('old_view_name')+'_overview').html('');
             jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
-                tabbedview.view_container.trigger('reload');
+                tabbedview.view_container.trigger('reload');                
                 tabbedview.spinner.hide();
+                
+                /*sortable*/
+                jq('th.sortable').bind('click', function(e, o) {
+                   var selected = jq(this);
+                   var current = jq('#'+tabbedview.prop('view_name')+'_overview .sort-selected');
+                   var sort_order = 'asc';
+                   if ( selected.attr('id') == current.attr('id')) {
+                       sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
+                   }
+
+                   tabbedview.flush_params();
+                   tabbedview.param('sort', this.id);
+                   tabbedview.param('dir', sort_order);
+                   tabbedview.reload_view();
+                });
+                
             });
             this.spinner.show();
             jq('a.rollover').tooltip(
@@ -66,7 +82,7 @@ load_tabbedview = function() {
                               fade: 250,
                               top:20,
                               left:15
-                             });
+                             });                
             },
 
         param : function(name, value) {
@@ -270,7 +286,6 @@ load_tabbedview = function() {
             }
     }));
     
-    
 
     tabbedview.spinner.css('position', 'absolute');
     tabbedview.spinner.show();
@@ -290,7 +305,7 @@ load_tabbedview = function() {
     
 
     tabbedview.view_container.bind('reload', function() {
-            
+
         //hide or show filter box
         if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
             tabbedview.searchbox.closest('.tabbedview_search').hide();
@@ -308,7 +323,7 @@ load_tabbedview = function() {
              'url': '@@tabbed_view/listing',
              'onLoad':  function(){
                  //When the grid finishes rendering trigger the gridRendered event
-                 tabbedview.view_container.trigger('gridRendered');
+                 tabbedview.view_container.trigger('gridRendered');                 
              }
         });
         /* subview chooser*/
@@ -326,8 +341,7 @@ load_tabbedview = function() {
             showURL: false,
             track: true,
             fade: 250
-        });
-           
+        });     
         
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly
