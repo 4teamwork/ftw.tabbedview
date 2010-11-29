@@ -60,13 +60,7 @@ load_tabbedview = function() {
                 tabbedview.spinner.hide();
             });
             this.spinner.show();
-            jq('a.rollover').tooltip(
-                             {showURL: false,
-                              track: true,
-                              fade: 250,
-                              top:20,
-                              left:15
-                             });
+            
             },
 
         param : function(name, value) {
@@ -317,6 +311,13 @@ load_tabbedview = function() {
                                      tabbedview.reload_view();
                                    });
 
+       jq('a.rollover').tooltip(
+                        {showURL: false,
+                         track: true,
+                         fade: 250,
+                         top:20,
+                         left:15
+                        });
     });
 
     tabbedview.view_container.bind('gridRendered', function() {
