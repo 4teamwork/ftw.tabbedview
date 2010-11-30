@@ -408,7 +408,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def load_grid_state(self):
         """Loads the stored grid state - if any is stored.
         """
-
         # get the key from the key generator
         generator = queryMultiAdapter((self.context, self, self.request),
                                       IGridStateStorageKeyGenerator)

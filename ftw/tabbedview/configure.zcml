@@ -27,7 +27,9 @@
 
     <!-- register the default grid state storage key generator -->
     <adapter
-          for="* * *"
+          for="OFS.interfaces.IItem
+               zope.publisher.interfaces.browser.IBrowserPage
+               zope.publisher.interfaces.browser.IBrowserRequest"
           provides="ftw.tabbedview.interfaces.IGridStateStorageKeyGenerator"
           factory=".statestorage.DefaultGridStateStorageKeyGenerator" />
 
