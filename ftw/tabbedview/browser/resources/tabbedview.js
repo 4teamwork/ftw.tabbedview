@@ -115,13 +115,6 @@ load_tabbedview = function() {
             return null;
         },
 
-        flush_params: function() {
-            var view = this.prop('view_name');
-            if (this._params[view] !== undefined) {
-                this._params[view] = {};
-            }
-        },
-
         flush_params: function(value) {
             var view = this.prop('view_name');
             if (this._params[view] !== undefined) {
@@ -143,7 +136,7 @@ load_tabbedview = function() {
                 this._params[view][filter].push(value);
             }
             else{
-                temp =  [value];
+                var temp =  [value];
                 this.param(filter, temp);
             }
         },
@@ -261,7 +254,10 @@ load_tabbedview = function() {
     tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
 
 
-    if(tabbedview_body.length == 0)return;
+    if(tabbedview_body.length === 0){
+        return;
+    }
+        
 
     if(location.hash){
         jQuery.tabbedview.prop('view_name', location.hash.split('#')[1]);
@@ -269,20 +265,20 @@ load_tabbedview = function() {
 
     jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
 
-    tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
+
+
+    tabbedview.searchbox.bind("keyup", jq.debounce(250, function(e) {
             var value = tabbedview.searchbox.val();
             if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
                 tabbedview.prop('searchable_text', '');
                 tabbedview.flush_params('pagenumber:int');
                 tabbedview.reload_view();
-                //tabbedview.table.ftwtable('reload');
             }else{
                 tabbedview.prop('searchable_text', value);
             }
             if (value.length>=3) {
                 tabbedview.flush_params();
                 tabbedview.reload_view();
-                //tabbedview.table.ftwtable('reload');
             }
     }));
     
@@ -307,7 +303,7 @@ load_tabbedview = function() {
     tabbedview.view_container.bind('reload', function() {
 
         //hide or show filter box
-        if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
+        if(jq('.tabbedview-tabs li a.selected.searchform-hidden').length){
             tabbedview.searchbox.closest('.tabbedview_search').hide();
         }else{
             tabbedview.searchbox.closest('.tabbedview_search').show();
@@ -319,7 +315,7 @@ load_tabbedview = function() {
             tabbedview.table.ftwtable('destroy');
         }
         // initialize new table
-            tabbedview.table = $('#listing_container').ftwtable({
+            tabbedview.table = jq('#listing_container').ftwtable({
              'url': '@@tabbed_view/listing',
              'onLoad':  function(){
                  //When the grid finishes rendering trigger the gridRendered event
