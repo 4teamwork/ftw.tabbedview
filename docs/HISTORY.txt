@@ -2,30 +2,21 @@ Changelog
 =========
 
 
-3.0a3
------
-* added action permission check
-  [22.11.2010, mathias.leimgruber]
-
-3.0a2
------
-
-
-3.0a1
------
-
 2.1.2
 -----
 * fix IE Problems (ex. replace $ with jq)
   [30.11.2010, mathias.leimgruber]
 
+2.1.1
+-----
+* added action permission check
+  [22.11.2010, mathias.leimgruber] - MERGED FROM 3.0a3
+
 2.1
 ---
-
 * tagged from master instead of plone4 compatibility branch
   Your should realy use this one
   [26.10.2010, mathias.leimgruber]
-
 
 1.0c2
 -----
