@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0a3
+3.0b1
 -----
 
 * Implemented grid state storage stuff with `ftw.dictstorage`
