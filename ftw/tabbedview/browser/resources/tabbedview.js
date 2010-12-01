@@ -30,7 +30,7 @@ statusmessages = {};
 statusmessages.error = function(msg){alert(msg);};
 
 
-load_tabbedview = function() {
+load_tabbedview = function(callback) {
     /*statusmessages = jq('#region-content').statusmessages()*/
     tabbedview = {
         version : '0.1',
@@ -58,6 +58,12 @@ load_tabbedview = function() {
             jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
                 tabbedview.view_container.trigger('reload');                
                 tabbedview.spinner.hide();
+                
+                // call callback 
+                 if (typeof callback == "function"){
+                     callback(tabbedview);
+                 }
+                
                 
                 /*sortable*/
                 jq('th.sortable').bind('click', function(e, o) {
@@ -319,7 +325,7 @@ load_tabbedview = function() {
              'url': '@@tabbed_view/listing',
              'onLoad':  function(){
                  //When the grid finishes rendering trigger the gridRendered event
-                 tabbedview.view_container.trigger('gridRendered');                 
+                 tabbedview.view_container.trigger('gridRendered');
              }
         });
         /* subview chooser*/
