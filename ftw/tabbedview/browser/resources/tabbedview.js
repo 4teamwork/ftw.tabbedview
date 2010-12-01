@@ -327,6 +327,14 @@ load_tabbedview = function() {
                                      tabbedview.param('view_name', this.id);
                                      tabbedview.reload_view();
                                    });
+        jq('a.rollover').tooltip(
+                        {showURL: false,
+                         track: true,
+                         fade: 250,
+                         top:20,
+                         left:15
+                        });                
+
 
     });
     
