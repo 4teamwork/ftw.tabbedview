@@ -4,7 +4,8 @@ Changelog
 
 2.1.3
 -----
-
+* Fixed spinner position
+  [02.12.2010, mathias.leimgruber]
 
 2.1.2
 -----

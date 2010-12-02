@@ -285,8 +285,8 @@ load_tabbedview = function() {
 
     tabbedview.spinner.css('position', 'absolute');
     tabbedview.spinner.show();
-    tabbedview.spinner.css('left', '968px');
-    tabbedview.spinner.css('top', '140px');
+//    tabbedview.spinner.css('left', '968px');
+//    tabbedview.spinner.css('top', '140px');
 
 
 
