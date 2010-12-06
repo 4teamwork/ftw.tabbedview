@@ -429,6 +429,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # config.
         if self.request.get('dir', _marker) == _marker and \
                 self.request.get('sort', _marker) == _marker:
+            if 'field' in parsed_state['sort']:
+                self.sort_on = parsed_state['sort']['field']
             if parsed_state['sort']['direction'] == 'ASC':
                 self.sort_order = 'asc'
                 self.sort_reverse = False

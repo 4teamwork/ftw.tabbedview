@@ -5,6 +5,9 @@ Changelog
 3.0b2
 -----
 
+* Read sort_on attribute from grid storage
+  [jbaumann]
+
 
 3.0b1
 -----
