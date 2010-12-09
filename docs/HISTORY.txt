@@ -5,6 +5,9 @@ Changelog
 3.0b3
 -----
 
+* Fixed bug where grouping in the state broke the table.
+  [jbaumann]
+
 
 3.0b2
 -----

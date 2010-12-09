@@ -417,12 +417,16 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         storage = IDictStorage(self)
         state = storage.get(key, None)
 
+        parsed_state = json.loads(state)
+
+        if 'group' in parsed_state:
+            del parsed_state['group']
+            state = json.dumps(parsed_state)
+
         if state:
             self.table_options.update({'gridstate': state})
         else:
             return
-
-        parsed_state = json.loads(state)
 
         # if the sorting order is set in the state and is not set in the
         # request, we need to change it in the config using the state
