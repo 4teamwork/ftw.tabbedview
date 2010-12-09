@@ -106,10 +106,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         """Load parameters such as page or filter from request.
         """
 
-        # if the view is grouped batching will be disabled
+        # load the groupBy parameter
         self.groupBy = self.request.get('groupBy', None)
-        if self.groupBy:
-            self.use_batch = False
 
         #if the grid is in dragging mode we dont use a batch ans set depth to 1
         if self.request.get('sort', '') == 'draggable':

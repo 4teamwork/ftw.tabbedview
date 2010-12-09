@@ -5,6 +5,9 @@ Changelog
 3.0b3
 -----
 
+* Enable batching when grouping is enabled. This solves performance issues on heavy tables.
+  [jbaumann]
+
 * Fixed bug where grouping in the state broke the table.
   [jbaumann]
 
