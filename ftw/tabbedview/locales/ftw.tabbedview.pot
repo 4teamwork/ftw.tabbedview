@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-11-29 10:37+0000\n"
+"POT-Creation-Date: 2011-01-03 16:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
+
+#: ./ftw/tabbedview/browser/selection.pt:7
+msgid "All visible entries chosen <a href="#">x</a>"
+msgstr ""
 
 msgid "By Area"
 msgstr ""
@@ -32,16 +36,28 @@ msgstr ""
 msgid "By Target Release"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/selection.pt:2
+msgid "Choose:"
+msgstr ""
+
 msgid "Creator"
 msgstr ""
 
 msgid "Month"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/selection.pt:7
+msgid "Show all in this Folder"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
 msgid "accounting_overview"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/selection.pt:4
+msgid "all (${amount})"
 msgstr ""
 
 msgid "all_entries"
@@ -151,6 +167,10 @@ msgid "mydossiers"
 msgstr ""
 
 msgid "mytasks"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/selection.pt:5
+msgid "none"
 msgstr ""
 
 msgid "open_issues"
