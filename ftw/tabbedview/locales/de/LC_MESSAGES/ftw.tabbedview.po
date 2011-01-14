@@ -13,7 +13,7 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: ./ftw/tabbedview/browser/selection.pt:7
-msgid "All visible entries chosen <a href="#">x</a>"
+msgid "All visible entries chosen <a href=\\\"#\\\">x</a>"
 msgstr "Alle Sichtbaren ausgewählt <a href=\\\"#\\\">x</a>"
 
 msgid "By Area"
