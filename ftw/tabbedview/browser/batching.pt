@@ -9,7 +9,7 @@
         <a href=""
            tal:attributes="href string:${view/url}?pagenumber=${batch/previouspage}&amp;sort_on=${request/sort_on|string:getObjPositionInParent}">
            &laquo;
-           <span i18n:translate="batch_previous_x_items" tal:omit-tag="">
+           <span i18n:translate="batch_previous_x_items">
                Previous
                <span i18n:name="number" tal:omit-tag="" tal:content="batch/pagesize">n</span>
                items
@@ -21,7 +21,7 @@
           tal:condition="batch/has_next">
         <a href=""
            tal:attributes="href string:${view/url}?pagenumber=${batch/nextpage}&amp;sort_on=${request/sort_on|string:getObjPositionInParent}">
-           <span i18n:translate="batch_next_x_items" tal:omit-tag="">
+           <span i18n:translate="batch_next_x_items">
                Next
                <span i18n:name="number" tal:omit-tag="" tal:content="batch/next_item_count">n</span>
                items
@@ -31,11 +31,10 @@
     </span>
 
     <!-- Link to first -->
-    <span tal:condition="batch/show_link_to_first">
+    <span tal:condition="batch/show_link_to_first" tal:omit-tag="">
         <a href=""
            tal:attributes="href string:${view/url}?pagenumber=1&amp;sort_on=${request/sort_on|string:getObjPositionInParent}">1</a>
-        <span tal:condition="batch/second_page_not_in_navlist"
-              tal:omit-tag="">
+        <span tal:condition="batch/second_page_not_in_navlist" class="gap">
            ...
         </span>
     </span>
@@ -65,7 +64,7 @@
     <!-- Current page -->
     <span tal:condition="batch/navlist"
           tal:omit-tag="">
-        [<span tal:content="batch/pagenumber">Current page number</span>]
+        <span>[</span><span class="current" tal:content="batch/pagenumber">Current page number</span><span>]</span>
     </span>
 
     <!-- Pagelist with links to next pages for quick navigation -->
@@ -91,9 +90,8 @@
     -->
 
     <!-- Link to last -->
-    <span tal:condition="batch/show_link_to_last">
-        <span tal:condition="batch/before_last_page_not_in_navlist"
-              tal:omit-tag="">
+    <span tal:condition="batch/show_link_to_last" tal:omit-tag="">
+        <span tal:condition="batch/before_last_page_not_in_navlist" class="gap">
            ...
         </span>
         <a href=""
