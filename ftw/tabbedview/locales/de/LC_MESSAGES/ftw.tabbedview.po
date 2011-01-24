@@ -65,7 +65,7 @@ msgid "archive"
 msgstr "Archiv"
 
 msgid "assigned_tasks"
-msgstr "Weiterleitung"
+msgstr "Eingang"
 
 msgid "assignedtasks"
 msgstr "Zugewiesene Aufgaben"
@@ -128,7 +128,7 @@ msgid "getResponsibleManager"
 msgstr "Zuständigkeit"
 
 msgid "given_tasks"
-msgstr "Eingang"
+msgstr "Weiterleitung"
 
 msgid "hours"
 msgstr "geleist. Std."
