@@ -5,6 +5,8 @@ Changelog
 3.0b6
 -----
 
+* slightly changed html structure to make it easier to style
+  [fsprenger]
 
 3.0b5
 -----
