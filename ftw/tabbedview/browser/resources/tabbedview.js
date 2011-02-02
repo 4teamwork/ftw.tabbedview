@@ -32,6 +32,14 @@ statusmessages.error = function(msg){alert(msg);};
 
 load_tabbedview = function(callback) {
     /*statusmessages = jq('#region-content').statusmessages()*/
+    
+    jq.ajaxSetup({
+        // Disable caching of AJAX responses 
+        cache: false
+    });
+
+    
+    
     tabbedview = {
         version : '0.1',
         view_container : jq('.tabbedview_view'),
