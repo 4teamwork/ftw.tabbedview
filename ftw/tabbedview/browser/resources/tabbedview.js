@@ -56,7 +56,7 @@ load_tabbedview = function(callback) {
             var current_tab = jq('.tabbedview-tabs li a.selected');
             jq('#'+tabbedview.prop('old_view_name')+'_overview').html('');
             jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
-                tabbedview.view_container.trigger('reload');                
+                tabbedview.view_container.trigger('reload');
                 tabbedview.spinner.hide();
                 
                 // call callback 
@@ -81,7 +81,6 @@ load_tabbedview = function(callback) {
                 });
                 
             });
-            this.spinner.show();
             jq('a.rollover').tooltip(
                              {showURL: false,
                               track: true,
