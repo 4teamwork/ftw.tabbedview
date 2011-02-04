@@ -5,6 +5,9 @@ Changelog
 3.0b7
 -----
 
+* removed some translations which don't belong here
+  [ttschanz]
+
 
 3.0b6
 -----
