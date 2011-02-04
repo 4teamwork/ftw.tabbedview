@@ -64,9 +64,6 @@ msgstr "Alle Tickets"
 msgid "archive"
 msgstr "Archiv"
 
-msgid "assigned_tasks"
-msgstr "Eingang"
-
 msgid "assignedtasks"
 msgstr "Zugewiesene Aufgaben"
 

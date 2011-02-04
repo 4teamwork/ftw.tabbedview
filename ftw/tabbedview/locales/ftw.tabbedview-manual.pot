@@ -170,9 +170,6 @@ msgstr ""
 msgid "given_tasks"
 msgstr ""
 
-msgid "assigned_tasks"
-msgstr ""
-
 msgid "mytasks"
 msgstr ""
 
