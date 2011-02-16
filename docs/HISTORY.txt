@@ -5,6 +5,9 @@ Changelog
 2.1.5
 -----
 
+* Fixed bug in tabbedview.js
+  [16.02.2011, ttschanz]
+
 
 2.1.4
 -----

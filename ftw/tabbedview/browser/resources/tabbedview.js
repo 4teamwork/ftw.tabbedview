@@ -336,7 +336,7 @@ load_tabbedview = function(callback) {
              }
         });
         /* subview chooser*/
-        jq('.ViewChooser a').live('click', function() {
+        jq('.ViewChooser a').click(function() {
                                      tabbedview.param('view_name', this.id);
                                      tabbedview.reload_view();
                                    });
