@@ -184,3 +184,8 @@ msgid "trash"
 msgstr "Papierkorb"
 
 
+msgid "users_management"
+msgstr "Benutzerverwaltung"
+
+msgid "groups_management"
+msgstr "Gruppenverwaltung"

@@ -5,6 +5,8 @@ Changelog
 2.1.6
 -----
 
+* Added tab-translations for ftw.usermanagement
+  [13.04.2011, elio.schmutz]
 
 2.1.5
 -----

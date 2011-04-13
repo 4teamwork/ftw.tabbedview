@@ -181,3 +181,9 @@ msgstr ""
 
 msgid "contacts"
 msgstr ""
+
+msgid "users_management"
+msgstr ""
+
+msgid "groups_management"
+msgstr ""
