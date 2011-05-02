@@ -162,7 +162,7 @@ load_tabbedview = function() {
                 url: url,
                 success: function(data) {
                     jq('.hidden_items').remove();
-                    var table = jq('form[name=tabbedview_form] table.listing');
+                    var table = jq('form[name=tabbedview_form] #listing_container');
                     var ddata = jq(data);
                     ddata.find('#above_visibles .hidden_items').insertBefore(table);
                     ddata.find('#beneath_visibles .hidden_items').insertAfter(table);

@@ -359,9 +359,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         `selected_count`: number of items selected / displayed on this page
         """
 
-        if not self.batching_enabled:
-            return
-
         self.update()
 
         above, beneath = self._select_all_remove_visibles(

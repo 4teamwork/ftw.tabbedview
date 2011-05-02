@@ -4,7 +4,9 @@ Changelog
 
 3.0b8
 -----
-
+* removed half-implemented variable batching_enabled
+  fixed select_all function
+  [phgross] 
 
 3.0b7
 -----
