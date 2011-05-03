@@ -54,6 +54,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     selection = ViewPageTemplateFile("selection.pt")
     template = ViewPageTemplateFile("generic.pt")
     select_all_template = ViewPageTemplateFile('select_all.pt')
+    batching_enabled = True
     contents = []
     groupBy = None
     use_batch = True
@@ -358,6 +359,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         `pagenumber`: the current page number (1 is first page)
         `selected_count`: number of items selected / displayed on this page
         """
+
+        if not self.batching_enabled:
+            return
 
         self.update()
 
