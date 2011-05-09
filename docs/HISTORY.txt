@@ -5,9 +5,6 @@ Changelog
 2.1.6
 -----
 
-* Added translation for Creator: 'Hinzugefuegt durch'
-  [09.05.2011, elio.schmutz]
-
 * Added tab-translations for ftw.usermanagement
   [13.04.2011, elio.schmutz]
 

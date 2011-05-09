@@ -28,7 +28,7 @@ msgid "By Target Release"
 msgstr "Ziel Release"
 
 msgid "Creator"
-msgstr "Hinzugefügt durch"
+msgstr "Ersteller"
 
 msgid "Month"
 msgstr "Monat"
