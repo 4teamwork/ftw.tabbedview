@@ -4,6 +4,11 @@ Changelog
 
 3.0b8
 -----
+
+* https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/589
+  fixed select_all method (works now also with direct call)
+  [phgross]
+
 * removed half-implemented variable batching_enabled
   fixed select_all function
   [phgross] 

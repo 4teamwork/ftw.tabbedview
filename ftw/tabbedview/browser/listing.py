@@ -363,6 +363,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if not self.batching_enabled:
             return
 
+        if self.table_options is None:
+            self.table_options = {}
+
         self.update()
 
         above, beneath = self._select_all_remove_visibles(
