@@ -92,6 +92,9 @@ class TabbedView(BrowserView):
         if not state or not isinstance(state, str):
             return
 
+        if state == '{}':
+            state = ''
+
         # get the tab view
         view_name = self.request.get('view_name', None)
         if not view_name:
