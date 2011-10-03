@@ -5,6 +5,10 @@ Changelog
 3.0b9
 -----
 
+- added morelink(show all link) support, for overview listings with boxes.
+  Every show all link loads now autmaticly the corresponding tab.
+  [phgross]
+
 
 3.0b8
 -----
@@ -15,7 +19,7 @@ Changelog
 
 * removed half-implemented variable batching_enabled
   fixed select_all function
-  [phgross] 
+  [phgross]
 
 3.0b7
 -----
