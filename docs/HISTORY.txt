@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0b9 (unreleased)
+3.0b9 (2011-10-04)
 ------------------
 
 - added morelink(show all link) support, for overview listings with boxes.
