@@ -2,16 +2,16 @@ Changelog
 =========
 
 
-3.0b9
------
+3.0b9 (unreleased)
+------------------
 
 - added morelink(show all link) support, for overview listings with boxes.
   Every show all link loads now autmaticly the corresponding tab.
   [phgross]
 
 
-3.0b8
------
+3.0b8 (2011-107-12)
+-------------------
 
 * https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/589
   fixed select_all method (works now also with direct call)
