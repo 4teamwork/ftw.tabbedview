@@ -5,6 +5,12 @@ Changelog
 3.0b9
 -----
 
+- Add possibility to call javascript functions from tabbeview-menu actions. By default every tabbedview_menu link just submit the form.
+  Used for the reset_tableconfiguration action.
+  Issue #796 Zuruecksetzen der Tabellen-Konfiguration
+  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
+  [phgross]
+
 
 3.0b8
 -----
@@ -15,7 +21,7 @@ Changelog
 
 * removed half-implemented variable batching_enabled
   fixed select_all function
-  [phgross] 
+  [phgross]
 
 3.0b7
 -----

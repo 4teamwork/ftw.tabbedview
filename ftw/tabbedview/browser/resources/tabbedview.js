@@ -60,7 +60,7 @@ load_tabbedview = function() {
                 tabbedview.spinner.hide();
             });
             this.spinner.show();
-            
+
             },
 
         param : function(name, value) {
@@ -346,12 +346,17 @@ load_tabbedview = function() {
 
         /* actions (<a>) should submit the form */
         jq('#tabbedview-menu a.actionicon').click(function(event) {
-            event.preventDefault();
-            jq(this).parents('form').append(jq(document.createElement('input')).attr({
-                'type' : 'hidden',
-                'name' : jq(this).attr('href'),
-                'value' : '1'
-            })).submit();
+            if (jq(this).attr('href').indexOf('javascript:') === 0) {
+              return;
+
+            } else {
+              event.preventDefault();
+              jq(this).parents('form').append(jq(document.createElement('input')).attr({
+                  'type' : 'hidden',
+                  'name' : jq(this).attr('href'),
+                  'value' : '1'
+              })).submit();
+            }
         });
 
     });
