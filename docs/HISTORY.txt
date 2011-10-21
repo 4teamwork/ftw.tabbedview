@@ -5,7 +5,16 @@ Changelog
 3.0b10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Made it possible to set a empty dict as gridstate configuration
+  Issue #796 Zuruecksetzen der Tabellen-Konfiguration
+  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
+  [phgross]
+
+- Add possibility to call javascript functions from tabbeview-menu actions. By default every tabbedview_menu link just submit the form.
+  Used for the reset_tableconfiguration action.
+  Issue #796 Zuruecksetzen der Tabellen-Konfiguration
+  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
+  [phgross]
 
 
 3.0b9 (2011-10-04)
