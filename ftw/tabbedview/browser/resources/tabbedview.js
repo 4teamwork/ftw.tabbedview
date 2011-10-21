@@ -217,6 +217,18 @@ load_tabbedview = function() {
         return false;
     });
 
+
+    /* added functionality to the morelink, change the tab in the same way,
+       like the normal tab link */
+    jq('.moreLink a').live('click', function(e){
+        tabbedview.tabs_api.click(jq(this).attr('href'));
+        location.hash = jq(this).attr('href');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+
     jq('.tabbedview-tabs').tabs(
         '.panes > div.pane', {
         current:'selected',
