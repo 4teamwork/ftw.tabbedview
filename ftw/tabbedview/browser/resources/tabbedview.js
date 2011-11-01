@@ -267,6 +267,7 @@ load_tabbedview = function() {
                 //tabbedview.reload_view();
                 tabbedview.table.ftwtable('reload');
             }else{
+                tabbedview.flush_params('pagenumber:int');
                 tabbedview.prop('searchable_text', value);
             }
             if (value.length>=3) {

@@ -5,6 +5,11 @@ Changelog
 3.0b10 (unreleased)
 -------------------
 
+- Automaticly reset batching while filtering (with the textfilter)
+  Issue #1276 Tabbedview Textfilter funktioniert nicht, wenn zuvor gebatcht wurde
+  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1276
+  [phgross]
+
 - Made it possible to set a empty dict as gridstate configuration
   Issue #796 Zuruecksetzen der Tabellen-Konfiguration
   https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
