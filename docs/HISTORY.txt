@@ -5,6 +5,11 @@ Changelog
 3.0b10 (unreleased)
 -------------------
 
+- Implements a dynamic batchbox for batched listing views, which allows to change the batchsize (hits per site) dynamically.
+  Issue #1262 Listenfoermige Ausdrucke
+  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1262/
+  [phgross]
+
 - Automaticly reset batching while filtering (with the textfilter)
   Issue #1276 Tabbedview Textfilter funktioniert nicht, wenn zuvor gebatcht wurde
   https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1276
