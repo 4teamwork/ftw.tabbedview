@@ -68,6 +68,12 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         self.extjs_enabled = registry['ftw.tabbedview.interfaces.' + \
                                           'ITabbedView.extjs_enabled']
 
+        self.dynamic_batchsize_enabled = registry[
+            'ftw.tabbedview.interfaces.ITabbedView.dynamic_batchsize_enabled']
+
+        self.max_dynamic_batchsize = registry[
+            'ftw.tabbedview.interfaces.ITabbedView.max_dynamic_batchsize']
+
     def __call__(self, *args, **kwargs):
         # XXX : we need to be able to detect a extjs update request and return
         # only the template without data, because a later request will update
@@ -121,8 +127,18 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             # XXX eliminate self.pagenumber
             self.pagenumber = self.batching_current_page
 
-            # pagesize
             self.batching_pagesize = self.pagesize
+
+            # dynamic batching
+            if self.dynamic_batchsize_enabled:
+                if self.request.get('pagesize', None):
+                    try:
+                        self.pagesize = int(self.request.get('pagesize'))
+                    except ValueError:
+                        pass
+
+                    if self.max_dynamic_batchsize < self.pagesize:
+                        self.pagesize = self.max_dynamic_batchsize
 
         # set url
         self.url = self.context.absolute_url()

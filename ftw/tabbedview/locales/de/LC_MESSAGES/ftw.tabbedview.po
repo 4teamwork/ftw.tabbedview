@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2011-01-03 16:42+0000\n"
-"PO-Revision-Date: 2011-01-03 17:44+0100\n"
+"POT-Creation-Date: 2011-11-07 11:11+0000\n"
+"PO-Revision-Date: 2011-11-07 11:41+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -13,8 +13,8 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: ./ftw/tabbedview/browser/selection.pt:7
-msgid "All visible entries chosen <a href=\\\"#\\\">x</a>"
-msgstr "Alle Sichtbaren ausgewählt <a href=\\\"#\\\">x</a>"
+msgid "All visible entries chosen <a href="#">x</a>"
+msgstr ""
 
 msgid "By Area"
 msgstr "Bereich"
@@ -37,6 +37,10 @@ msgstr "Auswählen"
 
 msgid "Creator"
 msgstr "Ersteller"
+
+#: ./ftw/tabbedview/browser/batching.pt:104
+msgid "Hits per site"
+msgstr "Treffer pro Seite"
 
 msgid "Month"
 msgstr "Monat"

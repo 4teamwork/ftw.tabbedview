@@ -277,15 +277,12 @@ load_tabbedview = function() {
             }
     }));
 
-
-
     tabbedview.spinner.css('position', 'absolute');
     tabbedview.spinner.show();
     tabbedview.spinner.css('left', '968px');
     tabbedview.spinner.css('top', '140px');
 
-
-
+    // batching navigation
     jq('.listingBar span a, .listingBar a').live('click', function(e,o) {
         e.preventDefault();
         e.stopPropagation();
@@ -295,6 +292,21 @@ load_tabbedview = function() {
         tabbedview.reload_view();
     });
 
+    // dynamic batching functionality
+    jq('#tabbedview-batchbox').live('blur', function() {
+      jq('#dynamic_batching_form').submit();
+    });
+
+    // workaround to bind the submit event with live
+    jq('body').each(function(){
+      jq('#dynamic_batching_form').live('submit', function(event){
+        tabbedview.param(
+          'pagesize', jq('#tabbedview-batchbox').val());
+        tabbedview.flush_params('pagenumber:int');
+        tabbedview.reload_view();
+        event.preventDefault();
+      });
+    });
 
     tabbedview.view_container.bind('reload', function() {
 

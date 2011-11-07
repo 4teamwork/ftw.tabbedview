@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-03 16:42+0000\n"
+"POT-Creation-Date: 2011-11-07 11:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr ""
 msgid "Creator"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/batching.pt:104
+msgid "Hits per site"
+msgstr ""
+
 msgid "Month"
 msgstr ""
 
@@ -67,9 +71,6 @@ msgid "all_issues"
 msgstr ""
 
 msgid "archive"
-msgstr ""
-
-msgid "assigned_tasks"
 msgstr ""
 
 msgid "assignedtasks"

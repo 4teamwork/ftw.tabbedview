@@ -13,6 +13,14 @@ class ITabbedView(Interface):
     extjs_enabled = schema.Bool(title=u'Extjs is enabled',
                                 default=False)
 
+    dynamic_batchsize_enabled = schema.Bool(
+        title=u'Display the Batch size input field.',
+        default=False)
+
+    max_dynamic_batchsize = schema.Int(
+        title=u'Dynamic batchsize maximum',
+        default=500,)
+
 
 class IGridStateStorageKeyGenerator(Interface):
     """Adapter interface for a multi adapter which provides a key for storing

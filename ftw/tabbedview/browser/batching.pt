@@ -57,7 +57,7 @@
     <!-- Pagelist with links to previous pages for quick navigation -->
     <span tal:repeat="pagenumber batch/previous_pages"
           tal:omit-tag="" >
-      <a href="" tal:content="pagenumber" 
+      <a href="" tal:content="pagenumber"
          tal:attributes="href string:${view/url}?pagenumber=$pagenumber&amp;sort_on=${request/sort_on|string:getObjPositionInParent}"/>
     </span>
 
@@ -70,7 +70,7 @@
     <!-- Pagelist with links to next pages for quick navigation -->
     <span tal:repeat="pagenumber batch/next_pages"
           tal:omit-tag="" >
-      <a href="" tal:content="pagenumber" 
+      <a href="" tal:content="pagenumber"
          tal:attributes="href string:${view/url}?pagenumber=$pagenumber&amp;sort_on=${request/sort_on|string:getObjPositionInParent}"/>
     </span>
 
@@ -98,4 +98,11 @@
            tal:attributes="href string:${view/url}?pagenumber=${batch/lastpage}&amp;sort_on=${request/sort_on|string:getObjPositionInParent}"
            tal:content="batch/lastpage">3457</a>
     </span>
+
+    <!-- dynamic batching -->
+    <form tal:condition="view/dynamic_batchsize_enabled" id="dynamic_batching_form">
+      <span i18n:translate="" i18n:domain="ftw.tabbedview">Hits per site</span>
+      <span>: </span>
+      <input id="tabbedview-batchbox" name="tabbedview-batchbox" tal:attributes="value batch/pagesize" value="50" />
+    </form>
 </div>
