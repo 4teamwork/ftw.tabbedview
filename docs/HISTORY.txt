@@ -5,6 +5,9 @@ Changelog
 3.0b10 (unreleased)
 -------------------
 
+- Moved hidden input element *into* tabbedview_form so it always gets submitted.
+  [lgraf]
+
 - Implements a dynamic batchbox for batched listing views, which allows to change the batchsize (hits per site) dynamically.
   Issue #1262 Listenfoermige Ausdrucke
   https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1262/
