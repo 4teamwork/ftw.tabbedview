@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-3.0b10 (unreleased)
--------------------
+3.0 (2011-11-17)
+----------------
 
 - Moved hidden input element *into* tabbedview_form so it always gets submitted.
   [lgraf]
