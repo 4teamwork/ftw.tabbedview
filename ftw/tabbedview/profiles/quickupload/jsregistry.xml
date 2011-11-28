@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry"
    autogroup="False">
+
  <javascript cacheable="True" compression="safe" cookable="True" enabled="on"
-    expression="" id="++resource++ftw.tabbedview-resources/tabbedview.js"
+    expression="" id="++resource++ftw.tabbedview-resources/upload.js"
     inline="False"/>
 
 </object>

@@ -343,6 +343,7 @@ load_tabbedview = function() {
                          top:20,
                          left:15
                         });
+
     });
 
     tabbedview.view_container.bind('gridRendered', function() {
@@ -353,6 +354,7 @@ load_tabbedview = function() {
             track: true,
             fade: 250
         });
+
 
         // initalize more-actions menu
         // the initalizeMenues function from plone doesn't work correctly

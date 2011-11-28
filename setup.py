@@ -35,6 +35,7 @@ setup(name='ftw.tabbedview',
         ],
       extras_require = {
         'extjs': ['ftw.table[extjs]',],
+        'quickupload': ['collective.quickupload'],
         },
       entry_points="""
       # -*- Entry points: -*-

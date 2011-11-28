@@ -1,6 +1,13 @@
 from zope import schema
 from zope.interface import Interface
 
+try:
+    from collective.quickupload.browser.interfaces import IQuickUploadCapable
+except ImportError:
+    QUICKUPLOAD_INSTALLED = False
+else:
+    QUICKUPLOAD_INSTALLED = True
+
 
 class ITabbedView(Interface):
     """A type for collaborative spaces."""
@@ -36,3 +43,8 @@ class IGridStateStorageKeyGenerator(Interface):
         """Returns a string which is used for storing the state in the
         dictstorage.
         """
+
+
+if QUICKUPLOAD_INSTALLED:
+    class ITabbedviewUploadable(Interface, IQuickUploadCapable):
+        """Marker interfaces"""

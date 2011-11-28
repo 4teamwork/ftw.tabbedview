@@ -6,6 +6,13 @@ from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from zope.component import queryMultiAdapter
 
+try:
+    from ftw.tabbedview.interfaces import ITabbedviewUploadable
+except ImportError:
+    QUICKUPLOAD_INSTALLED = False
+else:
+    QUICKUPLOAD_INSTALLED = True
+
 
 class TabbedView(BrowserView):
     """A View containing tabs with fancy ui"""
@@ -126,3 +133,11 @@ class TabbedView(BrowserView):
 
         return self.tab.select_all(int(self.request.get('pagenumber', 1)),
                                    int(self.request.get('selected_count', 0)))
+
+
+    def show_uploadbox(self):
+        """check if the uploadbox is activated for actual context"""
+
+        if ITabbedviewUploadable.providedBy(self.context):
+            return True
+        return False
