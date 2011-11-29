@@ -11,35 +11,30 @@ Changelog
 3.0 (2011-11-17)
 ----------------
 
-- Moved hidden input element *into* tabbedview_form so it always gets submitted.
+- Moved hidden input element *into* tabbedview_form so it always gets
+  submitted.
   [lgraf]
 
-- Implements a dynamic batchbox for batched listing views, which allows to change the batchsize (hits per site) dynamically.
-  Issue #1262 Listenfoermige Ausdrucke
-  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1262/
+- Implements a dynamic batchbox for batched listing views, which allows to
+  change the batchsize (hits per site) dynamically.
   [phgross]
 
 - Automaticly reset batching while filtering (with the textfilter)
-  Issue #1276 Tabbedview Textfilter funktioniert nicht, wenn zuvor gebatcht wurde
-  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/1276
   [phgross]
 
 - Made it possible to set a empty dict as gridstate configuration
-  Issue #796 Zuruecksetzen der Tabellen-Konfiguration
-  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
   [phgross]
 
-- Add possibility to call javascript functions from tabbeview-menu actions. By default every tabbedview_menu link just submit the form.
+- Add possibility to call javascript functions from tabbeview-menu actions.
+  By default every tabbedview_menu link just submit the form.
   Used for the reset_tableconfiguration action.
-  Issue #796 Zuruecksetzen der Tabellen-Konfiguration
-  https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/796/
   [phgross]
 
 
 3.0b9 (2011-10-04)
 ------------------
 
-- added morelink(show all link) support, for overview listings with boxes.
+- added morelink (show all link) support, for overview listings with boxes.
   Every show all link loads now autmaticly the corresponding tab.
   [phgross]
 
@@ -47,163 +42,144 @@ Changelog
 3.0b8 (2011-107-12)
 -------------------
 
-* https://extranet.4teamwork.ch/projects/opengever-kanton-zug/sprint-backlog/589
-  fixed select_all method (works now also with direct call)
+- fixed select_all method (works now also with direct call)
   [phgross]
 
-* removed half-implemented variable batching_enabled
+- removed half-implemented variable batching_enabled
   fixed select_all function
   [phgross]
+
 
 3.0b7
 -----
 
-* removed some translations which don't belong here
+- removed some translations which don't belong here
   [ttschanz]
 
 
 3.0b6
 -----
 
-* slightly changed html structure to make it easier to style
+- slightly changed html structure to make it easier to style
   [fsprenger]
+
 
 3.0b5
 -----
 
-* Fixed translation files
+- Fixed translation files
   [jbaumann]
 
 
 3.0b4
 -----
 
-* Show amount of matching in "select-all" link.
+- Show amount of matching in "select-all" link.
   [jbaumann]
 
 
 3.0b3
 -----
 
-* Enable batching when grouping is enabled. This solves performance issues on heavy tables.
+- Enable batching when grouping is enabled. This solves performance issues
+  on heavy tables.
   [jbaumann]
 
-* Fixed bug where grouping in the state broke the table.
+- Fixed bug where grouping in the state broke the table.
   [jbaumann]
 
 
 3.0b2
 -----
 
-* Read sort_on attribute from grid storage
+- Read sort_on attribute from grid storage
   [jbaumann]
 
 
 3.0b1
 -----
 
-* Implemented grid state storage stuff with `ftw.dictstorage`
+- Implemented grid state storage stuff with `ftw.dictstorage`
   [jbaumann]
 
-* Implemented server side grouping of listing tables
+- Implemented server side grouping of listing tables
   [jbaumann]
 
-* added action permission check
-  [22.11.2010, mathias.leimgruber]
-
-
-3.0a2
------
-
-
-3.0a1
------
+- added action permission check
+  [mathias.leimgruber]
 
 
 2.1
 ---
 
-* tagged from master instead of plone4 compatibility branch
+- tagged from master instead of plone4 compatibility branch
   Your should realy use this one
-  [26.10.2010, mathias.leimgruber]
+  [mathias.leimgruber]
 
 
 1.0c2
 -----
 
-* Changed the minimum pagesize to 1. A small pagesize is necessary for easy
+- Changed the minimum pagesize to 1. A small pagesize is necessary for easy
   testing.
-  [26.10.2010, jbaumann]
+  [jbaumann]
 
-* Fixed select-all: It does now select all items in the tab, not only the visibles.
-  Fixed also ordering and duplicity.
-  [26.10.2010, jbaumann]
+- Fixed select-all: It does now select all items in the tab, not only the
+  visibles. Fixed also ordering and duplicity.
+  [jbaumann]
 
-* Using jqueryui is now optional. Use the "jqueryui" extras_require for enabling UI.
-  [20.10.2010, jbaumann]
+- Using jqueryui is now optional. Use the "jqueryui" extras_require for
+  enabling UI.
+  [jbaumann]
 
-* rebuild tabbedview, so that in only done the tabbedview js stuff,
+- rebuild tabbedview, so that in only done the tabbedview js stuff,
   when the tabbedview is displayed
 
-* Added maintainer properly in setup.py
-  [19.07.2010, jbaumann]
+- Added maintainer properly in setup.py
+  [jbaumann]
 
 
 1.0c1
 -----
 
-* Issue #146 spinner.gif
-  https://extranet.4teamwork.ch/projects/integration-zug.ch-izug/tracker-integration-zug.ch-izug/146/
-  [15.10.2010,phgross]
-
-* Issue #912: remove toLoverCase since its not really needed and error-prone
-  [11.05.2010, vbaumann]
+- Remove toLoverCase since its not really needed and error-prone
+  [vbaumann]
 
 
 1.0a5
 -----
-* timesheet-tabbedview: added some translations
-  [30.04.2010, phgross]
 
-* Issue #538 Globaler Reiter Aufgabe: Reiter "Zugewiesene Aufgaben" umbenennen
-  [27.04.2010, jinfanger]
+- timesheet-tabbedview: added some translations
+  [phgross]
+
 
 1.0a4
 -----
 
-* Translations for Poi Tracker - Filter labels (fsprenger)
-* Translations for accounting timesheet (fsprenger)
-* Issue #505 Weiterleiten einer Aufgabe aus Eingangskorb Mandant 3 nach Mandant 1 geht nicht (jin)
-* #20 Bei Poi Tabbed View soll ein neuer Tab "Offene Tickets" hinzugefuegt werden: added translations (pgr)
-* Issue #86 Bessere Uebersichtsseite fuer Arbeitsraeume (jin)
+- Translations
+  [fsprenger]
+
+- added translations
+  [phgross]
 
 
 1.0a3
 -----
 
-* #55 tabbed_view for ftw_Timesheet erstellen
-  https://extranet.4teamwork.ch/intranet/10-interne-projekte/teamraum/teamraum-3/tracker-teamraum3/55
-  added following features:
-  - Filter boxes Functionality (with a accordian view)
-  - Auto Filter boxes Functionality (with a accordian view)
-  - Auto Count Functionality
-  - Corrected the select all action
-  [01 - 03 2010, phgross]
+- Filter boxes Functionality (with a accordian view)
+  [phgross]
 
-* #447 Zentrale Taskoverview = Overview over the task for all Sachbearbeiter of a mandant
-  Added sort functionality for the SolrListingView
-  [23.02.2010, phgross]
+- Auto Filter boxes Functionality (with a accordian view)
+  [phgross]
 
-* Translation for tab's tittles added
-  [04.02.2010, jbaumann]
+- Auto Count Functionality
+  [phgross]
 
+- Corrected the select all action
+  [phgross]
 
-1.0a2
------
+- Added sort functionality for the SolrListingView
+  [phgross]
 
-
-1.0
----
-
-* Initial release
-
+- Translation for tab's titles added
+  [jbaumann]
