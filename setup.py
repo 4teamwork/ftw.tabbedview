@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 import os
 
 version = '3.1dev'
-maintainer = 'Victor Baumann'
+maintainer = 'Jonas Baumann'
 
 setup(name='ftw.tabbedview',
       version=version,
-      description="" + \
-          ' (Maintainer %s)' % maintainer,
+      description='This package provides a generic view with multiple' + \
+          ' tabs for plone.',
       long_description=open("README.rst").read() + "\n" + \
           open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
