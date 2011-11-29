@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = open('ftw/tabbedview/version.txt').read().strip()
+version = '3.1dev'
 maintainer = 'Victor Baumann'
 
 setup(name='ftw.tabbedview',
