@@ -12,6 +12,3 @@ class ITabbedView(Interface):
 
     extjs_enabled = schema.Bool(title=u'Extjs is enabled',
                                 default=False)
-
-
-

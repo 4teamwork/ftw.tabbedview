@@ -47,7 +47,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     grouped = 0
     use_batch = True
 
-
     def __init__(self, context, request):
         super(ListingView, self).__init__(context, request)
         registry = getUtility(IRegistry)
@@ -68,23 +67,23 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             self.table_options = {}
 
         if self.extjs_enabled:
-            if ('tableType' in self.request and 
+            if ('tableType' in self.request and
                     self.request['tableType'] == 'extjs'):
                 self.update()
                 # add addition html that will be injected in the view
-                static = {'batching':'<!--iefix-->', 
-                          'menu':'<!--iefix-->', 
-                          'selection':'<!--iefix-->'}
+                static = {'batching': '<!--iefix-->',
+                          'menu': '<!--iefix-->',
+                          'selection': '<!--iefix-->'}
                 if self.use_batch:
                     static['batching'] = self.batching()
                 if self.contents:
                     static['menu'] = self.menu()
                     static['selection'] = self.selection()
-                    
-                self.table_options.update({'static' : static})
+
+                self.table_options.update({'static': static})
                 return self.render_listing()
             else:
-                self.contents = [{},]
+                self.contents = [{}, ]
                 self.load_request_parameters()
                 return self.template()
 
@@ -99,11 +98,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if len(self.request.get('groupBy', '')):
             self.grouped = 1
             self.use_batch = False
-        
+
         #if the grid is in dragging mode we dont use a batch ans set depth to 1
         if self.request.get('sort', '') == 'draggable':
-           self.use_batch = False
-           self.depth = 1 
+            self.use_batch = False
+            self.depth = 1
 
         if self.use_batch:
             # pagenumber
@@ -129,7 +128,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         default_sort_order = self.sort_reverse and 'reverse' or 'asc'
         sort_order = self.request.get('dir', default_sort_order)
         self.sort_order = {'ASC': 'asc',
-                           'DESC':'reverse'}.get(sort_order, sort_order)
+                           'DESC': 'reverse'}.get(sort_order, sort_order)
 
         self.sort_reverse = self.sort_order == 'reverse'
 
@@ -347,7 +346,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         return contents[0:start_hidden], contents[end_hidden:]
 
-
     @property
     @instance.memoize
     def batch(self):
@@ -369,12 +367,11 @@ class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):
     # modify the base catalog query. This will be
     search_options = {}
 
-
     def update_config(self):
         DefaultCatalogTableSourceConfig.update_config(self)
 
         # configuration for the extjs grid
-        extjs_conf = {'auto_expand_column':'sortable_title'}
+        extjs_conf = {'auto_expand_column': 'sortable_title'}
         if self.extjs_enabled and isinstance(self.table_options, dict):
             self.table_options.update(extjs_conf)
         elif self.table_options is None:

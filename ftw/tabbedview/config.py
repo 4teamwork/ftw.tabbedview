@@ -4,5 +4,5 @@
 PROJECTNAME = 'ftw.tabbedview'
 
 INDEXES = ()
-          
+
 METADATA = ()
