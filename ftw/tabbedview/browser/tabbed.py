@@ -16,7 +16,8 @@ class TabbedView(BrowserView):
             css_classes = None
             #get the css classes that should be set on the A elements.
             view_name = "tabbedview_view-%s" % action['id']
-            view = queryMultiAdapter((self.context, self.request), name=view_name, default=None)
+            view = queryMultiAdapter((self.context, self.request),
+                                     name=view_name, default=None)
             if view and hasattr(view, 'get_css_classes'):
                 css_classes = ' '.join(view.get_css_classes())
             yield {
@@ -34,7 +35,7 @@ class TabbedView(BrowserView):
         types_tool = getToolByName(context, 'portal_types')
         ai_tool = getToolByName(context, 'portal_actionicons')
         actions = types_tool.listActions(object=context)
-        plone_state = view = queryMultiAdapter(
+        plone_state = queryMultiAdapter(
             (self.context, self.request),
             name='plone_portal_state')
         member = plone_state.member()
@@ -68,15 +69,16 @@ class TabbedView(BrowserView):
                                 name='tabbedview_view-fallback')
 
             return listing_view()
-            
+
     def reorder(self):
         """Called when the items in the grid are reordered"""
-        
+
         #ordered list of ids in the current tab
         positions = self.request.get('new_order[]')
         #orderd list of allids within the container
         object_ids = self.context.objectIds(ordered=True)
-        #move and order tab content in the desired order before the remaining objects
+        #move and order tab content in the desired order
+        #before the remaining objects
         state = self.context.moveObjectsByDelta(positions, -len(object_ids))
         return str(state)
 

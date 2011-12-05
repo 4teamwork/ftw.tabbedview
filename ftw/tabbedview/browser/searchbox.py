@@ -6,7 +6,6 @@ from ftw.tabbedview.browser.tabbed import TabbedView
 class SearchBox(common.ViewletBase):
     index = ViewPageTemplateFile('searchbox.pt')
 
-
     def available(self):
         try:
             view = self.context.restrictedTraverse(
