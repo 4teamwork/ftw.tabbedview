@@ -1,19 +1,19 @@
 //
 // create closure
 //
-(function($) {    
-    
+(function($) {
+
     var $this = null;
     var $o = null;
-    
+
     //
     // ftwtable api
     // Example usage:
-    //              $(obj).ftwtable('param', 'search', 'foo') 
+    //              $(obj).ftwtable('param', 'search', 'foo')
     //              $(obj).ftwtable('reload')
-    
+
     var methods = {
-       init : function( options ) { 
+       init : function( options ) {
                    // build main options before element iteration
                    var opts = $.extend({}, $.fn.ftwtable.defaults, options);
                    // iterate and reformat each matched element
@@ -26,13 +26,13 @@
                        methods.param('path', '/');
                        $o.onBeforeLoad();
                        methods.reload();
-                       
+
                        //add events
                        $('input[name=paths:list]', $this).live('click', function(e){
                            if(e.target.type=='radio'){
                                methods.param('path', e.target.value);
                                methods.param('show', 'tasks');
-                               methods.reload();   
+                               methods.reload();
                            }
                        });
 
@@ -44,18 +44,18 @@
                        });
                    });
                 },
-                
+
        reload : function( ) {
                    $.fn.ftwtable.createTable(buildQuery());
                 },
-                
-       param : function(key, value) { 
+
+       param : function(key, value) {
                     if (key && value){
                         $.jStorage.set(key, value);
                         $this.data(key, value);
                     }else if(key && value==undefined){
                         var stored = $.jStorage.get(key);
-                        if (stored != null){
+                        if (stored !== null){
                             return stored;
                         }
                         else{
@@ -70,8 +70,8 @@
 
     //
     // plugin definition
-    //    
-    
+    //
+
     $.fn.ftwtable = function(method) {
         // Method calling logic
         if ( methods[method] ) {
@@ -83,42 +83,42 @@
         }
         return null;
     };
-    
+
     //
     // private methods
     //
-    
+
     function buildQuery(){
         return  url = $o.url+'?show='+methods.param('show')+'&path='+methods.param('path');
     }
-    
-    
+
+
     //
     // Callbacks
     //
-    
-    function onBeforeLoad(){
+
+    function onBeforeLoad() {
         console.info('beforeLoad');
-    };
-    
-    function onLoad(text, status, response){
+    }
+
+    function onLoad(text, status, response) {
         console.info('onLoad');
-    };
-    
+    }
+
     //
     // public methods
     //
 
-    $.fn.ftwtable.createTable = function(query){ 
-        $this.load(query, function(){           
+    $.fn.ftwtable.createTable = function(query){
+        $this.load(query, function(){
             $o.onLoad();
         });
     };
-    
+
     //
     // plugin defaults
     //
-    
+
     $.fn.ftwtable.defaults = {
         url: '@@ftwtable/listing',
         timeout: 1000,
@@ -137,14 +137,14 @@
 })(jQuery);
 
 jq(function(){
-    
+
     debug_box = $('#template_chooser_debug');
 
     //test global overwrite
     $.fn.ftwtable.defaults.onBeforeLoad = function(){
         console.log('custom onBeforeLoad');
     };
-    
+
     // initialize table
     var table = $('#template_chooser').ftwtable({
          'url' : '@@add-tasktemplate/listing',
@@ -159,12 +159,9 @@ jq(function(){
        var step = e.target.href.split('#')[1];
        table.ftwtable('param', 'show', step);
        table.ftwtable('reload');
-   });  
-   
-   
+   });
+
+
    debug_box.append('<div>sort on: '+table.ftwtable('param', 'sort_on')+'</div>');
-  
+
 });
-
-
-
