@@ -251,7 +251,9 @@ load_tabbedview = function() {
     tabbedview.tabs_api = jq('.tabbedview-tabs').data('tabs');
 
 
-    if(tabbedview_body.length == 0)return;
+    if (tabbedview_body.length === 0) {
+      return;
+    }
 
     if(location.hash){
         jQuery.tabbedview.prop('view_name', location.hash.split('#')[1]);
@@ -361,9 +363,9 @@ load_tabbedview = function() {
         jQuery('dl.plone-contentmenu-tabbedview-actions').removeClass('activated').addClass('deactivated');
 
         // add toggle function to header links
-        jQuery('dl#plone-contentmenu-tabbedview-actions dt.actionMenuHeader a')
-            .click(toggleMenuHandler)
-            .mouseover(actionMenuMouseOver);
+        jQuery('dl#plone-contentmenu-tabbedview-actions dt.actionMenuHeader a').
+            click(toggleMenuHandler).
+            mouseover(actionMenuMouseOver);
 
         // add hide function to all links in the dropdown, so the dropdown closes
         // when any link is clicked
