@@ -30,8 +30,14 @@ statusmessages = {};
 statusmessages.error = function(msg){alert(msg);};
 
 
-load_tabbedview = function() {
+load_tabbedview = function(callback) {
   /*statusmessages = jq('#region-content').statusmessages()*/
+
+  jq.ajaxSetup({
+    // Disable caching of AJAX responses
+    cache: false
+  });
+
   tabbedview = {
     version : '0.1',
     view_container : jq('.tabbedview_view'),
@@ -58,6 +64,27 @@ load_tabbedview = function() {
       jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
         tabbedview.view_container.trigger('reload');
         tabbedview.spinner.hide();
+
+        // call callback
+        if (typeof callback == "function"){
+          callback(tabbedview);
+        }
+
+        /*sortable*/
+        jq('th.sortable').bind('click', function(e, o) {
+          var selected = jq(this);
+          var current = jq('#'+tabbedview.prop('view_name')+'_overview .sort-selected');
+          var sort_order = 'asc';
+          if ( selected.attr('id') == current.attr('id')) {
+            sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
+          }
+
+          tabbedview.flush_all_params();
+          tabbedview.param('sort', this.id);
+          tabbedview.param('dir', sort_order);
+          tabbedview.reload_view();
+        });
+
       });
       this.spinner.show();
 
@@ -93,7 +120,7 @@ load_tabbedview = function() {
       return null;
     },
 
-    flush_params: function() {
+    flush_all_params: function() {
       var view = this.prop('view_name');
       if (this._params[view] !== undefined) {
         this._params[view] = {};
@@ -121,7 +148,7 @@ load_tabbedview = function() {
         this._params[view][filter].push(value);
       }
       else{
-        temp =  [value];
+        var temp =  [value];
         this.param(filter, temp);
       }
     },
@@ -273,7 +300,7 @@ load_tabbedview = function() {
       tabbedview.prop('searchable_text', value);
     }
     if (value.length>=3) {
-      tabbedview.flush_params();
+      tabbedview.flush_all_params();
       //tabbedview.reload_view();
       tabbedview.table.ftwtable('reload');
     }
