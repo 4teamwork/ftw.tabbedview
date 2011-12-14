@@ -426,6 +426,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # get the key from the key generator
         generator = queryMultiAdapter((self.context, self, self.request),
                                       IGridStateStorageKeyGenerator)
+        if not generator:
+            return
+
         key = generator.get_key()
 
         # get the state (string)
