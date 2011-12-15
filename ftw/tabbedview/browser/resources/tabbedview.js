@@ -275,15 +275,25 @@ load_tabbedview = function(callback) {
 
   tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
     var value = tabbedview.searchbox.val();
+    if (value === tabbedview.searchbox.attr('title')) {
+      /* This prevents from reloading when the focus is set on the filter
+         field (the field is empty in this state) and then the users switches
+         to another applications (which results in setting the title as default
+         and after that firing the event). */
+      return;
+    }
+
     if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
       tabbedview.prop('searchable_text', '');
       tabbedview.flush_params('pagenumber:int');
       //tabbedview.reload_view();
       tabbedview.table.ftwtable('reload');
-    }else{
+
+    } else {
       tabbedview.flush_params('pagenumber:int');
       tabbedview.prop('searchable_text', value);
     }
+
     if (value.length>=3) {
       tabbedview.flush_all_params();
       //tabbedview.reload_view();
@@ -323,7 +333,6 @@ load_tabbedview = function(callback) {
   });
 
   tabbedview.view_container.bind('reload', function() {
-
     //hide or show filter box
     if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
       tabbedview.searchbox.closest('.tabbedview_search').hide();
