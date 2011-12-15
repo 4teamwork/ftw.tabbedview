@@ -11,7 +11,7 @@
           <script type="text/javascript">
               /* load the blogactionsbar with javascript,
               because the comment overlay work not,
-              with a <form> tag in the content area */
+              with a form-tag in the content area */
               jq(function(){
                   load_tabbedview();
               });
@@ -54,7 +54,7 @@
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
             <tal:panes repeat="tab view/get_tabs">
-                <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane">&nbsp;</div>
+                <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane"><!-- iefix --></div>
             </tal:panes>
         </div>
 

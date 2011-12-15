@@ -1,28 +1,32 @@
-<tal:translation>
-
-    
-    <div tal:replace="structure view/batching" tal:condition="view/contents"/>
-
-    <form name="tabbedview_form"
-          method="post"
-          action="folder_object"
-          tal:attributes="action context/absolute_url">
-      <input type="hidden" name="orig_template" tal:attributes="value string:${context/absolute_url}/#${view/view_name}" />
-      <tal:cond tal:condition="view/contents">
-        <tal:extjs condition="view/extjs_enabled">
-          <div id="listing_container"
-               class="ftwtable +extjs"><!--iefix--></div>
-        </tal:extjs>
-        <tal:html condition="not:view/extjs_enabled">
-          <div tal:content="structure view/render_listing" />
-        </tal:html>
-
-      </tal:cond>
-    </form>
-
-    <p tal:condition="not: view/contents">
-      Keine Inhalte vorhanden
-    </p>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    tal:omit-tag="python: True">
 
 
-</tal:translation>
+  <div tal:replace="structure view/batching" tal:condition="view/contents"/>
+
+  <form name="tabbedview_form"
+        method="post"
+        action="folder_object"
+        tal:attributes="action context/absolute_url">
+    <input type="hidden" name="orig_template" tal:attributes="value string:${context/absolute_url}/#${view/view_name}" />
+    <tal:cond tal:condition="view/contents">
+      <tal:extjs condition="view/extjs_enabled">
+        <div id="listing_container"
+             class="ftwtable +extjs"><!--iefix--></div>
+      </tal:extjs>
+      <tal:html condition="not:view/extjs_enabled">
+        <div tal:content="structure view/render_listing" />
+      </tal:html>
+
+    </tal:cond>
+  </form>
+
+  <p tal:condition="not: view/contents">
+    Keine Inhalte vorhanden
+  </p>
+
+
+</html>
