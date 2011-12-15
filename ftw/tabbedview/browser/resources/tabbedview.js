@@ -69,21 +69,6 @@ load_tabbedview = function(callback) {
           callback(tabbedview);
         }
 
-        /*sortable*/
-        jq('th.sortable').bind('click', function(e, o) {
-          var selected = jq(this);
-          var current = jq('#'+tabbedview.prop('view_name')+'_overview .sort-selected');
-          var sort_order = 'asc';
-          if ( selected.attr('id') == current.attr('id')) {
-            sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
-          }
-
-          tabbedview.flush_all_params();
-          tabbedview.param('sort', this.id);
-          tabbedview.param('dir', sort_order);
-          tabbedview.reload_view();
-        });
-
       });
       this.spinner.show();
 
@@ -375,6 +360,20 @@ load_tabbedview = function(callback) {
   });
 
   tabbedview.view_container.bind('gridRendered', function() {
+    /*sortable*/
+    jq('th.sortable').bind('click', function(e, o) {
+      var selected = jq(this);
+      var current = jq('#'+tabbedview.prop('view_name')+'_overview .sort-selected');
+      var sort_order = 'asc';
+      if ( selected.attr('id') == current.attr('id')) {
+        sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
+      }
+
+      tabbedview.flush_all_params();
+      tabbedview.param('sort', this.id);
+      tabbedview.param('dir', sort_order);
+      tabbedview.reload_view();
+    });
 
     /* update breadcrumb tooltips */
     jq('a.rollover-breadcrumb').tooltip({
