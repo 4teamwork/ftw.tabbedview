@@ -53,7 +53,6 @@ load_tabbedview = function(callback) {
     _filters: {},
 
     reload_view : function() {
-      tabbedview.param('initialize', 0);
       var params = this.parse_params();
       var url = jq('base').attr('href');
       if( url.substr(url.length-1, 1) != '/'){
@@ -263,7 +262,6 @@ load_tabbedview = function(callback) {
       onBeforeClick: function(e, index){
         var tabbedview = jQuery.tabbedview;
         var current_tab_id = jq('.tabbedview-tabs li a').get(index).id.split('tab-')[1];
-        jQuery.tabbedview.param('initialize', 1);
         jQuery.tabbedview.spinner.show();
         jQuery.tabbedview.selected_tab = index;
         var view_name = jQuery.tabbedview.prop('view_name');
@@ -271,7 +269,9 @@ load_tabbedview = function(callback) {
         jQuery.tabbedview.prop('view_name',current_tab_id);
       },
       onClick: function(e, index){
+        jQuery.tabbedview.param('initialize', 1);
         tabbedview.reload_view();
+        jQuery.tabbedview.param('initialize', 0);
       }
     });
 
