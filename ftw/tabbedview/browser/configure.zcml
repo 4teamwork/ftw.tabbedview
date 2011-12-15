@@ -32,4 +32,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="tabbedview_config"
+        class=".config.TabbedviewConfigView"
+        permission="zope2.View"
+        />
+
 </configure>
