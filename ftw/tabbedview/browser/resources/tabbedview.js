@@ -346,7 +346,7 @@ load_tabbedview = function(callback) {
       tabbedview.table.ftwtable('destroy');
     }
     // initialize new table
-    tabbedview.table = $('#listing_container').ftwtable({
+    tabbedview.table = $('.tab_container').ftwtable({
       'url': '@@tabbed_view/listing'
     });
     /* subview chooser*/
