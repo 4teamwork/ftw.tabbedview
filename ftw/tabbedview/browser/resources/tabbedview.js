@@ -347,11 +347,7 @@ load_tabbedview = function(callback) {
     }
     // initialize new table
     tabbedview.table = $('#listing_container').ftwtable({
-      'url': '@@tabbed_view/listing',
-      'onLoad':  function(){
-        //When the grid finishes rendering trigger the gridRendered event
-        tabbedview.view_container.trigger('gridRendered');
-      }
+      'url': '@@tabbed_view/listing'
     });
     /* subview chooser*/
     jq('.ViewChooser a').live('click', function() {
