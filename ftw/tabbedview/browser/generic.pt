@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    tal:omit-tag="python: True">
+    tal:omit-tag="python: True"
+    i18n:domain="ftw.tabbedview">
 
   <tal:has_contents tal:condition="view/contents">
     <div tal:omit-tag="python: view.extjs_enabled" class="tab_container">
@@ -40,9 +41,21 @@
     </div>
   </tal:has_contents>
 
-  <p tal:condition="not: view/contents">
-    Keine Inhalte vorhanden
-  </p>
+  <tal:extjs condition="view/extjs_enabled">
+    <p style="display:none"
+       id="message_no_contents"
+       i18n:translate="label_no_contents">
+      No contents
+    </p>
+  </tal:extjs>
+
+  <tal:html condition="not:view/extjs_enabled">
+    <p tal:condition="not:view/contents"
+       id="message_no_contents"
+       i18n:translate="label_no_contents">
+      No contents
+    </p>
+  </tal:html>
 
 
 </html>
