@@ -5,6 +5,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Remove old i18n directory. #3
+  [jone]
+
 - Make both JS implementation (default and extjs) work on same branch:
 
   - Better use of ftwtable jquery plugin in tabbed view.
