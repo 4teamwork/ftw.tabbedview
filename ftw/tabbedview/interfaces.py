@@ -22,6 +22,11 @@ class ITabbedView(Interface):
         default=500,)
 
 
+class IListingView(Interface):
+    """Marker interface for listing tabs.
+    """
+
+
 class IGridStateStorageKeyGenerator(Interface):
     """Adapter interface for a multi adapter which provides a key for storing
     the grid state in dictstorage with. Dependending on the key the same state
