@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2011-11-07 11:11+0000\n"
-"PO-Revision-Date: 2011-11-07 11:41+0100\n"
+"POT-Creation-Date: 2011-12-16 09:48+0000\n"
+"PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -12,26 +12,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./ftw/tabbedview/browser/selection.pt:7
-msgid "All visible entries chosen <a href="#">x</a>"
-msgstr ""
+#: ./ftw/tabbedview/browser/selection.pt:14
+msgid "All visible entries chosen ${show_all_link}"
+msgstr "Alle sichtbaren einträge auswählen ${show_all_link}"
 
-msgid "By Area"
-msgstr "Bereich"
-
-msgid "By Responsible Manager"
-msgstr "Verantwortlicher"
-
-msgid "By Severity"
-msgstr "Einstufung"
-
-msgid "By State"
-msgstr "Status"
-
-msgid "By Target Release"
-msgstr "Ziel Release"
-
-#: ./ftw/tabbedview/browser/selection.pt:2
+#: ./ftw/tabbedview/browser/selection.pt:9
 msgid "Choose:"
 msgstr "Auswählen"
 
@@ -42,148 +27,44 @@ msgstr "Ersteller"
 msgid "Hits per site"
 msgstr "Treffer pro Seite"
 
-msgid "Month"
-msgstr "Monat"
-
-#: ./ftw/tabbedview/browser/selection.pt:7
-msgid "Show all in this Folder"
-msgstr "Alle in diesem Ordner anzeigen"
-
 msgid "Title"
 msgstr "Titel"
 
-msgid "accounting_overview"
-msgstr "Übersicht"
-
-#: ./ftw/tabbedview/browser/selection.pt:4
+#: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
 msgstr "Alle (${amount})"
-
-msgid "all_entries"
-msgstr "Alle Einträge"
-
-msgid "all_issues"
-msgstr "Alle Tickets"
-
-msgid "archive"
-msgstr "Archiv"
-
-msgid "assignedtasks"
-msgstr "Zugewiesene Aufgaben"
-
-msgid "billable"
-msgstr "verrechenb. Std."
 
 #. Default: "More actions &#9660;"
 #: ./ftw/tabbedview/browser/menu.pt:13
 msgid "button_more_actions"
 msgstr "Weitere Aktionen &#9660;"
 
-msgid "changes"
-msgstr "Letzte Änderungen"
-
-msgid "contacts"
-msgstr "Kontakte"
-
-msgid "documents"
-msgstr "Dokumente"
-
-msgid "dossiers"
-msgstr "Dossiers"
-
 msgid "end"
 msgstr "Ende"
-
-msgid "events"
-msgstr "Termine"
 
 #: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "filter"
 msgstr "Filtern"
 
-msgid "folders"
-msgstr "Ordner"
-
-msgid "generally"
-msgstr "Allgemein"
-
-msgid "getAccount"
-msgstr "Konstenstelle"
-
-msgid "getBillable"
-msgstr "verrechenbar"
-
-msgid "getEffectiveHours"
-msgstr "Geleistete Std."
-
-msgid "getEstimatedHours"
-msgstr "Geschätzte Std."
-
-msgid "getHours"
-msgstr "geleistet"
-
-msgid "getResponsible"
-msgstr "Vollmachten"
-
-msgid "getResponsibleManager"
-msgstr "Zuständigkeit"
-
-msgid "given_tasks"
-msgstr "Weiterleitung"
-
 msgid "hours"
 msgstr "geleist. Std."
-
-msgid "info"
-msgstr "Info"
-
-msgid "issued_issues"
-msgstr "Meine Aufträge"
-
-msgid "journal"
-msgstr "Journal"
-
-msgid "label_account"
-msgstr "Kostenstelle"
 
 #. Default: "Filter"
 #: ./ftw/tabbedview/browser/searchbox.pt:2
 msgid "label_filter"
 msgstr "Filter"
 
+#. Default: "No contents"
+#: ./ftw/tabbedview/browser/generic.pt:45
+msgid "label_no_contents"
+msgstr "Keine Inhalte"
+
 msgid "modified"
 msgstr "Bearbeitet"
 
-msgid "my_issues"
-msgstr "Meine Tickets"
-
-msgid "mydocuments"
-msgstr "Meine Dokumente"
-
-msgid "mydossiers"
-msgstr "Meine Dossiers"
-
-msgid "mytasks"
-msgstr "Meine Aufgaben"
-
-#: ./ftw/tabbedview/browser/selection.pt:5
+#: ./ftw/tabbedview/browser/selection.pt:12
 msgid "none"
 msgstr "Keine"
-
-msgid "open_issues"
-msgstr "Offene Tickets"
-
-msgid "overview"
-msgstr "Übersicht"
-
-msgid "participants"
-msgstr "Beteiligungen"
-
-msgid "process"
-msgstr "Fortschritt"
-
-msgid "reports"
-msgstr "Arbeitsrapporte"
 
 msgid "review_state"
 msgstr "Status"
@@ -193,23 +74,5 @@ msgstr "Beginn"
 
 msgid "state"
 msgstr "Status"
-
-msgid "subdossiers"
-msgstr "Subdossiers"
-
-msgid "tasks"
-msgstr "Aufgaben"
-
-msgid "tickets"
-msgstr "Tickets"
-
-msgid "tracker_info"
-msgstr "Info"
-
-msgid "tracker_overview"
-msgstr "Übersicht"
-
-msgid "trash"
-msgstr "Papierkorb"
 
 
