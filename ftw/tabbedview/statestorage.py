@@ -1,6 +1,15 @@
 from Products.CMFCore.utils import getToolByName
-from zope.interface import implements
+from ftw.dictstorage.base import DictStorage
+from ftw.dictstorage.interfaces import IConfig
+from ftw.dictstorage.interfaces import IDictStorage
+from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
+from persistent.dict import PersistentDict
+from zope.annotation import IAnnotations
+from zope.component import adapts
+from zope.interface import implements
+from zope.browser.interfaces import IView
+
 
 
 class DefaultGridStateStorageKeyGenerator(object):
@@ -36,3 +45,41 @@ class DefaultGridStateStorageKeyGenerator(object):
 
         # concatenate with "-"
         return '-'.join(key)
+
+
+class DefaultDictStorageConfig(object):
+    """Configures `ftw.dictstorage` to store its data as annotations on the
+    plone site.
+    """
+
+    implements(IConfig, IDefaultDictStorageConfig)
+    adapts(IView)
+
+    def __init__(self, context):
+        self.context = context
+
+    def get_annotated_object(self):
+        portal_url = getToolByName(self.context, 'portal_url')
+        return portal_url.getPortalObject()
+
+    def get_annotations_key(self):
+        return 'ftw.dictstorage-data'
+
+class DefaultDictStorage(DictStorage):
+    implements(IDictStorage)
+    adapts(IView, IDefaultDictStorageConfig)
+
+    def __init__(self, context, config):
+        self.context = context
+        self.config = config
+
+    @property
+    def storage(self):
+        obj = self.config.get_annotated_object()
+        ann = IAnnotations(obj)
+
+        key = self.config.get_annotations_key()
+        if key not in ann.keys():
+            ann[key] = PersistentDict()
+
+        return ann[key]
