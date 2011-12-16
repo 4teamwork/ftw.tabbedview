@@ -28,10 +28,15 @@
     <!-- register the default grid state storage key generator -->
     <adapter
           for="OFS.interfaces.IItem
-               zope.publisher.interfaces.browser.IBrowserPage
+               zope.publisher.interfaces.browser.IBrowserView
                zope.publisher.interfaces.browser.IBrowserRequest"
           provides="ftw.tabbedview.interfaces.IGridStateStorageKeyGenerator"
           factory=".statestorage.DefaultGridStateStorageKeyGenerator" />
+
+    <!-- set up dictstorage so that it annotates the plone site root -->
+    <adapter factory=".statestorage.DefaultDictStorageConfig"
+             provides="ftw.dictstorage.interfaces.IConfig"/>
+    <adapter factory=".statestorage.DefaultDictStorage" />
 
     <!-- extjs is optional -->
     <configure zcml:condition="installed collective.js.extjs">

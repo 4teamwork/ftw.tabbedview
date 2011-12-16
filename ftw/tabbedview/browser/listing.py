@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
+from ftw.tabbedview.interfaces import IListingView
 from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
 from ftw.table.interfaces import ITableGenerator
@@ -13,6 +14,7 @@ from plone.registry.interfaces import IRegistry
 from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
+from zope.interface import implements
 
 try:
     import json
@@ -36,6 +38,7 @@ _marker = object()
 class ListingView(BrowserView, BaseTableSourceConfig):
     """ Base view for listings defining the default values for search
     attributes"""
+    implements(IListingView)
 
     # see ftw.table documentation on how columns work
     columns = ()
@@ -426,6 +429,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # get the key from the key generator
         generator = queryMultiAdapter((self.context, self, self.request),
                                       IGridStateStorageKeyGenerator)
+
         key = generator.get_key()
 
         # get the state (string)

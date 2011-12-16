@@ -5,7 +5,17 @@ Changelog
 3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Make both JS implementation (default and extjs) work on same branch:
+
+  - Better use of ftwtable jquery plugin in tabbed view.
+  - Register a default tabbedview dictstorage, stored on the plone site.
+  - Fix markup for extjs implementation.
+  - Implement selecting and menu support for default implementation.
+  - Respect extjs-config in registry for deciding if the extjs JS should be loaded.
+  - Remove non-ftw.tabbedview translations added from custom projects.
+  - Various cleanup and minor bug fixes.
+
+  [jone]
 
 
 3.0 (2011-11-17)

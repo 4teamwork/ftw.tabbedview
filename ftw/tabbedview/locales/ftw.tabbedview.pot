@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-07 11:11+0000\n"
+"POT-Creation-Date: 2011-12-16 09:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.tabbedview\n"
 
-#: ./ftw/tabbedview/browser/selection.pt:7
-msgid "All visible entries chosen <a href="#">x</a>"
+#: ./ftw/tabbedview/browser/selection.pt:14
+msgid "All visible entries chosen ${show_all_link}"
 msgstr ""
 
-msgid "By Area"
-msgstr ""
-
-msgid "By Responsible Manager"
-msgstr ""
-
-msgid "By Severity"
-msgstr ""
-
-msgid "By State"
-msgstr ""
-
-msgid "By Target Release"
-msgstr ""
-
-#: ./ftw/tabbedview/browser/selection.pt:2
+#: ./ftw/tabbedview/browser/selection.pt:9
 msgid "Choose:"
 msgstr ""
 
@@ -47,36 +32,11 @@ msgstr ""
 msgid "Hits per site"
 msgstr ""
 
-msgid "Month"
-msgstr ""
-
-#: ./ftw/tabbedview/browser/selection.pt:7
-msgid "Show all in this Folder"
-msgstr ""
-
 msgid "Title"
 msgstr ""
 
-msgid "accounting_overview"
-msgstr ""
-
-#: ./ftw/tabbedview/browser/selection.pt:4
+#: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
-msgstr ""
-
-msgid "all_entries"
-msgstr ""
-
-msgid "all_issues"
-msgstr ""
-
-msgid "archive"
-msgstr ""
-
-msgid "assignedtasks"
-msgstr ""
-
-msgid "billable"
 msgstr ""
 
 #. Default: "More actions &#9660;"
@@ -84,109 +44,30 @@ msgstr ""
 msgid "button_more_actions"
 msgstr ""
 
-msgid "changes"
-msgstr ""
-
-msgid "contacts"
-msgstr ""
-
-msgid "documents"
-msgstr ""
-
-msgid "dossiers"
-msgstr ""
-
 msgid "end"
-msgstr ""
-
-msgid "events"
 msgstr ""
 
 #: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "filter"
 msgstr ""
 
-msgid "folders"
-msgstr ""
-
-msgid "generally"
-msgstr ""
-
-msgid "getAccount"
-msgstr ""
-
-msgid "getBillable"
-msgstr ""
-
-msgid "getEffectiveHours"
-msgstr ""
-
-msgid "getEstimatedHours"
-msgstr ""
-
-msgid "getHours"
-msgstr ""
-
-msgid "getResponsible"
-msgstr ""
-
-msgid "getResponsibleManager"
-msgstr ""
-
-msgid "given_tasks"
-msgstr ""
-
 msgid "hours"
-msgstr ""
-
-msgid "info"
-msgstr ""
-
-msgid "issued_issues"
-msgstr ""
-
-msgid "journal"
-msgstr ""
-
-msgid "label_account"
 msgstr ""
 
 #: ./ftw/tabbedview/browser/searchbox.pt:2
 msgid "label_filter"
 msgstr ""
 
+#. Default: "No contents"
+#: ./ftw/tabbedview/browser/generic.pt:45
+msgid "label_no_contents"
+msgstr ""
+
 msgid "modified"
 msgstr ""
 
-msgid "my_issues"
-msgstr ""
-
-msgid "mydocuments"
-msgstr ""
-
-msgid "mydossiers"
-msgstr ""
-
-msgid "mytasks"
-msgstr ""
-
-#: ./ftw/tabbedview/browser/selection.pt:5
+#: ./ftw/tabbedview/browser/selection.pt:12
 msgid "none"
-msgstr ""
-
-msgid "open_issues"
-msgstr ""
-
-msgid "overview"
-msgstr ""
-
-msgid "participants"
-msgstr ""
-
-msgid "process"
-msgstr ""
-
-msgid "reports"
 msgstr ""
 
 msgid "review_state"
@@ -196,23 +77,5 @@ msgid "start"
 msgstr ""
 
 msgid "state"
-msgstr ""
-
-msgid "subdossiers"
-msgstr ""
-
-msgid "tasks"
-msgstr ""
-
-msgid "tickets"
-msgstr ""
-
-msgid "tracker_info"
-msgstr ""
-
-msgid "tracker_overview"
-msgstr ""
-
-msgid "trash"
 msgstr ""
 

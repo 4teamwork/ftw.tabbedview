@@ -1,28 +1,61 @@
-<tal:translation>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    tal:omit-tag="python: True"
+    i18n:domain="ftw.tabbedview">
 
-    
-    <div tal:replace="structure view/batching" tal:condition="view/contents"/>
+  <tal:has_contents tal:condition="view/contents">
+    <div tal:omit-tag="python: view.extjs_enabled" class="tab_container">
 
-    <form name="tabbedview_form"
-          method="post"
-          action="folder_object"
-          tal:attributes="action context/absolute_url">
-      <input type="hidden" name="orig_template" tal:attributes="value string:${context/absolute_url}/#${view/view_name}" />
-      <tal:cond tal:condition="view/contents">
+      <tal:extjs condition="view/extjs_enabled">
+        <div id="selection_container" class="ftwtable"><!--iefix--></div>
+        <div id="batching_container" class="ftwtable"><!--iefix--></div>
+      </tal:extjs>
+      <tal:html condition="not:view/extjs_enabled">
+        <div tal:replace="structure view/batching" />
+        <div tal:replace="structure view/selection" />
+      </tal:html>
+
+      <form name="tabbedview_form"
+            method="post"
+            action="folder_object"
+            tal:attributes="action context/absolute_url">
+        <input type="hidden" name="orig_template" tal:attributes="value string:${context/absolute_url}/#${view/view_name}" />
+
         <tal:extjs condition="view/extjs_enabled">
           <div id="listing_container"
-               class="ftwtable +extjs"><!--iefix--></div>
+               class="ftwtable +extjs tab_container"><!--iefix--></div>
+          <div id="menu_container" class="ftwtable"><!--iefix--></div>
         </tal:extjs>
+
         <tal:html condition="not:view/extjs_enabled">
-          <div tal:content="structure view/render_listing" />
+          <div id="listing_container">
+            <div tal:content="structure view/render_listing" />
+          </div>
+          <div tal:replace="structure view/menu" />
         </tal:html>
 
-      </tal:cond>
-    </form>
+      </form>
 
-    <p tal:condition="not: view/contents">
-      Keine Inhalte vorhanden
+    </div>
+  </tal:has_contents>
+
+  <tal:extjs condition="view/extjs_enabled">
+    <p style="display:none"
+       id="message_no_contents"
+       i18n:translate="label_no_contents">
+      No contents
     </p>
+  </tal:extjs>
+
+  <tal:html condition="not:view/extjs_enabled">
+    <p tal:condition="not:view/contents"
+       id="message_no_contents"
+       i18n:translate="label_no_contents">
+      No contents
+    </p>
+  </tal:html>
 
 
-</tal:translation>
+</html>

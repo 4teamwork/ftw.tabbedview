@@ -22,6 +22,11 @@ class ITabbedView(Interface):
         default=500,)
 
 
+class IListingView(Interface):
+    """Marker interface for listing tabs.
+    """
+
+
 class IGridStateStorageKeyGenerator(Interface):
     """Adapter interface for a multi adapter which provides a key for storing
     the grid state in dictstorage with. Dependending on the key the same state
@@ -35,4 +40,14 @@ class IGridStateStorageKeyGenerator(Interface):
     def get_key():
         """Returns a string which is used for storing the state in the
         dictstorage.
+        """
+
+
+class IDefaultDictStorageConfig(Interface):
+    """The default dict storage configuration configures `ftw.dictstorage`
+    to store its data as annotations on the plone site root.
+    """
+
+    def get_annotated_object(self):
+        """Returns the annotated object (the plone site by default).
         """
