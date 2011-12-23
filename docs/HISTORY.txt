@@ -5,6 +5,10 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Fix bug where the persistent ext-js grid state when trying to acces the sort information.
+  The sort information may not be there in some cases.
+  [jone]
+
 - Remove old i18n directory. #3
   [jone]
 

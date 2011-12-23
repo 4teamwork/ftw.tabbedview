@@ -452,7 +452,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # request, we need to change it in the config using the state
         # config.
         if self.request.get('dir', _marker) == _marker and \
-                self.request.get('sort', _marker) == _marker:
+                self.request.get('sort', _marker) == _marker and \
+                'sort' in parsed_state:
             if 'field' in parsed_state['sort']:
                 self.sort_on = parsed_state['sort']['field']
             if parsed_state['sort']['direction'] == 'ASC':
