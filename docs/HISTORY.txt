@@ -5,6 +5,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Add form authenticator to listing forms.
+  [jone]
+
 - Fix bug where the persistent ext-js grid state when trying to acces the sort information.
   The sort information may not be there in some cases.
   [jone]
