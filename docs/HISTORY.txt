@@ -5,6 +5,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Implemented show_menu condition.
+  [mathias.leimgruber]
+
 - Add form authenticator to listing forms.
   [jone]
 
@@ -24,7 +27,6 @@ Changelog
   - Respect extjs-config in registry for deciding if the extjs JS should be loaded.
   - Remove non-ftw.tabbedview translations added from custom projects.
   - Various cleanup and minor bug fixes.
-
   [jone]
 
 
