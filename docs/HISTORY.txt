@@ -5,6 +5,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Fix submenu click event binding. Dont use live(click). 
+  [mathias.leimgruber]
+
 - Implemented show_menu condition.
   [mathias.leimgruber]
 

@@ -350,7 +350,7 @@ load_tabbedview = function(callback) {
       'url': '@@tabbed_view/listing'
     });
     /* subview chooser*/
-    jq('.ViewChooser a').live('click', function() {
+    jq('.ViewChooser a').click(function() {
       tabbedview.param('view_name', this.id);
       tabbedview.reload_view();
     });
