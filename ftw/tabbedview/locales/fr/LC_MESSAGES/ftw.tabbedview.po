@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-12-16 09:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ./ftw/tabbedview/browser/selection.pt:14
+msgid "All visible entries chosen ${show_all_link}"
+msgstr "Choisir toutes les entrées visibles"
+
+#: ./ftw/tabbedview/browser/selection.pt:9
+msgid "Choose:"
+msgstr "Choisir :"
+
+msgid "Creator"
+msgstr "Auteur"
+
+#: ./ftw/tabbedview/browser/batching.pt:104
+msgid "Hits per site"
+msgstr "Hits par site"
+
+msgid "Title"
+msgstr "Titre"
+
+#: ./ftw/tabbedview/browser/selection.pt:11
+msgid "all (${amount})"
+msgstr "Tous"
+
+#. Default: "More actions &#9660;"
+#: ./ftw/tabbedview/browser/menu.pt:13
+msgid "button_more_actions"
+msgstr "Actions supplémentaires /Autres actions &#9660;"
+
+msgid "end"
+msgstr "Fin"
+
+#: ./ftw/tabbedview/browser/searchbox.pt:3
+msgid "filter"
+msgstr "Filtre"
+
+msgid "hours"
+msgstr "Heures effectués"
+
+#: ./ftw/tabbedview/browser/searchbox.pt:2
+msgid "label_filter"
+msgstr "Filtre"
+
+#. Default: "No contents"
+#: ./ftw/tabbedview/browser/generic.pt:45
+msgid "label_no_contents"
+msgstr "Aucun contenu"
+
+msgid "modified"
+msgstr "Modifié "
+
+#: ./ftw/tabbedview/browser/selection.pt:12
+msgid "none"
+msgstr "Aucun"
+
+msgid "review_state"
+msgstr "Etat"
+
+msgid "start"
+msgstr "Début"
+
+msgid "state"
+msgstr "Etat"
+

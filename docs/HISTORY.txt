@@ -5,6 +5,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+- Added some French translations
+  [ttschanz]
+
 - Fix submenu click event binding. Dont use live(click). 
   [mathias.leimgruber]
 
