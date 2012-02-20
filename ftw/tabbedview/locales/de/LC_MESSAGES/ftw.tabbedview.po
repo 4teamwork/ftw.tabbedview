@@ -14,7 +14,7 @@ msgstr ""
 
 #: ./ftw/tabbedview/browser/selection.pt:14
 msgid "All visible entries chosen ${show_all_link}"
-msgstr "Alle sichtbaren einträge auswählen ${show_all_link}"
+msgstr "Alle sichtbaren Einträge auswählen ${show_all_link}"
 
 #: ./ftw/tabbedview/browser/selection.pt:9
 msgid "Choose:"
