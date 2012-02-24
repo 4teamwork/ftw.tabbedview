@@ -8,7 +8,7 @@ Changelog
 - Added some French translations
   [ttschanz]
 
-- Fix submenu click event binding. Dont use live(click). 
+- Fix submenu click event binding. Dont use live(click).
   [mathias.leimgruber]
 
 - Implemented show_menu condition.
@@ -33,6 +33,7 @@ Changelog
   - Respect extjs-config in registry for deciding if the extjs JS should be loaded.
   - Remove non-ftw.tabbedview translations added from custom projects.
   - Various cleanup and minor bug fixes.
+
   [jone]
 
 
