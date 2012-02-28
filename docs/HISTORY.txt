@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-3.2 (unreleased)
-----------------
+3.1.1 (2012-02-28)
+------------------
 
 - Adjust MANIFEST.in: add include for rst files (reamde.rst).
   [phgross]
