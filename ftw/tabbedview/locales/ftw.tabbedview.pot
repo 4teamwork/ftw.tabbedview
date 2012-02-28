@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-16 09:48+0000\n"
+"POT-Creation-Date: 2012-02-28 13:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,10 @@ msgstr ""
 msgid "Hits per site"
 msgstr ""
 
+#: ./ftw/tabbedview/profiles/extjs/actions.xml
+msgid "Reset table configuration"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
@@ -40,7 +44,7 @@ msgid "all (${amount})"
 msgstr ""
 
 #. Default: "More actions &#9660;"
-#: ./ftw/tabbedview/browser/menu.pt:13
+#: ./ftw/tabbedview/browser/menu.pt:14
 msgid "button_more_actions"
 msgstr ""
 
@@ -59,7 +63,7 @@ msgid "label_filter"
 msgstr ""
 
 #. Default: "No contents"
-#: ./ftw/tabbedview/browser/generic.pt:45
+#: ./ftw/tabbedview/browser/generic.pt:46
 msgid "label_no_contents"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2011-12-16 09:48+0000\n"
+"POT-Creation-Date: 2012-02-28 13:13+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
@@ -27,6 +27,10 @@ msgstr "Ersteller"
 msgid "Hits per site"
 msgstr "Treffer pro Seite"
 
+#: ./ftw/tabbedview/profiles/extjs/actions.xml
+msgid "Reset table configuration"
+msgstr "Tabellenkonfiguration zurücksetzen"
+
 msgid "Title"
 msgstr "Titel"
 
@@ -35,7 +39,7 @@ msgid "all (${amount})"
 msgstr "Alle (${amount})"
 
 #. Default: "More actions &#9660;"
-#: ./ftw/tabbedview/browser/menu.pt:13
+#: ./ftw/tabbedview/browser/menu.pt:14
 msgid "button_more_actions"
 msgstr "Weitere Aktionen &#9660;"
 
@@ -55,7 +59,7 @@ msgid "label_filter"
 msgstr "Filter"
 
 #. Default: "No contents"
-#: ./ftw/tabbedview/browser/generic.pt:45
+#: ./ftw/tabbedview/browser/generic.pt:46
 msgid "label_no_contents"
 msgstr "Keine Inhalte"
 
@@ -74,5 +78,3 @@ msgstr "Beginn"
 
 msgid "state"
 msgstr "Status"
-
-
