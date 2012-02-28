@@ -5,6 +5,9 @@ Changelog
 3.1.2 (unreleased)
 ------------------
 
+- Fix bug in listing menu generator.
+  [jone]
+
 - Add a default "reset table configuration" folder_contents action (which is only
   visible on tabbedview tabs).
   [jone]

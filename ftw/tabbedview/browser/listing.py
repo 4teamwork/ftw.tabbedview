@@ -343,8 +343,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def minor_buttons(self):
         """ All buttons, which are listed in self.minor_actions
         """
-        if callable(self.minor_actions):
-            minor = self.minor_actions()
+        minor = self.minor_actions
+        if callable(minor):
+            minor = minor()
         minor = list(minor)
         return filter(lambda b: b['id'] in minor, self.buttons())
 
