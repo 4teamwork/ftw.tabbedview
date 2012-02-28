@@ -5,6 +5,10 @@ Changelog
 3.1.2 (unreleased)
 ------------------
 
+- Make search function more robust, so that it is possible to have a non-listing
+  view, switchin to a listing view when a search term is entered.
+  [jone]
+
 - Fix bug in listing menu generator.
   [jone]
 

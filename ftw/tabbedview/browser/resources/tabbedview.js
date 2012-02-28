@@ -283,11 +283,10 @@ load_tabbedview = function(callback) {
       return;
     }
 
-    if (value.length<=3 && tabbedview.prop('searchable_text') > value) {
+    if (value.length<3 && tabbedview.prop('searchable_text').length > value.length) {
       tabbedview.prop('searchable_text', '');
       tabbedview.flush_params('pagenumber:int');
-      //tabbedview.reload_view();
-      tabbedview.table.ftwtable('reload');
+      tabbedview.reload_view();
 
     } else {
       tabbedview.flush_params('pagenumber:int');
@@ -296,8 +295,11 @@ load_tabbedview = function(callback) {
 
     if (value.length>=3) {
       tabbedview.flush_all_params();
-      //tabbedview.reload_view();
-      tabbedview.table.ftwtable('reload');
+      if ($('.tab_container').length == 0) {
+        tabbedview.reload_view();
+      } else {
+        tabbedview.table.ftwtable('reload');
+      }
     }
   }));
 
