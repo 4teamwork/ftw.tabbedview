@@ -294,7 +294,7 @@ load_tabbedview = function(callback) {
     }
 
     if (value.length>=3) {
-      tabbedview.flush_all_params();
+      tabbedview.flush_params('pagenumber:int');
       if ($('.tab_container').length == 0) {
         tabbedview.reload_view();
       } else {
