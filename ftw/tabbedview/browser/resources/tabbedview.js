@@ -240,6 +240,13 @@ load_tabbedview = function(callback) {
   });
 
 
+  /* subview chooser*/
+  jq('.ViewChooser a').live('click', function() {
+    tabbedview.param('view_name', this.id);
+    tabbedview.reload_view();
+  });
+
+
   jq('.tabbedview-tabs').tabs(
     '.panes > div.pane', {
       current:'selected',
@@ -351,11 +358,6 @@ load_tabbedview = function(callback) {
     // initialize new table
     tabbedview.table = $('.tab_container').ftwtable({
       'url': '@@tabbed_view/listing'
-    });
-    /* subview chooser*/
-    jq('.ViewChooser a').click(function() {
-      tabbedview.param('view_name', this.id);
-      tabbedview.reload_view();
     });
 
     jq('a.rollover').tooltip(
