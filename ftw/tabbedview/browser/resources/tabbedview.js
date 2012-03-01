@@ -275,6 +275,7 @@ load_tabbedview = function(callback) {
 
   tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
     var value = tabbedview.searchbox.val();
+    var previous_value = tabbedview.prop('searchable_text');
     if (value === tabbedview.searchbox.attr('title')) {
       /* This prevents from reloading when the focus is set on the filter
          field (the field is empty in this state) and then the users switches
@@ -283,7 +284,7 @@ load_tabbedview = function(callback) {
       return;
     }
 
-    if (value.length<3 && tabbedview.prop('searchable_text').length > value.length) {
+    if (value.length<3 && previous_value && previous_value.length > value.length) {
       tabbedview.prop('searchable_text', '');
       tabbedview.flush_params('pagenumber:int');
       tabbedview.reload_view();
