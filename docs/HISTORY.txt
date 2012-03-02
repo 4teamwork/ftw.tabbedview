@@ -5,6 +5,9 @@ Changelog
 3.1.2 (unreleased)
 ------------------
 
+- Switch tab after loading contents of new tab, add "loading_tab" class while loading.
+  [jone]
+
 - Filtering listings: do not flush all params but flush pagenumber only.
   [jone]
 
