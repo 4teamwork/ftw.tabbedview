@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.2 (unreleased)
+3.1.2 (2012-03-05)
 ------------------
 
 - Switch tab after loading contents of new tab, add "loading_tab" class while loading.
