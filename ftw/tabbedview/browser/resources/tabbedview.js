@@ -59,9 +59,8 @@ load_tabbedview = function(callback) {
         url += '/';
       }
       var current_tab = jq('.tabbedview-tabs li a.selected');
-      jq('#'+tabbedview.prop('view_name')+'_overview').load(url+'tabbed_view/listing?'+params, function(){
-        tabbedview.view_container.trigger('reload');
-        tabbedview.spinner.hide();
+      var overview = jq('#'+tabbedview.prop('view_name')+'_overview');
+      overview.load(url+'tabbed_view/listing?'+params, function(){
 
         // call callback
         if (typeof callback == "function"){
@@ -69,9 +68,10 @@ load_tabbedview = function(callback) {
         }
         jq('#'+tabbedview.prop('old_view_name')+'_overview').html('');
 
+        tabbedview.hide_spinner();
+        tabbedview.view_container.trigger('reload');
       });
-      this.spinner.show();
-
+      this.show_spinner();
     },
 
     param : function(name, value) {
@@ -209,6 +209,21 @@ load_tabbedview = function(callback) {
       var total = jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .total.counter').html();
       jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .selected.counter').html(total);
     jq('#'+tabbedview.prop('view_name')+'_overview p#select-folder .select-all-text').hide();
+    },
+
+    show_spinner: function() {
+      var spinner = tabbedview.spinner;
+      if (! spinner.is(':visible')) {
+        var tab = tabbedview.view_container.find('#tabbedview-body');
+        spinner.css('position', 'absolute');
+        spinner.css('left', tab.position().left + (tab.width() / 2));
+        spinner.css('top', tab.position().top + 50);
+        spinner.show();
+      }
+    },
+
+    hide_spinner: function() {
+      tabbedview.spinner.hide();
     }
 
   };
@@ -256,7 +271,9 @@ load_tabbedview = function(callback) {
                 jQuery.tabbedview.view_container.addClass('loading_tab');
                 var tabbedview = jQuery.tabbedview;
                 var current_tab_id = jq('.tabbedview-tabs li a').get(index).id.split('tab-')[1];
-                jQuery.tabbedview.spinner.show();
+
+                jQuery.tabbedview.show_spinner();
+
                 jQuery.tabbedview.selected_tab = index;
                 var view_name = jQuery.tabbedview.prop('view_name');
                 jQuery.tabbedview.prop('old_view_name',view_name);
@@ -312,15 +329,13 @@ load_tabbedview = function(callback) {
       if ($('.tab_container').length == 0) {
         tabbedview.reload_view();
       } else {
+        tabbedview.show_spinner();
         tabbedview.table.ftwtable('reload');
       }
     }
   }));
 
-  tabbedview.spinner.css('position', 'absolute');
-  tabbedview.spinner.show();
-  tabbedview.spinner.css('left', '968px');
-  tabbedview.spinner.css('top', '140px');
+  jQuery.tabbedview.show_spinner();
 
   // batching navigation
   jq('.listingBar span a, .listingBar a').live('click', function(e,o) {
