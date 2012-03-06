@@ -25,9 +25,12 @@ class TabbedView(BrowserView):
             css_classes = None
             #get the css classes that should be set on the A elements.
             view_name = "tabbedview_view-%s" % action['id']
-            view = queryMultiAdapter((self.context, self.request), name=view_name, default=None)
+            view = queryMultiAdapter((self.context, self.request),
+                                     name=view_name, default=None)
+
             if view and hasattr(view, 'get_css_classes'):
                 css_classes = ' '.join(view.get_css_classes())
+
             yield {
                 'id': action['id'].lower(),
                 'icon': icon,
@@ -43,24 +46,27 @@ class TabbedView(BrowserView):
         types_tool = getToolByName(context, 'portal_types')
         ai_tool = getToolByName(context, 'portal_actionicons')
         actions = types_tool.listActions(object=context)
-        plone_state = view = queryMultiAdapter(
-            (self.context, self.request),
-            name='plone_portal_state')
+        plone_state = queryMultiAdapter((self.context, self.request),
+                                        name='plone_portal_state')
         member = plone_state.member()
+
         for action in actions:
             wrong_permission = False
             for permission in action.permissions:
                 if not member.has_permission(permission, self.context):
                     wrong_permission = True
                     continue
+
             if wrong_permission:
                 continue
+
             if action.category == category:
                 icon = ai_tool.queryActionIcon(action_id=action.id,
                                                 category=category,
                                                 context=context)
                 econtext = getExprContext(context, context)
                 action = action.getAction(ec=econtext)
+
                 if action['available'] and action['visible']:
                     yield action, icon
 
@@ -72,9 +78,11 @@ class TabbedView(BrowserView):
         if view_name:
             listing_view = queryMultiAdapter((self.context, self.request),
                             name='tabbedview_view-%s' % view_name)
+
             if listing_view is None:
-                listing_view = queryMultiAdapter((self.context, self.request),
-                                name='tabbedview_view-fallback')
+                listing_view = queryMultiAdapter(
+                    (self.context, self.request),
+                    name='tabbedview_view-fallback')
 
             return listing_view()
 
@@ -85,7 +93,8 @@ class TabbedView(BrowserView):
         positions = self.request.get('new_order[]')
         #orderd list of allids within the container
         object_ids = self.context.objectIds(ordered=True)
-        #move and order tab content in the desired order before the remaining objects
+        #move and order tab content in the desired order before
+        #the remaining objects
         state = self.context.moveObjectsByDelta(positions, -len(object_ids))
         return str(state)
 
@@ -113,14 +122,14 @@ class TabbedView(BrowserView):
             return
 
         # get the key for storing the state
-        generator = queryMultiAdapter((self.context, listing_view, self.request),
-                                      IGridStateStorageKeyGenerator)
+        generator = queryMultiAdapter(
+            (self.context, listing_view, self.request),
+            IGridStateStorageKeyGenerator)
         key = generator.get_key()
 
         # store the data
         storage = IDictStorage(listing_view)
         storage.set(key, state)
-
 
     def select_all(self):
         """Called when select-all is clicked. Returns HTML containing
@@ -131,9 +140,9 @@ class TabbedView(BrowserView):
         self.tab = self.context.restrictedTraverse("tabbedview_view-%s" %
                                           self.request.get('view_name'))
 
-        return self.tab.select_all(int(self.request.get('pagenumber', 1)),
-                                   int(self.request.get('selected_count', 0)))
-
+        return self.tab.select_all(
+            int(self.request.get('pagenumber', 1)),
+            int(self.request.get('selected_count', 0)))
 
     def show_uploadbox(self):
         """check if the uploadbox is activated for actual context"""

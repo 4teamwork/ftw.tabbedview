@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+
+  <javascript
+      id="++resource++ftwtable.extjs.js"
+      expression="object/@@tabbedview_config/extjs_enabled"
+      />
+
+</object>

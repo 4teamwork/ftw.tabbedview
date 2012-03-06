@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2011-12-16 09:48+0000\n"
-"PO-Revision-Date: 2011-12-16 10:48+0100\n"
-"Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
-"Language-Team: 4teamwork <info@4teamwork.ch>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,65 +14,64 @@ msgstr ""
 
 #: ./ftw/tabbedview/browser/selection.pt:14
 msgid "All visible entries chosen ${show_all_link}"
-msgstr "Alle sichtbaren Einträge auswählen ${show_all_link}"
+msgstr "Choix de toutes les entrées visibles"
 
 #: ./ftw/tabbedview/browser/selection.pt:9
 msgid "Choose:"
-msgstr "Auswählen"
+msgstr "Choisir :"
 
 msgid "Creator"
-msgstr "Ersteller"
+msgstr "Auteur"
 
 #: ./ftw/tabbedview/browser/batching.pt:104
 msgid "Hits per site"
-msgstr "Treffer pro Seite"
+msgstr "Hits par site"
 
 msgid "Title"
-msgstr "Titel"
+msgstr "Titre"
 
 #: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
-msgstr "Alle (${amount})"
+msgstr "Tous"
 
 #. Default: "More actions &#9660;"
 #: ./ftw/tabbedview/browser/menu.pt:13
 msgid "button_more_actions"
-msgstr "Weitere Aktionen &#9660;"
+msgstr "Actions supplémentaires &#9660;"
 
 msgid "end"
-msgstr "Ende"
+msgstr "Fin"
 
 #: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "filter"
-msgstr "Filtern"
+msgstr "Filtre"
 
 msgid "hours"
-msgstr "geleist. Std."
+msgstr "Heures effectués"
 
-#. Default: "Filter"
 #: ./ftw/tabbedview/browser/searchbox.pt:2
 msgid "label_filter"
-msgstr "Filter"
+msgstr "Filtre"
 
 #. Default: "No contents"
 #: ./ftw/tabbedview/browser/generic.pt:45
 msgid "label_no_contents"
-msgstr "Keine Inhalte"
+msgstr "Aucun contenu"
 
 msgid "modified"
-msgstr "Bearbeitet"
+msgstr "Modifié "
 
 #: ./ftw/tabbedview/browser/selection.pt:12
 msgid "none"
-msgstr "Keine"
+msgstr "Aucun"
 
 msgid "review_state"
-msgstr "Status"
+msgstr "Etat"
 
 msgid "start"
-msgstr "Beginn"
+msgstr "Début"
 
 msgid "state"
-msgstr "Status"
+msgstr "Etat"
 
 

@@ -32,12 +32,18 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="tabbedview_config"
+        class=".config.TabbedviewConfigView"
+        permission="zope2.View"
+        />
+
   <!-- Quick Upload javascript Init -->
   <browser:page
       for="ftw.tabbedview.interfaces.ITabbedView"
       name="quick_upload_init"
       class=".quick_upload.FtwUploadInit"
       permission="cmf.AddPortalContent"/>
-
 
 </configure>
