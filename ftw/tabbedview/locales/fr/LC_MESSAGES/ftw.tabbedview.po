@@ -29,7 +29,7 @@ msgstr "Résultats par site"
 
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
-msgstr ""
+msgstr "Remettre à zéro la configuration des tableaux"
 
 msgid "Title"
 msgstr "Titre"
