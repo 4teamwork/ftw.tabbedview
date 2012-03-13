@@ -382,14 +382,6 @@ load_tabbedview = function(callback) {
     tabbedview.table = $('.tab_container').ftwtable({
       'url': '@@tabbed_view/listing'
     });
-
-    jq('a.rollover').tooltip(
-      {showURL: false,
-       track: true,
-       fade: 250,
-       top:20,
-       left:15
-      });
   });
 
   tabbedview.view_container.bind('gridRendered', function() {
