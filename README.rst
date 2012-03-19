@@ -135,11 +135,11 @@ Alternative listing sources
 ===========================
 
 It is possible to use alternative sources for listing tabs. The tables are generated
-using ``ftw.table``_ and the tab is a ``ftw.table.interfaces.ITableSourceConfig``, which
+using `ftw.table`_ and the tab is a ``ftw.table.interfaces.ITableSourceConfig``, which
 allows ``ftw.table`` to find an appropriate source. Subclassing ``ITableSourceConfig`` and
 registering a custom ``ITableSource`` multi adapter makes it possible to use alternative
 data sources such as sqlalchemy or structured python data (local roles for instance).
-Take a look at the ``ftw.table``_ documentation for more details.
+Take a look at the `ftw.table`_ documentation for more details.
 
 
 Screenshots
