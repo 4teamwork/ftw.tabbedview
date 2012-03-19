@@ -22,8 +22,7 @@ Installation
 ============
 
 
-Default table implementation
-----------------------------
+**Default table implementation**
 
 - Add ``ftw.tabbedview`` to your buildout (or as dependency to a custom egg):
 
@@ -43,8 +42,7 @@ Default table implementation
 - Install default profile in portal_setup.
 
 
-Ext JS table implementation
----------------------------
+**Ext JS table implementation**
 
 - Add ``ftw.tabbedview`` to your buildout (or as dependency to a custom egg),
   using the ``extjs`` extras require:
