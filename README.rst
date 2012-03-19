@@ -18,8 +18,9 @@ Features
 - Fallback tables
 
 
-Usage
-=====
+Installation
+============
+
 
 Default table implementation
 ----------------------------
@@ -64,13 +65,83 @@ Ext JS table implementation
 - Install extjs profile in portal_setup.
 
 
-Licensing
----------
+Usage
+=====
 
-This package is released under GPL Version 2.
-Be aware, that when using the package with the ``extjs`` extras, it will
-install `Ext JS`_, which has different license policies. See
-http://www.sencha.com/products/extjs/license/ for details.
+We use the package ``example.conference``_ as example for showing how to use ``ftw.tabbedview``.
+
+- Use the ``@@tabbed_view`` on any container.
+
+- Define actions on the content type FTI (Example: ``profiles/default/types/example.conference.program.xml``)::
+
+    <?xml version="1.0"?>
+    <object name="example.conference.program" meta_type="Dexterity FTI"
+            i18n:domain="example.conference" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+      <property name="default_view">tabbed_view</property>
+      <property name="view_methods">
+          <element value="tabbed_view"/>
+      </property>
+
+      <action title="Sessions" action_id="sessions" category="tabbedview-tabs"
+              condition_expr="" url_expr="string:${object_url}?view=sessions"
+              visible="True">
+          <permission value="View"/>
+      </action>
+
+    </object>
+
+- Create the "tab" view (Example: ``browser/tabs.py``)::
+
+    >>> from ftw.tabbedview.browser.listing import CatalogListingView
+    >>> from ftw.table import helper
+    >>> from example.conference import _
+    >>>
+    >>> class SessionsTab(CatalogListingView):
+    ...     """A tabbed-view tab listing sessions on a program.
+    ...     """
+    ...
+    ...     types = ['example.conference.session']
+    ...     sort_on = 'sortable_title'
+    ...
+    ...     show_selects = False
+    ...
+    ...     columns = (
+    ...         {'column': 'Title',
+    ...          'sort_index': 'sortable_title',
+    ...          'column_title': _(u'Title'),
+    ...          'helper': helper.linked},
+    ...
+    ...         {'column': 'Track',
+    ...          'column_title': _(u"Track")},
+    ...         )
+
+- Register the view using ZCML, be sure to name it ``tabbedview_view-${action id}``
+(Example: ``browser/configure.zcml``)::
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser">
+
+        <browser:page
+            for="example.conference.program.IProgram"
+            name="tabbedview_view-sessions"
+            class=".tabs.SessionsTab"
+            permission="zope2.View"
+            />
+
+    </configure>
+
+
+Alternative listing sources
+===========================
+
+It is possible to use alternative sources for listing tabs. The tables are generated
+using ``ftw.table``_ and the tab is a ``ftw.table.interfaces.ITableSourceConfig``, which
+allows ``ftw.table`` to find an appropriate source. Subclassing ``ITableSourceConfig`` and
+registering a custom ``ITableSource`` multi adapter makes it possible to use alternative
+data sources such as sqlalchemy or structured python data (local roles for instance).
+Take a look at the ``ftw.table``_ documentation for more details.
 
 
 Links
@@ -81,11 +152,23 @@ Links
 - Package on pypi: http://pypi.python.org/pypi/ftw.tabbedview
 
 
-Maintainer
-==========
+Licensing
+=========
 
-This package is produced and maintained by `4teamwork <http://www.4teamwork.ch/>`_ company.
+This package is released under GPL Version 2.
+Be aware, that when using the package with the ``extjs`` extras, it will
+install `Ext JS`_, which has different license policies. See
+http://www.sencha.com/products/extjs/license/ for details.
+
+
+Copyright
+=========
+
+This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
+
+``ftw.tabbedview`` is licensed under GNU General Public License, version 2.
 
 
 .. _ftw.table: https://github.com/4teamwork/ftw.table
+.. _example.conference: https://github.com/collective/example.conference
 .. _Ext JS: http://www.sencha.com/products/extjs/
