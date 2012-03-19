@@ -4,10 +4,19 @@ import os
 version = '3.1.5.dev0'
 maintainer = 'Jonas Baumann'
 
+tests_require = [
+    'plone.app.testing',
+    'ftw.testing',
+    ]
+
+extras_require = {
+    'tests': tests_require,
+    'extjs': ['ftw.table[extjs]'],
+    }
+
 setup(name='ftw.tabbedview',
       version=version,
-      description='This package provides a generic view with multiple' + \
-          ' tabs for plone.',
+      description='A generic tabbed view for plone content types.',
       long_description=open('README.rst').read() + '\n' + \
           open(os.path.join('docs', 'HISTORY.txt')).read(),
 
@@ -43,9 +52,8 @@ setup(name='ftw.tabbedview',
         'ftw.dictstorage',
         # -*- Extra requirements: -*-
         ],
-      extras_require = {
-        'extjs': ['ftw.table[extjs]',],
-        },
+      tests_require=tests_require,
+      extras_require=extras_require,
 
       entry_points='''
       # -*- Entry points: -*-
