@@ -144,6 +144,19 @@ data sources such as sqlalchemy or structured python data (local roles for insta
 Take a look at the ``ftw.table``_ documentation for more details.
 
 
+Screenshots
+===========
+
+Screenshot of a example tabbed view using the default table implementation:
+
+.. image:: https://github.com/4teamwork/ftw.tabbedview/raw/master/docs/screenshot1.png
+
+Screenshot of the same listing using the ``extjs`` table implementation:
+
+.. image:: https://github.com/4teamwork/ftw.tabbedview/raw/master/docs/screenshot2.png
+
+
+
 Links
 =====
 
