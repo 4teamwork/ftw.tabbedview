@@ -48,6 +48,6 @@ class IDefaultDictStorageConfig(Interface):
     to store its data as annotations on the plone site root.
     """
 
-    def get_annotated_object(self):
+    def get_annotated_object():
         """Returns the annotated object (the plone site by default).
         """
