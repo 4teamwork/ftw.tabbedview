@@ -16,5 +16,8 @@ class ZCMLLayer(ComponentRegistryLayer):
         import ftw.tabbedview.tests
         self.load_zcml_file('tests.zcml', ftw.tabbedview.tests)
 
+        import plone.registry
+        self.load_zcml_file('configure.zcml', plone.registry)
+
 
 ZCML_LAYER = ZCMLLayer()
