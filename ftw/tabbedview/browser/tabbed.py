@@ -148,5 +148,8 @@ class TabbedView(BrowserView):
         """check if the uploadbox is activated for actual context"""
 
         if ITabbedviewUploadable.providedBy(self.context):
-            return True
+            member = getToolByName(
+                self.context, 'portal_membership').getAuthenticatedMember()
+            return member.checkPermission(
+                'Add portal content', self.context)
         return False
