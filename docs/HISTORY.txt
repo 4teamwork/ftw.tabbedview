@@ -2,10 +2,46 @@ Changelog
 =========
 
 
-3.1.2 (unreleased)
+3.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Removed integrated tooltips.
+  If you still wand tooltips, use ftw.tooltip
+  [mathias.leimgruber]
+
+
+3.1.3 (2012-03-12)
+------------------
+
+- Disable tabbedview_search instead of hiding.
+  [Julian Infanger]
+
+- Add new spinner, update spinner position and add helper functions.
+  [jone]
+
+
+3.1.2 (2012-03-05)
+------------------
+
+- Switch tab after loading contents of new tab, add "loading_tab" class while loading.
+  [jone]
+
+- Filtering listings: do not flush all params but flush pagenumber only.
+  [jone]
+
+- Hide label of "Filter" box, but keep it for accessibility rasons.
+  [jone]
+
+- Make search function more robust, so that it is possible to have a non-listing
+  view, switchin to a listing view when a search term is entered.
+  [jone]
+
+- Fix bug in listing menu generator.
+  [jone]
+
+- Add a default "reset table configuration" folder_contents action (which is only
+  visible on tabbedview tabs).
+  [jone]
 
 
 3.1.1 (2012-02-28)
