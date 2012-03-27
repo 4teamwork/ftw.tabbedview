@@ -28,6 +28,11 @@ class ITabbedView(Interface):
         title=u'Dynamic batchsize maximum',
         default=500,)
 
+    quickupload_addable_types = schema.List(
+        title=u'',
+        description=u'Types which are addable with quickupload',
+        default=["File",],
+        )
 
 class IListingView(Interface):
     """Marker interface for listing tabs.

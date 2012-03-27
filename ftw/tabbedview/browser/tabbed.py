@@ -4,6 +4,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 from zope.component import queryMultiAdapter
 
 try:
@@ -150,6 +152,15 @@ class TabbedView(BrowserView):
         if ITabbedviewUploadable.providedBy(self.context):
             member = getToolByName(
                 self.context, 'portal_membership').getAuthenticatedMember()
-            return member.checkPermission(
-                'Add portal content', self.context)
+            if member.checkPermission(
+                'Add portal content', self.context):
+
+                registry = getUtility(IRegistry)
+                upload_addable = registry.get(
+                    'ftw.tabbedview.interfaces.ITabbedView.quickupload_addable_types')
+
+                for fti in self.context.allowedContentTypes():
+                    if fti.id in upload_addable:
+                        return True
+
         return False
