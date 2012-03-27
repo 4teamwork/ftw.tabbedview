@@ -50,7 +50,9 @@ jq(function(){
       },
       function () {
         var uploading = eval('xhr_' + uploadbox.find('.main-uploader').attr('id')).isUploading();
-        if (! uploading){
+        var has_errors = uploadbox.find('.main-uploader .qq-upload-fail').length > 0;
+
+        if (! uploading && ! has_errors){
           uploadbox.hide();
         }
       }
