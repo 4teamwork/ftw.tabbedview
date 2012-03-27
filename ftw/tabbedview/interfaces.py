@@ -31,8 +31,9 @@ class ITabbedView(Interface):
     quickupload_addable_types = schema.List(
         title=u'',
         description=u'Types which are addable with quickupload',
-        default=["File",],
+        default=["File", ],
         )
+
 
 class IListingView(Interface):
     """Marker interface for listing tabs.
@@ -67,4 +68,3 @@ class IDefaultDictStorageConfig(Interface):
 if QUICKUPLOAD_INSTALLED:
     class ITabbedviewUploadable(Interface, IQuickUploadCapable):
         """Marker interfaces"""
-
