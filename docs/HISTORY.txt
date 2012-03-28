@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.5 (unreleased)
+3.1.5 (2012-03-28)
 ------------------
 
 - Enable extjs in portal_registry with extjs GS profile.
