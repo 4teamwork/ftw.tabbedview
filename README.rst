@@ -16,6 +16,7 @@ Features
 - Perform configurable actions on listed items
 - `ftw.table`_'s `Ext JS`_ support works also in listing tables
 - Fallback tables
+- Drag'n drop multiple file upload functionality (using quickupload plugin)
 
 
 Installation
@@ -63,6 +64,32 @@ Installation
 - Install extjs profile in portal_setup.
 
 
+Quickupload plugin implementation
+---------------------------------
+
+The quickupload plugin integrates the `collective.quickupload`_ packages in to the tabbedview.
+
+- Add ``ftw.tabbedview`` to your buildout (or as dependency to a custom egg),
+  using the ``quickupload`` extras require:
+
+::
+
+    [buildout]
+    parts =
+        instance
+        ...
+
+    [instance]
+    ...
+    eggs +=
+        Plone
+        ftw.tabbedview[quickupload]
+
+- Install quickupload profile in portal_setup.
+
+- For activating the quickupload plugin on a context, make sure the context provides the ITabbedviewUploadable Interface.
+
+=====
 Usage
 =====
 
@@ -183,3 +210,6 @@ This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 .. _ftw.table: https://github.com/4teamwork/ftw.table
 .. _example.conference: https://github.com/collective/example.conference
 .. _Ext JS: http://www.sencha.com/products/extjs/
+.. _collective.quickupload: https://github.com/collective/collective.quickupload
+
+

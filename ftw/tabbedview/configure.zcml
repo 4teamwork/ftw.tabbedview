@@ -50,4 +50,17 @@
             />
     </configure>
 
+    <!-- quickupload is optional -->
+    <configure zcml:condition="installed collective.quickupload">
+        <include package="collective.quickupload" />
+        <genericsetup:registerProfile
+            name="quickupload"
+            title="ftw.tabbedview : quickupload"
+            directory="profiles/quickupload"
+            description="Install Quickupload addon for tabbedview"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            />
+    </configure>
+
+
 </configure>

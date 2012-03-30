@@ -12,6 +12,7 @@ tests_require = [
 extras_require = {
     'tests': tests_require,
     'extjs': ['ftw.table[extjs]'],
+    'quickupload': ['collective.quickupload'],
     }
 
 setup(name='ftw.tabbedview',
@@ -52,6 +53,7 @@ setup(name='ftw.tabbedview',
         'ftw.dictstorage',
         # -*- Extra requirements: -*-
         ],
+
       tests_require=tests_require,
       extras_require=extras_require,
 

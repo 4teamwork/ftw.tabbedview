@@ -33,7 +33,6 @@
             <tal:title replace="context/Title" />
           </h1>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
-
           <div class="tabbedview-tabs">
             <ul class="formTabs">
               <li tal:repeat="tab view/get_tabs" class="formTab">
@@ -53,6 +52,18 @@
 
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
+          <div id="uploadbox" class="uploaderContainer" tal:condition="view/show_uploadbox">
+              <input type="hidden"
+                     name="uploadUrl"
+                     class="uploadUrl"
+                     tal:attributes="value string: ${context/absolute_url}/@@quick_upload" />
+              <input type="hidden"
+                     name="uploadData"
+                     class="uploadData"
+                     value=""
+                     />
+          </div>
+
             <tal:panes repeat="tab view/get_tabs">
                 <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane"><!-- iefix --></div>
             </tal:panes>

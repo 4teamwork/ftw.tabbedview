@@ -1,6 +1,13 @@
 from zope import schema
 from zope.interface import Interface
 
+try:
+    from collective.quickupload.browser.interfaces import IQuickUploadCapable
+except ImportError:
+    QUICKUPLOAD_INSTALLED = False
+else:
+    QUICKUPLOAD_INSTALLED = True
+
 
 class ITabbedView(Interface):
     """A type for collaborative spaces."""
@@ -20,6 +27,12 @@ class ITabbedView(Interface):
     max_dynamic_batchsize = schema.Int(
         title=u'Dynamic batchsize maximum',
         default=500,)
+
+    quickupload_addable_types = schema.List(
+        title=u'',
+        description=u'Types which are addable with quickupload',
+        default=["File", ],
+        )
 
 
 class IListingView(Interface):
@@ -51,3 +64,7 @@ class IDefaultDictStorageConfig(Interface):
     def get_annotated_object():
         """Returns the annotated object (the plone site by default).
         """
+
+if QUICKUPLOAD_INSTALLED:
+    class ITabbedviewUploadable(Interface, IQuickUploadCapable):
+        """Marker interfaces"""
