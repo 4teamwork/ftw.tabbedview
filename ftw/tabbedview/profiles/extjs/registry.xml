@@ -1,0 +1,5 @@
+<registry>
+  <records interface="ftw.tabbedview.interfaces.ITabbedView">
+      <value key="extjs_enabled">True</value>
+  </records>
+</registry>

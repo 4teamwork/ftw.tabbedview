@@ -18,7 +18,7 @@
         />
 
     <browser:page
-        for="ftw.tabbedview.interfaces.ITabbedView"
+        for="*"
         name="tabbedview_view-fallback"
         class=".fallback.FallbackView"
         permission="zope2.View"

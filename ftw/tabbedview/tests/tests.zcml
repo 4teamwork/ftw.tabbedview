@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:meta="http://namespaces.zope.org/meta">
+
+    <!-- depedencies and plugins are disabled in layer! -->
+    <include package="z3c.autoinclude" file="meta.zcml" />
+
+    <include package="zope.i18n" file="meta.zcml" />
+    <include package="Products.Five.browser" file="meta.zcml" />
+    <include package="Products.Five.viewlet" file="meta.zcml" />
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
+    <include package="zope.security" file="meta.zcml" />
+    <include package="AccessControl" file="permissions.zcml" />
+
+    <include package="zope.annotation" />
+    <include package="zope.traversing" />
+
+    <include package="ftw.tabbedview" />
+
+</configure>

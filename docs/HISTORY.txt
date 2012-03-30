@@ -2,11 +2,18 @@ Changelog
 =========
 
 
-3.1.4 (unreleased)
+3.1.5 (unreleased)
 ------------------
 
-- Added Quickupload plugin, wich provides drag'n drop multiple fileupload functionality.
+- Added Quickupload plugin, wich provides drag'n drop multiple fileupload functionality.g
   [phgross]
+
+- Enable extjs in portal_registry with extjs GS profile.
+  [jone]
+
+
+3.1.4 (2012-03-19)
+------------------
 
 - Removed integrated tooltips.
   If you still wand tooltips, use ftw.tooltip
