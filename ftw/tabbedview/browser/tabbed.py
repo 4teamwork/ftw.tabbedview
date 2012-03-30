@@ -149,6 +149,9 @@ class TabbedView(BrowserView):
     def show_uploadbox(self):
         """check if the uploadbox is activated for the current context"""
 
+        if not QUICKUPLOAD_INSTALLED:
+            return False
+
         if ITabbedviewUploadable.providedBy(self.context):
             member = getToolByName(
                 self.context, 'portal_membership').getAuthenticatedMember()
