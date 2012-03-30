@@ -67,6 +67,8 @@ Installation
 Quickupload plugin implementation
 ---------------------------------
 
+The quickupload plugin integrates the `collective.quickupload`_ packages in to the tabbedview.
+
 - Add ``ftw.tabbedview`` to your buildout (or as dependency to a custom egg),
   using the ``quickupload`` extras require:
 
@@ -177,7 +179,6 @@ Screenshot of a example tabbed view using the default table implementation:
 Screenshot of the same listing using the ``extjs`` table implementation:
 
 .. image:: https://github.com/4teamwork/ftw.tabbedview/raw/master/docs/screenshot2.png
->>>>>>> master
 
 
 
@@ -210,3 +211,5 @@ This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 .. _example.conference: https://github.com/collective/example.conference
 .. _Ext JS: http://www.sencha.com/products/extjs/
 .. _collective.quickupload: https://github.com/collective/collective.quickupload
+
+

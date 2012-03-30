@@ -5,7 +5,7 @@ Changelog
 3.1.5 (unreleased)
 ------------------
 
-- Added Quickupload plugin, wich provides drag'n drop multiple fileupload functionality.g
+- Added Quickupload plugin, wich provides drag'n drop multiple fileupload functionality.
   [phgross]
 
 - Enable extjs in portal_registry with extjs GS profile.
