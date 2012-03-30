@@ -147,7 +147,7 @@ class TabbedView(BrowserView):
             int(self.request.get('selected_count', 0)))
 
     def show_uploadbox(self):
-        """check if the uploadbox is activated for actual context"""
+        """check if the uploadbox is activated for the current context"""
 
         if ITabbedviewUploadable.providedBy(self.context):
             member = getToolByName(
