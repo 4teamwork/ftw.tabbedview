@@ -5,6 +5,9 @@ Changelog
 3.1.4 (unreleased)
 ------------------
 
+- Added Quickupload plugin, wich provides drag'n drop multiple fileupload functionality.
+  [phgross]
+
 - Removed integrated tooltips.
   If you still wand tooltips, use ftw.tooltip
   [mathias.leimgruber]
