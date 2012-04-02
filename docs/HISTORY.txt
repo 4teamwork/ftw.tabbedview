@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-3.2 (unreleased)
-------------------
+3.2 (2012-04-02)
+----------------
 
 - Bugfix in check for quickupload is available.
   [mathias.leimgruber]
