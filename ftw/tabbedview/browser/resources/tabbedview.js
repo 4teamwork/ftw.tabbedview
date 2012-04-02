@@ -303,7 +303,7 @@ load_tabbedview = function(callback) {
 
   jq('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
 
-  tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
+  tabbedview.searchbox.bind("keyup", jq.debounce(250, function(e) {
     var value = tabbedview.searchbox.val();
     var previous_value = tabbedview.prop('searchable_text');
     if (value === tabbedview.searchbox.attr('title')) {
@@ -326,7 +326,7 @@ load_tabbedview = function(callback) {
 
     if (value.length>=3) {
       tabbedview.flush_params('pagenumber:int');
-      if ($('.tab_container').length == 0) {
+      if (jq('.tab_container').length == 0) {
         tabbedview.reload_view();
       } else {
         tabbedview.show_spinner();
@@ -365,7 +365,7 @@ load_tabbedview = function(callback) {
 
   tabbedview.view_container.bind('reload', function() {
     //hide or show filter box
-    if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
+    if(jq('.tabbedview-tabs li a.selected.searchform-hidden').length){
       tabbedview.searchbox.closest('.tabbedview_search').addClass('disabledSearchBox');
       tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', 'disabled');
     }else{
@@ -379,7 +379,7 @@ load_tabbedview = function(callback) {
       tabbedview.table.ftwtable('destroy');
     }
     // initialize new table
-    tabbedview.table = $('.tab_container').ftwtable({
+    tabbedview.table = jq('.tab_container').ftwtable({
       'url': '@@tabbed_view/listing'
     });
   });

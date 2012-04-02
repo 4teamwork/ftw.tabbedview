@@ -5,7 +5,8 @@ Changelog
 3.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Replace some $ by jq in tabbedview.js.
+ [mathias.leimgruber]
 
 
 3.2 (2012-04-02)
