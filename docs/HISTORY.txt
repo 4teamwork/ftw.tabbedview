@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.1 (unreleased)
+3.2.1 (2012-04-05)
 ------------------
 
 - Replace some $ by jq in tabbedview.js.
