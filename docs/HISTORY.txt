@@ -5,7 +5,9 @@ Changelog
 3.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added CSS classes to brackets, which indicates the current page in
+  batching.pt
+  [mathias.leimgruber]
 
 
 3.2.1 (2012-04-05)
