@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.2 (unreleased)
+3.2.2 (2012-04-23)
 ------------------
 
 - Added CSS classes to brackets, which indicates the current page in
