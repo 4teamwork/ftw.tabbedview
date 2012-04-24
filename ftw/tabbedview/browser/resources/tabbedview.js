@@ -60,7 +60,7 @@ load_tabbedview = function(callback) {
       }
       var current_tab = jq('.tabbedview-tabs li a.selected');
       var overview = jq('#'+tabbedview.prop('view_name')+'_overview');
-      overview.load(url+'tabbed_view/listing?'+params, function(){
+      overview.load(url+'tabbed_view/listing?ajax_load=1&'+params, function(){
 
         // call callback
         if (typeof callback == "function"){

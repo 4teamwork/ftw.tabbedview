@@ -5,6 +5,9 @@ Changelog
 3.2.3 (unreleased)
 ------------------
 
+- Added 'ajax_load' parameter to listing request.
+  [lgraf]
+
 - Setting correct Content-Type header for JSON response from ListingView.
   [lgraf]
 
