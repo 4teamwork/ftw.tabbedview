@@ -5,7 +5,8 @@ Changelog
 3.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Setting correct Content-Type header for JSON response from ListingView.
+  [lgraf]
 
 
 3.2.2 (2012-04-23)
