@@ -5,6 +5,9 @@ Changelog
 3.2.3 (unreleased)
 ------------------
 
+- Setting 'X-Theme-Disabled' header in ListingView response for HTML fragment
+  [lgraf]
+
 - Added 'ajax_load' parameter to listing request.
   [lgraf]
 

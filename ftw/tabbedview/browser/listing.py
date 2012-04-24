@@ -109,6 +109,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             else:
                 self.contents = [{}, ]
                 self.load_request_parameters()
+                # We're returning a HTML *fragment*, therefore prevent
+                # Diazio from theming it
+                self.request.response.setHeader('X-Theme-Disabled', 'True')
                 return self.template()
 
         self.update()
