@@ -135,8 +135,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             # XXX eliminate self.pagenumber
             self.pagenumber = self.batching_current_page
 
-            self.batching_pagesize = self.pagesize
-
             # dynamic batching
             if self.dynamic_batchsize_enabled:
                 if self.request.get('pagesize', None):
@@ -147,6 +145,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
                     if self.max_dynamic_batchsize < self.pagesize:
                         self.pagesize = self.max_dynamic_batchsize
+
+            self.batching_pagesize = self.pagesize
 
         # set url
         self.url = self.context.absolute_url()
