@@ -5,6 +5,9 @@ Changelog
 3.2.3 (unreleased)
 ------------------
 
+- Add meta:provides ftw.tabbedview3 for zcml:conditions.
+  [jone]
+
 - Setting 'X-Theme-Disabled' header in ListingView response for HTML fragment
   [lgraf]
 
