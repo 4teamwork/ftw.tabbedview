@@ -8,6 +8,7 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 
+
 try:
     from ftw.tabbedview.interfaces import ITabbedviewUploadable
 except ImportError:
@@ -160,7 +161,8 @@ class TabbedView(BrowserView):
 
                 registry = getUtility(IRegistry)
                 upload_addable = registry.get(
-                    'ftw.tabbedview.interfaces.ITabbedView.quickupload_addable_types')
+                    'ftw.tabbedview.interfaces.ITabbedView' + \
+                        '.quickupload_addable_types')
 
                 for fti in self.context.allowedContentTypes():
                     if fti.id in upload_addable:

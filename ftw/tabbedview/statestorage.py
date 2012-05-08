@@ -11,7 +11,6 @@ from zope.component import adapts
 from zope.interface import implements
 
 
-
 class DefaultGridStateStorageKeyGenerator(object):
     """Default implementation of the grid state storage key generator multi
     adapter. The default implementation uses following parts as key:
@@ -64,6 +63,7 @@ class DefaultDictStorageConfig(object):
 
     def get_annotations_key(self):
         return 'ftw.dictstorage-data'
+
 
 class DefaultDictStorage(DictStorage):
     implements(IDictStorage)

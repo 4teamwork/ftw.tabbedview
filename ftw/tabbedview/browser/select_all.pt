@@ -1,17 +1,17 @@
 <div>
-  <div id="above_visibles">
-    <div class="hidden_items">
-      <tal:repeat tal:repeat="obj options/above">
-        <input type="hidden" tal:attributes="value obj/getPath" value="" name="paths:list">
-      </tal:repeat>
+    <div id="above_visibles">
+        <div class="hidden_items">
+            <tal:repeat tal:repeat="obj options/above">
+                <input type="hidden" tal:attributes="value obj/getPath" value="" name="paths:list" />
+            </tal:repeat>
+        </div>
     </div>
-  </div>
 
-  <div id="beneath_visibles">
-    <div class="hidden_items">
-      <tal:repeat tal:repeat="obj options/beneath">
-        <input type="hidden" tal:attributes="value obj/getPath" value="" name="paths:list">
-      </tal:repeat>
+    <div id="beneath_visibles">
+        <div class="hidden_items">
+            <tal:repeat tal:repeat="obj options/beneath">
+                <input type="hidden" tal:attributes="value obj/getPath" value="" name="paths:list" />
+            </tal:repeat>
+        </div>
     </div>
-  </div>
 </div>

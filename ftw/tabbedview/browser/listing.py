@@ -18,7 +18,7 @@ from zope.interface import implements
 
 try:
     import json
-except:
+except ImportError:
     import simplejson as json
 
 
@@ -104,7 +104,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
                 self.table_options.update({'static': static})
                 # Set correct content type for JSON response
-                self.request.response.setHeader("Content-type", "application/json")
+                self.request.response.setHeader("Content-type",
+                                                "application/json")
                 return self.render_listing()
             else:
                 self.contents = [{}, ]
