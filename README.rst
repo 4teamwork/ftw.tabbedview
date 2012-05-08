@@ -188,6 +188,8 @@ Links
 - Main github project repository: https://github.com/4teamwork/ftw.tabbedview
 - Issue tracker: https://github.com/4teamwork/ftw.tabbedview/issues
 - Package on pypi: http://pypi.python.org/pypi/ftw.tabbedview
+- Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.tabbedview
+
 
 
 Licensing
@@ -211,5 +213,3 @@ This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 .. _example.conference: https://github.com/collective/example.conference
 .. _Ext JS: http://www.sencha.com/products/extjs/
 .. _collective.quickupload: https://github.com/collective/collective.quickupload
-
-
