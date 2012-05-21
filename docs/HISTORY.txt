@@ -5,7 +5,8 @@ Changelog
 3.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Bugfix: fix sorting in grid state when it is wrong.
+  [jone]
 
 
 3.2.3 (2012-05-09)

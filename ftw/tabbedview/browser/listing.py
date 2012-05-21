@@ -447,9 +447,26 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if state:
             parsed_state = json.loads(state)
 
+            # Do not persistently store grouping, since loading the group
+            # initially would not work.
             if 'group' in parsed_state:
                 del parsed_state['group']
-                state = json.dumps(parsed_state)
+
+            # In some situations the sorting in the state is corrupt. Every
+            # visible row should have a 'sortable' by default.
+            column_state_by_id = dict((col['id'], col)
+                                      for col in parsed_state['columns'])
+
+            for column in self.columns:
+                name = column.get('sort_index', column.get('column', None))
+                if name not in column_state_by_id:
+                    continue
+
+                col_state = column_state_by_id[name]
+                if 'sortable' not in col_state:
+                    col_state['sortable'] = True
+
+            state = json.dumps(parsed_state)
 
         if state:
             self.table_options.update({'gridstate': state})
