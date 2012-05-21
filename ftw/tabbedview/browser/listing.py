@@ -458,6 +458,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                                       for col in parsed_state['columns'])
 
             for column in self.columns:
+                if not isinstance(column, dict):
+                    continue
+
                 name = column.get('sort_index', column.get('column', None))
                 if name not in column_state_by_id:
                     continue
