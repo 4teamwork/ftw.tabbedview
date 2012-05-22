@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.4 (unreleased)
+3.2.4 (2012-05-22)
 ------------------
 
 - Bugfix: fix sorting in grid state when it is wrong.
