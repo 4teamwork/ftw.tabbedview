@@ -53,10 +53,10 @@
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
           <div id="uploadbox" class="uploaderContainer" tal:condition="view/show_uploadbox">
-              <input type="hidden"
-                     name="uploadUrl"
-                     class="uploadUrl"
-                     tal:attributes="value string: ${context/absolute_url}/@@quick_upload" />
+              <a tal:attributes="href string:${context/absolute_url}/quick_upload"
+                 class="uploadUrl" style="display:none ">
+                  <!-- link for html5 upload -->
+              </a>
               <input type="hidden"
                      name="uploadData"
                      class="uploadData"

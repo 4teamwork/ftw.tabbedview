@@ -5,7 +5,9 @@ Changelog
 3.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make quickupload work bhind a proxy
+  (url in value of hidden field will no be rewritten.)
+  [mathias.leimgruber]
 
 
 3.2.5 (2012-05-24)

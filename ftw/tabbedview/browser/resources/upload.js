@@ -13,10 +13,11 @@ jq(function(){
     window.location.reload();
   };
 
+if (!jQuery.browser.msie){
   loadUploader = function() {
     var ulContainer = jQuery('#uploadbox');
     ulContainer.each(function(){
-      var uploadUrl =  jQuery('.uploadUrl', this).val();
+      var uploadUrl =  jQuery('.uploadUrl', this).attr('href');
       var uploadData =  jQuery('.uploadData', this).val();
       var UlDiv = jQuery(this);
       jQuery.ajax({
@@ -59,7 +60,6 @@ jq(function(){
     );
   });
 
-  if (!jQuery.browser.msie){
       PloneQuickUpload.onAllUploadsComplete = function(event){
           uploadbox.hide();
           jq('#label-upload').hide();
