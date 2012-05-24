@@ -59,9 +59,11 @@ jq(function(){
     );
   });
 
-  PloneQuickUpload.onAllUploadsComplete = function(event){
-    uploadbox.hide();
-    jq('#label-upload').hide();
-    tabbedview.reload_view();
-  };
+  if (!jQuery.browser.msie){
+      PloneQuickUpload.onAllUploadsComplete = function(event){
+          uploadbox.hide();
+          jq('#label-upload').hide();
+          tabbedview.reload_view();
+      };
+   }
 });

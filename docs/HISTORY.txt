@@ -5,7 +5,8 @@ Changelog
 3.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upload js for IE8.
+  [mathias.leimgruber]
 
 
 3.2.4 (2012-05-22)
