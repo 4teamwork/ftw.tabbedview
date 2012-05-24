@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.6 (unreleased)
+3.2.6 (2012-05-24)
 ------------------
 
 - Make quickupload work bhind a proxy
