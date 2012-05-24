@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.5 (unreleased)
+3.2.5 (2012-05-24)
 ------------------
 
 - Fix upload js for IE8.
