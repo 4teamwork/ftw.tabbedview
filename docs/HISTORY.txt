@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Prevent default in js-action for ViewChooser-links.
+  [Julian Infanger]
+
 - Fix batching expression for compatibility with plone4.2rc2 and newer.
   [jone]
 

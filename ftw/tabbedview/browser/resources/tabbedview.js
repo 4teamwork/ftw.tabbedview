@@ -256,7 +256,8 @@ load_tabbedview = function(callback) {
 
 
   /* subview chooser*/
-  jq('.ViewChooser a').live('click', function() {
+  jq('.ViewChooser a').live('click', function(e) {
+    e.preventDefault();
     tabbedview.param('view_name', this.id);
     tabbedview.reload_view();
   });
