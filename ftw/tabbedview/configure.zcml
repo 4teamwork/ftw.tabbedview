@@ -42,6 +42,14 @@
              provides="ftw.dictstorage.interfaces.IConfig"/>
     <adapter factory=".statestorage.DefaultDictStorage" />
 
+    <!-- Register the import_various step -->
+    <genericsetup:importStep
+        name="ftw.tabbedview.various"
+        title="ftw.tabbedview various import steps"
+        description=""
+        handler="ftw.tabbedview.setuphandlers.import_various">
+    </genericsetup:importStep>
+
     <!-- extjs is optional -->
     <configure zcml:condition="installed collective.js.extjs">
         <include package="collective.js.extjs" />

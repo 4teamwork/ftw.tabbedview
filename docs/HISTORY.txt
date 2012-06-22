@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Quickupload: Limit simultaneous uploads to 1 (sequential) to avoid DB conflicts
+  [lgraf]
+
 - Prevent default in js-action for ViewChooser-links.
   [Julian Infanger]
 
