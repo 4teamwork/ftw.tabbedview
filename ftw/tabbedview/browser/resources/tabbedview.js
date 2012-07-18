@@ -212,8 +212,12 @@ load_tabbedview = function(callback) {
     },
 
     show_spinner: function() {
+      if (typeof(tabbedview._original_min_height) == 'undefined') {
+        tabbedview._original_min_height = $('#content').css('min-height');
+      }
       var spinner = tabbedview.spinner;
       if (! spinner.is(':visible')) {
+        $('#content').css('min-height', $('#content').height());
         var tab = tabbedview.view_container.find('#tabbedview-body');
         spinner.css('position', 'absolute');
         spinner.css('left', tab.position().left + (tab.width() / 2));
@@ -224,6 +228,11 @@ load_tabbedview = function(callback) {
 
     hide_spinner: function() {
       tabbedview.spinner.hide();
+      window.setTimeout(function() {
+        if (! tabbedview.spinner.is(':visible')) {
+          $('#content').css('min-height', tabbedview._original_min_height);
+        }
+      }, 50);
     }
 
   };

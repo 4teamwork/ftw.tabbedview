@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Keep height while loading tab. This reduces content height flickering.
+  [jone]
+
 - Quickupload: Limit simultaneous uploads to 1 (sequential) to avoid DB conflicts
   [lgraf]
 
