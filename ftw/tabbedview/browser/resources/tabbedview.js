@@ -327,7 +327,7 @@ load_tabbedview = function(callback) {
 
     if (value.length>=3) {
       tabbedview.flush_params('pagenumber:int');
-      if (jq('.tab_container').length == 0) {
+      if (jq('.tab_container').length === 0) {
         tabbedview.reload_view();
       } else {
         tabbedview.show_spinner();
