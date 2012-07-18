@@ -324,6 +324,13 @@ load_tabbedview = function(callback) {
       return;
     }
 
+    if (previous_value !== '' && value === previous_value) {
+      /* This prevents from reloading when we have key up events which do not
+         modify the filter value - for instance when the cursor is moved using
+         the keyboard. */
+      return;
+    }
+
     if (value.length<3 && previous_value && previous_value.length > value.length) {
       tabbedview.prop('searchable_text', '');
       tabbedview.flush_params('pagenumber:int');

@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Filtering: do not reload when moving cursor in the filter box.
+  [jone]
+
 - Keep height while loading tab. This reduces content height flickering.
   [jone]
 
