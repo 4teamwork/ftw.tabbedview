@@ -51,6 +51,7 @@ setup(name='ftw.tabbedview',
         'collective.js.throttledebounce',
         'plone.app.registry',
         'ftw.dictstorage',
+        'ftw.upgrade',
         # -*- Extra requirements: -*-
         ],
 
