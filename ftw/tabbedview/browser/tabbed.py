@@ -41,6 +41,34 @@ class TabbedView(BrowserView):
                 'class': css_classes,
                 }
 
+    def get_tab_items(self):
+        """Returns the tab items from get_tabs with additional information for use
+        in the tabbed template.
+        """
+
+        actions = []
+
+        for action in self.get_tabs():
+            view_name = "tabbedview_view-%s" % action['id']
+            view = queryMultiAdapter((self.context, self.request),
+                                     name=view_name, default=None)
+
+            action['tab_menu_actions'] = self.get_tab_menu_actions(view)
+
+            actions.append(action)
+
+        return actions
+
+
+    def get_tab_menu_actions(self, view):
+        """Returns a list of actions for the tab ``view``.
+        """
+        actions = []
+        if getattr(view, 'update_tab_actions', None) is not None:
+            actions = view.update_tab_actions(actions)
+
+        return actions
+
     def get_actions(self, category=''):
         """Returns the available and visible types actions
         in the given category

@@ -24,6 +24,8 @@
          tal:define="came_from python:request.get('HTTP_REFERER', context.absolute_url()).split('?')[0];">
       <metal:main-macro define-macro="main">
 
+        <tal:variables define="tabs view/get_tab_items">
+
         <div id="tabbedview-header">
 
           <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -35,7 +37,7 @@
           <div tal:replace="structure provider:plone.belowcontenttitle" />
           <div class="tabbedview-tabs">
             <ul class="formTabs">
-              <li tal:repeat="tab view/get_tabs" class="formTab">
+              <li tal:repeat="tab tabs" class="formTab">
                 <a  tal:define="tab_id tab/id;"
                     tal:attributes="href string:#${tab_id};
                                     id string:tab-${tab_id};
@@ -52,6 +54,33 @@
 
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
+            <dl class="actionMenu tabbedview-tab-menu">
+                <dt class="actionMenuHeader">
+                    <a href="#">
+                        <span>⚙</span>
+                    </a>
+                </dt>
+            </dl>
+
+            <dl class="tabbdview-tab-menu-template">
+                <tal:tab tal:repeat="tab tabs">
+                    <dd tal:define="actions tab/tab_menu_actions|nothing;
+                                    classes string:tabbedview-${tab/id}-menu-items;
+                                    classes string:actionMenuContent ${classes}"
+                        tal:attributes="class classes"
+                        tal:condition="actions">
+                        <ul>
+                            <li tal:repeat="action actions">
+                                <a tal:attributes="href action/href;
+                                                   title action/description|nothing;
+                                                   class action/classes|nothing"
+                                   tal:content="action/label" />
+                            </li>
+                        </ul>
+                    </dd>
+                </tal:tab>
+            </dl>
+
           <div id="uploadbox" class="uploaderContainer" tal:condition="view/show_uploadbox">
               <a tal:attributes="href string:${context/absolute_url}/quick_upload"
                  class="uploadUrl" style="display:none ">
@@ -64,7 +93,7 @@
                      />
           </div>
 
-            <tal:panes repeat="tab view/get_tabs">
+            <tal:panes repeat="tab tabs">
                 <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane"><!-- iefix --></div>
             </tal:panes>
         </div>
@@ -73,6 +102,8 @@
         <div id="tabbedview-spinner" style="display:none">
           <img src="/++resource++ftw.tabbedview-resources/spinner.gif" tal:attributes="src string: ${portal_url}/++resource++ftw.tabbedview-resources/spinner.gif"/>
         </div>
+
+        </tal:variables>
       </metal:main-macro>
     </div>
   </body>

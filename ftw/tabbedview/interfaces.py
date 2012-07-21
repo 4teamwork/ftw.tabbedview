@@ -44,6 +44,18 @@ class IListingView(Interface):
     """Marker interface for listing tabs.
     """
 
+    def update_tab_actions(actions):
+        """Allows to change the default actions for a tab. The ``actions``
+        argument contains a list of actions (dicts) and should be returned by
+        this method after modifying it.
+
+        Example actions:
+        [{'label': _(u'Reset table configuration'),
+          'href': 'javascript:reset_grid_state()',
+          'description': _(u'Resets the table configuration for this tab.'),
+          'class': 'additional-css-class'}]
+        """
+
 
 class IGridStateStorageKeyGenerator(Interface):
     """Adapter interface for a multi adapter which provides a key for storing

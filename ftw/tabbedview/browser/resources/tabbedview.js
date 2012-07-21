@@ -70,6 +70,7 @@ load_tabbedview = function(callback) {
 
         tabbedview.hide_spinner();
         tabbedview.view_container.trigger('reload');
+        tabbedview.update_tab_menu();
       });
       this.show_spinner();
     },
@@ -233,6 +234,22 @@ load_tabbedview = function(callback) {
           $('#content').css('min-height', tabbedview._original_min_height);
         }
       }, 50);
+    },
+
+    update_tab_menu: function() {
+      $('.tabbedview-tab-menu > dd').remove();
+      var template_class = 'tabbedview-'.concat(tabbedview.prop('view_name')).concat(
+          '-menu-items');
+      var menu_template = $('.tabbdview-tab-menu-template .'.concat(template_class));
+
+      if (menu_template.length === 0) {
+        $('.tabbedview-tab-menu').hide();
+      } else {
+        $('.tabbedview-tab-menu').show();
+        menu_template.clone().appendTo($('.tabbedview-tab-menu'));
+      }
+
+      tabbedview.view_container.trigger('tab-menu-updated');
     }
 
   };
