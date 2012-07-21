@@ -12,6 +12,7 @@
       media="screen"
       rel="stylesheet"
       rendering="import"
+      insert-after="RTL.css"
       />
 
 </object>
