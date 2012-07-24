@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Change dictstorage to adapt IBrowserView instead of IListingView.
+  [jone]
+
 - Add a per-tab menu for actions such as resetting the extjs table state.
   [jone]
 
