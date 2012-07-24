@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Add functionality for setting the default tab of a tabbed view.
+  [jone]
+
 - Change dictstorage to adapt IBrowserView instead of IListingView.
   [jone]
 

@@ -42,6 +42,7 @@
     <adapter factory=".statestorage.DefaultDictStorageConfig"
              provides="ftw.dictstorage.interfaces.IConfig"/>
     <adapter factory=".statestorage.DefaultDictStorage" />
+    <adapter factory=".defaulttab.DefaultTabStorageKeyGenerator" />
 
     <!-- Register the import_various step -->
     <genericsetup:importStep

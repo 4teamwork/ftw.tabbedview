@@ -289,10 +289,17 @@ load_tabbedview = function(callback) {
   });
 
 
+  var initialIndex = 0;
+  var initial = $('.formTab > .initial');
+  if (initial.length > 0) {
+    initialIndex = initial.parents(':first').index();
+  }
+
   jq('.tabbedview-tabs').tabs(
     '.panes > div.pane', {
         current:'selected',
         history: true,
+        initialIndex: initialIndex,
         onBeforeClick: function(e, index){
             if (jQuery.tabbedview.param('initialize') !== 1) {
                 jQuery.tabbedview.view_container.addClass('loading_tab');
@@ -472,5 +479,41 @@ load_tabbedview = function(callback) {
     });
 
   });
+
+    tabbedview.set_tab_as_default = function() {
+        hideAllMenus();
+        var viewname = $.grep(
+            $('body').attr('class').split(' '),
+            function(name, i) { return name.indexOf('template-') === 0; })[0].split('-')[1];
+
+        $.ajax({
+            'url': '@@tabbed_view/set_default_tab',
+            cache: false,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                tab: tabbedview.prop('view_name'),
+                viewname: viewname},
+            success: function(data) {
+                tabbedview.show_portal_message(data[0], data[1], data[2]);
+            }});
+    };
+
+    tabbedview.show_portal_message = function(type, title, message) {
+        var cssclass = 'portalMessage '.concat(type);
+        var $dt = $('<dt>').text(title);
+        var $dd = $('<dd>').html(message);
+        var $dl = $('<dl>').attr('class', cssclass);
+        $dl.append($dt).append($dd);
+
+        if ($('.portalMessage').length > 0) {
+            $dl.insertAfter($('.portalMessage:last'));
+        } else if ($('#column-content').length > 0) {
+            $('#column-content').prepend($dl);
+        } else if ($('#edit-bar').length > 0) {
+            $dl.insertAfter($('#edit-bar'));
+        }
+
+    };
 
 };

@@ -73,6 +73,24 @@ class IGridStateStorageKeyGenerator(Interface):
         """
 
 
+class IDefaultTabStorageKeyGenerator(Interface):
+    """Generates the dictstorage key for storing the users default tab
+    preference.
+    """
+
+    def __init__(context, view, request):
+        """Adapter arguments:
+        - context: the current context
+        - view: the tabbed-view (not the tab)
+        - request: the request.
+        """
+
+    def get_key():
+        """Returns the key for the dictstorage where the default tab is
+        stored.
+        """
+
+
 class IDefaultDictStorageConfig(Interface):
     """The default dict storage configuration configures `ftw.dictstorage`
     to store its data as annotations on the plone site root.

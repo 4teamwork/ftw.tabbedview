@@ -3,10 +3,14 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ftw.dictstorage.interfaces import IDictStorage
+from ftw.tabbedview import tabbedviewMessageFactory as _
+from ftw.tabbedview.interfaces import IDefaultTabStorageKeyGenerator
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from plone.registry.interfaces import IRegistry
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
+from zope.i18n import translate
 
 
 try:
@@ -15,6 +19,11 @@ except ImportError:
     QUICKUPLOAD_INSTALLED = False
 else:
     QUICKUPLOAD_INSTALLED = True
+
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 
 class TabbedView(BrowserView):
@@ -46,9 +55,17 @@ class TabbedView(BrowserView):
         in the tabbed template.
         """
 
+        key_generator = getMultiAdapter((self.context, self, self.request),
+                                        IDefaultTabStorageKeyGenerator)
+        key = key_generator.get_key()
+        default_tab = IDictStorage(self).get(key, '')
+
         actions = []
 
         for action in self.get_tabs():
+            if action['id'].lower() == default_tab:
+                action['class'] = '%s initial' % action['class']
+
             view_name = "tabbedview_view-%s" % action['id']
             view = queryMultiAdapter((self.context, self.request),
                                      name=view_name, default=None)
@@ -63,7 +80,15 @@ class TabbedView(BrowserView):
     def get_tab_menu_actions(self, view):
         """Returns a list of actions for the tab ``view``.
         """
-        actions = []
+
+        actions = [
+            {'label': _(u'Set tab as default'),
+             'href': 'javascript:tabbedview.set_tab_as_default()',
+             'description': _(
+                    u'Make the current tab the default tab when opening this view. '
+                    u'This is a personal setting and does not impact other users.')
+             }]
+
         if getattr(view, 'update_tab_actions', None) is not None:
             actions = view.update_tab_actions(actions)
 
@@ -197,3 +222,42 @@ class TabbedView(BrowserView):
                         return True
 
         return False
+
+    def set_default_tab(self, tab=None, view=None):
+        """Sets the default tab. The id of the tab is passed as
+        argument or in the request payload as ``tab``.
+        """
+
+        tab = tab or self.request.get('tab')
+        if not tab:
+            return json.dumps([
+                    'error',
+                    translate('ERROR', 'plone', context=self.request),
+                    translate(_(u'error_set_default_tab',
+                                u'Could not set default tab.'),
+                              context=self.request)])
+
+        tab_title = translate(tab, 'ftw.tabbedview', context=self.request)
+        success = [
+            'info',
+            translate('INFO', 'plone', context=self.request),
+            translate(_(u'info_set_default_tab',
+                        u'The tab ${title} is now your default tab. ' +
+                        u'This is a personal setting.',
+                        mapping={'title': tab_title}),
+                      context=self.request)]
+
+        if not view and self.request.get('viewname', False):
+            view = self.context.restrictedTraverse(
+                self.request.get('viewname'))
+        else:
+            view = self
+
+        key_generator = getMultiAdapter((self.context, view, self.request),
+                                        IDefaultTabStorageKeyGenerator)
+        key = key_generator.get_key()
+
+        storage = IDictStorage(self)
+        storage.set(key, tab.lower())
+
+        return json.dumps(success)
