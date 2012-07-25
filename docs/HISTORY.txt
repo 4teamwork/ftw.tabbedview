@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Add English translations.
+  [jone]
+
 - Add functionality for setting the default tab of a tabbed view.
   [jone]
 

@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-24 08:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ./ftw/tabbedview/browser/selection.pt:14
+msgid "All visible entries chosen ${show_all_link}"
+msgstr "Select all visbile entries ${show_all_link}"
+
+#: ./ftw/tabbedview/browser/selection.pt:9
+msgid "Choose:"
+msgstr "Select"
+
+msgid "Creator"
+msgstr "Creator"
+
+#: ./ftw/tabbedview/browser/tabbed.py:87
+msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
+msgstr "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
+
+#: ./ftw/tabbedview/browser/listing.py:498
+#: ./ftw/tabbedview/profiles/extjs/actions.xml
+msgid "Reset table configuration"
+msgstr "Reset table configuration"
+
+#: ./ftw/tabbedview/browser/listing.py:500
+msgid "Resets the table configuration for this tab."
+msgstr "Resets the table configuration for this tab."
+
+#: ./ftw/tabbedview/browser/tabbed.py:85
+msgid "Set tab as default"
+msgstr "Set tab as default"
+
+msgid "Title"
+msgstr "Title"
+
+#: ./ftw/tabbedview/browser/selection.pt:11
+msgid "all (${amount})"
+msgstr "all (${amount})"
+
+#. Default: "More actions &#9660;"
+#: ./ftw/tabbedview/browser/menu.pt:14
+msgid "button_more_actions"
+msgstr "More actions &#9660;"
+
+msgid "end"
+msgstr "End"
+
+#. Default: "Could not set default tab."
+#: ./ftw/tabbedview/browser/tabbed.py:236
+msgid "error_set_default_tab"
+msgstr "Could not set default tab."
+
+#: ./ftw/tabbedview/browser/searchbox.pt:3
+msgid "filter"
+msgstr "Filter"
+
+msgid "hours"
+msgstr "Hours"
+
+#. Default: "The tab ${title} is now your default tab. This is a personal setting."
+#: ./ftw/tabbedview/browser/tabbed.py:244
+msgid "info_set_default_tab"
+msgstr "The tab ${title} is now your default tab. This is a personal setting."
+
+#: ./ftw/tabbedview/browser/searchbox.pt:2
+msgid "label_filter"
+msgstr "Filter"
+
+#. Default: "No contents"
+#: ./ftw/tabbedview/browser/generic.pt:46
+msgid "label_no_contents"
+msgstr "No contents"
+
+msgid "modified"
+msgstr "Modified"
+
+#: ./ftw/tabbedview/browser/selection.pt:12
+msgid "none"
+msgstr "None"
+
+msgid "review_state"
+msgstr "Status"
+
+msgid "start"
+msgstr "Start"
+
+msgid "state"
+msgstr "Status"
