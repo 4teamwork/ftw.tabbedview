@@ -4,7 +4,6 @@ from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview import statestorage
 from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
-from ftw.tabbedview.interfaces import IListingView
 from ftw.tabbedview.testing import ZCML_LAYER
 from ftw.testing import MockTestCase
 from persistent.mapping import PersistentMapping
@@ -64,7 +63,7 @@ class TestDefaultDictStorageConfig(MockTestCase):
     layer = ZCML_LAYER
 
     def test_component_registered(self):
-        context = self.providing_stub(IListingView)
+        context = self.providing_stub(IBrowserView)
 
         self.replay()
         component = getAdapter(context, IConfig)
@@ -92,14 +91,14 @@ class TestDefaultDictStorageConfig(MockTestCase):
         self.mock_tool(portal_url, 'portal_url')
         self.expect(portal_url.getPortalObject()).result(site)
 
-        context = self.providing_stub(IListingView)
+        context = self.providing_stub(IBrowserView)
 
         self.replay()
         component = getAdapter(context, IConfig)
         self.assertEqual(component.get_annotated_object(), site)
 
     def test_get_annotations_key(self):
-        context = self.providing_stub(IListingView)
+        context = self.providing_stub(IBrowserView)
 
         self.replay()
         component = getAdapter(context, IConfig)
@@ -112,7 +111,7 @@ class TestDefaultDictStorage(MockTestCase):
     layer = ZCML_LAYER
 
     def test_component_registered(self):
-        context = self.providing_stub(IListingView)
+        context = self.providing_stub(IBrowserView)
         config = self.providing_stub(IDefaultDictStorageConfig)
 
         self.replay()
@@ -128,7 +127,7 @@ class TestDefaultDictStorage(MockTestCase):
 
     def test_storage_is_persistent(self):
         site = self.providing_stub(IAttributeAnnotatable)
-        context = self.providing_stub(IListingView)
+        context = self.providing_stub(IBrowserView)
         config = self.providing_stub(IDefaultDictStorageConfig)
 
         self.expect(config.get_annotated_object()).result(site)
