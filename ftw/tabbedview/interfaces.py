@@ -36,6 +36,7 @@ class ITabbedView(Interface):
         title=u'',
         description=u'Types which are addable with quickupload',
         default=["File", ],
+        value_type=schema.TextLine(),
         )
 
 

@@ -5,6 +5,10 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Fixed definition of ITabbedView.quickupload_addable_types
+  schema.List fields always need a value_type
+  [lukasg]
+
 - Filtering: do not reload when moving cursor in the filter box.
   [jone]
 
