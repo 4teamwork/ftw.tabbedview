@@ -14,7 +14,7 @@
         name="tabbed_view"
         class=".tabbed.TabbedView"
         permission="zope2.View"
-        allowed_attributes="listing select_all reorder setgridstate"
+        allowed_attributes="listing select_all reorder setgridstate set_default_tab"
         />
 
     <browser:page

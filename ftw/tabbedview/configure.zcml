@@ -16,6 +16,7 @@
 
     <!-- Include the sub-packages that use their own configure.zcml files. -->
     <include package=".browser" />
+    <include package=".upgrades" />
 
     <!-- Register locales translations -->
     <i18n:registerTranslations directory="locales" />
@@ -41,6 +42,7 @@
     <adapter factory=".statestorage.DefaultDictStorageConfig"
              provides="ftw.dictstorage.interfaces.IConfig"/>
     <adapter factory=".statestorage.DefaultDictStorage" />
+    <adapter factory=".defaulttab.DefaultTabStorageKeyGenerator" />
 
     <!-- Register the import_various step -->
     <genericsetup:importStep

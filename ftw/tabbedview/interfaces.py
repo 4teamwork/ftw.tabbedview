@@ -44,6 +44,18 @@ class IListingView(Interface):
     """Marker interface for listing tabs.
     """
 
+    def update_tab_actions(actions):
+        """Allows to change the default actions for a tab. The ``actions``
+        argument contains a list of actions (dicts) and should be returned by
+        this method after modifying it.
+
+        Example actions:
+        [{'label': _(u'Reset table configuration'),
+          'href': 'javascript:reset_grid_state()',
+          'description': _(u'Resets the table configuration for this tab.'),
+          'class': 'additional-css-class'}]
+        """
+
 
 class IGridStateStorageKeyGenerator(Interface):
     """Adapter interface for a multi adapter which provides a key for storing
@@ -58,6 +70,24 @@ class IGridStateStorageKeyGenerator(Interface):
     def get_key():
         """Returns a string which is used for storing the state in the
         dictstorage.
+        """
+
+
+class IDefaultTabStorageKeyGenerator(Interface):
+    """Generates the dictstorage key for storing the users default tab
+    preference.
+    """
+
+    def __init__(context, view, request):
+        """Adapter arguments:
+        - context: the current context
+        - view: the tabbed-view (not the tab)
+        - request: the request.
+        """
+
+    def get_key():
+        """Returns the key for the dictstorage where the default tab is
+        stored.
         """
 
 

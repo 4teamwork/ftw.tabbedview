@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="ftw.tabbedview">
+
+    <!-- 2 -> 3300 -->
+    <genericsetup:upgradeStep
+        title="Register tabbedview.css with tab menu styling."
+        description=""
+        source="2"
+        destination="3300"
+        handler="ftw.tabbedview.upgrades.to3300.RegisterCSS"
+        profile="ftw.tabbedview:default"
+        />
+
+    <genericsetup:registerProfile
+        name="3300"
+        title="ftw.tabbedview: upgrade profile 3300"
+        description=""
+        directory="profiles/3300"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

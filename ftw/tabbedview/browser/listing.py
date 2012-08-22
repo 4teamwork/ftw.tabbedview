@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from ftw.dictstorage.interfaces import IDictStorage
+from ftw.tabbedview import tabbedviewMessageFactory as _
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from ftw.tabbedview.interfaces import IListingView
 from ftw.table.basesource import BaseTableSourceConfig
@@ -68,8 +69,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         registry = getUtility(IRegistry)
         self.pagesize = \
             registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
-        self.extjs_enabled = registry['ftw.tabbedview.interfaces.' + \
-                                          'ITabbedView.extjs_enabled']
+        self.extjs_enabled = registry['ftw.tabbedview.interfaces.'
+                                      'ITabbedView.extjs_enabled']
 
         self.dynamic_batchsize_enabled = registry[
             'ftw.tabbedview.interfaces.ITabbedView.dynamic_batchsize_enabled']
@@ -490,6 +491,16 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             else:
                 self.sort_order = 'reverse'
                 self.sort_reverse = True
+
+    def update_tab_actions(self, actions):
+        if self.extjs_enabled:
+            actions.append({
+                    'label': _(u'Reset table configuration'),
+                    'href': 'javascript:reset_grid_state()',
+                    'description': _(u'Resets the table configuration for this tab.')
+                    })
+
+        return actions
 
 
 class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):

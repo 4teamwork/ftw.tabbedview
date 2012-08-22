@@ -9,5 +9,5 @@ class TabbedviewConfigView(BrowserView):
         """Returns `True` if extjs is enabled.
         """
         registry = getUtility(IRegistry)
-        return registry['ftw.tabbedview.interfaces.' + \
-                            'ITabbedView.extjs_enabled']
+        return registry['ftw.tabbedview.interfaces.'
+                        'ITabbedView.extjs_enabled']

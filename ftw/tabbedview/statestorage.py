@@ -4,11 +4,11 @@ from ftw.dictstorage.interfaces import IConfig
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
-from ftw.tabbedview.interfaces import IListingView
 from persistent.dict import PersistentDict
 from zope.annotation import IAnnotations
 from zope.component import adapts
 from zope.interface import implements
+from zope.publisher.interfaces.browser import IBrowserView
 
 
 class DefaultGridStateStorageKeyGenerator(object):
@@ -52,7 +52,7 @@ class DefaultDictStorageConfig(object):
     """
 
     implements(IConfig, IDefaultDictStorageConfig)
-    adapts(IListingView)
+    adapts(IBrowserView)
 
     def __init__(self, context):
         self.context = context
@@ -67,7 +67,7 @@ class DefaultDictStorageConfig(object):
 
 class DefaultDictStorage(DictStorage):
     implements(IDictStorage)
-    adapts(IListingView, IDefaultDictStorageConfig)
+    adapts(IBrowserView, IDefaultDictStorageConfig)
 
     def __init__(self, context, config):
         self.context = context

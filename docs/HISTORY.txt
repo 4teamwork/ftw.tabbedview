@@ -5,9 +5,17 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
-- Fixed definition of ITabbedView.quickupload_addable_types
-  schema.List fields always need a value_type
-  [lukasg]
+- Add English translations.
+  [jone]
+
+- Add functionality for setting the default tab of a tabbed view.
+  [jone]
+
+- Change dictstorage to adapt IBrowserView instead of IListingView.
+  [jone]
+
+- Add a per-tab menu for actions such as resetting the extjs table state.
+  [jone]
 
 - Filtering: do not reload when moving cursor in the filter box.
   [jone]
@@ -23,6 +31,10 @@ Changelog
 
 - Fix batching expression for compatibility with plone4.2rc2 and newer.
   [jone]
+
+- Fixed definition of ITabbedView.quickupload_addable_types
+  schema.List fields always need a value_type
+  [lukasg]
 
 
 3.2.6 (2012-05-24)
