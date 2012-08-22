@@ -51,8 +51,8 @@ class TabbedView(BrowserView):
                 }
 
     def get_tab_items(self):
-        """Returns the tab items from get_tabs with additional information for use
-        in the tabbed template.
+        """Returns the tab items from get_tabs with additional information for
+        use in the tabbed template.
         """
 
         key_generator = getMultiAdapter((self.context, self, self.request),
@@ -76,7 +76,6 @@ class TabbedView(BrowserView):
 
         return actions
 
-
     def get_tab_menu_actions(self, view):
         """Returns a list of actions for the tab ``view``.
         """
@@ -85,8 +84,9 @@ class TabbedView(BrowserView):
             {'label': _(u'Set tab as default'),
              'href': 'javascript:tabbedview.set_tab_as_default()',
              'description': _(
-                    u'Make the current tab the default tab when opening this view. '
-                    u'This is a personal setting and does not impact other users.')
+                    u'Make the current tab the default tab when opening this '
+                    u'view. This is a personal setting and does not impact '
+                    u'other users.')
              }]
 
         if getattr(view, 'update_tab_actions', None) is not None:
@@ -214,8 +214,8 @@ class TabbedView(BrowserView):
 
                 registry = getUtility(IRegistry)
                 upload_addable = registry.get(
-                    'ftw.tabbedview.interfaces.ITabbedView' + \
-                        '.quickupload_addable_types')
+                    'ftw.tabbedview.interfaces.ITabbedView'
+                    '.quickupload_addable_types')
 
                 for fti in self.context.allowedContentTypes():
                     if fti.id in upload_addable:

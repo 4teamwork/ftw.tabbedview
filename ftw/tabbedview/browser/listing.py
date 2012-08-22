@@ -69,8 +69,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         registry = getUtility(IRegistry)
         self.pagesize = \
             registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
-        self.extjs_enabled = registry['ftw.tabbedview.interfaces.' + \
-                                          'ITabbedView.extjs_enabled']
+        self.extjs_enabled = registry['ftw.tabbedview.interfaces.'
+                                      'ITabbedView.extjs_enabled']
 
         self.dynamic_batchsize_enabled = registry[
             'ftw.tabbedview.interfaces.ITabbedView.dynamic_batchsize_enabled']
