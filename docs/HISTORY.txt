@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Adjust french translation.
+  [philippegross]
+
 - Add English translations.
   [jone]
 

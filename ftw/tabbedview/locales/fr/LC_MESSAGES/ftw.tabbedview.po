@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2012-02-28 13:13+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2012-09-10 10:03+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Résultats par site"
 
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
-msgstr "Remettre à zéro la configuration des tableaux"
+msgstr "Remettre la configuration par défaut des colonnes"
 
 msgid "Title"
 msgstr "Titre"
