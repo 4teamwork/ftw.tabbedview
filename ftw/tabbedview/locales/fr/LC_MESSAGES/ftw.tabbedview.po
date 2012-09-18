@@ -25,7 +25,7 @@ msgstr "Créateur"
 
 #: ./ftw/tabbedview/browser/batching.pt:104
 msgid "Hits per site"
-msgstr "Résultats par site"
+msgstr "Résultats par page"
 
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
