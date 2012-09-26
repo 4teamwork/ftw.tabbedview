@@ -1,3 +1,4 @@
+from AccessControl import getSecurityManager
 from ftw.tabbedview.interfaces import IDefaultTabStorageKeyGenerator
 from zope.component import adapts
 from zope.interface import Interface
@@ -19,9 +20,11 @@ class DefaultTabStorageKeyGenerator(object):
         self.request = request
 
     def get_key(self):
+        user = getSecurityManager().getUser()
         parts = [
             'ftw.tabbedview',
             'defaulttab',
             self.context.portal_type,
-            self.view.__name__]
+            self.view.__name__,
+            user.getId()]
         return '-'.join(parts)
