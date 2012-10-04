@@ -1,6 +1,6 @@
 jq(function(){
 
-    if (jQuery.tabbedview !== undefined){
+    if (jQuery('#uploadbox').length){
 
       /* ----------------------------------
          Added functionality to the upload box,

@@ -4,6 +4,6 @@
 
  <javascript cacheable="True" compression="safe" cookable="True" enabled="on"
     expression="" id="++resource++ftw.tabbedview-resources/upload.js"
-    inline="False"/>
+    inline="False" insert-after="++resource++quickupload_static/helpers.js"/>
 
 </object>
