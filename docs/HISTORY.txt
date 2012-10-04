@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Added min_height to tabbedview-body. Grey-out the tabbedview-body while loading a new tab.
+  [Julian Infanger]
+
 - Fix default tab key storage, so that it includes the user id.
   [jone]
 
