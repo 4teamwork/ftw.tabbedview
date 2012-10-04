@@ -9,6 +9,9 @@ Changelog
   This allows to keep additional parameters (e.g. filters) while sorting.
   [jone]
 
+- Reset view_name param before changing a tab.
+  [mathias.leimgruber]
+
 - Added min_height to tabbedview-body. Grey-out the tabbedview-body while loading a new tab.
   [Julian Infanger]
 

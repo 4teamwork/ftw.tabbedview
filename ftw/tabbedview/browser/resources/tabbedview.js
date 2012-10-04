@@ -312,6 +312,7 @@ load_tabbedview = function(callback) {
                 var view_name = jQuery.tabbedview.prop('view_name');
                 jQuery.tabbedview.prop('old_view_name',view_name);
                 jQuery.tabbedview.prop('view_name',current_tab_id);
+                jQuery.tabbedview.flush_params('view_name');
                 jQuery.tabbedview.param('initialize', 1);
                 var tabs = this;
                 tabbedview.reload_view(function() {
