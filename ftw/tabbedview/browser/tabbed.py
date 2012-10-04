@@ -166,7 +166,6 @@ class TabbedView(BrowserView):
 
         if state == '{}':
             state = ''
-
         # get the tab view
         view_name = self.request.get('view_name', None)
         if not view_name:
@@ -232,7 +231,7 @@ class TabbedView(BrowserView):
         if not tab:
             return json.dumps([
                     'error',
-                    translate('ERROR', 'plone', context=self.request),
+                    translate('Error', 'plone', context=self.request),
                     translate(_(u'error_set_default_tab',
                                 u'Could not set default tab.'),
                               context=self.request)])
@@ -240,7 +239,7 @@ class TabbedView(BrowserView):
         tab_title = translate(tab, 'ftw.tabbedview', context=self.request)
         success = [
             'info',
-            translate('INFO', 'plone', context=self.request),
+            translate('Information', 'plone', context=self.request),
             translate(_(u'info_set_default_tab',
                         u'The tab ${title} is now your default tab. ' +
                         u'This is a personal setting.',
