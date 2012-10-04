@@ -49,3 +49,10 @@
 .tabbdview-tab-menu-template {
   display: none;
 }
+
+#tabbedview-body {
+  min-height: 300px;
+}
+.loading_tab #tabbedview-body {
+  opacity: 0.5;
+}
