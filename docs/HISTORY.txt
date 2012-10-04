@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Load upload function only on tabbedview.
+  [mathias.leimgruber]
+
 - Tabbedview: do not flush all parameters when re-sorting, but only the relevant ones.
   This allows to keep additional parameters (e.g. filters) while sorting.
   [jone]
