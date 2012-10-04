@@ -5,6 +5,10 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Tabbedview: do not flush all parameters when re-sorting, but only the relevant ones.
+  This allows to keep additional parameters (e.g. filters) while sorting.
+  [jone]
+
 - Added min_height to tabbedview-body. Grey-out the tabbedview-body while loading a new tab.
   [Julian Infanger]
 

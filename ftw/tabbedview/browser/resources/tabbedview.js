@@ -435,7 +435,8 @@ load_tabbedview = function(callback) {
         sort_order = current.hasClass('sort-reverse') ? 'asc': 'reverse';
       }
 
-      tabbedview.flush_all_params();
+      tabbedview.flush_params('initialize');
+      tabbedview.flush_params('pagenumber:int');
       tabbedview.param('sort', this.id);
       tabbedview.param('dir', sort_order);
       tabbedview.reload_view();
