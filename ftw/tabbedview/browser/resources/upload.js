@@ -40,10 +40,12 @@ jq(function(){
       uploadbox.css('display', 'none');
 
       jq('.tabbedview_view').live('dragover', function(event){
-        uploadbox.show();
-        jq('.qq-upload-button').hide();
-        jq('.pannelHeader').hide();
-        jq('#label-upload').hide();
+          if (isValidDrag(event)) {
+              uploadbox.show();
+              jq('.qq-upload-button').hide();
+              jq('.pannelHeader').hide();
+              jq('#label-upload').hide();
+            }
       });
 
       jq('.tabbedview_view').live('dragleave', function(event){
@@ -70,3 +72,13 @@ jq(function(){
        }
     }
 });
+
+function isValidDrag(e){
+    var dt = e.originalEvent.dataTransfer;
+    // do not check dt.types.contains in webkit, because it crashes safari 4
+    isWebkit = navigator.userAgent.indexOf("AppleWebKit") > -1;
+    // dt.effectAllowed is none in Safari 5
+    // dt.types.contains check is for firefox
+    return dt && dt.effectAllowed != 'none' &&
+        (dt.files || (!isWebkit && dt.types.contains && dt.types.contains('Files')));
+}

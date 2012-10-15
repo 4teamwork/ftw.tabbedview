@@ -5,6 +5,9 @@ Changelog
 3.2.7 (unreleased)
 ------------------
 
+- Added condition to dont show uploadbox if you drag text on website.
+  [Julian Infanger]
+
 - Load upload function only on tabbedview.
   [mathias.leimgruber]
 
