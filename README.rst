@@ -142,7 +142,7 @@ We use the package ``example.conference``_ as example for showing how to use ``f
     ...         )
 
 - Register the view using ZCML, be sure to name it ``tabbedview_view-${action id}``
-(Example: ``browser/configure.zcml``)::
+  (Example: ``browser/configure.zcml``)::
 
     <configure
         xmlns="http://namespaces.zope.org/zope"

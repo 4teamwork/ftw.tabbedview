@@ -2,8 +2,15 @@ Changelog
 =========
 
 
-3.2.7 (unreleased)
+3.3.1 (unreleased)
 ------------------
+
+- Cleanup readme
+  [mathias.leimgruber]
+
+
+3.3 (2012-10-16)
+----------------
 
 - Load upload function only on tabbedview.
   [mathias.leimgruber]
@@ -109,7 +116,7 @@ Changelog
 ------------------
 
 - Replace some $ by jq in tabbedview.js.
- [mathias.leimgruber]
+  [mathias.leimgruber]
 
 
 3.2 (2012-04-02)
