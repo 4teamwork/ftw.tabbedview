@@ -5,6 +5,9 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
+- Added condition for not showing uploadbox if text is dragged on the website.
+  [Julian Infanger, jone]
+
 - Use first tabbedview by default when accessing tabbed view anonymously.
   [jone]
 

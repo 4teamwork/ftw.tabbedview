@@ -39,11 +39,23 @@ jq(function(){
       var uploadbox = jq('#uploadbox');
       uploadbox.css('display', 'none');
 
+      var dragging_text = false;
+
+      jq('body').live('dragstart', function(event) {
+          dragging_text = true;
+      });
+
+      jq('body').live('dragend', function(event) {
+          dragging_text = false;
+      });
+
       jq('.tabbedview_view').live('dragover', function(event){
-        uploadbox.show();
-        jq('.qq-upload-button').hide();
-        jq('.pannelHeader').hide();
-        jq('#label-upload').hide();
+          if (!dragging_text) {
+              uploadbox.show();
+              jq('.qq-upload-button').hide();
+              jq('.pannelHeader').hide();
+              jq('#label-upload').hide();
+            }
       });
 
       jq('.tabbedview_view').live('dragleave', function(event){
