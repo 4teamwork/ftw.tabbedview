@@ -5,7 +5,8 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use first tabbedview by default when accessing tabbed view anonymously.
+  [jone]
 
 
 3.3.1 (2012-10-16)

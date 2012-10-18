@@ -11,6 +11,7 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.i18n import translate
+import AccessControl
 
 
 try:
@@ -55,10 +56,15 @@ class TabbedView(BrowserView):
         use in the tabbed template.
         """
 
-        key_generator = getMultiAdapter((self.context, self, self.request),
-                                        IDefaultTabStorageKeyGenerator)
-        key = key_generator.get_key()
-        default_tab = IDictStorage(self).get(key, '')
+        user = AccessControl.getSecurityManager().getUser()
+        if user == AccessControl.SpecialUsers.nobody:
+            default_tab = ''
+
+        else:
+            key_generator = getMultiAdapter((self.context, self, self.request),
+                                            IDefaultTabStorageKeyGenerator)
+            key = key_generator.get_key()
+            default_tab = IDictStorage(self).get(key, '')
 
         actions = []
 
@@ -227,7 +233,13 @@ class TabbedView(BrowserView):
         argument or in the request payload as ``tab``.
         """
 
-        tab = tab or self.request.get('tab')
+        user = AccessControl.getSecurityManager().getUser()
+        if user == AccessControl.SpecialUsers.nobody:
+            tab = None
+
+        else:
+            tab = tab or self.request.get('tab')
+
         if not tab:
             return json.dumps([
                     'error',
