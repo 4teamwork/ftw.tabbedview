@@ -39,8 +39,18 @@ jq(function(){
       var uploadbox = jq('#uploadbox');
       uploadbox.css('display', 'none');
 
+      var dragging_text = false;
+
+      jq('body').live('dragstart', function(event) {
+          dragging_text = true;
+      });
+
+      jq('body').live('dragend', function(event) {
+          dragging_text = false;
+      });
+
       jq('.tabbedview_view').live('dragover', function(event){
-          if (isValidDrag(event)) {
+          if (!dragging_text) {
               uploadbox.show();
               jq('.qq-upload-button').hide();
               jq('.pannelHeader').hide();
@@ -72,13 +82,3 @@ jq(function(){
        }
     }
 });
-
-function isValidDrag(e){
-    var dt = e.originalEvent.dataTransfer;
-    // do not check dt.types.contains in webkit, because it crashes safari 4
-    isWebkit = navigator.userAgent.indexOf("AppleWebKit") > -1;
-    // dt.effectAllowed is none in Safari 5
-    // dt.types.contains check is for firefox
-    return dt && dt.effectAllowed != 'none' &&
-        (dt.files || (!isWebkit && dt.types.contains && dt.types.contains('Files')));
-}
