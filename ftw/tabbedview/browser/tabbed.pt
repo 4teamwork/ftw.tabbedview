@@ -12,7 +12,7 @@
               /* load the blogactionsbar with javascript,
               because the comment overlay work not,
               with a form-tag in the content area */
-              jq(function(){
+              $(function(){
                   load_tabbedview();
               });
            </script>

@@ -136,7 +136,7 @@
 
 })(jQuery);
 
-jq(function(){
+$(function(){
 
   debug_box = $('#template_chooser_debug');
 

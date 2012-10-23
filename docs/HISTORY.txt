@@ -5,6 +5,9 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
+- Adjust javscripts: Use $ instead of deprecated jq.
+  [phgross]
+
 - Added condition for not showing uploadbox if text is dragged on the website.
   [Julian Infanger, jone]
 

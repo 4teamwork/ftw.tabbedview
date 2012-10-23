@@ -1,4 +1,4 @@
-jq(function(){
+$(function(){
 
     if (jQuery('#uploadbox').length){
 
@@ -36,29 +36,29 @@ jq(function(){
       };
       loadUploader();
 
-      var uploadbox = jq('#uploadbox');
+      var uploadbox = $('#uploadbox');
       uploadbox.css('display', 'none');
 
       var dragging_text = false;
 
-      jq('body').live('dragstart', function(event) {
+      $('body').live('dragstart', function(event) {
           dragging_text = true;
       });
 
-      jq('body').live('dragend', function(event) {
+      $('body').live('dragend', function(event) {
           dragging_text = false;
       });
 
-      jq('.tabbedview_view').live('dragover', function(event){
+      $('.tabbedview_view').live('dragover', function(event){
           if (!dragging_text) {
               uploadbox.show();
-              jq('.qq-upload-button').hide();
-              jq('.pannelHeader').hide();
-              jq('#label-upload').hide();
+              $('.qq-upload-button').hide();
+              $('.pannelHeader').hide();
+              $('#label-upload').hide();
             }
       });
 
-      jq('.tabbedview_view').live('dragleave', function(event){
+      $('.tabbedview_view').live('dragleave', function(event){
         uploadbox.hover(
           function () {
             /* Do nothing*/
@@ -76,7 +76,7 @@ jq(function(){
 
           PloneQuickUpload.onAllUploadsComplete = function(event){
               uploadbox.hide();
-              jq('#label-upload').hide();
+              $('#label-upload').hide();
               tabbedview.reload_view();
           };
        }
