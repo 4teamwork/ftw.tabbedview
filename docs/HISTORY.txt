@@ -5,7 +5,9 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix failing test introduced by the "anonymous access" change.
+  Also test extjs configuration specifically anonymous.
+  [jone]
 
 
 3.3.2 (2012-10-26)
