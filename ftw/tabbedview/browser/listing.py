@@ -16,6 +16,8 @@ from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
+import AccessControl
+
 
 try:
     import json
@@ -79,6 +81,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             'ftw.tabbedview.interfaces.ITabbedView.max_dynamic_batchsize']
 
     def __call__(self, *args, **kwargs):
+        config_view = self.context.restrictedTraverse('@@tabbedview_config')
+        self.extjs_enabled = config_view.extjs_enabled()
+
         # XXX : we need to be able to detect a extjs update request and return
         # only the template without data, because a later request will update
         # the table with json.

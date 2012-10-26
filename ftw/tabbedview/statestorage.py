@@ -9,6 +9,7 @@ from zope.annotation import IAnnotations
 from zope.component import adapts
 from zope.interface import implements
 from zope.publisher.interfaces.browser import IBrowserView
+import AccessControl
 
 
 class DefaultGridStateStorageKeyGenerator(object):
@@ -40,6 +41,9 @@ class DefaultGridStateStorageKeyGenerator(object):
         # add the userid
         mtool = getToolByName(self.context, 'portal_membership')
         member = mtool.getAuthenticatedMember()
+        if not member or member == AccessControl.getSecurityManager().getUser():
+            return None
+
         key.append(member.getId())
 
         # concatenate with "-"

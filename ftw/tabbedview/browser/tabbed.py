@@ -32,6 +32,10 @@ class TabbedView(BrowserView):
 
     __call__ = ViewPageTemplateFile("tabbed.pt")
 
+    def user_is_logged_in(self):
+        user = AccessControl.getSecurityManager().getUser()
+        return user != AccessControl.SpecialUsers.nobody
+
     def get_tabs(self):
         """Returns a list of dicts containing the tabs definitions"""
         for action, icon in self.get_actions(category='tabbedview-tabs'):
@@ -56,8 +60,7 @@ class TabbedView(BrowserView):
         use in the tabbed template.
         """
 
-        user = AccessControl.getSecurityManager().getUser()
-        if user == AccessControl.SpecialUsers.nobody:
+        if not self.user_is_logged_in():
             default_tab = ''
 
         else:
@@ -165,6 +168,9 @@ class TabbedView(BrowserView):
         column order, grouping, sorting etc.) persistent in dictstorage.
         """
 
+        if not self.user_is_logged_in():
+            return
+
         # extract the data
         state = self.request.get('gridstate', None)
         if not state or not isinstance(state, str):
@@ -214,6 +220,10 @@ class TabbedView(BrowserView):
         if ITabbedviewUploadable.providedBy(self.context):
             member = getToolByName(
                 self.context, 'portal_membership').getAuthenticatedMember()
+
+            if not member or member == AccessControl.SpecialUsers.nobody:
+                return False
+
             if member.checkPermission(
                 'Add portal content', self.context):
 
