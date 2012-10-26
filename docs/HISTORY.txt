@@ -5,6 +5,10 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
+- Basic support for using the tabbed view anonymously.
+  ExtJS is not supported and automatically disabled for anonymous users.
+  [jone]
+
 - Adjust javscripts: Use $ instead of deprecated jq.
   [phgross]
 
