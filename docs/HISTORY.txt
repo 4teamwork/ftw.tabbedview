@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.2 (unreleased)
+3.3.2 (2012-10-26)
 ------------------
 
 - Basic support for using the tabbed view anonymously.
