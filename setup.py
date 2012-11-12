@@ -37,7 +37,7 @@ setup(name='ftw.tabbedview',
       author='4teamwork GmbH',
       author_email='mailto:info@4teamwork.ch',
       maintainer=maintainer,
-      url='https://github.com/4teamwork/ftw.tabbedview/',
+      url='https://github.com/4teamwork/ftw.tabbedview',
       license='GPL2',
 
       packages=find_packages(exclude=['ez_setup']),
