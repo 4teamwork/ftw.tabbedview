@@ -5,6 +5,9 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- Do not hide the right portlet column.
+  [Julian Infanger]
+
 - Fix failing test introduced by the "anonymous access" change.
   Also test extjs configuration specifically anonymous.
   [jone]
