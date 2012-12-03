@@ -5,6 +5,9 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- Fix IE7 element positioning issue by force repainting.
+  [jone]
+
 - Do not hide the right portlet column.
   [Julian Infanger]
 

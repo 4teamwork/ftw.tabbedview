@@ -212,6 +212,15 @@ load_tabbedview = function(callback) {
     $('#'+tabbedview.prop('view_name')+'_overview p#select-folder .select-all-text').hide();
     },
 
+    ie_force_repaint: function() {
+      /* insert a dummy div for forcing refresh on IE 7 */
+      var $dummy = $('<div>&nbsp;</div>');
+      $('#tabbedview-body').prepend($dummy);
+      $dummy.remove();
+      $('.x-grid-panel').find('>:first').prepend($dummy);
+      $dummy.remove();
+    },
+
     show_spinner: function() {
       if (typeof(tabbedview._original_min_height) == 'undefined') {
         tabbedview._original_min_height = $('#content').css('min-height');
@@ -224,6 +233,7 @@ load_tabbedview = function(callback) {
         spinner.css('left', tab.position().left + (tab.width() / 2));
         spinner.css('top', tab.position().top + 50);
         spinner.show();
+        tabbedview.ie_force_repaint();
       }
     },
 
@@ -233,6 +243,7 @@ load_tabbedview = function(callback) {
         if (! tabbedview.spinner.is(':visible')) {
           $('#content').css('min-height', tabbedview._original_min_height);
         }
+        tabbedview.ie_force_repaint();
       }, 50);
     },
 
