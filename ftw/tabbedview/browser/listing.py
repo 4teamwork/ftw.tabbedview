@@ -112,7 +112,12 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                     static['menu'] = self.menu()
                     static['selection'] = self.selection()
 
-                self.table_options.update({'static': static})
+                omit_metadata = bool(
+                    int(self.request.get('omit_metadata', 0)))
+                self.table_options.update({
+                        'static': static,
+                        'omit_metadata': omit_metadata})
+
                 # Set correct content type for JSON response
                 self.request.response.setHeader("Content-type",
                                                 "application/json")
