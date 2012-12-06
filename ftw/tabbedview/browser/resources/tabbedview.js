@@ -394,10 +394,12 @@ load_tabbedview = function(callback) {
   $('.listingBar span a, .listingBar a').live('click', function(e,o) {
     e.preventDefault();
     e.stopPropagation();
-    var obj = $(this);
-    var pagenumber = $.find_param(this.href).pagenumber;
-    tabbedview.param('pagenumber:int', pagenumber);
-    tabbedview.reload_view();
+    if(tabbedview.table){
+      var pagenumber = $.find_param(this.href).pagenumber;
+      tabbedview.table.ftwtable('goto_page', pagenumber);
+    } else {
+      tabbedview.table.ftwtable('goto_page', pagenumber);
+    }
   });
 
   // dynamic batching functionality
