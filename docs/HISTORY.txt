@@ -135,6 +135,10 @@ Changelog
 - Fix javascript order in ExtJS profile.
   [jone]
 
+- Delegate pagination to batching to table if a table exists.
+  This allows faster reload when using ExtJS tables.
+  [jone]
+
 - Add extjs filter support.
   Define a ``IExtFilter`` object as ``filter`` in your column defition
   and install the ``grid-filter`` GS profile of ``collective.js.extjs``.
