@@ -104,6 +104,48 @@ class IDefaultDictStorageConfig(Interface):
 class INoExtJS(Interface):
     """Marker interface for tabbedviews to force disable extjs"""
 
+class IExtFilter(Interface):
+    """An ExtJS column filter definition.
+    When defining columns (in dict-syntax), define an object providing
+    IExtFilter as 'filter'.
+    """
+
+    def get_default_value(column):
+        """Returns the the default filter value. If None is returned, this
+        column is not filtered by default.
+        """
+
+    def get_filter_definition(column, contents):
+        """Arguments:
+
+        *column* the original column definition dict, usable for generic
+        filters which need to know the column id.
+        *contents* the search results (e.g. set of brain)
+
+        Returns an ExtJS filter definition dict with keys:
+
+        *type* - the filter type (e.g. string, list, boolean, numeric, date)
+        *options* -- if the filter type is list this should be a list of all
+        possible values as tuples with key / label. (optional)
+        *comparison* -- if the filter type is date, put the comparison
+        operator here (ne, eq, gt, lt). (optional)
+        """
+
+    def apply_filter_to_query(column, query, data):
+        """If the filter is active, extend the query so that it filters the
+        passed values.
+
+        Arguments:
+        *column* - the column definition
+        *query* - the query to be modified and returned
+        *data* - a dict of filter data, containing usually the key ``value``
+        with the filter value but may also contain additional information
+        such as an ``operator`` for date filters. When using a default
+        filter, this dict only contains the value.
+
+        Warning: get_filter_definition will be called afterwards and will
+        contain the already filtered result set.
+        """
 
 if QUICKUPLOAD_INSTALLED:
     class ITabbedviewUploadable(Interface, IQuickUploadCapable):

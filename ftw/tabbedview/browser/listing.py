@@ -1,10 +1,13 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from copy import deepcopy
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview import tabbedviewMessageFactory as _
+from ftw.tabbedview.interfaces import IExtFilter
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from ftw.tabbedview.interfaces import IListingView
+from ftw.tabbedview.utils import get_filters_from_request
 from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
 from ftw.table.interfaces import ITableGenerator
@@ -91,6 +94,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         if self.table_options is None:
             self.table_options = {}
+        self._filters = None
 
     def __call__(self, *args, **kwargs):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
@@ -192,6 +196,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         # build the query
         query = self.table_source.build_query()
+        query = self._apply_filters_to_query(query)
 
         # search
         results = self.table_source.search_results(query)
@@ -265,8 +270,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             #if the view is grouped or in dragging mode we disable batching
             rows = self.contents
 
+        columns = self._execute_column_filter_objects(self.columns)
+
         return generator.generate(rows,
-                                  self.columns,
+                                  columns,
                                   sortable=True,
                                   selected=(self.sort_on, self.sort_order),
                                   template=self.table_template,
@@ -468,6 +475,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             if 'group' in parsed_state:
                 del parsed_state['group']
 
+            # Do not persist filters: active filters are passid in the
+            # column definition
+            if 'filters' in parsed_state:
+                del parsed_state['filters']
+
             # In some situations the sorting in the state is corrupt. Every
             # visible row should have a 'sortable' by default.
             column_state_by_id = dict((col['id'], col)
@@ -522,6 +534,73 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                     })
 
         return actions
+
+    def _apply_filters_to_query(self, query):
+        user_filters = self._get_user_filters()
+
+        for col in self.columns:
+            column_id = col.get('sort_index', col.get('column'))
+            filter_ = col.get('filter')
+
+            if not IExtFilter.providedBy(filter_):
+                continue
+
+            data = None
+            if column_id in user_filters:
+                data = user_filters[column_id]
+
+            if not data:
+                value = filter_.get_default_value(col)
+                if value:
+                    data = {'value': value}
+
+            if data:
+                query = filter_.apply_filter_to_query(col, query, data)
+
+        return query
+
+    def _execute_column_filter_objects(self, columns):
+        """The "filter" key in the column definition may contain a callback
+        function which should be called with the current content.
+        """
+
+        columns = deepcopy(columns)
+
+        filters = self._get_user_filters()
+
+        for col in columns:
+            column_id = col.get('column')
+            filter_ = col.get('filter')
+
+            if filter_ and IExtFilter.providedBy(filter_):
+                col['filter'] = filter_.get_filter_definition(
+                    col, self.contents)
+
+            if not col.get('filter'):
+                continue
+
+            if filters and column_id in filters:
+                col['filter']['value'] = filters[column_id]['value']
+
+            else:
+                col['filter']['value'] = filter_.get_default_value(col)
+
+        return columns
+
+    def _get_user_filters(self):
+        """When the user has currently defined filters, return a dict
+        with those filters.
+
+        Example return value:
+        >>> {'getResponsibleManager': {'type': 'list',
+        ...                            'value': ['foo', 'bar']}}
+
+        """
+
+        if self._filters is None:
+            self._filters = get_filters_from_request(self.request)
+
+        return self._filters
 
 
 class CatalogListingView(ListingView, DefaultCatalogTableSourceConfig):

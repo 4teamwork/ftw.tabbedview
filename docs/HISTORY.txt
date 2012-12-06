@@ -135,6 +135,11 @@ Changelog
 - Fix javascript order in ExtJS profile.
   [jone]
 
+- Add extjs filter support.
+  Define a ``IExtFilter`` object as ``filter`` in your column defition
+  and install the ``grid-filter`` GS profile of ``collective.js.extjs``.
+  [jone]
+
 - Fix IE7 element positioning issue by force repainting.
   [jone]
 
