@@ -98,6 +98,16 @@ def get_filters_from_request(request):
             comparison = item.get('comparison')
             filters[field]['value'][comparison] = convert_date(item['value'])
 
+        elif type_ == 'list' and isinstance(item.get('value'), list):
+            new_value = []
+
+            for val in item['value']:
+                if isinstance(val, unicode):
+                    val = val.encode('utf-8')
+                new_value.append(val)
+
+            filters[field]['value'] = new_value
+
         else:
             filters[field]['value'] = item.get('value')
 
@@ -148,6 +158,17 @@ def get_filters_from_state(columns, filter_state):
 
             value = date_value
 
+        elif type_ == 'list':
+            if isinstance(value, list):
+                new_value = []
+
+                for val in value:
+                    if isinstance(val, unicode):
+                        val = val.encode('utf-8')
+                    new_value.append(val)
+
+                value = new_value
+
         result[key] = {'type': type_,
                        'value': value}
 
@@ -161,7 +182,7 @@ def get_column_filter_types_and_defaults(columns):
         if not isinstance(col, dict):
             continue
 
-        col_id = col.get('column')
+        col_id = col.get('sort_index', col.get('column'))
         if not col_id:
             continue
 
