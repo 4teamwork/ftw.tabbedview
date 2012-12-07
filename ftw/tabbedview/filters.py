@@ -1,13 +1,34 @@
 from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
 from ftw.tabbedview.interfaces import IExtFilter
+from plone.memoize import ram
+from time import time
+from zope.component.hooks import getSite
 from zope.interface import implements
 import re
 
 
 class DateFilter(object):
+    """A generic date filter implementation.
+    """
+
     implements(IExtFilter)
 
     def get_default_value(self, column):
+        """Sets a default date filter, which can be changed by the user.
+
+        Example return values:
+
+        No default filter:
+        >>> None
+
+        Sepcific date:
+        >>> {'eq': '2012-10-30'}
+
+        Date range:
+        >>> {'lt': '2012-10-15',
+        ...  'gt': '2012-10-30'}
+        """
         return None
 
     def get_filter_definition(self, column, contents):
@@ -80,3 +101,42 @@ class DateFilter(object):
 
         else:
             return None
+
+
+class CatalogUniqueValueFilter(object):
+    """A generic list filter which gets the options from the catalog without
+    using the result set. It also caches the results for an hour.
+    """
+
+    implements(IExtFilter)
+
+    def get_default_value(self, column):
+        return None
+
+    def get_filter_definition(self, column, contents):
+        column_id = column.get('column')
+        values = self._get_options(column_id)
+
+        return {'type': 'list',
+                'options': values}
+
+    def apply_filter_to_query(self, column, query, data):
+        column_id = column.get('column')
+        query[column_id] = data.get('value')
+        return query
+
+    def format_value_for_extjs(self, definition):
+        return definition
+
+    @ram.cache(lambda *args: (time() // (60 * 60), args))
+    def _get_options(self, column_id):
+        catalog = getToolByName(getSite(), 'portal_catalog')
+
+        values = []
+
+        for value in catalog.uniqueValuesFor(column_id):
+            values.append(value)
+
+        values.sort()
+
+        return values
