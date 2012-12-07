@@ -7,7 +7,7 @@ from ftw.tabbedview import tabbedviewMessageFactory as _
 from ftw.tabbedview.interfaces import IExtFilter
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from ftw.tabbedview.interfaces import IListingView
-from ftw.tabbedview.utils import get_filters_from_request
+from ftw.tabbedview.utils import get_filter_values
 from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
 from ftw.table.interfaces import ITableGenerator
@@ -470,11 +470,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             if 'group' in parsed_state:
                 del parsed_state['group']
 
-            # Do not persist filters: active filters are passid in the
-            # column definition
-            if 'filters' in parsed_state:
-                del parsed_state['filters']
-
             # In some situations the sorting in the state is corrupt. Every
             # visible row should have a 'sortable' by default.
             column_state_by_id = dict((col['id'], col)
@@ -534,16 +529,8 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             if not IExtFilter.providedBy(filter_):
                 continue
 
-            data = None
             if column_id in user_filters:
                 data = user_filters[column_id]
-
-            if not data:
-                value = filter_.get_default_value(col)
-                if value:
-                    data = {'value': value}
-
-            if data:
                 query = filter_.apply_filter_to_query(col, query, data)
 
         return query
@@ -587,7 +574,15 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         """
 
         if self._filters is None:
-            self._filters = get_filters_from_request(self.request)
+            state = self.table_options.get('gridstate')
+            if state:
+                state = json.loads(state)
+                filter_state = state.get('filters', None)
+            else:
+                filter_state = None
+
+            self._filters = get_filter_values(self.columns, self.request,
+                                              filter_state)
 
         return self._filters
 
