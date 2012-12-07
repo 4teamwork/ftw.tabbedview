@@ -561,6 +561,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             else:
                 col['filter']['value'] = filter_.get_default_value(col)
 
+            definition = col['filter']
+            if callable(getattr(filter_, 'format_value_for_extjs', None)):
+                definition = deepcopy(definition)
+                col['filter'] = filter_.format_value_for_extjs(definition)
+
         return columns
 
     def _get_user_filters(self):
