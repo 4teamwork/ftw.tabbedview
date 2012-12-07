@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 import re
 
 
@@ -12,8 +13,8 @@ def get_filter_values(columns, request, filter_state):
     ...                            'value': ['foo', 'bar']},
     ...  'modified': {'type': 'date',
     ...               'value': {
-    ...                   'gt': datetime(2012, 12, 11),
-    ...                   'lt': datetime(2012, 12, 31)}}}
+    ...                   'gt': '2012-12-11',
+    ...                   'lt': '2012-12-31'}}}
     """
 
     state_filters = get_filters_from_state(columns, filter_state)
@@ -76,6 +77,12 @@ def get_filters_from_request(request):
 
     filters = {}
 
+    def convert_date(datestr):
+        # convert from %m/%d/%Y to %Y-%m-%d
+        return re.sub(r'^(\d{2})/(\d{2})/(\d{4})$',
+                      r'\g<3>-\g<1>-\g<2>',
+                      datestr)
+
     for item in data.values():
         field = item.get('field')
         type_ = item.get('type')
@@ -88,9 +95,8 @@ def get_filters_from_request(request):
             if 'value' not in filters[field]:
                 filters[field]['value'] = {}
 
-            date = datetime.strptime(item.get('value', ''), '%m/%d/%Y')
             comparison = item.get('comparison')
-            filters[field]['value'][comparison] = date
+            filters[field]['value'][comparison] = convert_date(item['value'])
 
         else:
             filters[field]['value'] = item.get('value')
@@ -106,10 +112,21 @@ def get_filters_from_state(columns, filter_state):
 
     result = {}
 
-    # The date may contain an hour (usually 23) because of the date range
-    # manipulation in previously applied filters. We strip that, it will
-    # be reapplied correctly afterwards. We only filter dates, no times.
-    parse_date = lambda s: datetime.strptime(s.split('T', 1)[0], '%Y-%m-%d')
+    def convert_date(datestr):
+        # XXX: the date in the persistent filter state is the day before at
+        # 23:00, because of an timezone offset. We fix it manually here.
+        # convert from: '2012-12-17T23:00:00.000Z'
+        # to: '2012-12-18'
+
+        # remove ".000Z" at the end
+        datestr = datestr.split('.')[0]
+
+        # parse and fix offset
+        date = datetime.strptime(datestr, '%Y-%m-%dT%H:%M:%S')
+        date += timedelta(hours=1)
+
+        # format
+        return date.strftime('%Y-%m-%d')
 
     for key, value in filter_state.items():
         if key not in types_and_defaults:
@@ -121,13 +138,13 @@ def get_filters_from_state(columns, filter_state):
             date_value = {}
 
             if 'before' in value:
-                date_value['lt'] = parse_date(value['before'])
+                date_value['lt'] = convert_date(value['before'])
 
             if 'after' in value:
-                date_value['gt'] = parse_date(value['after'])
+                date_value['gt'] = convert_date(value['after'])
 
             if 'on' in value:
-                date_value['eq'] = parse_date(value['on'])
+                date_value['eq'] = convert_date(value['on'])
 
             value = date_value
 

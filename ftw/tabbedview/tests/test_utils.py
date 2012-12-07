@@ -1,4 +1,3 @@
-from datetime import datetime
 from ftw.tabbedview.interfaces import IExtFilter
 from ftw.tabbedview.utils import get_column_filter_types_and_defaults
 from ftw.tabbedview.utils import get_filter_values
@@ -32,7 +31,7 @@ class BarDate(object):
     implements(IExtFilter)
 
     def get_default_value(self, column):
-        return {'eq': datetime(2000, 10, 25)}
+        return {'eq': '2000-10-25'}
 
     def get_filter_definition(self, column, contents):
         return {'type': 'date'}
@@ -82,14 +81,16 @@ class TestGetFilterValues(TestCase):
                 'filter[1][data][value]': '12/11/2012',
                 'filter[1][field]': 'bar'})
 
-        filter_state = {u'bar': {u'after': u'2012-12-13T23:00:00.000Z',
-                                 u'before': u'2012-12-18T23:00:00.000Z'}}
+        # WAWRNING: Extjs has an timezone offset of 1 hour in the
+        # filter state. Therfore it is the day before the selected!
+        filter_state = {u'bar': {u'after': u'2012-12-12T23:00:00.000Z',
+                                 u'before': u'2012-12-17T23:00:00.000Z'}}
 
         output = {'bar': {
                 'type': 'date',
                 'value': {
-                    'gt': datetime(2012, 12, 13),
-                    'lt': datetime(2012, 12, 18)}}}
+                    'gt': '2012-12-13',
+                    'lt': '2012-12-18'}}}
 
         self.assertEqual(get_filter_values(COLUMNS, req, filter_state),
                          output)
@@ -110,8 +111,8 @@ class TestGetFilterValues(TestCase):
         output = {'bar': {
                 'type': 'date',
                 'value': {
-                    'gt': datetime(2012, 12, 11),
-                    'lt': datetime(2012, 12, 31)}}}
+                    'gt': '2012-12-11',
+                    'lt': '2012-12-31'}}}
 
         self.assertEqual(get_filter_values(COLUMNS, req, filter_state),
                          output)
@@ -124,7 +125,7 @@ class TestGetFilterValues(TestCase):
             'bar': {
                 'type': 'date',
                 'value': {
-                    'eq': datetime(2000, 10, 25)}},
+                    'eq': '2000-10-25'}},
 
             'foo': {
                 'type': 'list',
@@ -216,8 +217,8 @@ class TestGetFiltersFromRequest(TestCase):
             {'modified':
                  {'type': 'date',
                   'value': {
-                        'gt': datetime(2012, 12, 11),
-                        'lt': datetime(2012, 12, 31)}}})
+                        'gt': '2012-12-11',
+                        'lt': '2012-12-31'}}})
 
 
 class TestGetFiltersFromState(TestCase):
@@ -236,34 +237,28 @@ class TestGetFiltersFromState(TestCase):
         self.assertEqual(get_filters_from_state(COLUMNS, input), output)
 
     def test_date_range(self):
-        input = {u'bar': {u'after': u'2012-12-13T23:00:00.000Z',
-                          u'before': u'2012-12-18T23:00:00.000Z'}}
+        # WAWRNING: Extjs has an timezone offset of 1 hour in the
+        # filter state. Therfore it is the day before the selected!
+        input = {u'bar': {u'after': u'2012-12-12T23:00:00.000Z',
+                          u'before': u'2012-12-17T23:00:00.000Z'}}
 
         output = {'bar': {
                 'type': 'date',
                 'value': {
-                    'gt': datetime(2012, 12, 13),
-                    'lt': datetime(2012, 12, 18)}}}
-
-        self.assertEqual(get_filters_from_state(COLUMNS, input), output)
-
-    def test_date_before(self):
-        input = {u'bar': {u'before': u'2012-12-18T23:00:00.000Z'}}
-
-        output = {'bar': {
-                'type': 'date',
-                'value': {
-                    'lt': datetime(2012, 12, 18)}}}
+                    'gt': '2012-12-13',
+                    'lt': '2012-12-18'}}}
 
         self.assertEqual(get_filters_from_state(COLUMNS, input), output)
 
     def test_date_after(self):
-        input = {u'bar': {u'after': u'2012-12-13T23:00:00.000Z'}}
+        # WAWRNING: Extjs has an timezone offset of 1 hour in the
+        # filter state. Therfore it is the day before the selected!
+        input = {u'bar': {u'after': u'2012-12-12T23:00:00.000Z'}}
 
         output = {'bar': {
                 'type': 'date',
                 'value': {
-                    'gt': datetime(2012, 12, 13)}}}
+                    'gt': '2012-12-13'}}}
 
         self.assertEqual(get_filters_from_state(COLUMNS, input), output)
 
@@ -273,7 +268,7 @@ class TestGetFiltersFromState(TestCase):
         output = {'bar': {
                 'type': 'date',
                 'value': {
-                    'eq': datetime(2012, 12, 13)}}}
+                    'eq': '2012-12-14'}}}
 
         self.assertEqual(get_filters_from_state(COLUMNS, input), output)
 
@@ -282,7 +277,7 @@ class TestGetColumnFilterTypesAndDefaults(TestCase):
 
     def test_get_column_filter_types_and_defaults(self):
         output = {'foo': ('list', [u'Foo']),
-                  'bar': ('date', {'eq': datetime(2000, 10, 25)}),
+                  'bar': ('date', {'eq': '2000-10-25'}),
                   'baz': ('list', None)}
 
         self.assertEqual(get_column_filter_types_and_defaults(COLUMNS),

@@ -147,6 +147,13 @@ class IExtFilter(Interface):
         contain the already filtered result set.
         """
 
+    def format_value_for_extjs(definition):
+        """This method reformats and returns the value so that it is
+        useable by ExtJS.
+        This is necessary since internal data structure may be different.
+        """
+
+
 if QUICKUPLOAD_INSTALLED:
     class ITabbedviewUploadable(Interface, IQuickUploadCapable):
         """Marker interfaces"""
