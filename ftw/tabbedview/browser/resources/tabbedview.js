@@ -479,7 +479,7 @@ load_tabbedview = function(callback) {
     jQuery('dl#plone-contentmenu-tabbedview-actions > dd.actionMenuContent').click(hideAllMenus);
 
     /* actions (<a>) should submit the form */
-    $('#tabbedview-menu a.actionicon').click(function(event) {
+    $('#tabbedview-menu a.actionicon').live('click', function(event) {
       if ($(this).attr('href').indexOf('javascript:') === 0) {
         return;
 
