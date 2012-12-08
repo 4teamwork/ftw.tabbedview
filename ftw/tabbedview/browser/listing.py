@@ -539,6 +539,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         user_filters = self._get_user_filters()
 
         for col in self.columns:
+            if not isinstance(col, dict):
+                continue
+
             column_id = col.get('sort_index', col.get('column'))
             filter_ = col.get('filter')
 
@@ -561,6 +564,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         filters = self._get_user_filters()
 
         for col in columns:
+            if not isinstance(col, dict):
+                continue
+
             column_id = col.get('column')
             filter_ = col.get('filter')
 
