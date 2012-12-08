@@ -28,12 +28,12 @@
 
         <div id="tabbedview-header">
 
-          <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-
-          <h1 class="documentFirstHeading">
-            <tal:title replace="context/Title" />
-          </h1>
+          <tal:SHOW_CONTEXT_TITLE tal:condition="view/show_context_title|nothing">
+              <div tal:replace="structure provider:plone.abovecontenttitle" />
+              <h1 class="documentFirstHeading">
+                  <tal:title replace="context/Title" />
+              </h1>
+          </tal:SHOW_CONTEXT_TITLE>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
           <div class="tabbedview-tabs">
             <ul class="formTabs">
