@@ -2,7 +2,8 @@
 <metadata>
     <version>1</version>
     <dependencies>
-        <dependency>profile-ftw.table:extjs</dependency>
+        <dependency>profile-ftw.table:default</dependency>
         <dependency>profile-ftw.tabbedview:default</dependency>
+        <dependency>profile-ftw.table:extjs</dependency>
     </dependencies>
 </metadata>
