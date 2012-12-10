@@ -5,6 +5,10 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- ExtJS: Remove overriding sortable flag with grid state. The column
+  definition should be used always.
+  [jone]
+
 - Delegate pagination to batching to table if a table exists.
   This allows faster reload when using ExtJS tables.
   [jone]

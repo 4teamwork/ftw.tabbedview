@@ -470,23 +470,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             if 'group' in parsed_state:
                 del parsed_state['group']
 
-            # In some situations the sorting in the state is corrupt. Every
-            # visible row should have a 'sortable' by default.
-            column_state_by_id = dict((col['id'], col)
-                                      for col in parsed_state['columns'])
-
-            for column in self.columns:
-                if not isinstance(column, dict):
-                    continue
-
-                name = column.get('sort_index', column.get('column', None))
-                if name not in column_state_by_id:
-                    continue
-
-                col_state = column_state_by_id[name]
-                if 'sortable' not in col_state:
-                    col_state['sortable'] = True
-
             state = json.dumps(parsed_state)
 
         if state:
