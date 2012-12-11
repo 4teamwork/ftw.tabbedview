@@ -4,6 +4,7 @@
   <javascript
       id="++resource++ftwtable.extjs.js"
       expression="object/@@tabbedview_config/extjs_enabled"
+      insert-after="++resource++jquery.ftwtable.js"
       />
 
 </object>

@@ -5,6 +5,9 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- Fix javascript order in ExtJS profile.
+  [jone]
+
 - Fix IE7 element positioning issue by force repainting.
   [jone]
 
