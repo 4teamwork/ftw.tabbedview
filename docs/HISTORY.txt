@@ -148,6 +148,9 @@ Changelog
   and install the ``grid-filter`` GS profile of ``collective.js.extjs``.
   [jone]
 
+- Fix javascript order in ExtJS profile.
+  [jone]
+
 - Fix IE7 element positioning issue by force repainting.
   [jone]
 
