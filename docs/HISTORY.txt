@@ -5,6 +5,10 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- ExtJS: Allow providing static HTML before update(), which is not
+  overridden as long it is not managed by default.
+  [jone]
+
 - ExtJS: Remove overriding sortable flag with grid state. The column
   definition should be used always.
   [jone]
