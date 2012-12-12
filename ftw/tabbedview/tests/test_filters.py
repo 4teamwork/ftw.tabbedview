@@ -4,7 +4,6 @@ from ftw.tabbedview.filters import DateFilter
 from ftw.testing import MockTestCase
 from plone.memoize import ram
 from unittest2 import TestCase
-from zope.component import getSiteManager
 
 
 class TestDateFilter(TestCase):
