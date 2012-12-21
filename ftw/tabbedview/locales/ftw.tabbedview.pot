@@ -4,7 +4,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-06-12 07:25+0000\n"
+=======
+"POT-Creation-Date: 2012-12-21 14:59+0000\n"
+>>>>>>> Add a list_filter_negation_support for negating list filters.
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +54,10 @@ msgid "Set tab as default"
 msgstr ""
 
 msgid "Title"
+msgstr ""
+
+#: ./ftw/tabbedview/filters.py:55
+msgid "[All but not the selected]"
 msgstr ""
 
 #: ./ftw/tabbedview/browser/selection.pt:11

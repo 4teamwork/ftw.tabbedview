@@ -1,9 +1,109 @@
 from DateTime import DateTime
 from ftw.tabbedview.filters import CatalogUniqueValueFilter
 from ftw.tabbedview.filters import DateFilter
+from ftw.tabbedview.filters import NEGATION_OPTION_KEY
+from ftw.tabbedview.filters import list_filter_negation_support
+from ftw.tabbedview.interfaces import IExtFilter
 from ftw.testing import MockTestCase
 from plone.memoize import ram
 from unittest2 import TestCase
+from zope.interface import implements
+
+
+class FooList(object):
+    implements(IExtFilter)
+
+    def get_default_value(self):
+        return None
+
+    def get_filter_definition(self, column, contents):
+        return {'type': 'list',
+                'options': [('foo', 'Foo'),
+                            ('bar', 'Bar'),
+                            'baz']}
+
+    def apply_filter_to_query(self, column, query, data):
+        column_id = column.get('column')
+        query[column_id] = data.get('value')
+        return query
+
+    def format_value_for_extjs(definition):
+        return definition
+
+
+class TestListFilterNegationSupport(TestCase):
+
+    def test_negation_option_is_injected(self):
+        column = {'column': 'foo'}
+        original = FooList()
+
+        self.assertEqual(original.get_filter_definition(column, []),
+                         {'type': 'list',
+                          'options': [('foo', 'Foo'),
+                                      ('bar', 'Bar'),
+                                      'baz']})
+
+        wrapped = list_filter_negation_support(FooList)()
+        self.assertEqual(wrapped.get_filter_definition(column, []),
+                         {'type': 'list',
+                          'options': [(NEGATION_OPTION_KEY,
+                                       u'[All but not the selected]'),
+                                      ('foo', 'Foo'),
+                                      ('bar', 'Bar'),
+                                      'baz']})
+
+    def test_appling_query_when_not_negated(self):
+        column = {'column': 'foo'}
+        query = {}
+        data = {'value': ['foo', 'bar']}
+
+        wrapped = list_filter_negation_support(FooList)()
+        self.assertEqual(
+            wrapped.apply_filter_to_query(column, query, data),
+            {'foo': ['foo', 'bar']})
+
+    def test_nothing_applied_when_only_negating(self):
+        column = {'column': 'foo'}
+        wrapped = list_filter_negation_support(FooList)()
+
+        data = {'value': NEGATION_OPTION_KEY}
+        query = {}
+        wrapped.apply_filter_to_query(column, query, data)
+        self.assertEqual(
+            wrapped.apply_filter_to_query(column, query, data),
+            {})
+
+        data = {'value': [NEGATION_OPTION_KEY]}
+        query = {}
+        wrapped.apply_filter_to_query(column, query, data)
+        self.assertEqual(
+            wrapped.apply_filter_to_query(column, query, data),
+            {})
+
+        data = {'value': None}
+        query = {}
+        self.assertEqual(
+            wrapped.apply_filter_to_query(column, query, data),
+            {})
+
+    def test_applying_query_with_negation(self):
+        column = {'column': 'foo'}
+        wrapped = list_filter_negation_support(FooList)()
+
+        data = {'value': [NEGATION_OPTION_KEY, 'bar']}
+        query = {}
+        wrapped.apply_filter_to_query(column, query, data)
+        self.assertEqual(query, {'foo': ['foo', 'baz']})
+
+        data = {'value': [NEGATION_OPTION_KEY, 'foo', 'baz']}
+        query = {}
+        wrapped.apply_filter_to_query(column, query, data)
+        self.assertEqual(query, {'foo': ['bar']})
+
+    def test_class_name_is_extended_when_wrapping(self):
+        self.assertEqual(FooList.__name__, 'FooList')
+        self.assertEqual(list_filter_negation_support(FooList).__name__,
+                         'FooListWithNegationSupport')
 
 
 class TestDateFilter(TestCase):

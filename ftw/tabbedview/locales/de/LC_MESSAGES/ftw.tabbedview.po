@@ -47,6 +47,10 @@ msgstr "Als Standard-Tab verwenden"
 msgid "Title"
 msgstr "Titel"
 
+#: ./ftw/tabbedview/filters.py:55
+msgid "[All but not the selected]"
+msgstr "[Alle ausser ...]"
+
 #: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
 msgstr "Alle (${amount})"
