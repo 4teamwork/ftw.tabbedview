@@ -5,6 +5,7 @@ from ftw.tabbedview.interfaces import IExtFilter
 from plone.memoize import ram
 from time import time
 from zope.component.hooks import getSite
+from zope.i18n import translate
 from zope.interface import implements
 import re
 
@@ -51,8 +52,10 @@ def list_filter_negation_support(cls):
             definition = cls.get_filter_definition(self, *args, **kwargs)
             assert definition.get('type') == 'list', \
                 'Using list_filter_negation_support on non-list filter.'
-            definition['options'].insert(0, (
-                    NEGATION_OPTION_KEY, _(u'[All but not the selected]')))
+
+            label = translate(_(u'[All but not the selected]'),
+                              context=getSite().REQUEST)
+            definition['options'].insert(0, (NEGATION_OPTION_KEY, label))
             return definition
 
         def apply_filter_to_query(self, column, query, data):
