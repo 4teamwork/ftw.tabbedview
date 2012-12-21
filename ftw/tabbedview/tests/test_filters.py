@@ -7,6 +7,8 @@ from ftw.tabbedview.interfaces import IExtFilter
 from ftw.testing import MockTestCase
 from plone.memoize import ram
 from unittest2 import TestCase
+from zope.component import getSiteManager
+from zope.component.hooks import setSite
 from zope.interface import implements
 
 
@@ -31,7 +33,17 @@ class FooList(object):
         return definition
 
 
-class TestListFilterNegationSupport(TestCase):
+class TestListFilterNegationSupport(MockTestCase):
+
+    def setUp(self):
+        super(TestListFilterNegationSupport, self).setUp()
+        site = self.create_dummy(REQUEST=None,
+                                 getSiteManager=getSiteManager)
+        setSite(site)
+
+    def tearDown(self):
+        setSite(None)
+        super(TestListFilterNegationSupport, self).tearDown()
 
     def test_negation_option_is_injected(self):
         column = {'column': 'foo'}
