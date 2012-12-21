@@ -128,7 +128,11 @@ class CatalogUniqueValueFilter(object):
     def format_value_for_extjs(self, definition):
         return definition
 
-    @ram.cache(lambda *args: (time() // (60 * 60), args))
+    @ram.cache(lambda m, self, column_id: (
+            self.__class__.__name__,
+            m.__name__,
+            time() // (60 * 60 * 10),
+            column_id))
     def _get_options(self, column_id):
         catalog = getToolByName(getSite(), 'portal_catalog')
 
