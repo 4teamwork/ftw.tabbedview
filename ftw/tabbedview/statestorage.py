@@ -28,7 +28,7 @@ class DefaultGridStateStorageKeyGenerator(object):
         self.tabview = tabview
         self.request = request
 
-    def get_key(self):
+    def get_key(self, profiles=False):
         key = []
         key.append('ftw.tabbedview')
 
@@ -45,6 +45,15 @@ class DefaultGridStateStorageKeyGenerator(object):
             return None
 
         key.append(member.getId())
+
+        if profiles:
+            profile_name = 'PROFILES'
+
+        else:
+            profile_name = self.request.get('grid-state-profile', None)
+
+        if profile_name and profile_name != 'default':
+            key.append(profile_name)
 
         # concatenate with "-"
         return '-'.join(key)

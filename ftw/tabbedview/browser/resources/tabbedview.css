@@ -46,6 +46,13 @@
   color: white !important;
 }
 
+#content .tabbedview-tab-menu .actionMenuContent label {
+  padding: 0.5em 0em 0.25em 0.75em;
+  color: grey;
+  display: block;
+  font-weight: normal;
+}
+
 .tabbdview-tab-menu-template {
   display: none;
 }
@@ -55,4 +62,21 @@
 }
 .loading_tab #tabbedview-body {
   opacity: 0.5;
+}
+
+#content ul.tabbedview-pills {
+  list-style-type: none;
+  margin-left: 0.5em;
+}
+
+#content ul.tabbedview-pills li {
+  display: inline;
+}
+
+#content ul.tabbedview-pills li:after {
+  content: " | ";
+}
+
+#content ul.tabbedview-pills li:last-child:after {
+  content: "";
 }

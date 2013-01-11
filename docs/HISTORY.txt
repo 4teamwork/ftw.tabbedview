@@ -5,6 +5,10 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- Implement grid config profiles for ExtJS.
+  Can be enabled with `grid_config_profiles = False` on a listing test.
+  [jone]
+
 - ExtJS: Allow providing static HTML before update(), which is not
   overridden as long it is not managed by default.
   [jone]

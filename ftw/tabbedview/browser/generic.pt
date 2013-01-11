@@ -8,6 +8,25 @@
   <tal:has_contents tal:condition="view/contents">
     <div tal:omit-tag="python: view.extjs_enabled" class="tab_container">
 
+      <ul class="tabbedview-pills"
+          tal:define="grid_profiles view/get_grid_config_pills"
+          tal:condition="grid_profiles">
+
+          <tal:GRID_PROFILES tal:repeat="item grid_profiles">
+              <li tal:define="classes string:grid-config-profile;
+                              is_active item/active;
+                              classes python: is_active and '%s active' % classes or classes;"
+                  tal:attributes="class classes;
+                                  data-name item/name">
+
+                  <a tal:omit-tag="is_active"
+                     tal:content="item/label"
+                     href="#" />
+
+              </li>
+          </tal:GRID_PROFILES>
+      </ul>
+
       <tal:extjs condition="view/extjs_enabled">
         <div id="selection_container" class="ftwtable"><!--iefix--></div>
         <div id="batching_container" class="ftwtable"><!--iefix--></div>
