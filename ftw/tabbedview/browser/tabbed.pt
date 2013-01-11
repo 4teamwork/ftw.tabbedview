@@ -85,12 +85,25 @@
                         tal:attributes="class classes"
                         tal:condition="actions">
                         <ul>
-                            <li tal:repeat="action actions">
-                                <a tal:attributes="href action/href;
-                                                   title action/description|nothing;
-                                                   class action/classes|nothing"
-                                   tal:content="action/label" />
-                            </li>
+
+                            <tal:ACTION tal:repeat="action actions">
+                                <tal:action tal:define="type action/type|string:action">
+
+                                    <hr tal:condition="python:type == 'separator'" />
+                                    <label tal:condition="python:type == 'label'"
+                                           tal:content="action/label"/>
+
+                                    <li tal:condition="python:type == 'action'"
+                                        tal:attributes="class action/li-class|nothing">
+
+                                        <a tal:attributes="href action/href;
+                                                           title action/description|nothing;
+                                                           class action/classes|nothing;"
+                                           tal:content="action/label" />
+                                    </li>
+                                </tal:action>
+                            </tal:ACTION>
+
                         </ul>
                     </dd>
                 </tal:tab>

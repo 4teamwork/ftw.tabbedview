@@ -78,6 +78,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     contents = []
     groupBy = None
     use_batch = True
+    grid_config_profiles = False
 
     def __init__(self, context, request):
         super(ListingView, self).__init__(context, request)
@@ -95,6 +96,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if self.table_options is None:
             self.table_options = {}
         self._filters = None
+        self._grid_config_pills = None
 
     def __call__(self, *args, **kwargs):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
@@ -106,6 +108,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # better approach to implement: create a new extjs-update-view witch
         # returns a json containing the template with data and the data as
         # json.
+
+        if self.table_options is None:
+            self.table_options = {}
+
+        self._grid_state_profile_actions()
 
         if self.extjs_enabled:
             if ('tableType' in self.request and
@@ -506,6 +513,70 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                 self.sort_order = 'reverse'
                 self.sort_reverse = True
 
+    def _grid_state_profile_actions(self):
+        if 'new-grid-state-profile' in self.request.form:
+            self._create_grid_state_profile()
+
+        if 'remove-grid-state-profile' in self.request.form:
+            self._remove_grid_state_profile()
+
+        if self.request.get('grid-state-profile') == 'newest':
+            generator = queryMultiAdapter((self.context, self, self.request),
+                                          IGridStateStorageKeyGenerator)
+            profiles_key = generator.get_key(profiles=True)
+            storage = IDictStorage(self)
+            profiles = json.loads(storage.get(profiles_key, '{}'))
+            newest_name = str(max(map(int, profiles.keys())))
+            self.request.set('grid-state-profile', newest_name)
+
+    def _create_grid_state_profile(self):
+        label = self.request.get('new-grid-state-profile')
+
+        generator = queryMultiAdapter((self.context, self, self.request),
+                                      IGridStateStorageKeyGenerator)
+        profiles_key = generator.get_key(profiles=True)
+        storage = IDictStorage(self)
+        profiles = storage.get(profiles_key, None)
+        if profiles:
+            profiles = json.loads(profiles)
+        else:
+            profiles = {}
+
+        if profiles:
+            name = str(max(map(int, profiles.keys())) + 1)
+        else:
+            name = '1'
+
+        profiles[name] = {'name': name,
+                          'label': label}
+        storage.set(profiles_key, json.dumps(profiles))
+
+        self.request.set('grid-state-profile', name)
+        key = generator.get_key()
+        try:
+            del storage[key]
+        except KeyError:
+            pass
+
+    def _remove_grid_state_profile(self):
+        name = self.request.get('remove-grid-state-profile')
+
+        generator = queryMultiAdapter((self.context, self, self.request),
+                                      IGridStateStorageKeyGenerator)
+        profiles_key = generator.get_key(profiles=True)
+        storage = IDictStorage(self)
+        profiles = storage.get(profiles_key, None)
+        if not profiles:
+            return
+
+        if profiles:
+            profiles = json.loads(profiles)
+
+        if name in profiles:
+            del profiles[name]
+
+        storage.set(profiles_key, json.dumps(profiles))
+
     def update_tab_actions(self, actions):
         # XXX: This method is used from tabbed.py, which does not call this
         # view. This means, that the class variable extjs_enable is still False
@@ -519,8 +590,71 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                     'href': 'javascript:reset_grid_state()',
                     'description': _(u'Resets the table configuration for this tab.')
                     })
+        if self.extjs_enabled:
+            if not self.grid_config_profiles:
+                actions.append(
+                    {'label': _(u'Reset table configuration'),
+                     'href': 'javascript:reset_grid_state()',
+                     'description': _(u'Resets the table configuration '
+                                      u'for this tab.')})
+
+            else:
+                actions.extend([
+                        {'type': 'separator'},
+
+                        {'type': 'label',
+                         'label': _(u'Table configurations:')},
+
+                        {'label': _(u'New table configuration'),
+                         'href': 'javascript:tabbedview.new_grid_state_profile()',
+                         'description': _(u'Creates a new table '
+                                          u'configuration profile.')},
+
+                        {'label': _(u'Reset table configuration'),
+                         'href': 'javascript:reset_grid_state()',
+                         'description': _(u'Resets the table configuration '
+                                          u'for this tab.')},
+
+                        {'label': _(u'Remove table configuration'),
+                         'href': 'javascript:tabbedview.remove_grid_state_profile()',
+                         'description': _(u'Removes the current table '
+                                          u'configuration profile.'),
+                         'li-class': 'remove-grid-state-profile'}])
+
 
         return actions
+
+    def get_grid_config_pills(self):
+        if not self.grid_config_profiles:
+            return None
+
+        generator = queryMultiAdapter((self.context, self, self.request),
+                                      IGridStateStorageKeyGenerator)
+        profiles_key = generator.get_key(profiles=True)
+        storage = IDictStorage(self)
+        profiles = storage.get(profiles_key, None)
+        if not profiles:
+            return []
+        profiles = json.loads(profiles)
+
+        current_profile = self.request.get('grid-state-profile', None)
+        if current_profile == 'default':
+            current_profile = None
+
+        pills = [{'name': 'default',
+                  'label': _(u'Default'),
+                  'active': current_profile is None}]
+
+        for profile in sorted(profiles.values(),
+                              key=lambda item: item.get('label').lower()):
+            profile['active'] = profile['name'] == current_profile
+            pills.append(profile)
+
+        if len(pills) == 1:
+            # we have only the default profile - don't show the pills
+            return []
+
+        return pills
 
     def _apply_filters_to_query(self, query):
         user_filters = self._get_user_filters()

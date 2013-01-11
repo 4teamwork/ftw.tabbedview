@@ -190,10 +190,18 @@ class TabbedView(BrowserView):
         if not listing_view:
             return
 
-        # get the key for storing the state
         generator = queryMultiAdapter(
             (self.context, listing_view, self.request),
             IGridStateStorageKeyGenerator)
+
+        if self.request.get('grid-state-profile', None) == 'newest':
+            profiles_key = generator.get_key(profiles=True)
+            storage = IDictStorage(self)
+            profiles = json.loads(storage.get(profiles_key, '{}'))
+            newest_name = str(max(map(int, profiles.keys())))
+            self.request.set('grid-state-profile', newest_name)
+
+        # get the key for storing the state
         key = generator.get_key()
 
         # store the data

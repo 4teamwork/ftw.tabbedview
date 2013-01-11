@@ -4,11 +4,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2013-06-12 07:25+0000\n"
-=======
 "POT-Creation-Date: 2012-12-21 14:59+0000\n"
->>>>>>> Add a list_filter_negation_support for negating list filters.
+"POT-Creation-Date: 2013-01-11 10:13+0000\n"
+>>>>>>> Implement grid config profiles for ExtJS.
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +28,18 @@ msgstr ""
 msgid "Choose:"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/listing.py:585
+msgid "Creates a new table configuration profile."
+msgstr ""
+
 msgid "Creator"
 msgstr ""
 
 #: ./ftw/tabbedview/browser/batching.pt:68
 msgid "Lines per page:"
+
+#: ./ftw/tabbedview/browser/listing.py:620
+msgid "Default"
 msgstr ""
 
 #: ./ftw/tabbedview/browser/tabbed.py:95
@@ -41,6 +47,18 @@ msgid "Make the current tab the default tab when opening this view. This is a pe
 msgstr ""
 
 #: ./ftw/tabbedview/browser/listing.py:519
+msgid "New table configuration"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/listing.py:593
+msgid "Remove table configuration"
+msgstr ""
+
+#: ./ftw/tabbedview/browser/listing.py:595
+msgid "Removes the current table configuration profile."
+msgstr ""
+
+#: ./ftw/tabbedview/browser/listing.py:571
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
 msgstr ""
@@ -53,10 +71,14 @@ msgstr ""
 msgid "Set tab as default"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/listing.py:581
+msgid "Table configurations:"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
-#: ./ftw/tabbedview/filters.py:55
+#: ./ftw/tabbedview/filters.py:56
 msgid "[All but not the selected]"
 msgstr ""
 
@@ -73,7 +95,7 @@ msgid "end"
 msgstr ""
 
 #. Default: "Could not set default tab."
-#: ./ftw/tabbedview/browser/tabbed.py:257
+#: ./ftw/tabbedview/browser/tabbed.py:265
 msgid "error_set_default_tab"
 msgstr ""
 
@@ -85,7 +107,7 @@ msgid "hours"
 msgstr ""
 
 #. Default: "The tab ${title} is now your default tab. This is a personal setting."
-#: ./ftw/tabbedview/browser/tabbed.py:265
+#: ./ftw/tabbedview/browser/tabbed.py:273
 msgid "info_set_default_tab"
 msgstr ""
 
@@ -94,7 +116,7 @@ msgid "label_filter"
 msgstr ""
 
 #. Default: "No contents"
-#: ./ftw/tabbedview/browser/generic.pt:46
+#: ./ftw/tabbedview/browser/generic.pt:65
 msgid "label_no_contents"
 msgstr ""
 

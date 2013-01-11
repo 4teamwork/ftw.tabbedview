@@ -71,6 +71,11 @@ load_tabbedview = function(callback) {
         }
         $('#'+tabbedview.prop('old_view_name')+'_overview').html('');
 
+        if (typeof callback == "undefined") {
+            Ext.state.Manager.getProvider().state = {};
+            store.destroy();
+        }
+
         tabbedview.hide_spinner();
         tabbedview.view_container.trigger('reload');
         tabbedview.update_tab_menu();
@@ -236,6 +241,13 @@ load_tabbedview = function(callback) {
     hide_spinner: function() {
       tabbedview.spinner.hide();
       window.setTimeout(function() {
+        var active_profile = $('.grid-config-profile.active');
+        if(active_profile.length > 0 && active_profile.data('name') != 'default') {
+            $('.tabbedview-tab-menu li.remove-grid-state-profile').show();
+        } else {
+            $('.tabbedview-tab-menu li.remove-grid-state-profile').hide();
+        }
+
         if (! tabbedview.spinner.is(':visible')) {
           $('#content').css('min-height', tabbedview._original_min_height);
         }
@@ -295,6 +307,14 @@ load_tabbedview = function(callback) {
     tabbedview.reload_view();
   });
 
+  $('.grid-config-profile a').live('click', function(e) {
+      e.preventDefault();
+      Ext.state.Manager.getProvider().state = {};
+      var name = $(this).parent(':first').data('name');
+      tabbedview.flush_all_params();
+      tabbedview.param('grid-state-profile', name);
+      tabbedview.reload_view();
+  });
 
   var initialIndex = 0;
   var initial = $('.formTab > .initial');
@@ -528,6 +548,32 @@ load_tabbedview = function(callback) {
             success: function(data) {
                 tabbedview.show_portal_message(data[0], data[1], data[2]);
             }});
+    };
+
+    tabbedview.new_grid_state_profile = function() {
+        hideAllMenus();
+        tabbedview.flush_all_params();
+        tabbedview.param('new-grid-state-profile', prompt('Name:', ''));
+        tabbedview.param('grid-state-profile', 'newest');
+        grid.destroy();
+        store.destroy();
+        Ext.state.Manager.getProvider().state = {};
+        tabbedview.reload_view(function() {
+            store.destroy();
+            tabbedview.flush_params('new-grid-state-profile');
+        });
+    };
+
+    tabbedview.remove_grid_state_profile = function() {
+        hideAllMenus();
+        tabbedview.flush_all_params();
+        var active_profile = $('.grid-config-profile.active').data('name');
+        tabbedview.param('remove-grid-state-profile', active_profile);
+        Ext.state.Manager.getProvider().state = {};
+        tabbedview.reload_view(function() {
+            store.destroy();
+            tabbedview.flush_params('remove-grid-state-profile');
+        });
     };
 
     tabbedview.show_portal_message = function(type, title, message) {
