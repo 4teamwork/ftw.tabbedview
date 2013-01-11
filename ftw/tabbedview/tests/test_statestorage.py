@@ -6,6 +6,7 @@ from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from ftw.tabbedview.testing import ZCML_LAYER
 from ftw.testing import MockTestCase
+from mocker import ANY
 from persistent.mapping import PersistentMapping
 from zope.annotation import IAttributeAnnotatable
 from zope.component import getAdapter
@@ -45,6 +46,7 @@ class TestDefaultGridStateStorageKeyGenerator(MockTestCase):
         tabview = self.providing_stub(IBrowserView)
         self.expect(tabview.__name__).result('documents')
         request = self.providing_stub(IBrowserRequest)
+        self.expect(request.get(ANY, None)).result(None)
 
         mtool = self.stub()
         self.mock_tool(mtool, 'portal_membership')
