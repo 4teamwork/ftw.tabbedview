@@ -610,10 +610,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                          'description': _(u'Creates a new table '
                                           u'configuration profile.')},
 
-                        {'label': _(u'Reset table configuration'),
+                        {'label': _(u'Reset current table configuration'),
                          'href': 'javascript:reset_grid_state()',
                          'description': _(u'Resets the table configuration '
-                                          u'for this tab.')},
+                                          u'for this profile.')},
 
                         {'label': _(u'Remove table configuration'),
                          'href': 'javascript:tabbedview.remove_grid_state_profile()',

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2013-01-11 10:13+0000\n"
+"POT-Creation-Date: 2013-01-11 11:15+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
@@ -51,9 +51,17 @@ msgstr "Aktuelle Ansicht löschen"
 msgid "Removes the current table configuration profile."
 msgstr "Entfernt die momentan ausgewählte Ansicht."
 
+#: ./ftw/tabbedview/browser/listing.py:588
+msgid "Reset current table configuration"
+msgstr "Ansicht zurücksetzen"
+
 #: ./ftw/tabbedview/browser/listing.py:571
 msgid "Reset table configuration"
 msgstr "Tabellenkonfiguration zurücksetzen"
+
+#: ./ftw/tabbedview/browser/listing.py:590
+msgid "Resets the table configuration for this profile."
+msgstr "Tabellen-Konfiguration dieser Ansicht auf den Standard zurücksetzen."
 
 #: ./ftw/tabbedview/browser/listing.py:573
 msgid "Resets the table configuration for this tab."
