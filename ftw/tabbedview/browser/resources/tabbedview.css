@@ -71,6 +71,7 @@
 
 #content ul.tabbedview-pills li {
   display: inline;
+  cursor: default;
 }
 
 #content ul.tabbedview-pills li:after {
