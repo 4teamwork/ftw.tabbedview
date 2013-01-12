@@ -40,6 +40,10 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
+#: ./ftw/tabbedview/browser/batching.pt:68
+msgid "Lines per page:"
+msgstr ""
+
 #: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr ""

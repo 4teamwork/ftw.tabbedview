@@ -1,8 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-01-12 18:13+0000\n"
 "PO-Revision-Date: 2013-01-12 19:10+0100\n"
+=======
+"POT-Creation-Date: 2013-01-12 18:37+0000\n"
+"PO-Revision-Date: 2011-12-16 10:48+0100\n"
+>>>>>>> Add default dynamic batching form to batching template. closes #11
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +39,10 @@ msgstr "Zeilen pro Seite:"
 #: ./ftw/tabbedview/browser/listing.py:636
 msgid "Default"
 msgstr "Standard"
+
+#: ./ftw/tabbedview/browser/batching.pt:68
+msgid "Lines per page:"
+msgstr "Zeilen pro Seite:"
 
 #: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
@@ -97,6 +106,7 @@ msgstr "Ende"
 
 #. Default: "Could not set default tab."
 #: ./ftw/tabbedview/browser/tabbed.py:265
+=======
 msgid "error_set_default_tab"
 msgstr "Fehler beim setzen des Standard-Tab."
 

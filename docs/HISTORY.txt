@@ -160,6 +160,9 @@ Changelog
   and install the ``grid-filter`` GS profile of ``collective.js.extjs``.
   [jone]
 
+- Add default dynamic batching form to batching template. #11
+  [jone]
+
 - Fix javascript order in ExtJS profile.
   [jone]
 
