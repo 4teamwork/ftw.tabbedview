@@ -159,6 +159,15 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
         # load the groupBy parameter
         self.groupBy = self.request.get('groupBy', None)
+        if isinstance(self.groupBy, list):
+            # the tabbedview / extjs combination may result in duplicate
+            # groupBy parameters (one with GET and one with POST), which needs to be
+            # cleaned up
+            cols = [col for col in self.groupBy if col]
+            if cols:
+                self.groupBy = cols[0]
+            else:
+                self.groupBy = None
 
         #if the grid is in dragging mode we dont use a batch ans set depth to 1
         if self.request.get('sort', '') == 'draggable':
