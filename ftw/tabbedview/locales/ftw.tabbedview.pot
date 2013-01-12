@@ -25,7 +25,7 @@ msgstr ""
 msgid "Choose:"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:585
+#: ./ftw/tabbedview/browser/listing.py:601
 msgid "Creates a new table configuration profile."
 msgstr ""
 
@@ -34,8 +34,9 @@ msgstr ""
 
 #: ./ftw/tabbedview/browser/batching.pt:68
 msgid "Lines per page:"
+msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:620
+#: ./ftw/tabbedview/browser/listing.py:636
 msgid "Default"
 msgstr ""
 
@@ -43,32 +44,32 @@ msgstr ""
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:519
+#: ./ftw/tabbedview/browser/listing.py:599
 msgid "New table configuration"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:593
+#: ./ftw/tabbedview/browser/listing.py:609
 msgid "Remove table configuration"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:595
+#: ./ftw/tabbedview/browser/listing.py:611
 msgid "Removes the current table configuration profile."
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:588
+#: ./ftw/tabbedview/browser/listing.py:604
 msgid "Reset current table configuration"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:571
+#: ./ftw/tabbedview/browser/listing.py:587
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:521
+#: ./ftw/tabbedview/browser/listing.py:606
 msgid "Resets the table configuration for this profile."
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:573
+#: ./ftw/tabbedview/browser/listing.py:589
 msgid "Resets the table configuration for this tab."
 msgstr ""
 
@@ -76,8 +77,8 @@ msgstr ""
 msgid "Set tab as default"
 msgstr ""
 
-#: ./ftw/tabbedview/browser/listing.py:581
-msgid "Table configurations:"
+#: ./ftw/tabbedview/browser/listing.py:597
+msgid "Table configuration:"
 msgstr ""
 
 msgid "Title"
