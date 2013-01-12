@@ -283,7 +283,7 @@ load_tabbedview = function(callback) {
   // Support urls with #tabname@X where X is the grid-state-profile
   // parameter for the tab "tabname". Store the value and reset the
   // url in the history, removing @X
-  if (location.hash.indexOf('@') && typeof(history) != 'undefined') {
+  if (location.hash.indexOf('@') !== -1 && typeof(history) != 'undefined') {
       var url = location.href.split('@');
       var profile = url.pop();
       url = url.join('@');
