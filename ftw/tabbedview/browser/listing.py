@@ -594,7 +594,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                         {'type': 'separator'},
 
                         {'type': 'label',
-                         'label': _(u'Table configurations:')},
+                         'label': _(u'Table configuration:')},
 
                         {'label': _(u'New table configuration'),
                          'href': 'javascript:tabbedview.new_grid_state_profile()',

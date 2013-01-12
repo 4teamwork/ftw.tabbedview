@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2013-01-11 11:15+0000\n"
-"PO-Revision-Date: 2011-12-16 10:48+0100\n"
+"POT-Creation-Date: 2013-01-12 18:13+0000\n"
+"PO-Revision-Date: 2013-01-12 19:10+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -20,47 +20,47 @@ msgstr "Alle sichtbaren Einträge auswählen ${show_all_link}"
 msgid "Choose:"
 msgstr "Auswählen"
 
-#: ./ftw/tabbedview/browser/listing.py:585
+#: ./ftw/tabbedview/browser/listing.py:601
 msgid "Creates a new table configuration profile."
-msgstr "Eine neue Ansicht erstellen. Jede Ansicht hat eine eigene Tabellen-Konfiguration."
+msgstr "Eine neue Tabellenansicht erstellen. Jede Ansicht hat eine eigene Tabellen-Konfiguration."
 
 msgid "Creator"
 msgstr "Ersteller"
 
-#: ./ftw/tabbedview/browser/listing.py:620
+#: ./ftw/tabbedview/browser/listing.py:636
 msgid "Default"
 msgstr "Standard"
 
 #: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
-msgstr "Setzt das aktuelle Tab als Standard-Tab dieser Ansicht. Diese Einstellung ist persönlich."
+msgstr "Setzt das aktuelle Tab als Standard-Tab. Diese Einstellung ist persönlich."
 
-#: ./ftw/tabbedview/browser/listing.py:583
+#: ./ftw/tabbedview/browser/listing.py:599
 msgid "New table configuration"
-msgstr "Neue Ansicht"
+msgstr "Neue Tabellenansicht"
 
-#: ./ftw/tabbedview/browser/listing.py:593
+#: ./ftw/tabbedview/browser/listing.py:609
 msgid "Remove table configuration"
-msgstr "Aktuelle Ansicht löschen"
+msgstr "Aktuelle Tabellenansicht löschen"
 
-#: ./ftw/tabbedview/browser/listing.py:595
+#: ./ftw/tabbedview/browser/listing.py:611
 msgid "Removes the current table configuration profile."
-msgstr "Entfernt die momentan ausgewählte Ansicht."
+msgstr "Entfernt die momentan ausgewählte Tabellenansicht."
 
-#: ./ftw/tabbedview/browser/listing.py:588
+#: ./ftw/tabbedview/browser/listing.py:604
 msgid "Reset current table configuration"
-msgstr "Ansicht zurücksetzen"
+msgstr "Tabellenansicht zurücksetzen"
 
-#: ./ftw/tabbedview/browser/listing.py:571
+#: ./ftw/tabbedview/browser/listing.py:587
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
 msgstr "Tabellenkonfiguration zurücksetzen"
 
-#: ./ftw/tabbedview/browser/listing.py:590
+#: ./ftw/tabbedview/browser/listing.py:606
 msgid "Resets the table configuration for this profile."
 msgstr "Tabellen-Konfiguration dieser Ansicht auf den Standard zurücksetzen."
 
-#: ./ftw/tabbedview/browser/listing.py:573
+#: ./ftw/tabbedview/browser/listing.py:589
 msgid "Resets the table configuration for this tab."
 msgstr "Konfiguration der Tabelle dieses Tabs auf den Standard zurücksetzen."
 
@@ -68,9 +68,9 @@ msgstr "Konfiguration der Tabelle dieses Tabs auf den Standard zurücksetzen."
 msgid "Set tab as default"
 msgstr "Als Standard-Tab verwenden"
 
-#: ./ftw/tabbedview/browser/listing.py:581
-msgid "Table configurations:"
-msgstr "Tabellen-Ansicht:"
+#: ./ftw/tabbedview/browser/listing.py:597
+msgid "Table configuration:"
+msgstr "Tabellenansicht:"
 
 msgid "Title"
 msgstr "Titel"
