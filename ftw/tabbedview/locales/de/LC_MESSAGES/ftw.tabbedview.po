@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2012-07-24 08:29+0000\n"
+"POT-Creation-Date: 2013-01-12 18:37+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
@@ -23,20 +23,24 @@ msgstr "Auswählen"
 msgid "Creator"
 msgstr "Ersteller"
 
-#: ./ftw/tabbedview/browser/tabbed.py:87
+#: ./ftw/tabbedview/browser/batching.pt:68
+msgid "Lines per page:"
+msgstr "Zeilen pro Seite:"
+
+#: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr "Setzt das aktuelle Tab als Standard-Tab dieser Ansicht. Diese Einstellung ist persönlich."
 
-#: ./ftw/tabbedview/browser/listing.py:498
+#: ./ftw/tabbedview/browser/listing.py:503
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
 msgstr "Tabellenkonfiguration zurücksetzen"
 
-#: ./ftw/tabbedview/browser/listing.py:500
+#: ./ftw/tabbedview/browser/listing.py:505
 msgid "Resets the table configuration for this tab."
 msgstr "Konfiguration der Tabelle dieses Tabs auf den Standard zurücksetzen."
 
-#: ./ftw/tabbedview/browser/tabbed.py:85
+#: ./ftw/tabbedview/browser/tabbed.py:93
 msgid "Set tab as default"
 msgstr "Als Standard-Tab verwenden"
 
@@ -56,7 +60,7 @@ msgid "end"
 msgstr "Ende"
 
 #. Default: "Could not set default tab."
-#: ./ftw/tabbedview/browser/tabbed.py:236
+#: ./ftw/tabbedview/browser/tabbed.py:257
 msgid "error_set_default_tab"
 msgstr "Fehler beim setzen des Standard-Tab."
 
@@ -68,7 +72,7 @@ msgid "hours"
 msgstr "geleist. Std."
 
 #. Default: "The tab ${title} is now your default tab. This is a personal setting."
-#: ./ftw/tabbedview/browser/tabbed.py:244
+#: ./ftw/tabbedview/browser/tabbed.py:265
 msgid "info_set_default_tab"
 msgstr "Das Tab ${title} wird nun als Standard-Tab verwendet. Dies ist eine persönliche Einstellung."
 
