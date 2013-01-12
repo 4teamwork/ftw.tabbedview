@@ -5,6 +5,10 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- ExtJS: Disable sorting when grouping and sort by the grouping column.
+  This is to prevent multiple instances.
+  [jone]
+
 - Implement grid config profiles for ExtJS.
   Can be enabled with `grid_config_profiles = False` on a listing test.
   [jone]

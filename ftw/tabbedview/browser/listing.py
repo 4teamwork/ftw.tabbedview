@@ -193,6 +193,12 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         if self.sort_on.startswith('header-'):
             self.sort_on = self.sort_on.split('header-')[1]
 
+        if self.groupBy:
+            # automatically sort by the grouping column, so that we don't have
+            # the same group multiple times because of other rows with a different
+            # value in between.
+            self.sort_on = self.groupBy
+
         # reverse
         default_sort_order = self.sort_reverse and 'reverse' or 'asc'
         sort_order = self.request.get('dir', default_sort_order)
@@ -284,6 +290,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             rows = self.contents
 
         columns = self._execute_column_filter_objects(self.columns)
+        columns = self._disable_sorting_while_grouping(columns)
 
         return generator.generate(rows,
                                   columns,
@@ -692,6 +699,26 @@ class ListingView(BrowserView, BaseTableSourceConfig):
             if callable(getattr(filter_, 'format_value_for_extjs', None)):
                 definition = deepcopy(definition)
                 col['filter'] = filter_.format_value_for_extjs(definition)
+
+        return columns
+
+    def _disable_sorting_while_grouping(self, columns):
+        """While grouping, we disable sorting columns other than the column we
+        are currently grouping by.
+        If the sort-column is other than the group-column the same group may
+        occur multiple times because of rows of other groups in between.
+        Therefore sorting is disabled while grouping and defautls to the
+        column used for grouping.
+        """
+        if self.groupBy:
+            columns = deepcopy(columns)
+            for col in columns:
+                if not isinstance(col, dict):
+                    continue
+
+                column_id = col.get('sort_index', col.get('column', None))
+                if column_id != self.groupBy:
+                    col['sortable'] = False
 
         return columns
 
