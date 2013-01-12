@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2013-01-12 18:13+0000\n"
-"PO-Revision-Date: 2013-01-12 19:10+0100\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-01-12 18:46+0000\n"
+"PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,10 @@ msgstr "Ersteller"
 #: ./ftw/tabbedview/browser/listing.py:636
 msgid "Default"
 msgstr "Standard"
+
+#: ./ftw/tabbedview/browser/batching.pt:68
+msgid "Lines per page:"
+msgstr "Zeilen pro Seite:"
 
 #: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
@@ -133,3 +137,5 @@ msgstr "Beginn"
 
 msgid "state"
 msgstr "Status"
+
+
