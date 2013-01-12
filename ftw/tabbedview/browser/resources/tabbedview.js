@@ -280,6 +280,22 @@ load_tabbedview = function(callback) {
   jQuery.tabbedview = tabbedview;
 
 
+  // Support urls with #tabname@X where X is the grid-state-profile
+  // parameter for the tab "tabname". Store the value and reset the
+  // url in the history, removing @X
+  if (location.hash.indexOf('@') && typeof(history) != 'undefined') {
+      var url = location.href.split('@');
+      var profile = url.pop();
+      url = url.join('@');
+      history.replaceState(history.state, document.title, url);
+      var view = location.hash.split('#')[1];
+      if (tabbedview._params[view] === undefined) {
+          tabbedview._params[view] = {'grid-state-profile': profile};
+      } else {
+          tabbedview._params[view]['grid-state-profile'] = profile;
+      }
+  }
+
 
   /*catch all click events on tabs link elements and call the click method
     because jquery tools tabs doesnt work with plone folderish types*/
@@ -558,6 +574,26 @@ load_tabbedview = function(callback) {
             store.destroy();
             tabbedview.flush_params('remove-grid-state-profile');
         });
+    };
+
+    tabbedview.reload_page_keeping_profile = function() {
+        // Reloads the browser page, opening the current tab with the current profile.
+
+        // Change the url in the history, appending @profile. Only in possible in modern browsers.
+        if(typeof(history) != 'undefined') {
+            var url = location.href;
+            if (!location.hash) {
+                url += '#' + tabbedview.param('view_name');
+            }
+            if(tabbedview.param('grid-state-profile')) {
+                url += '@' + tabbedview.param('grid-state-profile');
+            }
+            if(location.href != url) {
+                history.replaceState(history.state, document.title, url);
+            }
+        }
+
+        location.reload();
     };
 
     tabbedview.show_portal_message = function(type, title, message) {
