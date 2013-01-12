@@ -496,7 +496,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
             state = json.dumps(parsed_state)
 
-        if state:
+        if state and not self.groupBy:
             self.table_options.update({'gridstate': state})
         else:
             return
