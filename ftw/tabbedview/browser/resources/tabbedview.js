@@ -583,7 +583,7 @@ load_tabbedview = function(callback) {
         if(typeof(history) != 'undefined') {
             var url = location.href;
             if (!location.hash) {
-                url += '#' + tabbedview.param('view_name');
+                url += '#' + tabbedview.prop('view_name');
             }
             if(tabbedview.param('grid-state-profile')) {
                 url += '@' + tabbedview.param('grid-state-profile');
