@@ -569,7 +569,11 @@ load_tabbedview = function(callback) {
     tabbedview.new_grid_state_profile = function() {
         hideAllMenus();
         tabbedview.flush_all_params();
-        tabbedview.param('new-grid-state-profile', prompt('Name:', ''));
+        var name = prompt('Name:', '');
+        if (!name) {
+            return;
+        }
+        tabbedview.param('new-grid-state-profile', name);
         tabbedview.param('grid-state-profile', 'newest');
         grid.destroy();
         store.destroy();
