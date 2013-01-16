@@ -68,6 +68,6 @@
       <span i18n:translate="">Lines per page:</span>
       <input id="tabbedview-batchbox" name="tabbedview-batchbox"
              type="text"
-             tal:attributes="value batch/pagesize" />
+             tal:attributes="value view/pagesize" />
     </form>
 </div>
