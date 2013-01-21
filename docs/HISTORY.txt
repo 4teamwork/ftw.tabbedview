@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.3 (unreleased)
+3.3.3 (2013-01-21)
 ------------------
 
 - Add default dynamic batching form to batching template. #11
