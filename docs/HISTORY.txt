@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.4 (unreleased)
+3.3.4 (2013-01-25)
 ------------------
 
 - Add INoExtJS marker interface disabling extjs when provided
