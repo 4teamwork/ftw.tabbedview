@@ -5,7 +5,9 @@ Changelog
 3.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add INoExtJS marker interface disabling extjs when provided
+  by the tabbview and the tab
+  [mathias.leimgruber]
 
 
 3.3.3 (2013-01-21)

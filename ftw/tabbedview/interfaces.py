@@ -100,6 +100,11 @@ class IDefaultDictStorageConfig(Interface):
         """Returns the annotated object (the plone site by default).
         """
 
+
+class INoExtJS(Interface):
+    """Marker interface for tabbedviews to force disable extjs"""
+
+
 if QUICKUPLOAD_INSTALLED:
     class ITabbedviewUploadable(Interface, IQuickUploadCapable):
         """Marker interfaces"""
