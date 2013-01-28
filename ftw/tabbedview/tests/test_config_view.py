@@ -22,6 +22,7 @@ class TestTabbedviewConfigView(MockTestCase):
 
         self.context = self.stub()
         self.request = self.stub_request()
+        self.expect(self.request.get('PUBLISHED', None)).result(None)
 
     def tearDown(self):
         super(TestTabbedviewConfigView, self).tearDown()
