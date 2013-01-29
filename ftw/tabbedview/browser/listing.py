@@ -16,7 +16,6 @@ from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
-import AccessControl
 
 
 try:
