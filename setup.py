@@ -13,6 +13,9 @@ extras_require = {
     'tests': tests_require,
     'extjs': ['ftw.table[extjs]'],
     'quickupload': ['collective.quickupload'],
+    'plone4.3': [
+        'plone.batching',
+        ]
     }
 
 setup(name='ftw.tabbedview',
