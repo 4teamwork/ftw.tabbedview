@@ -11,7 +11,7 @@ from ftw.table.interfaces import ITableGenerator
 from ftw.table.interfaces import ITableSource
 from plone.memoize import instance
 from plone.registry.interfaces import IRegistry
-from zope.app.pagetemplate import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
