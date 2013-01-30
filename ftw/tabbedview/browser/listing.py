@@ -9,15 +9,19 @@ from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
 from ftw.table.interfaces import ITableGenerator
 from ftw.table.interfaces import ITableSource
-from plone.app.content.batching import Batch
 from plone.memoize import instance
 from plone.registry.interfaces import IRegistry
 from zope.app.pagetemplate import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
-import AccessControl
 
+try:
+    # plone >= 4.3
+    from plone.batching import Batch
+except ImportError:
+    # plone < 4.3
+    from plone.app.content.batching import Batch
 
 try:
     import json
