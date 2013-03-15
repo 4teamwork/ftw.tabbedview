@@ -501,7 +501,13 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                 self.sort_reverse = True
 
     def update_tab_actions(self, actions):
-        if self.extjs_enabled:
+        # XXX: This method is used from tabbed.py, which does not call this
+        # view. This means, that the class variable extjs_enable is still False
+        # although extjs is enabled.
+        config_view = self.context.restrictedTraverse('@@tabbedview_config')
+        extjs_enabled = config_view.extjs_enabled(self)
+
+        if extjs_enabled:
             actions.append({
                     'label': _(u'Reset table configuration'),
                     'href': 'javascript:reset_grid_state()',
