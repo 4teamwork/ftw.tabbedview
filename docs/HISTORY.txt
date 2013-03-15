@@ -8,6 +8,9 @@ Changelog
 - Fix reset table configuration action.
   [mathias.leimgruber]
 
+- Use Batch.fromPagenumber.
+  [mathias.leimgruber]
+
 
 3.3.4 (2013-01-25)
 ------------------

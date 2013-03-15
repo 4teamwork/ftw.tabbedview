@@ -428,9 +428,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     @property
     @instance.memoize
     def batch(self):
-        return Batch(self.contents,
-                     pagesize=self.pagesize,
-                     pagenumber=self.pagenumber)
+        return Batch.fromPagenumber(self.contents,
+                                    pagesize=self.pagesize,
+                                    pagenumber=self.pagenumber)
 
     @property
     def multiple_pages(self):
