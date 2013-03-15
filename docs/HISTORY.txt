@@ -5,7 +5,8 @@ Changelog
 3.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix reset table configuration action.
+  [mathias.leimgruber]
 
 
 3.3.4 (2013-01-25)
