@@ -15,13 +15,19 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
+import pkg_resources
+
 
 try:
     # plone >= 4.3
+    pkg_resources.get_distribution('plone.batching')
     from plone.batching import Batch
-except ImportError:
+    batch_method = Batch.fromPagenumber
+
+except pkg_resources.DistributionNotFound:
     # plone < 4.3
     from plone.app.content.batching import Batch
+    batch_method = Batch
 
 try:
     import json
@@ -428,9 +434,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     @property
     @instance.memoize
     def batch(self):
-        return Batch(self.contents,
-                     pagesize=self.pagesize,
-                     pagenumber=self.pagenumber)
+
+        return batch_method(self.contents,
+                            pagesize=self.pagesize,
+                            pagenumber=self.pagenumber)
 
     @property
     def multiple_pages(self):
