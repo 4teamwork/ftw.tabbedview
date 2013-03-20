@@ -19,9 +19,11 @@ from zope.interface import implements
 try:
     # plone >= 4.3
     from plone.batching import Batch
+    batch_method = Batch.fromPagenumber
 except ImportError:
     # plone < 4.3
     from plone.app.content.batching import Batch
+    batch_method = Batch
 
 try:
     import json
@@ -428,9 +430,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     @property
     @instance.memoize
     def batch(self):
-        return Batch.fromPagenumber(self.contents,
-                                    pagesize=self.pagesize,
-                                    pagenumber=self.pagenumber)
+
+        return batch_method(self.contents,
+                            pagesize=self.pagesize,
+                            pagenumber=self.pagenumber)
 
     @property
     def multiple_pages(self):
