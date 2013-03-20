@@ -62,4 +62,4 @@ class TestTabbedviewConfigView(MockTestCase):
         newSecurityManager(None, nobody)
         view = queryMultiAdapter((self.context, self.request),
                                  name='tabbedview_config')
-        self.assertEqual(view.extjs_enabled(), True)
+        self.assertEqual(view.extjs_enabled(), False)
