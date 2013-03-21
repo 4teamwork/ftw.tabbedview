@@ -418,7 +418,6 @@ load_tabbedview = function(callback) {
 
   tabbedview.view_container.bind('reload', function() {
     //hide or show filter box
-    console.info($('.tabbedview-tabs li a.selected.searchform-hidden').length);
     if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
       tabbedview.searchbox.closest('.tabbedview_search').addClass('disabledSearchBox');
       tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', 'disabled');
