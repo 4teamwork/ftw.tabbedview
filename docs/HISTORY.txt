@@ -5,6 +5,9 @@ Changelog
 3.3.5 (unreleased)
 ------------------
 
+- Use removeAttr (jQuery 1.7.x).
+  [mathias.leimgruber]
+
 - Fix reset table configuration action.
   [mathias.leimgruber]
 

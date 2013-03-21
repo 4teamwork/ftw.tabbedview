@@ -423,7 +423,7 @@ load_tabbedview = function(callback) {
       tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', 'disabled');
     }else{
       tabbedview.searchbox.closest('.tabbedview_search').removeClass('disabledSearchBox');
-      tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', '');
+      tabbedview.searchbox.closest('.tabbedview_search input').removeAttr('disabled');
     }
 
 
