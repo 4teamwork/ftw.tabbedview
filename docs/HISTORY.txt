@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.5 (unreleased)
+3.3.5 (2013-04-17)
 ------------------
 
 - Use removeAttr (jQuery 1.7.x).
