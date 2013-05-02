@@ -20,7 +20,6 @@ class TestFallBackView(MockTestCase):
 
     def test_render_view(self):
         context = self.create_dummy()
-        request = self.providing_stub(IDefaultBrowserLayer)
         request = self.stub_request()
 
         self.expect(request.get('view_name', '')).result('foo')
