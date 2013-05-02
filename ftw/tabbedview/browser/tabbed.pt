@@ -45,7 +45,8 @@
                                     title string:"
                     i18n:attributes="title"
                     >
-                    <span tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
+                    <span tal:condition="tab/title|nothing" tal:content="tab/title" />
+                    <span tal:condition="not:tab/title|nothing" tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
                 </a>
               </li>
             </ul>
