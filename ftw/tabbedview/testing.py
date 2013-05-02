@@ -43,6 +43,10 @@ class TabbedViewLayer(PloneSandboxLayer):
             '</configure>',
             context=configurationContext)
 
+        import ftw.tabbedview.tests
+        xmlconfig.file('tests.zcml', ftw.tabbedview.tests,
+                       context=configurationContext)
+
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'ftw.tabbedview:default')
 

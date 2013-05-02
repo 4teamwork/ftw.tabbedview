@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:meta="http://namespaces.zope.org/meta">
+    xmlns:meta="http://namespaces.zope.org/meta"
+    xmlns:browser="http://namespaces.zope.org/browser">
 
     <!-- depedencies and plugins are disabled in layer! -->
     <include package="z3c.autoinclude" file="meta.zcml" />
@@ -19,5 +20,12 @@
     <include package="zope.traversing" />
 
     <include package="ftw.tabbedview" />
+
+    <browser:page
+        for="*"
+        name="tabbed_view"
+        class=".test_load_package.FoobarView"
+        permission="zope2.View"
+        />
 
 </configure>
