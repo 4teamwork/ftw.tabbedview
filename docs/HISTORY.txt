@@ -5,7 +5,8 @@ Changelog
 3.3.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Mark tabbedview header with disabledSearchBox class if the searchbox is disabled.
+  [Julian Infanger]
 
 
 3.3.5 (2013-04-17)
