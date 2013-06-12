@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2013-01-12 18:37+0000\n"
+"POT-Creation-Date: 2013-06-12 07:25+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
@@ -31,12 +31,12 @@ msgstr "Zeilen pro Seite:"
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr "Setzt das aktuelle Tab als Standard-Tab dieser Ansicht. Diese Einstellung ist persönlich."
 
-#: ./ftw/tabbedview/browser/listing.py:503
+#: ./ftw/tabbedview/browser/listing.py:519
 #: ./ftw/tabbedview/profiles/extjs/actions.xml
 msgid "Reset table configuration"
 msgstr "Tabellenkonfiguration zurücksetzen"
 
-#: ./ftw/tabbedview/browser/listing.py:505
+#: ./ftw/tabbedview/browser/listing.py:521
 msgid "Resets the table configuration for this tab."
 msgstr "Konfiguration der Tabelle dieses Tabs auf den Standard zurücksetzen."
 
@@ -51,10 +51,10 @@ msgstr "Titel"
 msgid "all (${amount})"
 msgstr "Alle (${amount})"
 
-#. Default: "More actions &#9660;"
+#. Default: "More actions"
 #: ./ftw/tabbedview/browser/menu.pt:14
 msgid "button_more_actions"
-msgstr "Weitere Aktionen &#9660;"
+msgstr "Weitere Aktionen"
 
 msgid "end"
 msgstr "Ende"

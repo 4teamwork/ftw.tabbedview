@@ -5,6 +5,9 @@ Changelog
 3.3.6 (unreleased)
 ------------------
 
+- Fixed markup in tabbedview buttons and added a class to identify buttons.
+  [Julian Infanger]
+
 - Mark tabbedview header with disabledSearchBox class if the searchbox is disabled.
   [Julian Infanger]
 
