@@ -1,4 +1,16 @@
 <div i18n:domain="ftw.tabbedview" class="tabbedview_search">
-  <label for="tabbedview-searchbox" class="hiddenStructure" i18n:translate="label_filter"></label>
-  <input type="text" name="searchable_text" id="tabbedview-searchbox" class="inputLabel" i18n:attributes="title" title="filter" autocomplete="false"/>
+
+    <label for="tabbedview-searchbox"
+           class="hiddenStructure"
+           i18n:translate="label_filter"></label>
+
+    <input type="text"
+           name="searchable_text"
+           id="tabbedview-searchbox"
+           class="inputLabel"
+           autocomplete="false"
+           title="filter"
+           i18n:attributes="title"
+           />
+
 </div>
