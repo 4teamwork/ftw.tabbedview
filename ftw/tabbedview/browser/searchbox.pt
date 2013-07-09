@@ -9,8 +9,8 @@
            id="tabbedview-searchbox"
            class="inputLabel"
            autocomplete="false"
-           title="filter"
-           i18n:attributes="title"
+           i18n:attributes="title filter;
+                            placeholder filter"
            />
 
 </div>
