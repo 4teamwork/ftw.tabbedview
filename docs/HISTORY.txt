@@ -5,6 +5,9 @@ Changelog
 3.3.6 (unreleased)
 ------------------
 
+- Filter field: add placeholder.
+  [jone]
+
 - Fixed markup in tabbedview buttons and added a class to identify buttons.
   [Julian Infanger]
 
