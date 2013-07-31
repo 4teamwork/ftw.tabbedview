@@ -6,7 +6,7 @@ from zope import schema
 from zope.interface import Interface
 
 try:
-    from collective.quickupload.browser.interfaces import IQuickUploadCapable
+    from collective.quickupload.interfaces import IQuickUploadCapable
 except ImportError:
     QUICKUPLOAD_INSTALLED = False
 else:

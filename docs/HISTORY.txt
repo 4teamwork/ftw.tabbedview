@@ -5,7 +5,8 @@ Changelog
 3.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix deprecated quickupload interface import.
+  [jone]
 
 
 3.3.6 (2013-07-18)
