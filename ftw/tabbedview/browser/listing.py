@@ -89,6 +89,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         self.max_dynamic_batchsize = registry[
             'ftw.tabbedview.interfaces.ITabbedView.max_dynamic_batchsize']
 
+        if self.table_options is None:
+            self.table_options = {}
+
     def __call__(self, *args, **kwargs):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
         self.extjs_enabled = config_view.extjs_enabled(self)
@@ -99,9 +102,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # better approach to implement: create a new extjs-update-view witch
         # returns a json containing the template with data and the data as
         # json.
-
-        if self.table_options is None:
-            self.table_options = {}
 
         if self.extjs_enabled:
             if ('tableType' in self.request and

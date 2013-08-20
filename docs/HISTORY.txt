@@ -5,6 +5,10 @@ Changelog
 3.3.7 (unreleased)
 ------------------
 
+- Move table_options initalization from __call__ to __init__ in listing.py.
+  Otherwise the update method does not work without calling the view first.
+  [mathias.leimgruber]
+
 - Fix deprecated quickupload interface import.
   [jone]
 
