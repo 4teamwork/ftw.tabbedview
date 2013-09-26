@@ -14,7 +14,7 @@ msgstr ""
 
 #: ./ftw/tabbedview/browser/selection.pt:14
 msgid "All visible entries chosen ${show_all_link}"
-msgstr "Choix de toutes les entrées visibles"
+msgstr "Coissir toutes les entrées visibles ${show_all_link}"
 
 #: ./ftw/tabbedview/browser/selection.pt:9
 msgid "Choose:"
@@ -49,7 +49,7 @@ msgstr "Titre"
 
 #: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
-msgstr "Tous"
+msgstr "Tous  (${amount})"
 
 #. Default: "More actions"
 #: ./ftw/tabbedview/browser/menu.pt:14
@@ -86,7 +86,7 @@ msgid "label_no_contents"
 msgstr "Aucun contenu"
 
 msgid "modified"
-msgstr "Modifié "
+msgstr "Modifié"
 
 #: ./ftw/tabbedview/browser/selection.pt:12
 msgid "none"
@@ -100,3 +100,5 @@ msgstr "Début"
 
 msgid "state"
 msgstr "Etat"
+
+
