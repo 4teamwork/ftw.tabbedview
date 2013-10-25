@@ -65,3 +65,9 @@
 .loading_tab #tabbedview-body {
   opacity: 0.5;
 }
+.tabbedviewMenuHeader {
+  margin: 0.25em;
+  background: url(++resource++ftw.tabbedview-resources/tabbedview_menu.png) no-repeat center center;
+  width: 16px;
+  height: 16px;
+}
