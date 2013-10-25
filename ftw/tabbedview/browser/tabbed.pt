@@ -57,9 +57,9 @@
         <div id="tabbedview-body" class="panes">
             <dl class="actionMenu tabbedview-tab-menu"
                 tal:condition="view/user_is_logged_in">
-                <dt class="actionMenuHeader">
+                <dt class="actionMenuHeader tabbedviewMenuHeader">
                     <a href="#">
-                        <span>⚙</span>
+                        <span>&nbsp;</span>
                     </a>
                 </dt>
             </dl>

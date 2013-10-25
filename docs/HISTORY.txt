@@ -5,7 +5,9 @@ Changelog
 3.3.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Replaced unicode char for tabbedview menu header.
+  Use icon instead, because the unicode char didn't work on IE.
+  [Julian Infanger]
 
 
 3.3.7 (2013-08-26)
