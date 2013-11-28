@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.8 (unreleased)
+3.3.8 (2013-11-28)
 ------------------
 
 - Replaced unicode char for tabbedview menu header.
