@@ -71,7 +71,7 @@ class TabbedView(BrowserView):
 
         actions = []
 
-        for action in self.get_tabs():
+        for counter, action in enumerate(self.get_tabs()):
             if action['id'].lower() == default_tab:
                 action['class'] = '%s initial' % action['class']
 
@@ -80,6 +80,7 @@ class TabbedView(BrowserView):
                                      name=view_name, default=None)
 
             action['tab_menu_actions'] = self.get_tab_menu_actions(view)
+            action['shortcut'] = counter + 1
 
             actions.append(action)
 

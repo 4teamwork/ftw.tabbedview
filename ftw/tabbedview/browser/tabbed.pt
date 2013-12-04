@@ -42,9 +42,9 @@
                     tal:attributes="href string:#${tab_id};
                                     id string:tab-${tab_id};
                                     class tab/class;
+                                    data-key string:${tab/shortcut};
                                     title string:"
-                    i18n:attributes="title"
-                    >
+                    i18n:attributes="title">
                     <span tal:condition="tab/title|nothing" tal:content="tab/title" />
                     <span tal:condition="not:tab/title|nothing" tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
                 </a>

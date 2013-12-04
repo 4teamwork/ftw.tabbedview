@@ -4,5 +4,11 @@
  <javascript cacheable="True" compression="safe" cookable="True" enabled="on"
     expression="" id="++resource++ftw.tabbedview-resources/tabbedview.js"
     inline="False"/>
+ <javascript cacheable="True" compression="safe" cookable="True" enabled="on"
+    expression="" id="++resource++ftw.tabbedview-resources/jquery.keycut.min.js"
+    inline="False"/>
+ <javascript cacheable="True" compression="safe" cookable="True" enabled="on"
+    expression="" id="++resource++ftw.tabbedview-resources/shortcut_keys.js"
+    inline="False"/>
 
 </object>
