@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
 
-  <javascript id="++resource++ext-jquery-adapter.js"
-              enabled="0" />
+  <javascript id="++resource++ext-jquery-adapter.js" enabled="0" />
+
   <javascript id="++resource++collective.js.extjs-resources/js/ext-all.js"
               enabled="0" />
   <javascript id="++resource++collective.js.extjs-resources/ux/dd/GridDragDropRowOrder.js"
               enabled="0" />
-
-  <javascript
-      id="++resource++ftwtable.extjs.js"
-      expression="object/@@tabbedview_config/extjs_enabled"
-      insert-after="++resource++jquery.ftwtable.js"
-      enabled="0"
-      />
+  <javascript id="++resource++ftwtable.extjs.js" enabled="0" />
 
 </object>

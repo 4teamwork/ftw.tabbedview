@@ -1,7 +1,10 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
     i18n_domain="ftw.tabbedview">
+
+    <include package="ftw.upgrade" file="meta.zcml" />
 
     <!-- 2 -> 3300 -->
     <genericsetup:upgradeStep
@@ -20,6 +23,14 @@
         directory="profiles/3300"
         for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <upgrade-step:importProfile
+        title="Disable extjs related resources from js registry"
+        profile="ftw.tabbedview:extjs"
+        source="1"
+        destination="1001"
+        directory="profiles/extjs/1001"
         />
 
 </configure>

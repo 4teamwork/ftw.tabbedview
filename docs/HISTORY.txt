@@ -5,7 +5,9 @@ Changelog
 3.3.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Load extjs related JS resurces only on tabbed.pt, thus we save
+  700KB of JS on not tabbed views.
+  [mathias.leimgruber]
 
 
 3.3.8 (2013-11-28)
