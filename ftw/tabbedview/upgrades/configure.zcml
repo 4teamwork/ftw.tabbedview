@@ -20,7 +20,7 @@
         name="3300"
         title="ftw.tabbedview: upgrade profile 3300"
         description=""
-        directory="profiles/3300"
+        directory="profiles/default/3300"
         for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
