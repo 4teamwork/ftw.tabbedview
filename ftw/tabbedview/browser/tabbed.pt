@@ -7,18 +7,30 @@
       i18n:domain="ftw.tabbedview">
 
   <head>
-       <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
-          <script type="text/javascript">
-              /* load the blogactionsbar with javascript,
-              because the comment overlay work not,
-              with a form-tag in the content area */
-              $(function(){
-                  load_tabbedview();
-              });
-           </script>
-       </div>
+    <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+
+      <tal:extjs condition="here/@@tabbedview_config/extjs_enabled">
+
+      <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++ext-jquery-adapter.js" />
+
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/js/ext-all.js" />
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/ux/dd/GridDragDropRowOrder.js" />
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++ftwtable.extjs.js" />
+      </tal:extjs>
+
+      <script type="text/javascript">
+        $(function(){
+          load_tabbedview();
+        });
+      </script>
+    </div>
   </head>
   <body>
+
 
     <div metal:fill-slot="main" class="tabbedview_view"
          tal:define="came_from python:request.get('HTTP_REFERER', context.absolute_url()).split('?')[0];">
