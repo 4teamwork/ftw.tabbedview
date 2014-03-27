@@ -306,6 +306,25 @@ load_tabbedview = function(callback) {
     initialIndex = initial.parents(':first').index();
   }
 
+  /* When a default-tab is configured and we load the tabbedview,
+     the jquerytools history triggers a reload event because the
+     location.hash is changed from empty string to the name of the
+     default tab.
+     Now two tabs are loaded: the first tab of the view and the
+     configured default-tab. Depending on events-timing and load
+     duration the user may be switched to the first tab instead of
+     the default tab he configured.
+     The fix is to terminate events from jquerytools history regarding
+     tab reloading as long as we have no location.hash. This condition
+     makes using browser-back / -forward work because in this situation
+     we have a location.hash. */
+  $('.tabbedview-tabs .formTabs a').on('history', function(e) {
+    if (!location.hash) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
   $('.tabbedview-tabs').tabs(
     '.panes > div.pane', {
         current:'selected',
