@@ -5,6 +5,9 @@ Changelog
 3.3.9 (unreleased)
 ------------------
 
+- Fix bug sometimes the default-tab setting did not work.
+  [jone]
+
 - Fixed not closed script tags.
   [lknoepfel]
 
