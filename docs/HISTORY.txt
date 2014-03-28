@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.9 (unreleased)
+3.3.9 (2014-03-28)
 ------------------
 
 - Fix bug sometimes the default-tab setting did not work.
