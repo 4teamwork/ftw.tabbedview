@@ -5,7 +5,8 @@ Changelog
 3.3.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use bind() instead of on() to restore jQuery < 1.7 compatibility.
+  [lgraf]
 
 
 3.3.9 (2014-03-28)
