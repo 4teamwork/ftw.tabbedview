@@ -318,7 +318,7 @@ load_tabbedview = function(callback) {
      tab reloading as long as we have no location.hash. This condition
      makes using browser-back / -forward work because in this situation
      we have a location.hash. */
-  $('.tabbedview-tabs .formTabs a').on('history', function(e) {
+  $('.tabbedview-tabs .formTabs a').bind('history', function(e) {
     if (!location.hash) {
       e.preventDefault();
       e.stopPropagation();
