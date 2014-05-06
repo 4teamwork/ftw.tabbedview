@@ -5,6 +5,9 @@ Changelog
 3.3.10 (unreleased)
 -------------------
 
+- Replaced old spinner image.
+  [Julian Infanger]
+
 - Use bind() instead of on() to restore jQuery < 1.7 compatibility.
   [lgraf]
 
