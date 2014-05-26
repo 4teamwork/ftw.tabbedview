@@ -5,7 +5,8 @@ Changelog
 3.3.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Enable D'n'D upload on tabbedview for IE > 9.
+  [mathias.leimgruber]
 
 
 3.3.10 (2014-05-26)
