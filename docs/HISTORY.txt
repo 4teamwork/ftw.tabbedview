@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.10 (unreleased)
+3.3.10 (2014-05-26)
 -------------------
 
 - Replaced old spinner image.
