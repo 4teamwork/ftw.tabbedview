@@ -15,7 +15,9 @@ $(function(){
         window.location.reload();
       };
 
-    if (!jQuery.browser.msie){
+    if ((jQuery.browser.msie && parseInt($.browser.version) < 10)) {
+        return;
+    } else {
       loadUploader = function() {
         var ulContainer = jQuery('#uploadbox');
         ulContainer.each(function(){
