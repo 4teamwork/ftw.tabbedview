@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.11 (unreleased)
+3.3.11 (2014-05-28)
 -------------------
 
 - Enable D'n'D upload on tabbedview for IE > 9.
