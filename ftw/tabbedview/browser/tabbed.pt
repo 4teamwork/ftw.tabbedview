@@ -1,3 +1,4 @@
+<metal:page define-macro="master">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -43,9 +44,11 @@
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 
 
-          <h1 class="documentFirstHeading">
-            <tal:title replace="context/Title" />
-          </h1>
+          <metal:title define-slot="content-title">
+            <h1 class="documentFirstHeading">
+              <tal:title replace="context/Title" />
+            </h1>
+          </metal:title>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
           <div class="tabbedview-tabs">
             <ul class="formTabs">
@@ -122,3 +125,4 @@
     </div>
   </body>
 </html>
+</metal:page>

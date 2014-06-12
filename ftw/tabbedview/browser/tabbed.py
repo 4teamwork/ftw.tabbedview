@@ -31,6 +31,7 @@ class TabbedView(BrowserView):
     """A View containing tabs with fancy ui"""
 
     __call__ = ViewPageTemplateFile("tabbed.pt")
+    macros = __call__.macros
 
     def user_is_logged_in(self):
         user = AccessControl.getSecurityManager().getUser()
