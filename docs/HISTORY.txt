@@ -5,6 +5,9 @@ Changelog
 3.3.10 (unreleased)
 -------------------
 
+- Made TabbedView title customizable by a custom tabbedview template.
+  [phgross]
+
 - Replaced old spinner image.
   [Julian Infanger]
 
