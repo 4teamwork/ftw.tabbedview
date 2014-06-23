@@ -73,7 +73,9 @@ load_tabbedview = function(callback) {
 
         if (typeof callback == "undefined") {
             Ext.state.Manager.getProvider().state = {};
-            store.destroy();
+            if (store) {
+              store.destroy();
+            }
         }
 
         tabbedview.hide_spinner();
