@@ -513,9 +513,10 @@ load_tabbedview = function(callback) {
         var viewname = $.grep(
             $('body').attr('class').split(' '),
             function(name, i) { return name.indexOf('template-') === 0; })[0].split('-')[1];
+        var url = baseurl+'@@tabbed_view/set_default_tab';
 
         $.ajax({
-            'url': '@@tabbed_view/set_default_tab',
+            'url': url,
             cache: false,
             type: 'POST',
             dataType: 'json',

@@ -5,7 +5,8 @@ Changelog
 3.3.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- JS: Use base URL to build absolute URL for set_default_tab.
+  [lgraf]
 
 
 3.3.11 (2014-05-28)
