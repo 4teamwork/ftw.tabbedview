@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.12 (unreleased)
+3.3.12 (2014-08-07)
 -------------------
 
 - JS: Use base URL to build absolute URL for set_default_tab.
