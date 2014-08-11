@@ -5,7 +5,8 @@ Changelog
 3.3.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add before-tab slot.
+  [mathias.leimgruber]
 
 
 3.3.12 (2014-08-07)

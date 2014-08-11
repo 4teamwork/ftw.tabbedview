@@ -50,6 +50,11 @@
             </h1>
           </metal:title>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+          <metal:befortabs define-slot="before-tabs">
+
+          </metal:befortabs>
+
           <div class="tabbedview-tabs">
             <ul class="formTabs">
               <li tal:repeat="tab tabs" class="formTab">
