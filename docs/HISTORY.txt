@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.13 (unreleased)
+3.3.13 (2014-08-28)
 -------------------
 
 - Add before-tab slot.
