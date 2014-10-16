@@ -53,6 +53,8 @@ $(function(){
 
       $('.tabbedview_view').live('dragover', function(event){
           if (!dragging_text) {
+              $('#tabbedview-body').addClass('dragover');
+              $('#tabbedview-footer').addClass('dragover');
               uploadbox.show();
               $('.qq-upload-button').hide();
               $('.pannelHeader').hide();
@@ -61,6 +63,9 @@ $(function(){
       });
 
       $('.tabbedview_view').live('dragleave', function(event){
+        $('#tabbedview-body').removeClass('dragover');
+        $('#tabbedview-footer').removeClass('dragover');
+
         uploadbox.hover(
           function () {
             /* Do nothing*/
@@ -77,6 +82,8 @@ $(function(){
       });
 
           PloneQuickUpload.onAllUploadsComplete = function(event){
+              $('#tabbedview-body').removeClass('dragover');
+              $('#tabbedview-footer').removeClass('dragover');
               uploadbox.hide();
               $('#label-upload').hide();
               tabbedview.reload_view();
