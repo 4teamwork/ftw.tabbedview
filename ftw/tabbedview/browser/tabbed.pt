@@ -120,6 +120,10 @@
             </tal:panes>
         </div>
 
+        <div id="tabbedview-footer">
+          <span class="secret">Dateien zum Hochladen per Drag &amp; Drop in dieses Fenster ziehen.</span>
+        </div>
+
         <div tal:replace="structure provider:plone.belowcontentbody" />
         <div id="tabbedview-spinner" style="display:none">
           <img src="/++resource++ftw.tabbedview-resources/spinner.gif" tal:attributes="src string: ${portal_url}/++resource++ftw.tabbedview-resources/spinner.gif"/>
