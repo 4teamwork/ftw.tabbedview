@@ -73,6 +73,7 @@ class TabbedView(BrowserView):
         actions = []
 
         for action in self.get_tabs():
+            action = action.copy()
             if action['id'].lower() == default_tab:
                 action['class'] = '%s initial' % action['class']
 
