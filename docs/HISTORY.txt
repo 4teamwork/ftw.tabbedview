@@ -5,7 +5,8 @@ Changelog
 3.3.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed initial tab marker (default-tab).
+  [phgross]
 
 
 3.3.13 (2014-08-28)
