@@ -5,6 +5,9 @@ Changelog
 3.3.14 (unreleased)
 -------------------
 
+- Move tabbedview specific styles from plonetheme.onegov to this package.
+  [lknoepfel]
+
 - Fixed initial tab marker (default-tab).
   [phgross]
 
