@@ -213,7 +213,3 @@ This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 .. _example.conference: https://github.com/collective/example.conference
 .. _Ext JS: http://www.sencha.com/products/extjs/
 .. _collective.quickupload: https://github.com/collective/collective.quickupload
-
-.. image:: https://cruel-carlota.pagodabox.com/35298b2d557c68493a78bc3e1c63a474
-   :alt: githalytics.com
-   :target: http://githalytics.com/4teamwork/ftw.tabbedview
