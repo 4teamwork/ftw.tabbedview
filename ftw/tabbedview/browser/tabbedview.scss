@@ -73,4 +73,53 @@ div.x-grid3-col-getContentType .spriteIcon {
   }
 }
 
+@media print {
+    #tabbedview-body .actionMenuContent,
+    input[type='checkbox'],
+    .ViewChooser,
+    #tabbedview-searchbox {
+        display: none !important;
+    }
+
+    #tabbedview-body table {
+        border-bottom: 1px solid #cacabb;
+        table-layout: fixed;
+        text-align: left;
+        width:100% !important;
+        font-size:12pt;
+    }
+
+    .x-grid3-header,
+    .x-grid3-header-offset,
+    .x-grid3-row,
+    .x-grid3-body {
+        width: 100% !important;
+    }
+
+    .x-grid3-hd-row td {
+        padding: 5px;
+    }
+
+    .actionMenu.tabbedview-tab-menu .actionMenuHeader,
+    .x-grid3-hd-getContentType,
+    .x-grid3-td-getContentType,
+    .x-grid3-td-path_checkbox {
+        display: none;
+        width:0 !important;
+    }
+
+    .x-grid3-td-documentDate,
+    .x-grid13-col-documentDate {
+        width:130px !important;
+    }
+
+    .x-grid3-td-sortable_creator,
+    .x-grid13-col-documentDate,
+    .x-grid-7-td-get_owner_index,
+    .x-grid13-col-get_owner_index {
+        width:130px !important;
+    }
+
+}
+
 /* @end */
