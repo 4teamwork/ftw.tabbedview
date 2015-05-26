@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-3.3.14 (unreleased)
--------------------
+3.4.0 (2015-05-26)
+------------------
 
 - Move tabbedview specific styles from plonetheme.onegov to this package.
   [lknoepfel]
