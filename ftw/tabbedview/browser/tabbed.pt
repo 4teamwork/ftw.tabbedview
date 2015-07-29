@@ -45,9 +45,7 @@
 
 
           <metal:title define-slot="content-title">
-            <h1 class="documentFirstHeading">
-              <tal:title replace="context/Title" />
-            </h1>
+            <h1 class="documentFirstHeading" tal:content="context/Title" />
           </metal:title>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
 
