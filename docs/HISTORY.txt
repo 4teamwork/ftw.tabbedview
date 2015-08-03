@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.4.1 (unreleased)
+3.4.1 (2015-08-03)
 ------------------
 
 - Remove whitespace around content title.
