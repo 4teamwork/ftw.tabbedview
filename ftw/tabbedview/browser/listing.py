@@ -21,6 +21,7 @@ from zope.interface import implements
 import pkg_resources
 
 
+
 try:
     # plone >= 4.3
     pkg_resources.get_distribution('plone.batching')
