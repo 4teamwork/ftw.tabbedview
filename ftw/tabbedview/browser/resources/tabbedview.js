@@ -29,6 +29,12 @@ jQuery.find_param = function(s) {
 statusmessages = {};
 statusmessages.error = function(msg){alert(msg);};
 
+// Define global baseurl (incl. trailing slash) for later
+// functions to use to build absolute URLs.
+var baseurl = $('head base').attr('href');
+if( baseurl.substr(baseurl.length-1, 1) != '/'){
+  baseurl += '/';
+}
 
 load_tabbedview = function(callback) {
   /*statusmessages = $('#region-content').statusmessages()*/
@@ -54,13 +60,10 @@ load_tabbedview = function(callback) {
 
     reload_view : function(callback) {
       var params = this.parse_params();
-      var url = $('base').attr('href');
-      if( url.substr(url.length-1, 1) != '/'){
-        url += '/';
-      }
       var current_tab = $('.tabbedview-tabs li a.selected');
       var overview = $('#'+tabbedview.prop('view_name')+'_overview');
-      overview.load(url+'tabbed_view/listing?ajax_load=1&'+params, function(){
+      var url = baseurl + 'tabbed_view/listing?ajax_load=1&'+params;
+      overview.load(url, function(){
 
         // call callback
         if (typeof callback == "function"){
@@ -161,14 +164,7 @@ load_tabbedview = function(callback) {
       tabbedview.table.ftwtable('select', 'all');
 
       var params = this.parse_params();
-      var url = $('base').attr('href').concat('tabbed_view/');
-
-      if( url.substr(url.length-1, 1) == '/'){
-        url = url + 'select_all?'+params;
-      }
-      else{
-        url = url + '/select_all?'+params;
-      }
+      var url = baseurl+'tabbed_view/select_all?'+params;
 
       $.ajax({
         url: url,
@@ -306,6 +302,25 @@ load_tabbedview = function(callback) {
     initialIndex = initial.parents(':first').index();
   }
 
+  /* When a default-tab is configured and we load the tabbedview,
+     the jquerytools history triggers a reload event because the
+     location.hash is changed from empty string to the name of the
+     default tab.
+     Now two tabs are loaded: the first tab of the view and the
+     configured default-tab. Depending on events-timing and load
+     duration the user may be switched to the first tab instead of
+     the default tab he configured.
+     The fix is to terminate events from jquerytools history regarding
+     tab reloading as long as we have no location.hash. This condition
+     makes using browser-back / -forward work because in this situation
+     we have a location.hash. */
+  $('.tabbedview-tabs .formTabs a').bind('history', function(e) {
+    if (!location.hash) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
   $('.tabbedview-tabs').tabs(
     '.panes > div.pane', {
         current:'selected',
@@ -419,11 +434,11 @@ load_tabbedview = function(callback) {
   tabbedview.view_container.bind('reload', function() {
     //hide or show filter box
     if($('.tabbedview-tabs li a.selected.searchform-hidden').length){
-      tabbedview.searchbox.closest('.tabbedview_search').addClass('disabledSearchBox');
+      tabbedview.searchbox.closest('#tabbedview-header').addClass('disabledSearchBox');
       tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', 'disabled');
     }else{
-      tabbedview.searchbox.closest('.tabbedview_search').removeClass('disabledSearchBox');
-      tabbedview.searchbox.closest('.tabbedview_search input').attr('disabled', '');
+      tabbedview.searchbox.closest('#tabbedview-header').removeClass('disabledSearchBox');
+      tabbedview.searchbox.closest('.tabbedview_search input').removeAttr('disabled');
     }
 
 
@@ -498,9 +513,10 @@ load_tabbedview = function(callback) {
         var viewname = $.grep(
             $('body').attr('class').split(' '),
             function(name, i) { return name.indexOf('template-') === 0; })[0].split('-')[1];
+        var url = baseurl+'@@tabbed_view/set_default_tab';
 
         $.ajax({
-            'url': '@@tabbed_view/set_default_tab',
+            'url': url,
             cache: false,
             type: 'POST',
             dataType: 'json',

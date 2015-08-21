@@ -22,6 +22,7 @@ class TestTabbedviewConfigView(MockTestCase):
 
         self.context = self.stub()
         self.request = self.stub_request()
+        self.expect(self.request.get('PUBLISHED', None)).result(None)
 
     def tearDown(self):
         super(TestTabbedviewConfigView, self).tearDown()
@@ -61,4 +62,4 @@ class TestTabbedviewConfigView(MockTestCase):
         newSecurityManager(None, nobody)
         view = queryMultiAdapter((self.context, self.request),
                                  name='tabbedview_config')
-        self.assertEqual(view.extjs_enabled(), True)
+        self.assertEqual(view.extjs_enabled(), False)

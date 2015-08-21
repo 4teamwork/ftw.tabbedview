@@ -2,8 +2,138 @@ Changelog
 =========
 
 
-3.3.3 (unreleased)
+3.4.2 (unreleased)
 ------------------
+
+- Nothing changed yet.
+
+
+3.4.1 (2015-08-03)
+------------------
+
+- Remove whitespace around content title.
+  [deiferni]
+
+
+3.4.0 (2015-05-26)
+------------------
+
+- Move tabbedview specific styles from plonetheme.onegov to this package.
+  [lknoepfel]
+
+- Fixed initial tab marker (default-tab).
+  [phgross]
+
+
+3.3.13 (2014-08-28)
+-------------------
+
+- Add before-tab slot.
+  [mathias.leimgruber]
+
+
+3.3.12 (2014-08-07)
+-------------------
+
+- JS: Use base URL to build absolute URL for set_default_tab.
+  [lgraf]
+
+
+3.3.11 (2014-05-28)
+-------------------
+
+- Enable D'n'D upload on tabbedview for IE > 9.
+  [mathias.leimgruber]
+
+
+3.3.10 (2014-05-26)
+-------------------
+
+- Made TabbedView title customizable by a custom tabbedview template.
+  [phgross]
+
+- Replaced old spinner image.
+  [Julian Infanger]
+
+- Use bind() instead of on() to restore jQuery < 1.7 compatibility.
+  [lgraf]
+
+
+3.3.9 (2014-03-28)
+------------------
+
+- Fix bug sometimes the default-tab setting did not work.
+  [jone]
+
+- Fixed not closed script tags.
+  [lknoepfel]
+
+- Load extjs related JS resurces only on tabbed.pt, thus we save
+  700KB of JS on not tabbed views.
+  [mathias.leimgruber]
+
+
+3.3.8 (2013-11-28)
+------------------
+
+- Replaced unicode char for tabbedview menu header.
+  Use icon instead, because the unicode char didn't work on IE.
+  [Julian Infanger]
+
+
+3.3.7 (2013-08-26)
+------------------
+
+- Move table_options initalization from __call__ to __init__ in listing.py.
+  Otherwise the update method does not work without calling the view first.
+  [mathias.leimgruber]
+
+- Fix deprecated quickupload interface import.
+  [jone]
+
+
+3.3.6 (2013-07-18)
+------------------
+
+- Filter field: add placeholder.
+  [jone]
+
+- Fixed markup in tabbedview buttons and added a class to identify buttons.
+  [Julian Infanger]
+
+- Mark tabbedview header with disabledSearchBox class if the searchbox is disabled.
+  [Julian Infanger]
+
+
+3.3.5 (2013-04-17)
+------------------
+
+- Use removeAttr (jQuery 1.7.x).
+  [mathias.leimgruber]
+
+- Fix reset table configuration action.
+  [mathias.leimgruber]
+
+- Use Batch.fromPagenumber.
+  [mathias.leimgruber]
+
+
+3.3.4 (2013-01-25)
+------------------
+
+- Add INoExtJS marker interface disabling extjs when provided
+  by the tabbview and the tab
+  [mathias.leimgruber]
+
+
+3.3.3 (2013-01-21)
+------------------
+
+- Add default dynamic batching form to batching template. #11
+  [jone]
+
+- Fix javascript order in ExtJS profile.
+  [jone]
 
 - Fix IE7 element positioning issue by force repainting.
   [jone]

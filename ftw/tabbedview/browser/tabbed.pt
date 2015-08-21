@@ -1,3 +1,4 @@
+<metal:page define-macro="master">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -7,18 +8,30 @@
       i18n:domain="ftw.tabbedview">
 
   <head>
-       <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
-          <script type="text/javascript">
-              /* load the blogactionsbar with javascript,
-              because the comment overlay work not,
-              with a form-tag in the content area */
-              $(function(){
-                  load_tabbedview();
-              });
-           </script>
-       </div>
+    <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+
+      <tal:extjs condition="here/@@tabbedview_config/extjs_enabled">
+
+      <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++ext-jquery-adapter.js"></script>
+
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/js/ext-all.js"></script>
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/ux/dd/GridDragDropRowOrder.js"></script>
+        <script type="text/javascript"
+                  tal:attributes="src string:${here/portal_url}/++resource++ftwtable.extjs.js"></script>
+      </tal:extjs>
+
+      <script type="text/javascript">
+        $(function(){
+          load_tabbedview();
+        });
+      </script>
+    </div>
   </head>
   <body>
+
 
     <div metal:fill-slot="main" class="tabbedview_view"
          tal:define="came_from python:request.get('HTTP_REFERER', context.absolute_url()).split('?')[0];">
@@ -31,10 +44,15 @@
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 
 
-          <h1 class="documentFirstHeading">
-            <tal:title replace="context/Title" />
-          </h1>
+          <metal:title define-slot="content-title">
+            <h1 class="documentFirstHeading" tal:content="context/Title" />
+          </metal:title>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+          <metal:befortabs define-slot="before-tabs">
+
+          </metal:befortabs>
+
           <div class="tabbedview-tabs">
             <ul class="formTabs">
               <li tal:repeat="tab tabs" class="formTab">
@@ -45,7 +63,8 @@
                                     title string:"
                     i18n:attributes="title"
                     >
-                    <span tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
+                    <span tal:condition="tab/title|nothing" tal:content="tab/title" />
+                    <span tal:condition="not:tab/title|nothing" tal:content="tab_id" i18n:translate="" i18n:domain="ftw.tabbedview" />
                 </a>
               </li>
             </ul>
@@ -56,9 +75,9 @@
         <div id="tabbedview-body" class="panes">
             <dl class="actionMenu tabbedview-tab-menu"
                 tal:condition="view/user_is_logged_in">
-                <dt class="actionMenuHeader">
+                <dt class="actionMenuHeader tabbedviewMenuHeader">
                     <a href="#">
-                        <span>⚙</span>
+                        <span>&nbsp;</span>
                     </a>
                 </dt>
             </dl>
@@ -109,3 +128,4 @@
     </div>
   </body>
 </html>
+</metal:page>

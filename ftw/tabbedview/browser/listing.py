@@ -9,15 +9,25 @@ from ftw.table.basesource import BaseTableSourceConfig
 from ftw.table.catalog_source import DefaultCatalogTableSourceConfig
 from ftw.table.interfaces import ITableGenerator
 from ftw.table.interfaces import ITableSource
-from plone.app.content.batching import Batch
 from plone.memoize import instance
 from plone.registry.interfaces import IRegistry
-from zope.app.pagetemplate import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility, getUtility, getMultiAdapter
 from zope.interface import implements
-import AccessControl
+import pkg_resources
 
+
+try:
+    # plone >= 4.3
+    pkg_resources.get_distribution('plone.batching')
+    from plone.batching import Batch
+    batch_method = Batch.fromPagenumber
+
+except pkg_resources.DistributionNotFound:
+    # plone < 4.3
+    from plone.app.content.batching import Batch
+    batch_method = Batch
 
 try:
     import json
@@ -71,8 +81,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         registry = getUtility(IRegistry)
         self.pagesize = \
             registry['ftw.tabbedview.interfaces.ITabbedView.batch_size']
-        self.extjs_enabled = registry['ftw.tabbedview.interfaces.'
-                                      'ITabbedView.extjs_enabled']
+        self.extjs_enabled = False
 
         self.dynamic_batchsize_enabled = registry[
             'ftw.tabbedview.interfaces.ITabbedView.dynamic_batchsize_enabled']
@@ -80,9 +89,12 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         self.max_dynamic_batchsize = registry[
             'ftw.tabbedview.interfaces.ITabbedView.max_dynamic_batchsize']
 
+        if self.table_options is None:
+            self.table_options = {}
+
     def __call__(self, *args, **kwargs):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
-        self.extjs_enabled = config_view.extjs_enabled()
+        self.extjs_enabled = config_view.extjs_enabled(self)
 
         # XXX : we need to be able to detect a extjs update request and return
         # only the template without data, because a later request will update
@@ -90,9 +102,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         # better approach to implement: create a new extjs-update-view witch
         # returns a json containing the template with data and the data as
         # json.
-
-        if self.table_options is None:
-            self.table_options = {}
 
         if self.extjs_enabled:
             if ('tableType' in self.request and
@@ -425,9 +434,10 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     @property
     @instance.memoize
     def batch(self):
-        return Batch(self.contents,
-                     pagesize=self.pagesize,
-                     pagenumber=self.pagenumber)
+
+        return batch_method(self.contents,
+                            pagesize=self.pagesize,
+                            pagenumber=self.pagenumber)
 
     @property
     def multiple_pages(self):
@@ -498,7 +508,13 @@ class ListingView(BrowserView, BaseTableSourceConfig):
                 self.sort_reverse = True
 
     def update_tab_actions(self, actions):
-        if self.extjs_enabled:
+        # XXX: This method is used from tabbed.py, which does not call this
+        # view. This means, that the class variable extjs_enable is still False
+        # although extjs is enabled.
+        config_view = self.context.restrictedTraverse('@@tabbedview_config')
+        extjs_enabled = config_view.extjs_enabled(self)
+
+        if extjs_enabled:
             actions.append({
                     'label': _(u'Reset table configuration'),
                     'href': 'javascript:reset_grid_state()',

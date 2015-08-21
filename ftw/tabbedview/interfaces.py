@@ -6,7 +6,7 @@ from zope import schema
 from zope.interface import Interface
 
 try:
-    from collective.quickupload.browser.interfaces import IQuickUploadCapable
+    from collective.quickupload.interfaces import IQuickUploadCapable
 except ImportError:
     QUICKUPLOAD_INSTALLED = False
 else:
@@ -99,6 +99,11 @@ class IDefaultDictStorageConfig(Interface):
     def get_annotated_object():
         """Returns the annotated object (the plone site by default).
         """
+
+
+class INoExtJS(Interface):
+    """Marker interface for tabbedviews to force disable extjs"""
+
 
 if QUICKUPLOAD_INSTALLED:
     class ITabbedviewUploadable(Interface, IQuickUploadCapable):

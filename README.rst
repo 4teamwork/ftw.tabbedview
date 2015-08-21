@@ -185,9 +185,9 @@ Screenshot of the same listing using the ``extjs`` table implementation:
 Links
 =====
 
-- Main github project repository: https://github.com/4teamwork/ftw.tabbedview
-- Issue tracker: https://github.com/4teamwork/ftw.tabbedview/issues
-- Package on pypi: http://pypi.python.org/pypi/ftw.tabbedview
+- Github: https://github.com/4teamwork/ftw.tabbedview
+- Issues: https://github.com/4teamwork/ftw.tabbedview/issues
+- Pypi: http://pypi.python.org/pypi/ftw.tabbedview
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.tabbedview
 
 

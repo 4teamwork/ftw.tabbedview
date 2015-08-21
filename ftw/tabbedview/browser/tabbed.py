@@ -31,6 +31,7 @@ class TabbedView(BrowserView):
     """A View containing tabs with fancy ui"""
 
     __call__ = ViewPageTemplateFile("tabbed.pt")
+    macros = __call__.macros
 
     def user_is_logged_in(self):
         user = AccessControl.getSecurityManager().getUser()
@@ -72,6 +73,7 @@ class TabbedView(BrowserView):
         actions = []
 
         for action in self.get_tabs():
+            action = action.copy()
             if action['id'].lower() == default_tab:
                 action['class'] = '%s initial' % action['class']
 

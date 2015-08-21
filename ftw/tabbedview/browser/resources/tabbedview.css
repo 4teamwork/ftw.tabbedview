@@ -1,3 +1,12 @@
+#dynamic_batching_form {
+  display: inline;
+  margin-left: 1em;
+}
+
+#tabbedview-batchbox {
+  width: 3em;
+}
+
 #content .tabbedview-tab-menu {
   float: right;
 }
@@ -55,4 +64,10 @@
 }
 .loading_tab #tabbedview-body {
   opacity: 0.5;
+}
+.tabbedviewMenuHeader {
+  margin: 0.25em;
+  background: url(++resource++ftw.tabbedview-resources/tabbedview_menu.png) no-repeat center center;
+  width: 16px;
+  height: 16px;
 }
