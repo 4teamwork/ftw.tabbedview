@@ -21,7 +21,6 @@ from zope.interface import implements
 import pkg_resources
 
 
-
 try:
     # plone >= 4.3
     pkg_resources.get_distribution('plone.batching')
@@ -102,7 +101,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def __call__(self, *args, **kwargs):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
         self.extjs_enabled = config_view.extjs_enabled(self)
-
         # XXX : we need to be able to detect a extjs update request and return
         # only the template without data, because a later request will update
         # the table with json.
@@ -474,7 +472,6 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     @property
     @instance.memoize
     def batch(self):
-
         return batch_method(self.contents,
                             pagesize=self.pagesize,
                             pagenumber=self.pagenumber)
