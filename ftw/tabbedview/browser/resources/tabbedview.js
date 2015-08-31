@@ -330,6 +330,9 @@ load_tabbedview = function(callback) {
             if (jQuery.tabbedview.param('initialize') !== 1) {
                 jQuery.tabbedview.view_container.addClass('loading_tab');
                 var tabbedview = jQuery.tabbedview;
+                if(!index) {
+                  index = 0;
+                }
                 var current_tab_id = $('.tabbedview-tabs li a').get(index).id.split('tab-')[1];
 
                 jQuery.tabbedview.show_spinner();

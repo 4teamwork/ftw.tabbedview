@@ -5,7 +5,8 @@ Changelog
 3.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix javascript error in IE10 when no default index is defined.
+  [Kevin Bieri]
 
 
 3.4.1 (2015-08-03)
