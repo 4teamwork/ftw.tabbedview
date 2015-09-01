@@ -5,6 +5,10 @@ Changelog
 3.4.2 (unreleased)
 ------------------
 
+- Add fallback in tabbedview initalization, when passed index of
+  oneBeforeClick event is incorrect.
+  [phgross]
+
 - Fix javascript error in IE10 when no default index is defined.
   [Kevin Bieri]
 
