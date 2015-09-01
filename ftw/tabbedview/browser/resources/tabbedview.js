@@ -328,6 +328,15 @@ load_tabbedview = function(callback) {
         initialIndex: initialIndex,
         onBeforeClick: function(e, index){
             if (jQuery.tabbedview.param('initialize') !== 1) {
+                /* In some caseses(IE 10) the oneBeforeClick event gets fired
+                   multiple times and sometimes with a wrong index. Therefore
+                   we add this check which avoid failing whith an javascript
+                   error, when trying to get the current tab. */
+                if (index >= $('.tabbedview-tabs li a').length){
+                  e.preventDefault();
+                  return
+                };
+
                 jQuery.tabbedview.view_container.addClass('loading_tab');
                 var tabbedview = jQuery.tabbedview;
                 if(!index) {
