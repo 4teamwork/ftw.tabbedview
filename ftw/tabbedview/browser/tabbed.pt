@@ -10,19 +10,6 @@
   <head>
     <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
 
-      <tal:extjs condition="here/@@tabbedview_config/extjs_enabled">
-
-      <script type="text/javascript"
-                  tal:attributes="src string:${here/portal_url}/++resource++ext-jquery-adapter.js"></script>
-
-        <script type="text/javascript"
-                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/js/ext-all.js"></script>
-        <script type="text/javascript"
-                  tal:attributes="src string:${here/portal_url}/++resource++collective.js.extjs-resources/ux/dd/GridDragDropRowOrder.js"></script>
-        <script type="text/javascript"
-                  tal:attributes="src string:${here/portal_url}/++resource++ftwtable.extjs.js"></script>
-      </tal:extjs>
-
       <script type="text/javascript">
         $(function(){
           load_tabbedview();
