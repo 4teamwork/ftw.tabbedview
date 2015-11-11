@@ -8,10 +8,6 @@
     xmlns:cmf="http://namespaces.zope.org/cmf"
     i18n_domain="ftw.tabbedview">
 
-
-    <!-- Include configuration for dependencies listed in setup.py -->
-    <includeDependencies package="." />
-
     <meta:provides feature="ftw.tabbedview3" />
 
     <!-- Include the sub-packages that use their own configure.zcml files. -->
