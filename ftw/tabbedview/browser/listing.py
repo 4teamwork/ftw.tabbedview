@@ -598,43 +598,38 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         config_view = self.context.restrictedTraverse('@@tabbedview_config')
         extjs_enabled = config_view.extjs_enabled(self)
 
-        if extjs_enabled:
-            actions.append({
-                    'label': _(u'Reset table configuration'),
-                    'href': 'javascript:reset_grid_state()',
-                    'description': _(u'Resets the table configuration for this tab.')
-                    })
-        if self.extjs_enabled:
-            if not self.grid_config_profiles:
-                actions.append(
-                    {'label': _(u'Reset table configuration'),
+        if not extjs_enabled:
+            return actions
+
+        if not self.grid_config_profiles:
+            actions.append(
+                {'label': _(u'Reset table configuration'),
+                 'href': 'javascript:reset_grid_state()',
+                 'description': _(u'Resets the table configuration '
+                                  u'for this tab.')})
+
+        else:
+            actions.extend([
+                    {'type': 'separator'},
+
+                    {'type': 'label',
+                     'label': _(u'Table configuration:')},
+
+                    {'label': _(u'New table configuration'),
+                     'href': 'javascript:tabbedview.new_grid_state_profile()',
+                     'description': _(u'Creates a new table '
+                                      u'configuration profile.')},
+
+                    {'label': _(u'Reset current table configuration'),
                      'href': 'javascript:reset_grid_state()',
                      'description': _(u'Resets the table configuration '
-                                      u'for this tab.')})
+                                      u'for this profile.')},
 
-            else:
-                actions.extend([
-                        {'type': 'separator'},
-
-                        {'type': 'label',
-                         'label': _(u'Table configuration:')},
-
-                        {'label': _(u'New table configuration'),
-                         'href': 'javascript:tabbedview.new_grid_state_profile()',
-                         'description': _(u'Creates a new table '
-                                          u'configuration profile.')},
-
-                        {'label': _(u'Reset current table configuration'),
-                         'href': 'javascript:reset_grid_state()',
-                         'description': _(u'Resets the table configuration '
-                                          u'for this profile.')},
-
-                        {'label': _(u'Remove table configuration'),
-                         'href': 'javascript:tabbedview.remove_grid_state_profile()',
-                         'description': _(u'Removes the current table '
-                                          u'configuration profile.'),
-                         'li-class': 'remove-grid-state-profile'}])
-
+                    {'label': _(u'Remove table configuration'),
+                     'href': 'javascript:tabbedview.remove_grid_state_profile()',
+                     'description': _(u'Removes the current table '
+                                      u'configuration profile.'),
+                     'li-class': 'remove-grid-state-profile'}])
 
         return actions
 
