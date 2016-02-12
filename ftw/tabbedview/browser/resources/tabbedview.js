@@ -334,8 +334,8 @@ load_tabbedview = function(callback) {
                    error, when trying to get the current tab. */
                 if (index >= $('.tabbedview-tabs li a').length){
                   e.preventDefault();
-                  return
-                };
+                  return;
+                }
 
                 jQuery.tabbedview.view_container.addClass('loading_tab');
                 var tabbedview = jQuery.tabbedview;
