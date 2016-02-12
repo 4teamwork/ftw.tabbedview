@@ -5,7 +5,7 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Prevent reload loop when requesting non-existing tab. [jone]
 
 
 3.4.2 (2015-09-01)

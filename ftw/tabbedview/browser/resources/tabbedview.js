@@ -270,7 +270,6 @@ load_tabbedview = function(callback) {
 
   $('.formTab a').click(function(e){
     tabbedview.tabs_api.click($(this).attr('href'));
-    location.hash = $(this).attr('href');
     e.preventDefault();
     e.stopPropagation();
     return false;
@@ -281,7 +280,6 @@ load_tabbedview = function(callback) {
      like the normal tab link */
   $('.moreLink a').live('click', function(e){
     tabbedview.tabs_api.click($(this).attr('href'));
-    location.hash = $(this).attr('href');
     e.preventDefault();
     e.stopPropagation();
     return false;
@@ -356,6 +354,7 @@ load_tabbedview = function(callback) {
                 tabbedview.reload_view(function() {
                     tabs.click(jQuery.tabbedview.selected_tab);
                     jQuery.tabbedview.param('initialize', 0);
+                    location.hash = jQuery.tabbedview.prop('view_name');
                     jQuery.tabbedview.view_container.removeClass('loading_tab');
                 });
                 e.preventDefault();
@@ -371,7 +370,10 @@ load_tabbedview = function(callback) {
   }
 
   if(location.hash){
-    jQuery.tabbedview.prop('view_name', location.hash.split('#')[1]);
+    var requested_view_name = location.hash.split('#')[1];
+    if($('.tabbedview-tabs li a#tab-' + requested_view_name).length) {
+      jQuery.tabbedview.prop('view_name', requested_view_name);
+    }
   }
 
   $('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
