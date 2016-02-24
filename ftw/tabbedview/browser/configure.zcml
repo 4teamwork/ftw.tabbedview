@@ -21,7 +21,7 @@
         name="tabbed_view"
         class=".tabbed.TabbedView"
         permission="zope2.View"
-        allowed_attributes="listing select_all reorder setgridstate set_default_tab"
+        allowed_attributes="listing select_all reorder setgridstate set_default_tab msg_unknownresponse"
         />
 
     <browser:page

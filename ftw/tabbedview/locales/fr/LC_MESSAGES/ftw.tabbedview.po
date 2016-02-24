@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-06-12 07:25+0000\n"
+"POT-Creation-Date: 2016-02-24 11:34+0000\n"
 "PO-Revision-Date: 2012-09-10 10:03+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,7 +10,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #: ./ftw/tabbedview/browser/selection.pt:14
 msgid "All visible entries chosen ${show_all_link}"
@@ -27,7 +26,7 @@ msgstr "Créateur"
 msgid "Lines per page:"
 msgstr "Lignes par page :"
 
-#: ./ftw/tabbedview/browser/tabbed.py:95
+#: ./ftw/tabbedview/browser/tabbed.py:97
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr "Faire de l'onglet actuel l'onglet par défaut quand on ouvre cette vue. Ceci est un réglage personnel qui n'a aucun impact pour les autres utilisateurs."
 
@@ -40,9 +39,13 @@ msgstr "Remettre la configuration par défaut des colonnes"
 msgid "Resets the table configuration for this tab."
 msgstr "Réinitialiser la table de configuration pour cet onglet."
 
-#: ./ftw/tabbedview/browser/tabbed.py:93
+#: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Set tab as default"
 msgstr "Définir cet onglet par défaut"
+
+#: ./ftw/tabbedview/browser/tabbed.py:296
+msgid "There was an error loading the tab. Try ${anchor_open}reloading${anchor_close} the page."
+msgstr ""
 
 msgid "Title"
 msgstr "Titre"
@@ -60,11 +63,11 @@ msgid "end"
 msgstr "Fin"
 
 #. Default: "Could not set default tab."
-#: ./ftw/tabbedview/browser/tabbed.py:257
+#: ./ftw/tabbedview/browser/tabbed.py:260
 msgid "error_set_default_tab"
 msgstr "Impossible de définir cet onglet défaut"
 
-#: ./ftw/tabbedview/browser/searchbox.pt:3
+#: ./ftw/tabbedview/browser/searchbox.pt:7
 msgid "filter"
 msgstr "Filtre"
 
@@ -72,11 +75,11 @@ msgid "hours"
 msgstr "Heures effectués"
 
 #. Default: "The tab ${title} is now your default tab. This is a personal setting."
-#: ./ftw/tabbedview/browser/tabbed.py:265
+#: ./ftw/tabbedview/browser/tabbed.py:268
 msgid "info_set_default_tab"
 msgstr "Cet onglet est maintenant votre onglet par défaut. Ce choix est personnel."
 
-#: ./ftw/tabbedview/browser/searchbox.pt:2
+#: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "label_filter"
 msgstr "Filtre"
 
@@ -100,3 +103,4 @@ msgstr "Début"
 
 msgid "state"
 msgstr "Etat"
+

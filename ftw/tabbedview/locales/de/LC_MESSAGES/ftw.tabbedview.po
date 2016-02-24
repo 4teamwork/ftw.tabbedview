@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2013-06-12 07:25+0000\n"
+"POT-Creation-Date: 2016-02-24 11:34+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
@@ -10,7 +10,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #: ./ftw/tabbedview/browser/selection.pt:14
 msgid "All visible entries chosen ${show_all_link}"
@@ -27,7 +26,7 @@ msgstr "Ersteller"
 msgid "Lines per page:"
 msgstr "Zeilen pro Seite:"
 
-#: ./ftw/tabbedview/browser/tabbed.py:95
+#: ./ftw/tabbedview/browser/tabbed.py:97
 msgid "Make the current tab the default tab when opening this view. This is a personal setting and does not impact other users."
 msgstr "Setzt das aktuelle Tab als Standard-Tab dieser Ansicht. Diese Einstellung ist persönlich."
 
@@ -40,9 +39,13 @@ msgstr "Tabellenkonfiguration zurücksetzen"
 msgid "Resets the table configuration for this tab."
 msgstr "Konfiguration der Tabelle dieses Tabs auf den Standard zurücksetzen."
 
-#: ./ftw/tabbedview/browser/tabbed.py:93
+#: ./ftw/tabbedview/browser/tabbed.py:95
 msgid "Set tab as default"
 msgstr "Als Standard-Tab verwenden"
+
+#: ./ftw/tabbedview/browser/tabbed.py:296
+msgid "There was an error loading the tab. Try ${anchor_open}reloading${anchor_close} the page."
+msgstr "Das Tab konnte nicht geladen werden. Probieren Sie die Seite ${anchor_open}neu zu laden${anchor_close}."
 
 msgid "Title"
 msgstr "Titel"
@@ -60,11 +63,11 @@ msgid "end"
 msgstr "Ende"
 
 #. Default: "Could not set default tab."
-#: ./ftw/tabbedview/browser/tabbed.py:257
+#: ./ftw/tabbedview/browser/tabbed.py:260
 msgid "error_set_default_tab"
 msgstr "Fehler beim setzen des Standard-Tab."
 
-#: ./ftw/tabbedview/browser/searchbox.pt:3
+#: ./ftw/tabbedview/browser/searchbox.pt:7
 msgid "filter"
 msgstr "Filtern"
 
@@ -72,12 +75,12 @@ msgid "hours"
 msgstr "geleist. Std."
 
 #. Default: "The tab ${title} is now your default tab. This is a personal setting."
-#: ./ftw/tabbedview/browser/tabbed.py:265
+#: ./ftw/tabbedview/browser/tabbed.py:268
 msgid "info_set_default_tab"
 msgstr "Das Tab ${title} wird nun als Standard-Tab verwendet. Dies ist eine persönliche Einstellung."
 
 #. Default: "Filter"
-#: ./ftw/tabbedview/browser/searchbox.pt:2
+#: ./ftw/tabbedview/browser/searchbox.pt:3
 msgid "label_filter"
 msgstr "Filter"
 
@@ -101,3 +104,4 @@ msgstr "Beginn"
 
 msgid "state"
 msgstr "Status"
+

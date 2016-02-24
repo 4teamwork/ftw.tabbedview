@@ -36,6 +36,10 @@ if( baseurl.substr(baseurl.length-1, 1) != '/'){
   baseurl += '/';
 }
 
+$(document).bind('tabbedview.unknownresponse', function(event, overview, jqXHR) {
+  overview.html($('#tabbedview-msg-unknownresponse').html());
+});
+
 load_tabbedview = function(callback) {
   /*statusmessages = $('#region-content').statusmessages()*/
 
@@ -63,8 +67,18 @@ load_tabbedview = function(callback) {
       var current_tab = $('.tabbedview-tabs li a.selected');
       var overview = $('#'+tabbedview.prop('view_name')+'_overview');
       var url = baseurl + 'tabbed_view/listing?ajax_load=1&'+params;
-      overview.load(url, function(){
-
+      $.get(url, function(responseText, textStatus, jqXHR){
+        if (jqXHR.getResponseHeader('X-Tabbedview-Response') === null) {
+          // the response we got does not originate from a tabbed-view
+          overview.trigger('tabbedview.unknownresponse', [overview, jqXHR])
+          tabbedview.hide_spinner();
+          tabbedview.update_tab_menu();
+          if (typeof callback == "function"){
+            callback(tabbedview);
+          }
+          return;
+        }
+        overview.html(responseText);
         // call callback
         if (typeof callback == "function"){
           callback(tabbedview);
