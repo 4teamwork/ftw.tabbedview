@@ -1,0 +1,11 @@
+msgid ""
+msgstr ""
+
+msgid "footab"
+msgstr ""
+
+msgid "notranslation"
+msgstr ""
+
+msgid "restrictedtab"
+msgstr ""

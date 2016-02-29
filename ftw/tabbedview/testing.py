@@ -34,21 +34,25 @@ class TabbedViewLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, )
 
     def setUpZope(self, app, configurationContext):
-        import z3c.autoinclude
-        xmlconfig.file('meta.zcml', z3c.autoinclude,
-                       context=configurationContext)
         xmlconfig.string(
             '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
             '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
             '</configure>',
             context=configurationContext)
 
         import ftw.tabbedview.tests
         xmlconfig.file('tests.zcml', ftw.tabbedview.tests,
                        context=configurationContext)
+        xmlconfig.file('tabs.zcml', ftw.tabbedview.tests,
+                       context=configurationContext)
+        xmlconfig.file('profiles/profiles.zcml', ftw.tabbedview.tests,
+                       context=configurationContext)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'ftw.tabbedview:default')
+        applyProfile(portal, 'ftw.tabbedview.tests:tabs')
 
 
 TABBED_VIEW_LAYER = TabbedViewLayer()

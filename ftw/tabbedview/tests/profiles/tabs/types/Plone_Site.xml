@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<object name="Plone Site"
+        i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <!-- Tab Actions -->
+  <action title="MyTitle"
+          action_id="footab"
+          category="tabbedview-tabs"
+          condition_expr=""
+          url_expr="string:#"
+          visible="True">
+  </action>
+  <action title="Bar"
+          action_id="notranslation"
+          category="tabbedview-tabs"
+          condition_expr=""
+          url_expr="string:#"
+          visible="True">
+  </action>
+  <action title="Restricted Tab"
+          action_id="restrictedtab"
+          category="tabbedview-tabs"
+          condition_expr=""
+          url_expr="string:#"
+          visible="True">
+  </action>
+
+</object>

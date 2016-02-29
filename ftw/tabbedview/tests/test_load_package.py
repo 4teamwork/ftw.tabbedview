@@ -1,5 +1,4 @@
 from ftw.dictstorage.interfaces import IDictStorage
-from ftw.tabbedview.browser.tabbed import TabbedView
 from ftw.tabbedview.interfaces import IDefaultTabStorageKeyGenerator
 from ftw.tabbedview.testing import TABBEDVIEW_INTEGRATION_TESTING
 from Products.CMFCore.utils import getToolByName
@@ -7,15 +6,6 @@ from pyquery import PyQuery as pq
 from unittest2 import TestCase
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
-
-
-class FoobarView(TabbedView):
-
-    tabs = [{'id': 'footab', 'class': None, 'title': 'MyTitle'},
-            {'id': 'bartab', 'class': None, 'title': 'Bar'}]
-
-    def get_tabs(self):
-        return self.tabs
 
 
 class TestWWWInstallation(TestCase):
