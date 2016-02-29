@@ -54,8 +54,10 @@ class TabbedView(BrowserView):
             css_classes = None
             #get the css classes that should be set on the A elements.
             view = self._resolve_tab(action['id'])
+            if not view:
+                continue
 
-            if view and hasattr(view, 'get_css_classes'):
+            if hasattr(view, 'get_css_classes'):
                 css_classes = ' '.join(view.get_css_classes())
 
             yield {

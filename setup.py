@@ -7,6 +7,7 @@ maintainer = 'Jonas Baumann'
 tests_require = [
     'plone.app.testing',
     'pyquery',
+    'ftw.testbrowser',
     'ftw.testing',
     ]
 

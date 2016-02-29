@@ -16,17 +16,7 @@ class TestWWWInstallation(TestCase):
         portal = self.layer['portal']
         csstool = getToolByName(portal, 'portal_css')
         self.assertTrue(csstool.getResource(
-                '++resource++ftw.tabbedview-resources/tabbedview.css'))
-
-    def test_tab_titles(self):
-        portal = self.layer['portal']
-        foobar_view = queryMultiAdapter((portal, portal.REQUEST),
-                                        name='tabbed_view')
-        html = foobar_view()
-        doc = pq(html)
-        tabs_html = doc('#tabbedview-header .tabbedview-tabs')
-        self.assertGreater(len(tabs_html('#tab-footab')), 0)
-        self.assertIn('MyTitle', tabs_html.html())
+            '++resource++ftw.tabbedview-resources/tabbedview.css'))
 
     def test_initial_tab_is_reseted_on_every_request(self):
         portal = self.layer['portal']
@@ -45,9 +35,9 @@ class TestWWWInstallation(TestCase):
         self.assertEqual('MyTitle', initial_tab.text())
 
         # second call
-        IDictStorage(foobar_view)[key] = 'bartab'
+        IDictStorage(foobar_view)[key] = 'notranslation'
         html = foobar_view()
         doc = pq(html)
         initial_tab = doc('#tabbedview-header .tabbedview-tabs a.initial')
         self.assertEqual(1, len(initial_tab))
-        self.assertEqual('Bar', initial_tab.text())
+        self.assertEqual('notranslation', initial_tab.text())
