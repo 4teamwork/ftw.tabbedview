@@ -151,6 +151,7 @@ class TabbedView(BrowserView):
                     (self.context, self.request),
                     name='tabbedview_view-fallback')
 
+            self.request.response.setHeader('X-Tabbedview-Response', True)
             return listing_view()
 
     def reorder(self):
@@ -284,3 +285,15 @@ class TabbedView(BrowserView):
         storage.set(key, tab.lower())
 
         return json.dumps(success)
+
+    def msg_unknownresponse(self):
+        """Return the message that is rendered when a javascript request gets
+        a response from a different source than a tabbed view.
+
+        This happens when a redirect occurs, for example a redirect to a login
+        form due to a session timeout.
+        """
+        return _('There was an error loading the tab. Try '
+                 '${anchor_open}reloading${anchor_close} the page.',
+                 mapping={'anchor_open': '<a href="#" onclick="window.location.reload();">',
+                          'anchor_close': '</a>'})

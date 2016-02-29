@@ -5,7 +5,10 @@ Changelog
 3.4.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle when the client gets a response from different source than a tabbed-view.
+  By default show a message that the tab could not be loaded successfully. This can
+  be customized by registering a different event handler.
+  [deiferni]
 
 
 3.4.3 (2016-02-15)
