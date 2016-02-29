@@ -33,6 +33,17 @@ class TabbedView(BrowserView):
     __call__ = ViewPageTemplateFile("tabbed.pt")
     macros = __call__.macros
 
+    def _resolve_tab(self, name):
+        """Resolve the view responsible for a single tab.
+
+        The views always must follow the naming-convention
+        tabbedview_view-[name].
+
+        """
+        return self.context.restrictedTraverse(
+            "@@tabbedview_view-{}".format(name),
+            default=None)
+
     def user_is_logged_in(self):
         user = AccessControl.getSecurityManager().getUser()
         return user != AccessControl.SpecialUsers.nobody
@@ -42,9 +53,7 @@ class TabbedView(BrowserView):
         for action, icon in self.get_actions(category='tabbedview-tabs'):
             css_classes = None
             #get the css classes that should be set on the A elements.
-            view_name = "tabbedview_view-%s" % action['id']
-            view = queryMultiAdapter((self.context, self.request),
-                                     name=view_name, default=None)
+            view = self._resolve_tab(action['id'])
 
             if view and hasattr(view, 'get_css_classes'):
                 css_classes = ' '.join(view.get_css_classes())
@@ -77,10 +86,7 @@ class TabbedView(BrowserView):
             if action['id'].lower() == default_tab:
                 action['class'] = '%s initial' % action['class']
 
-            view_name = "tabbedview_view-%s" % action['id']
-            view = queryMultiAdapter((self.context, self.request),
-                                     name=view_name, default=None)
-
+            view = self._resolve_tab(action['id'])
             action['tab_menu_actions'] = self.get_tab_menu_actions(view)
 
             actions.append(action)
@@ -143,13 +149,10 @@ class TabbedView(BrowserView):
         """
         view_name = self.request.get('view_name', None)
         if view_name:
-            listing_view = queryMultiAdapter((self.context, self.request),
-                            name='tabbedview_view-%s' % view_name)
+            listing_view = self._resolve_tab(view_name)
 
             if listing_view is None:
-                listing_view = queryMultiAdapter(
-                    (self.context, self.request),
-                    name='tabbedview_view-fallback')
+                listing_view = self._resolve_tab('fallback')
 
             self.request.response.setHeader('X-Tabbedview-Response', True)
             return listing_view()
@@ -186,8 +189,7 @@ class TabbedView(BrowserView):
         if not view_name:
             return
 
-        listing_view = queryMultiAdapter((self.context, self.request),
-                            name='tabbedview_view-%s' % view_name)
+        listing_view = self._resolve_tab(view_name)
         if not listing_view:
             return
 
@@ -207,8 +209,7 @@ class TabbedView(BrowserView):
         the moment.
         """
 
-        self.tab = self.context.restrictedTraverse("tabbedview_view-%s" %
-                                          self.request.get('view_name'))
+        self.tab = self._resolve_tab(self.request.get('view_name'))
 
         return self.tab.select_all(
             int(self.request.get('pagenumber', 1)),
