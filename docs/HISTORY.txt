@@ -5,6 +5,9 @@ Changelog
 3.4.4 (unreleased)
 ------------------
 
+- Drop support for Plone 4.1.x.
+  [deiferni]
+
 - Respect permissions defined on tabs during tab-lookup.
   Replaces adapter lookup with traversal to make sure that permissions
   defined on a tab are respected.
