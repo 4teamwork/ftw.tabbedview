@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <include package="Products.CMFCore"/>
+
+    <i18n:registerTranslations directory="locales" />
+
+    <browser:page
+        for="*"
+        name="tabbedview_view-footab"
+        class=".tabs.PublicTab"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="tabbedview_view-notranslation"
+        class=".tabs.PublicTab"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="tabbedview_view-restrictedtab"
+        class=".tabs.RestrictedTab"
+        permission="cmf.ModifyPortalContent"
+        />
+
+</configure>

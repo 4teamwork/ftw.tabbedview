@@ -1,33 +1,16 @@
-from ftw.tabbedview.testing import ZCML_LAYER
+from ftw.tabbedview.testing import TABBEDVIEW_FUNCTIONAL_TESTING
+from ftw.testbrowser import browsing
 from ftw.testing import MockTestCase
-from zope.component import queryMultiAdapter, getMultiAdapter
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
 class TestFallBackView(MockTestCase):
 
-    layer = ZCML_LAYER
+    layer = TABBEDVIEW_FUNCTIONAL_TESTING
 
-    def test_component_registered(self):
-        context = self.stub()
-        request = self.providing_stub(IDefaultBrowserLayer)
-
-        self.replay()
-
-        view = queryMultiAdapter((context, request),
-                                 name='tabbedview_view-fallback')
-        self.assertNotEqual(view, None)
-
-    def test_render_view(self):
-        context = self.create_dummy()
-        request = self.stub_request()
-
-        self.expect(request.get('view_name', '')).result('foo')
-
-        self.replay()
-
-        view = getMultiAdapter((context, request),
-                               name='tabbedview_view-fallback')
-        html = view()
-        self.assertIn('No view registered for', html)
-        self.assertIn('foo', html)
+    @browsing
+    def test_fallback_view_is_registered(self, browser):
+        browser.login().open(view='tabbedview_view-fallback',
+                             data={'view_name': 'foo'})
+        self.assertEqual(
+            'No view registered for: tabbedview_view-foo',
+            browser.css('body').first.text)

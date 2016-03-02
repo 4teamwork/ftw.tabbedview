@@ -1,0 +1,8 @@
+msgid ""
+msgstr ""
+
+msgid "footab"
+msgstr "MyTitle"
+
+msgid "restrictedtab"
+msgstr "Restricted Tab"

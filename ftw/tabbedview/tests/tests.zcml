@@ -21,11 +21,4 @@
 
     <include package="ftw.tabbedview" />
 
-    <browser:page
-        for="*"
-        name="tabbed_view"
-        class=".test_load_package.FoobarView"
-        permission="zope2.View"
-        />
-
 </configure>
