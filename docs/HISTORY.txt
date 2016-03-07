@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.4.4 (unreleased)
+3.5.0 (2016-03-07)
 ------------------
 
 - Drop support for Plone 4.1.x.
