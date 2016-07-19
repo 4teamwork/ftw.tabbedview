@@ -5,6 +5,9 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
+- Move uploadbox above tabbedview menu
+  [Kevin Bieri]
+
 - Change Regex in parse_param. Only match decimal characters, since parseFloat may return wrong results when confronted with an int.
   [tschanzt]
 

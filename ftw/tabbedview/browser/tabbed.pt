@@ -76,6 +76,18 @@
 
         <div class="visualClear" ></div>
         <div id="tabbedview-body" class="panes">
+            <div id="uploadbox" class="uploaderContainer" tal:condition="view/show_uploadbox">
+                <a tal:attributes="href string:${context/absolute_url}/quick_upload"
+                   class="uploadUrl" style="display:none ">
+                    <!-- link for html5 upload -->
+                </a>
+                <input type="hidden"
+                       name="uploadData"
+                       class="uploadData"
+                       value=""
+                       />
+            </div>
+
             <dl class="actionMenu tabbedview-tab-menu"
                 tal:condition="view/user_is_logged_in">
                 <dt class="actionMenuHeader tabbedviewMenuHeader">
@@ -103,18 +115,6 @@
                     </dd>
                 </tal:tab>
             </dl>
-
-          <div id="uploadbox" class="uploaderContainer" tal:condition="view/show_uploadbox">
-              <a tal:attributes="href string:${context/absolute_url}/quick_upload"
-                 class="uploadUrl" style="display:none ">
-                  <!-- link for html5 upload -->
-              </a>
-              <input type="hidden"
-                     name="uploadData"
-                     class="uploadData"
-                     value=""
-                     />
-          </div>
 
             <tal:panes repeat="tab tabs">
                 <div tal:attributes="id python:'%s_overview' % tab['id']" class="pane"><!-- iefix --></div>
