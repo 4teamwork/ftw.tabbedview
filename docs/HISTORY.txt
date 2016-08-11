@@ -5,7 +5,8 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change Regex in parse_param. Only match decimal characters, since parseFloat may return wrong results when confronted with an int.
+  [tschanzt]
 
 
 3.5.0 (2016-03-07)
