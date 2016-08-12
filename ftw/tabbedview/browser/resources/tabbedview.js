@@ -8,7 +8,7 @@ jQuery.find_param = function(s) {
       var splitted = this.split('=');
       var key = splitted[0];
       var val = splitted[1];
-      if (/^[0-9.]+$/.test(val)) {
+      if (/^[0-9.]{1,16}$/.test(val)) {
         val = parseFloat(val);
       }
       if (val == 'true') {
