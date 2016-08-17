@@ -1,16 +1,18 @@
-from Products.CMFCore.Expression import getExprContext
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview import tabbedviewMessageFactory as _
 from ftw.tabbedview.interfaces import IDefaultTabStorageKeyGenerator
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
+from ftw.tabbedview.interfaces import ITabbedViewEndpoints
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.Expression import getExprContext
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.i18n import translate
+from zope.interface import implements
 import AccessControl
 
 
@@ -29,6 +31,8 @@ except ImportError:
 
 class TabbedView(BrowserView):
     """A View containing tabs with fancy ui"""
+
+    implements(ITabbedViewEndpoints)
 
     __call__ = ViewPageTemplateFile("tabbed.pt")
     macros = __call__.macros
