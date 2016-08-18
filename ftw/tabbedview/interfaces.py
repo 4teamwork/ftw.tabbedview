@@ -40,6 +40,41 @@ class ITabbedView(Interface):
         )
 
 
+class ITabbedViewEndpoints(Interface):
+
+    def listing():
+        """Fetches the corresponding view which renders a listing.
+        Called from javascript tabbedview.js in reload_view.
+        """
+
+    def select_all():
+        """Called when select-all is clicked. Returns HTML containing
+        a hidden input field for each field which is not displayed at
+        the moment.
+        """
+
+    def reorder():
+        """Called when the items in the grid are reordered"""
+
+    def setgridstate():
+        """Stores the current grid configuration (visible columns,
+        column order, grouping, sorting etc.) persistent in dictstorage.
+        """
+
+    def set_default_tab(tab=None, view=None):
+        """Sets the default tab. The id of the tab is passed as
+        argument or in the request payload as ``tab``.
+        """
+
+    def msg_unknownresponse():
+        """Return the message that is rendered when a javascript request gets
+        a response from a different source than a tabbed view.
+
+        This happens when a redirect occurs, for example a redirect to a login
+        form due to a session timeout.
+        """
+
+
 class IListingView(Interface):
     """Marker interface for listing tabs.
     """

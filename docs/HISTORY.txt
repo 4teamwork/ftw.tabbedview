@@ -5,6 +5,9 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
+- Extract tabbedview's allowed attributes in to an interface.
+  [phgross]
+
 - Move uploadbox above tabbedview menu
   [Kevin Bieri]
 
