@@ -29,6 +29,9 @@ jQuery.find_param = function(s) {
 statusmessages = {};
 statusmessages.error = function(msg){alert(msg);};
 
+// Defines the minimum chars required for a search
+var search_chars_required = 3;
+
 // Define global baseurl (incl. trailing slash) for later
 // functions to use to build absolute URLs.
 var baseurl = $('head base').attr('href');
@@ -64,6 +67,13 @@ load_tabbedview = function(callback) {
 
     reload_view : function(callback) {
       var params = this.parse_params();
+
+      // add searchbox text property, when input is prefilled
+      // for example, when using the back button
+      if (tabbedview.searchbox.val().length >= search_chars_required){
+        tabbedview.prop('searchable_text', tabbedview.searchbox.val());
+      }
+
       var current_tab = $('.tabbedview-tabs li a.selected');
       var overview = $('#'+tabbedview.prop('view_name')+'_overview');
       var url = baseurl + 'tabbed_view/listing?ajax_load=1&'+params;
@@ -410,7 +420,7 @@ load_tabbedview = function(callback) {
       return;
     }
 
-    if (value.length<3 && previous_value && previous_value.length > value.length) {
+    if (value.length < search_chars_required && previous_value && previous_value.length > value.length) {
       tabbedview.prop('searchable_text', '');
       tabbedview.flush_params('pagenumber:int');
       tabbedview.reload_view();
@@ -420,7 +430,7 @@ load_tabbedview = function(callback) {
       tabbedview.prop('searchable_text', value);
     }
 
-    if (value.length>=3) {
+    if (value.length >= search_chars_required) {
       tabbedview.flush_params('pagenumber:int');
       if ($('.tab_container').length === 0) {
         tabbedview.reload_view();
