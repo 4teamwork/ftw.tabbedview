@@ -5,6 +5,8 @@ Changelog
 3.5.2 (unreleased)
 ------------------
 
+- Chameleon support: make macros access lazy. [jone]
+
 - Check for searchbox value when a tabbedview page gets reloaded.
   [phgross]
 

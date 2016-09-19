@@ -35,7 +35,10 @@ class TabbedView(BrowserView):
     implements(ITabbedViewEndpoints)
 
     __call__ = ViewPageTemplateFile("tabbed.pt")
-    macros = __call__.macros
+
+    @property
+    def macros(self):
+        return __call__.macros
 
     def _resolve_tab(self, name):
         """Resolve the view responsible for a single tab.
