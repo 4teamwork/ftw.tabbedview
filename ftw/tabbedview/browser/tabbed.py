@@ -38,7 +38,7 @@ class TabbedView(BrowserView):
 
     @property
     def macros(self):
-        return __call__.macros
+        return self.__call__.macros
 
     def _resolve_tab(self, name):
         """Resolve the view responsible for a single tab.
