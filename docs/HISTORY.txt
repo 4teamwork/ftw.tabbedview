@@ -5,7 +5,7 @@ Changelog
 3.5.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix NameError in tabebdview macros. [jone]
 
 
 3.5.2 (2016-09-26)
