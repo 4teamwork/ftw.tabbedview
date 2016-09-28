@@ -1,3 +1,29 @@
+function Observer(initialValue) {
+
+  var value = initialValue;
+  var changed = false;
+  var reveal = {};
+
+  function update(newValue) {
+    if(newValue === value) {
+      changed = false;
+    } else {
+      changed = true;
+    }
+    value = newValue;
+  }
+
+  function hasChanged() { return changed; }
+
+  reveal.update = update;
+  reveal.hasChanged = hasChanged;
+
+  return Object.freeze(reveal);
+
+}
+
+var historyObserver = Observer("");
+
 /* find_param function */
 jQuery.find_param = function(s) {
   var r = {};
@@ -336,10 +362,14 @@ load_tabbedview = function(callback) {
      tab reloading as long as we have no location.hash. This condition
      makes using browser-back / -forward work because in this situation
      we have a location.hash. */
-  $('.tabbedview-tabs .formTabs a').bind('history', function(e) {
-    if (!location.hash) {
-      e.preventDefault();
-      e.stopPropagation();
+  $('.tabbedview-tabs .formTabs a').bind('history', function(event, hash) {
+    historyObserver.update(hash);
+    if (!hash) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if(historyObserver.hasChanged() && !hash) {
+      history.back();
     }
   });
 
