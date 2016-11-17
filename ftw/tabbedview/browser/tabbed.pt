@@ -43,7 +43,7 @@
           <div tal:replace="structure provider:plone.abovecontenttitle" />
 
 
-          <metal:title define-slot="content-title">
+          <metal:title define-slot="tabbedview-content-title">
             <h1 class="documentFirstHeading" tal:content="context/Title" />
           </metal:title>
           <div tal:replace="structure provider:plone.belowcontenttitle" />
