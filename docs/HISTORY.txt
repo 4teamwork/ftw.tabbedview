@@ -5,7 +5,11 @@ Changelog
 3.5.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Template API breakage - renamed slot 'content-title' to 'tabbedview-content-title'
+- [Rotonen]
+
+- Minor Chameleon compatibility fixes.
+  [Rotonen]
 
 
 3.5.4 (2016-10-18)
