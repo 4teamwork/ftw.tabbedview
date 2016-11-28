@@ -5,6 +5,9 @@ Changelog
 3.5.5 (unreleased)
 ------------------
 
+- Change markup of batching so it can be styled more easily.
+  [mbaechtold]
+
 - Template API breakage - renamed slot 'content-title' to 'tabbedview-content-title'
 - [Rotonen]
 
