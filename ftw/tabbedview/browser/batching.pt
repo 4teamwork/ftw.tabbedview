@@ -13,14 +13,6 @@
         </a>
     </span>
 
-    <span class="next"
-          tal:condition="batch/has_next">
-        <a href=""
-           tal:attributes="href string:${view/url}?pagenumber=${batch/nextpage}&amp;sort_on=${sort_on}">
-           &raquo;
-        </a>
-    </span>
-
     <!-- Link to first -->
     <span tal:condition="batch/show_link_to_first">
         <a href=""
@@ -60,6 +52,14 @@
         <a href=""
            tal:attributes="href string:${view/url}?pagenumber=${batch/lastpage}&amp;sort_on=${sort_on}"
            tal:content="batch/lastpage">3457</a>
+    </span>
+
+    <span class="next"
+          tal:condition="batch/has_next">
+        <a href=""
+           tal:attributes="href string:${view/url}?pagenumber=${batch/nextpage}&amp;sort_on=${sort_on}">
+           &raquo;
+        </a>
     </span>
 
     <!-- dynamic batching -->
