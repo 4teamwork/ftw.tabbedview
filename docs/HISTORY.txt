@@ -9,7 +9,7 @@ Changelog
   [mbaechtold]
 
 - Template API breakage - renamed slot 'content-title' to 'tabbedview-content-title'
-- [Rotonen]
+  [Rotonen]
 
 - Minor Chameleon compatibility fixes.
   [Rotonen]
