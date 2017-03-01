@@ -345,7 +345,7 @@ load_tabbedview = function(callback) {
 
 
   var initialIndex = 0;
-  var initial = $('.formTab > .initial');
+  var initial = $('.formTab .initial');
   if (initial.length > 0) {
     initialIndex = initial.parents(':first').index();
   }
