@@ -347,7 +347,7 @@ load_tabbedview = function(callback) {
   var initialIndex = 0;
   var initial = $('.formTab .initial');
   if (initial.length > 0) {
-    initialIndex = initial.parents(':first').index();
+    initialIndex = initial.parents('li:first').index();
   }
 
   /* When a default-tab is configured and we load the tabbedview,

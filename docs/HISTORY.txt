@@ -5,7 +5,7 @@ Changelog
 3.6.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix default tab for HTTPS. [mbaechtold]
 
 
 3.6.1 (2017-03-01)
