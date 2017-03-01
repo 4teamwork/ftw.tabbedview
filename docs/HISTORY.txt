@@ -5,7 +5,7 @@ Changelog
 3.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix default tab for HTTPS. [jone]
 
 
 3.6.0 (2016-12-06)
