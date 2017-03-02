@@ -41,6 +41,8 @@
     <adapter factory=".statestorage.DefaultDictStorage" />
     <adapter factory=".defaulttab.DefaultTabStorageKeyGenerator" />
 
+    <adapter factory=".caching.TabbedviewETagValue" name="tabbedview" />
+
     <!-- Register the import_various step -->
     <genericsetup:importStep
         name="ftw.tabbedview.various"
