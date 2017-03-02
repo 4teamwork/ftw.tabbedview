@@ -5,7 +5,9 @@ Changelog
 3.6.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add plone.app.caching etag value adapter containing the users default tab.
+  In order to benefit from that, you need to update your caching configuration.
+  See the readme for instructions. [jone]
 
 
 3.6.2 (2017-03-02)

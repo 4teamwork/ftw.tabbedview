@@ -181,6 +181,38 @@ Screenshot of the same listing using the ``extjs`` table implementation:
 .. image:: https://github.com/4teamwork/ftw.tabbedview/raw/master/docs/screenshot2.png
 
 
+Caching
+=======
+
+``ftw.tabbedview`` provides a ``plone.app.caching`` etag adapter
+named ``tabbedview``.
+This etag can be used in the caching configuration in order to make the cache
+flush when changing the default tab.
+
+In order to enable this, you need to add it to your caching configuration.
+Depending on how you want to set up caching in your project, you may want
+to add the etag to your rulesets.
+You can do that in a ``registry.xml``:
+
+.. code:: xml
+
+    <?xml version="1.0"?>
+    <registry>
+
+        <record name="plone.app.caching.weakCaching.plone.content.itemView.etags">
+            <value purge="False">
+                <element>tabbedview</element>
+            </value>
+        </record>
+
+        <record name="plone.app.caching.weakCaching.plone.content.folderView.etags">
+            <value purge="False">
+                <element>tabbedview</element>
+            </value>
+        </record>
+
+    </registry>
+
 
 Links
 =====
