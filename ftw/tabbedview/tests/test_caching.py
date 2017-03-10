@@ -17,6 +17,10 @@ class TestETagValue(TestCase):
         tabbed_view.set_default_tab('documents')
         self.assertEquals('documents', self.get_etag_value_for(tabbed_view))
 
+    def test_default_value_is_empty_string(self):
+        view = self.portal.unrestrictedTraverse('@@view')
+        self.assertEquals('', self.get_etag_value_for(view))
+
     def get_etag_value_for(self, view):
         adapter = getMultiAdapter((view, self.request),
                                   IETagValue,
