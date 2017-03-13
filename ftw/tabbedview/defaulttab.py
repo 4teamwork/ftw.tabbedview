@@ -26,5 +26,5 @@ class DefaultTabStorageKeyGenerator(object):
             'defaulttab',
             self.context.portal_type,
             self.view.__name__,
-            user.getId()]
+            user.getId() or '']
         return '-'.join(parts)
