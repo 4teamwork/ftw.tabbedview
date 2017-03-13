@@ -5,7 +5,7 @@ Changelog
 3.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix error when calculating etag value on non-tabbedview. [jone]
 
 
 3.7.0 (2017-03-02)
