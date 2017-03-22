@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.7.3 (unreleased)
+3.8.0 (2017-03-22)
 ------------------
 
 - Append action object name/id to CSS classes in folder action menus. [Rotonen]
