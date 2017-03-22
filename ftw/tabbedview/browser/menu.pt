@@ -4,7 +4,7 @@
     <ul class="tabbedview-action-list">
         <tal:major_buttons tal:repeat="button view/major_buttons">
             <li>
-                <a class="actionicon button" href="#" tal:attributes="href button/url;" tal:content="button/title" />
+                <a href="#" tal:attributes="href button/url; class string:actionicon button tabbedview-menu-${button/id};" tal:content="button/title" />
             </li>
         </tal:major_buttons>
         <li tal:condition="view/minor_buttons">
@@ -19,7 +19,7 @@
                   <ul>
                       <tal:minor_buttons tal:repeat="button view/minor_buttons">
                           <li>
-                              <a class="actionicon" href="#" tal:attributes="href button/url;" tal:content="button/title" />
+                              <a href="#" tal:attributes="href button/url; class string:actionicon tabbedview-menu-${button/id};" tal:content="button/title" />
                           </li>
                       </tal:minor_buttons>
                   </ul>
