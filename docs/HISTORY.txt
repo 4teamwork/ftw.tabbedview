@@ -5,7 +5,9 @@ Changelog
 3.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Refactor DefaultGridStateStorageKeyGenerator to improve overridable in more
+  specific implemnetations.
+  [elioschmutz]
 
 
 3.8.0 (2017-03-22)

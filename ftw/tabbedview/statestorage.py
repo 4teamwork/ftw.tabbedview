@@ -1,15 +1,15 @@
-from Products.CMFCore.utils import getToolByName
 from ftw.dictstorage.base import DictStorage
 from ftw.dictstorage.interfaces import IConfig
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
 from ftw.tabbedview.interfaces import IGridStateStorageKeyGenerator
 from persistent.dict import PersistentDict
+from plone import api
+from Products.CMFCore.utils import getToolByName
 from zope.annotation import IAnnotations
 from zope.component import adapts
 from zope.interface import implements
 from zope.publisher.interfaces.browser import IBrowserView
-import AccessControl
 
 
 class DefaultGridStateStorageKeyGenerator(object):
@@ -29,25 +29,26 @@ class DefaultGridStateStorageKeyGenerator(object):
         self.request = request
 
     def get_key(self):
+        if api.user.is_anonymous():
+            return None
+
         key = []
         key.append('ftw.tabbedview')
 
-        # add the portal_type of the context
-        key.append(self.context.portal_type)
+        self._append_portal_type(key)
+        self._append_view_name(key)
+        self._append_userid(key)
 
-        # add the name of the tab
+        return '-'.join(key)
+
+    def _append_view_name(self, key):
         key.append(self.tabview.__name__)
 
-        # add the userid
-        mtool = getToolByName(self.context, 'portal_membership')
-        member = mtool.getAuthenticatedMember()
-        if not member or member == AccessControl.getSecurityManager().getUser():
-            return None
+    def _append_portal_type(self, key):
+        key.append(self.context.portal_type)
 
-        key.append(member.getId())
-
-        # concatenate with "-"
-        return '-'.join(key)
+    def _append_userid(self, key):
+        key.append(api.user.get_current().getId())
 
 
 class DefaultDictStorageConfig(object):
