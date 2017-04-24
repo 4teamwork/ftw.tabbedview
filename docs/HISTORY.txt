@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.1 (unreleased)
+3.8.1 (2017-04-24)
 ------------------
 
 - Refactor DefaultGridStateStorageKeyGenerator to improve overridable in more
