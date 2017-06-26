@@ -5,7 +5,7 @@ Changelog
 3.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix: no longer render the viewname as html on the fallback view. [mathias.leimgruber]
 
 
 3.8.1 (2017-04-24)

@@ -14,3 +14,11 @@ class TestFallBackView(MockTestCase):
         self.assertEqual(
             'No view registered for: tabbedview_view-foo',
             browser.css('body').first.text)
+
+    @browsing
+    def test_fallback_view_name_is_not_rendered_as_html(self, browser):
+        browser.login().open(view='tabbedview_view-fallback',
+                             data={'view_name': '<b>foo</b>'})
+        self.assertEqual(
+            'No view registered for: tabbedview_view-&lt;b&gt;foo&lt;/b&gt;',
+            browser.css('body p').first.normalized_innerHTML)
