@@ -7,7 +7,7 @@
                 <a href="#" tal:attributes="href button/url; class string:actionicon button tabbedview-menu-${button/id};" tal:content="button/title" />
             </li>
         </tal:major_buttons>
-        <li tal:condition="view/minor_buttons">
+        <li tal:define="minor_buttons view/minor_buttons" tal:condition="minor_buttons">
             <dl id="plone-contentmenu-tabbedview-actions" class="actionMenu deactivated">
               <dt class="actionMenuHeader label-">
                 <a href="#" class="button">
@@ -17,7 +17,7 @@
               </dt>
               <dd class="actionMenuContent">
                   <ul>
-                      <tal:minor_buttons tal:repeat="button view/minor_buttons">
+                      <tal:minor_buttons tal:repeat="button minor_buttons">
                           <li>
                               <a href="#" tal:attributes="href button/url; class string:actionicon tabbedview-menu-${button/id};" tal:content="button/title" />
                           </li>

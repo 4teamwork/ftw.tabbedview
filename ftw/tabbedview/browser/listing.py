@@ -326,6 +326,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         enabled = callable(enabled) and list(enabled()) or list(enabled)
         return list(filter(lambda a: a not in major, enabled))
 
+    @instance.memoize
     def buttons(self):
         if callable(self.enabled_actions):
             enabled_actions = list(self.enabled_actions())
