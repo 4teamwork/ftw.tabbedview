@@ -228,11 +228,28 @@ class ListingView(BrowserView, BaseTableSourceConfig):
     def custom_sort(self, results, sort_on, sort_reverse):
         """Custom sort method.
         """
-
         if getattr(self, '_custom_sort_method', None) is not None:
             results = self._custom_sort_method(results, sort_on, sort_reverse)
+        else:
+            generator = queryUtility(ITableGenerator, 'ftw.tablegenerator')
+            columns = generator.process_columns(self.columns)
 
+            column = None
+            for col in columns:
+                if col['sort_index'] == sort_on:
+                    column = col
+                    break
+
+            if not column:
+                raise RuntimeError('Could not find sort_index "%s"' % \
+                                       sort_on + \
+                                       ' in this tab configuration.')
+            # now lets group it with the table source adapter
+            results = sorted(results,
+                key=lambda x: column["transform"](x, sort_on),
+                reverse=sort_reverse)
         return results
+
 
     def post_search(self, query):
         pass
