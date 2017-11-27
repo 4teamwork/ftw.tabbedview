@@ -23,7 +23,7 @@
                   tal:attributes="src string:${here/portal_url}/++resource++ftwtable.extjs.js"></script>
       </tal:extjs>
 
-      <script type="text/javascript">
+      <script type="text/javascript" async>
         $(function(){
           load_tabbedview();
         });
