@@ -1,6 +1,12 @@
+from ftw.builder import Builder
+from ftw.builder import create
 from ftw.tabbedview.testing import TABBEDVIEW_FUNCTIONAL_TESTING
 from plone.app.caching.interfaces import IETagValue
+from plone.app.testing import login
 from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from unittest2 import TestCase
 from zope.component import getMultiAdapter
 
@@ -19,7 +25,10 @@ class TestETagValue(TestCase):
         self.assertEquals('documents', self.get_etag_value_for(tabbed_view))
 
     def test_default_value_is_empty_string(self):
-        view = self.portal.unrestrictedTraverse('@@view')
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        login(self.portal, TEST_USER_NAME)
+        folder = create(Builder("folder"))
+        view = folder.unrestrictedTraverse('@@view')
         self.assertEquals('', self.get_etag_value_for(view))
 
     def test_default_value_is_empty_string_for_anonymous(self):

@@ -1,3 +1,6 @@
+from ftw.builder.testing import BUILDER_LAYER
+from ftw.builder.testing import functional_session_factory
+from ftw.builder.testing import set_builder_session_factory
 from ftw.testing.layer import ComponentRegistryLayer
 from pkg_resources import get_distribution
 from plone.app.testing import applyProfile
@@ -5,13 +8,13 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import applyProfile
 from z3c.autoinclude.api import disable_dependencies
 from z3c.autoinclude.api import disable_plugins
 from zope.configuration import xmlconfig
 
 
 IS_PLONE_5 = get_distribution('Plone').version >= '5'
+
 
 class ZCMLLayer(ComponentRegistryLayer):
     """Loads the zcml of ftw.tabbedview and dependencies.
@@ -35,7 +38,7 @@ ZCML_LAYER = ZCMLLayer()
 
 class TabbedViewLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE, )
+    defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
         xmlconfig.string(
@@ -60,8 +63,10 @@ class TabbedViewLayer(PloneSandboxLayer):
         if IS_PLONE_5:
             applyProfile(portal, 'plone.app.contenttypes:default')
 
+
 TABBED_VIEW_LAYER = TabbedViewLayer()
 TABBEDVIEW_INTEGRATION_TESTING = IntegrationTesting(
     bases=(TABBED_VIEW_LAYER, ), name="ftw.tabbedview:integration")
 TABBEDVIEW_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(TABBED_VIEW_LAYER, ), name="ftw.tabbedview:functional")
+    bases=(TABBED_VIEW_LAYER, set_builder_session_factory(functional_session_factory)),
+    name="ftw.tabbedview:functional")
