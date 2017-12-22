@@ -126,7 +126,6 @@ class TabbedView(BrowserView):
         """
         context = self.context
         types_tool = getToolByName(context, 'portal_types')
-        ai_tool = getToolByName(context, 'portal_actionicons')
         actions = types_tool.listActions(object=context)
         plone_state = queryMultiAdapter((self.context, self.request),
                                         name='plone_portal_state')
@@ -143,9 +142,7 @@ class TabbedView(BrowserView):
                 continue
 
             if action.category == category:
-                icon = ai_tool.queryActionIcon(action_id=action.id,
-                                                category=category,
-                                                context=context)
+                icon = None
                 econtext = getExprContext(context, context)
                 action = action.getAction(ec=econtext)
 
