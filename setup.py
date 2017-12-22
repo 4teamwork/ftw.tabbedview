@@ -9,6 +9,7 @@ tests_require = [
     'pyquery',
     'ftw.testbrowser',
     'ftw.testing',
+    'ftw.builder',
     ]
 
 extras_require = {
@@ -33,6 +34,7 @@ setup(name='ftw.tabbedview',
         'Framework :: Plone',
         'Framework :: Plone :: 4.2',
         'Framework :: Plone :: 4.3',
+        'Framework :: Plone :: 5.1',
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
@@ -55,6 +57,7 @@ setup(name='ftw.tabbedview',
         'ftw.table>=1.19.0',
         'collective.js.throttledebounce',
         'plone.api',
+        'plone.app.jquerytools',
         'plone.app.registry',
         'ftw.dictstorage',
         'ftw.upgrade',

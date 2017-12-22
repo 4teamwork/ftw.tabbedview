@@ -5,7 +5,7 @@ Changelog
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Plone 5.1 [njohner]
 
 
 4.0.0 (2018-01-24)
