@@ -63,11 +63,11 @@
     </span>
 
     <!-- dynamic batching -->
-    <form tal:condition="view/dynamic_batchsize_enabled" id="dynamic_batching_form"
-          i18n:domain="ftw.tabbedview">
+    <div tal:condition="view/dynamic_batchsize_enabled" class="dynamicBatchSizeContainer" i18n:domain="ftw.tabbedview">
       <span i18n:translate="">Lines per page:</span>
-      <input id="tabbedview-batchbox" name="tabbedview-batchbox"
+      <input class="tabbedviewBatchbox"
              type="text"
              tal:attributes="value batch/pagesize" />
-    </form>
+    </div>
+
 </div>
