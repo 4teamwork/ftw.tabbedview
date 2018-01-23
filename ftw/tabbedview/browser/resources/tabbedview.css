@@ -1,9 +1,9 @@
-#dynamic_batching_form {
+.dynamicBatchSizeContainer {
   display: inline;
   margin-left: 1em;
 }
 
-#tabbedview-batchbox {
+.tabbedviewBatchbox {
   width: 3em;
 }
 

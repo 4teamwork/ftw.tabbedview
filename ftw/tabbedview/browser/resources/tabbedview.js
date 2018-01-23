@@ -307,6 +307,12 @@ load_tabbedview = function(callback) {
       }
 
       tabbedview.view_container.trigger('tab-menu-updated');
+    },
+
+    reset_pagesize: function(pageSize) {
+      tabbedview.param('pagesize', pageSize);
+      tabbedview.flush_params('pagenumber:int');
+      tabbedview.reload_view();
     }
 
   };
@@ -483,21 +489,19 @@ load_tabbedview = function(callback) {
     tabbedview.reload_view();
   });
 
-  // dynamic batching functionality
-  $('#tabbedview-batchbox').live('blur', function() {
-    $('#dynamic_batching_form').submit();
-  });
-
-  // workaround to bind the submit event with live
-  $('body').each(function(){
-    $('#dynamic_batching_form').live('submit', function(event){
-      tabbedview.param(
-        'pagesize', $('#tabbedview-batchbox').val());
-      tabbedview.flush_params('pagenumber:int');
-      tabbedview.reload_view();
-      event.preventDefault();
-    });
-  });
+  $('.tabbedviewBatchbox').live(
+    {
+      blur: function(e) {
+        tabbedview.reset_pagesize($(e.target).val());
+      },
+      keypress: function(e) {
+        if(e.which === 13){  // Enter
+          event.preventDefault();
+          tabbedview.reset_pagesize($(e.target).val());
+        }
+      }
+    }
+  );
 
   tabbedview.view_container.bind('reload', function() {
     //hide or show filter box
