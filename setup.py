@@ -52,7 +52,7 @@ setup(name='ftw.tabbedview',
       install_requires=[
         'Plone',
         'setuptools',
-        'ftw.table',
+        'ftw.table>=1.19.0',
         'collective.js.throttledebounce',
         'plone.api',
         'plone.app.registry',
