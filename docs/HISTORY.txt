@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.4 (unreleased)
+4.0.0 (2018-01-24)
 ------------------
 
 - Use classes instead ids for batching-template to prevent duplicated ids [elioschmutz]
