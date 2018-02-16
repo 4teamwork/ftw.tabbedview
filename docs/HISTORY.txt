@@ -5,6 +5,7 @@ Changelog
 4.0.1 (unreleased)
 ------------------
 
+- Fix filter for IE when using `clear field` button. [Kevin Bieri]
 - Add support for Plone 5.1 [njohner]
 
 

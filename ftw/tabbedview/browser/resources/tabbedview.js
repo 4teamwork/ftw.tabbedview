@@ -438,7 +438,7 @@ load_tabbedview = function(callback) {
 
   $('.tabbedview-tabs .ui-tabs-nav a').removeAttr('title');
 
-  tabbedview.searchbox.bind("keyup", $.debounce(250, function(e) {
+  tabbedview.searchbox.bind("input", $.debounce(250, function(e) {
     var value = tabbedview.searchbox.val();
     var previous_value = tabbedview.prop('searchable_text');
     if (value === tabbedview.searchbox.attr('title')) {
