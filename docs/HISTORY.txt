@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.1 (unreleased)
+4.1.0 (2018-02-16)
 ------------------
 
 - Fix filter for IE when using `clear field` button. [Kevin Bieri]
