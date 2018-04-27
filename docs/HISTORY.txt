@@ -5,8 +5,7 @@ Changelog
 3.8.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix bug which caused unsortable columns to be sortable after storing grid state. [jone]
 
 3.8.3 (2017-08-02)
 ------------------
