@@ -484,7 +484,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
 
                 col_state = column_state_by_id[name]
                 if 'sortable' not in col_state:
-                    col_state['sortable'] = True
+                    col_state['sortable'] = column.get('sortable', True)
 
             state = json.dumps(parsed_state)
 

@@ -5,8 +5,7 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix bug which caused unsortable columns to be sortable after storing grid state. [jone]
 
 4.1.0 (2018-02-16)
 ------------------
