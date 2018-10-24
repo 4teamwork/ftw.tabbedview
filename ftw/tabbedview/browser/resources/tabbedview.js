@@ -324,7 +324,8 @@ load_tabbedview = function(callback) {
   /*catch all click events on tabs link elements and call the click method
     because jquery tools tabs doesnt work with plone folderish types*/
 
-  $('.formTab a').click(function(e){
+  const tabEvent = Modernizr.touch ? 'touchstart' : 'click';
+  $('.formTab a').on(tabEvent, function(e) {
     tabbedview.tabs_api.click($(this).attr('href'));
     e.preventDefault();
     e.stopPropagation();
