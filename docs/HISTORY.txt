@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.1.2 (unreleased)
+4.1.2 (2018-10-24)
 ------------------
 
 - Better support for touch devices when selecting a tab. [Kevin Bieri]
