@@ -1,13 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-01-12 18:13+0000\n"
-"PO-Revision-Date: 2013-01-12 19:10+0100\n"
-=======
 "POT-Creation-Date: 2013-01-12 18:37+0000\n"
 "PO-Revision-Date: 2011-12-16 10:48+0100\n"
->>>>>>> Add default dynamic batching form to batching template. closes #11
 "Last-Translator: Jonas Baumann <j.baumann@4teamwork.ch>\n"
 "Language-Team: 4teamwork <info@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
