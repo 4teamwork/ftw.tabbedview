@@ -101,7 +101,6 @@ msgstr "Ende"
 
 #. Default: "Could not set default tab."
 #: ./ftw/tabbedview/browser/tabbed.py:265
-=======
 msgid "error_set_default_tab"
 msgstr "Fehler beim setzen des Standard-Tab."
 
