@@ -52,7 +52,7 @@ msgstr "Titre"
 
 #: ./ftw/tabbedview/browser/selection.pt:11
 msgid "all (${amount})"
-msgstr "Tous"
+msgstr "Tous (${amount})"
 
 #. Default: "More actions"
 #: ./ftw/tabbedview/browser/menu.pt:14
