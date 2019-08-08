@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.1.3 (unreleased)
+4.1.3 (2019-08-08)
 ------------------
 
 - Also show item count for "all" selection in French. [njohner]
