@@ -1,4 +1,5 @@
 from ftw.dictstorage.interfaces import IConfig
+from mock import Mock
 from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview import statestorage
 from ftw.tabbedview.interfaces import IDefaultDictStorageConfig
@@ -54,8 +55,6 @@ class TestDefaultDictStorageConfig(MockTestCase):
 
     def test_component_registered(self):
         context = self.providing_stub(IBrowserView)
-
-        self.replay()
         component = getAdapter(context, IConfig)
         self.assertEqual(type(component),
                          statestorage.DefaultDictStorageConfig)
@@ -77,20 +76,16 @@ class TestDefaultDictStorageConfig(MockTestCase):
     def test_get_annotated_object_is_plone_site(self):
         site = self.create_dummy()
 
-        portal_url = self.mocker.mock()
+        portal_url = Mock()
         self.mock_tool(portal_url, 'portal_url')
-        self.expect(portal_url.getPortalObject()).result(site)
+        portal_url.getPortalObject.return_value = site
 
         context = self.providing_stub(IBrowserView)
-
-        self.replay()
         component = getAdapter(context, IConfig)
         self.assertEqual(component.get_annotated_object(), site)
 
     def test_get_annotations_key(self):
         context = self.providing_stub(IBrowserView)
-
-        self.replay()
         component = getAdapter(context, IConfig)
         self.assertEqual(component.get_annotations_key(),
                          'ftw.dictstorage-data')
@@ -103,8 +98,6 @@ class TestDefaultDictStorage(MockTestCase):
     def test_component_registered(self):
         context = self.providing_stub(IBrowserView)
         config = self.providing_stub(IDefaultDictStorageConfig)
-
-        self.replay()
         component = getMultiAdapter((context, config), IDictStorage)
         self.assertEqual(type(component), statestorage.DefaultDictStorage)
 
@@ -120,11 +113,8 @@ class TestDefaultDictStorage(MockTestCase):
         context = self.providing_stub(IBrowserView)
         config = self.providing_stub(IDefaultDictStorageConfig)
 
-        self.expect(config.get_annotated_object()).result(site)
-        self.expect(config.get_annotations_key()).result(
-            'ftw.dictstorage-data')
-
-        self.replay()
+        config.get_annotated_object.return_value = site
+        config.get_annotations_key.return_value = 'ftw.dictstorage-data'
         component = getMultiAdapter((context, config), IDictStorage)
 
         self.assertEqual(type(component.storage), PersistentMapping)
