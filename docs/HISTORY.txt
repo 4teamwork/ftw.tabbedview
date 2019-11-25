@@ -6,6 +6,7 @@ Changelog
 ------------------
 
 - Drop Plone 4.2 support. [jone]
+- Fix CSS (quotes) so that is Plone 5 less compatible. [jone]
 
 
 4.1.3 (2019-08-08)
