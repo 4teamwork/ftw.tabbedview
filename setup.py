@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.1.4.dev0'
+version = '4.2.0.dev0'
 maintainer = 'Jonas Baumann'
 
 tests_require = [
@@ -32,7 +32,6 @@ setup(name='ftw.tabbedview',
 
       classifiers=[
         'Framework :: Plone',
-        'Framework :: Plone :: 4.2',
         'Framework :: Plone :: 4.3',
         'Framework :: Plone :: 5.1',
         'Programming Language :: Python',
