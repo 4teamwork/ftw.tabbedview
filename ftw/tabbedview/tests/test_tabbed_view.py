@@ -2,7 +2,7 @@ from ftw.tabbedview.testing import TABBEDVIEW_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from unittest2 import TestCase
+from unittest import TestCase
 import transaction
 
 

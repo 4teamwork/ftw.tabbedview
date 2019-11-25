@@ -2,7 +2,7 @@ from ftw.dictstorage.interfaces import IDictStorage
 from ftw.tabbedview.interfaces import IDefaultTabStorageKeyGenerator
 from ftw.tabbedview.testing import TABBEDVIEW_INTEGRATION_TESTING
 from pyquery import PyQuery as pq
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 

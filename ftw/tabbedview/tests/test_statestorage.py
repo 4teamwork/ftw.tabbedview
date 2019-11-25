@@ -7,7 +7,7 @@ from ftw.tabbedview.testing import TABBEDVIEW_FUNCTIONAL_TESTING
 from ftw.tabbedview.testing import ZCML_LAYER
 from ftw.testing import MockTestCase
 from persistent.mapping import PersistentMapping
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.annotation import IAttributeAnnotatable
 from zope.component import getAdapter
 from zope.component import getMultiAdapter

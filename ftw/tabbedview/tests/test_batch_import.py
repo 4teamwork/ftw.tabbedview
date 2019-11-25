@@ -1,4 +1,4 @@
-from unittest2 import TestCase
+from unittest import TestCase
 from ftw.tabbedview.browser.listing import batch_method
 from pkg_resources import get_distribution
 
