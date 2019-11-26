@@ -1,9 +1,9 @@
 from ftw.tabbedview.testing import TABBEDVIEW_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from ftw.testing import MockTestCase
+from unittest import TestCase
 
 
-class TestFallBackView(MockTestCase):
+class TestFallBackView(TestCase):
 
     layer = TABBEDVIEW_FUNCTIONAL_TESTING
 
