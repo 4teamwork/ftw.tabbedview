@@ -29,4 +29,11 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:page
+        for="*"
+        name="tabbedview_view-samplecataloglisting"
+        class=".tabs.SampleCatalogListingTab"
+        permission="zope2.View"
+        />
+
 </configure>

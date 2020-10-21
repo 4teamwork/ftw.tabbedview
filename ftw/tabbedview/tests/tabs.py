@@ -1,3 +1,4 @@
+from ftw.tabbedview.browser.listing import CatalogListingView
 from ftw.tabbedview.browser.listing import ListingView
 
 
@@ -12,4 +13,8 @@ class SomeOtherTab(ListingView):
 
 
 class RestrictedTab(ListingView):
+    pass
+
+
+class SampleCatalogListingTab(CatalogListingView):
     pass
