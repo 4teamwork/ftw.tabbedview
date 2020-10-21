@@ -310,10 +310,11 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         are listed in a drop-down.
         This symbol may be a list (not callable) for easier handling.
         """
-        if callable(self.enabled_actions):
-            return list(self.enabled_actions())
-        else:
-            return list(self.enabled_actions)
+        enabled = self.enabled_actions
+        if callable(enabled):
+            enabled = enabled()
+
+        return list(enabled)
 
     def minor_actions(self):
         """ Returns a list of auto-generated minor action ids.
@@ -321,17 +322,24 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         major actions.
         """
         major = self.major_actions
-        major = callable(major) and list(major()) or list(major)
+        if callable(major):
+            major = major()
+        major = list(major)
+
         enabled = self.enabled_actions
-        enabled = callable(enabled) and list(enabled()) or list(enabled)
+        if callable(enabled):
+            enabled = enabled()
+        enabled = list(enabled)
+
         return list(filter(lambda a: a not in major, enabled))
 
     @instance.memoize
     def buttons(self):
-        if callable(self.enabled_actions):
-            enabled_actions = list(self.enabled_actions())
-        else:
-            enabled_actions = list(self.enabled_actions)
+        enabled = self.enabled_actions
+        if callable(enabled):
+            enabled = enabled()
+        enabled = list(enabled)
+
         buttons = []
         context = aq_inner(self.context)
         portal_actions = getToolByName(context, 'portal_actions')
@@ -351,7 +359,7 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         for button in button_actions:
             # Make proper classes for our buttons
             if button['id'] != 'paste' or context.cb_dataValid():
-                if button['id'] in enabled_actions:
+                if button['id'] in enabled:
                     buttons.append(self.setbuttonclass(button))
         return list(buttons)
 
@@ -359,7 +367,9 @@ class ListingView(BrowserView, BaseTableSourceConfig):
         """ All buttons, which are listed in self.major_actions
         """
         major = self.major_actions
-        major = callable(major) and list(major()) or list(major)
+        if callable(major):
+            major = major()
+        major = list(major)
         return filter(lambda b: b['id'] in major, self.buttons())
 
     def minor_buttons(self):
