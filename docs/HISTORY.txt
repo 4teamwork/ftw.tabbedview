@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.2.1 (unreleased)
+4.2.1 (2020-10-23)
 ------------------
 
 - Fix bug where empty action lists would cause a failure to render the tab. [lgraf]
