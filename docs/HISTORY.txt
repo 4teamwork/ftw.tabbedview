@@ -5,7 +5,7 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bug where empty action lists would cause a failure to render the tab. [lgraf]
 
 
 4.2.0 (2019-11-26)

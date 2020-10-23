@@ -24,5 +24,12 @@
           url_expr="string:#"
           visible="True">
   </action>
+  <action title="Sample Listing Tab"
+          action_id="samplelisting"
+          category="tabbedview-tabs"
+          condition_expr=""
+          url_expr="string:#"
+          visible="True">
+  </action>
 
 </object>
